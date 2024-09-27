@@ -19,7 +19,8 @@ const router = createBrowserRouter([
         children : [
             {
                 path : "/",
-                element : <Main />
+                element : <Main />,
+                
             },
             {
                 path : "/brand",
