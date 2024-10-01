@@ -61,8 +61,11 @@ S.SearchInput = styled.input`
 
 // 지도 스타일
 S.MapDiv = styled.div`
-  position: relative;
+  width: 100%;
   height: 100%;
+  position: relative;
+  /* 지도 위에 다른 요소가 겹치지 않도록 설정 */
+  z-index: 0;
 `;
 
 // 근처 레스토랑 목록 보여주기 위한 영역 스타일
