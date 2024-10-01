@@ -1,12 +1,10 @@
 import React from 'react';
 import S from './style';
 
-// 지도 패키지 import
-import { MapContainer, TileLayer } from 'react-leaflet';
-import "leaflet/dist/leaflet.css";
+// 카카오 지도 모듈 import
+import { Map, MapMarker } from "react-kakao-maps-sdk";
 
-
-const Map = ({ showNearRestaurant, showRestaurantDetail, handleRestaurantDetailClick }) => {
+const RestaurantMap = ({ showNearRestaurant, showRestaurantDetail, handleRestaurantDetailClick }) => {
     // 레스토랑 예시 데이터
     const restaurantList = [
         {
@@ -16,6 +14,10 @@ const Map = ({ showNearRestaurant, showRestaurantDetail, handleRestaurantDetailC
             rating: 4.8,
             reviews: 122,
             restaurantLocation: "서울특별시 강남구",
+            // 위도 표시
+            lat: 37.497942,
+            // 경도 표시
+            lng: 127.027621,
             image: "https://via.placeholder.com/100",
             detailImage: "https://via.placeholder.com/200",
             menu: [{ name: "메뉴명", description: "대표 메뉴", price: "가격" }]
@@ -27,6 +29,10 @@ const Map = ({ showNearRestaurant, showRestaurantDetail, handleRestaurantDetailC
             rating: 4.8,
             reviews: 122,
             restaurantLocation: "서울특별시 강남구",
+            // 위도 표시
+            lat: 37.497942,
+            // 경도 표시
+            lng: 127.027621,
             image: "https://via.placeholder.com/100",
             detailImage: "https://via.placeholder.com/200",
             menu: [{ name: "메뉴명", description: "대표 메뉴", price: "가격" }]
@@ -38,6 +44,10 @@ const Map = ({ showNearRestaurant, showRestaurantDetail, handleRestaurantDetailC
             rating: 4.8,
             reviews: 122,
             restaurantLocation: "서울특별시 강남구",
+            // 위도 표시
+            lat: 37.497942,
+            // 경도 표시
+            lng: 127.027621,
             image: "https://via.placeholder.com/100",
             detailImage: "https://via.placeholder.com/200",
             menu: [{ name: "메뉴명", description: "대표 메뉴", price: "가격" }]
@@ -60,6 +70,10 @@ const Map = ({ showNearRestaurant, showRestaurantDetail, handleRestaurantDetailC
             rating: 4.8,
             reviews: 122,
             restaurantLocation: "서울특별시 강남구",
+            // 위도 표시
+            lat: 37.497942,
+            // 경도 표시
+            lng: 127.027621,
             image: "https://via.placeholder.com/100",
             detailImage: "https://via.placeholder.com/200",
             menu: [{ name: "메뉴명", description: "대표 메뉴", price: "가격" }]
@@ -74,13 +88,26 @@ const Map = ({ showNearRestaurant, showRestaurantDetail, handleRestaurantDetailC
                     <S.SearchInput type="text" placeholder="검색어를 입력하세요" />
                 </S.SearchContainer>
 
-                {/* 지도 구현 */}
-                <MapContainer center={[37.497942, 127.027621]} zoom={13} style={{height: "100%", width: "100%"}}>
-                    <TileLayer
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    />
-                </MapContainer>
+                {/* 카카오 지도 구현 */}
+                <Map
+                    // 초기 지도 중심 좌표
+                    center={{ lat: 37.497942, lng: 127.027621 }}
+                    // 지도 크기 설정
+                    style={{ width: "100%", height: "100%", position: "relative" }}
+                    // 줌 레벨 설정
+                    level={3}
+                >
+                    {/* 마커 클릭 시 상세 정보 표시 */}
+                    {restaurantList.map((restaurant) => (
+                        <MapMarker
+                            key={restaurant.id}
+                            position={{ lat: restaurant.lat, lng: restaurant.lng }}
+                            onClick={() => handleRestaurantDetailClick(restaurant)}
+                        >
+                            <div style={{ padding: "5px", color: "#000" }}>{restaurant.name}</div>
+                        </MapMarker>
+                    ))}
+                </Map>
 
                 {/* 주변 레스토랑 목록과 상세 정보 영역 */}
                 {showNearRestaurant && (
@@ -113,4 +140,4 @@ const Map = ({ showNearRestaurant, showRestaurantDetail, handleRestaurantDetailC
     );
 };
 
-export default Map;
+export default RestaurantMap;
