@@ -72,7 +72,7 @@ S.TagItemWrapper = styled.div`
     width: 1420px;
     height: 399px;
     display: flex;
-    padding-top: 20px;
+    padding-top: 30px;
     margin-bottom: 50px;
 
 `
@@ -99,12 +99,16 @@ S.ItemExplain = styled.div`
  
 `
 S.ItemPrice = styled.div`
-    margin: 12px 0 4px 4px;
-    font-size : ${({theme})=> theme.FONT_SIZE["h4"]}
+    margin: 6px 0 4px 4px;
+    font-size: ${({theme})=> theme.FONT_SIZE["title"] };
 
 `
 S.ItemStar = styled.div`
-    margin : 4px 0 0 4px
+    margin : 4px 0 0 4px;
+   
+`
+S.Review = styled.span`
+    font-size: 14px;
 
 `
 export default S; 

@@ -4,7 +4,7 @@ import S from './style';
 // iconify 아이콘 import
 import { Icon } from '@iconify/react';
 import SideBar from './SideBar';
-import Map from './Map';
+import Map from './Map'; 
 
 const Restaurant = () => {
 

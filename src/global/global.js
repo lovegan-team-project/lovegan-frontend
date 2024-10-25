@@ -15,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     *{
+        font-family: 'SpoqaHanSansNeo-Regular';
         box-sizing: border-box;
         text-decoration: none;
         

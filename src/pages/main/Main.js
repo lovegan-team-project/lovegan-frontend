@@ -51,10 +51,11 @@ const Main = () => {
   };
 
   const style = { width: "100%", height: "717px" };
-//   // const tagTitle = ["채소", "고기대용", "채식 반찬", "앙념·가루", "간식·과일·견과", "쌀·잡곡·계란", "간편식", "음료", "건강식품"]
 
   // 각 카테고리별로 표시할 컴포넌트나 내용을 조건부로 렌더링
-
+  const moveTOProduct = () => {
+      navigate("/product")
+  }
   return (
     <>
     <S.MainContainer1>
@@ -84,7 +85,8 @@ const Main = () => {
       <S.ProductWrapper>
         <Best />
         <New />
-        <S.ProductButton onClick={()=> navigate("/product")}>상품 보러가기 →</S.ProductButton>
+        {/* navigate("/product") */}
+        <S.ProductButton onClick={moveTOProduct}>상품 보러가기 →</S.ProductButton>
       </S.ProductWrapper>
 
     </S.MainContainer1>
