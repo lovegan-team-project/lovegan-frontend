@@ -1,48 +1,70 @@
 import React, { useState } from 'react';
 import S from './style';
-
-// iconify 아이콘 import
-import { Icon } from '@iconify/react';
 import SideBar from './SideBar';
 import Map from './Map'; 
 
 const Restaurant = () => {
 
     // 주변 레스토랑 목록 보여주는 상태
-    const [showNearRestaurant, setShowNearRestaurant] = useState(false); 
+    const [showNearRestaurant, setShowNearRestaurant] = useState(false);
+    
+    // 스크랩 목록 보여주는 상태
+    const [showScrapRestaurant, setShowScrapRestaurant] = useState(false);
+
+    // 최근 목록 보여주는 상태
+    const [showLatelyRestaurant, setShowLatelyRestaurant] = useState(false);
 
     // 레스토랑 상세 정보를 확인하기 위한 상태
-    const [showRestaurantDetail, setShowRestaurantDetail] = useState(null);
+    const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
     // 주변 레스토랑 목록 상태 변경
     const handleNearRestaurantClick = () => {
-        // 버튼을 클릭할 때마다 상태가 true false가 번갈아가면서 바뀌는 코드
-        setShowNearRestaurant(prevState => !prevState); 
-    
-        // 목록을 클릭한 경우 상세 정보 상태를 초기화
-        setShowRestaurantDetail(null);
+        setShowNearRestaurant((prevState) => !prevState); 
+        setShowScrapRestaurant(false); // 스크랩 목록 숨기기
+        setShowLatelyRestaurant(false); // 최근 목록 숨기기
+        setSelectedRestaurant(null); // 목록 클릭 시 상세 정보 초기화
+    };
+
+    // 스크랩 레스토랑 목록 상태 변경
+    const handleScrapRestaurantClick = () => {
+        setShowScrapRestaurant((prevState) => !prevState); 
+        setShowNearRestaurant(false); // 주변 목록 숨기기
+        setShowLatelyRestaurant(false); // 최근 목록 숨기기
+        setSelectedRestaurant(null); // 목록 클릭 시 상세 정보 초기화
+    };
+
+    // 최근 레스토랑 목록 상태 변경
+    const handleLatelyRestaurantClick = () => {
+        setShowLatelyRestaurant((prevState) => !(prevState));
+        setShowNearRestaurant(false); // 주변 목록 숨기기
+        setShowScrapRestaurant(false); // 스크랩 목록 숨기기
+        setSelectedRestaurant(null); // 목록 클릭 시 상세 정보 초기화
     };
 
     // 레스토랑 상세 정보 확인 상태 변경
-    // 레스토랑 목록에서 이미지를 클릭했을 때 호출
-    // 클릭한 해당 레스토랑의 데이터를 저장하고 상세 정보를 보여줌
     const handleRestaurantDetailClick = (restaurant) => {
-        // 클릭한 레스토랑의 상세 정보를 저장하도록 한다
-        setShowRestaurantDetail(restaurant); 
+        setSelectedRestaurant(restaurant); // 클릭한 레스토랑 정보 저장
     };
 
     return (
         <S.MainContainer>
-            {/* 메뉴 사이드바 구현 */}
-            {/* 사이드바 구현, 상태와 핸들러 props로 전달 */}
-            <SideBar onNearRestaurantClick={handleNearRestaurantClick} />
+            {/* 사이드바에서 각 버튼 클릭 시 목록을 토글 */}
+            <SideBar 
+                onNearRestaurantClick={handleNearRestaurantClick} 
+                onScrapRestaurantClick={handleScrapRestaurantClick}
+                onLatelyRestaurantClick={handleLatelyRestaurantClick}
+            />
 
-            {/* 지도 구현 */}
-            {/* 지도 구현, 상태와 상태 변경 함수 props로 전달 */}
+            {/* 지도 컴포넌트에 상태 및 상태 변경 함수 전달 */}
             <Map  
                 showNearRestaurant={showNearRestaurant}
-                showRestaurantDetail={showRestaurantDetail}
-                handleRestaurantDetailClick={handleRestaurantDetailClick}  // ��스토�� 상세 정보 ���� 이���트 ��들러
+                showScrapRestaurant={showScrapRestaurant}
+                showLatelyRestaurant={showLatelyRestaurant}
+                selectedRestaurant={selectedRestaurant}
+                handleNearRestaurantClick={handleNearRestaurantClick}
+                handleScrapRestaurantClick={handleScrapRestaurantClick}
+                handleLatelyRestaurantClick={handleLatelyRestaurantClick}
+                handleRestaurantDetailClick={handleRestaurantDetailClick}
             />
         </S.MainContainer>
     );

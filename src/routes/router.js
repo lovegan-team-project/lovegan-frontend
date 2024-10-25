@@ -83,7 +83,13 @@ const router = createBrowserRouter([
             },
             {
                 path : "/customerService", 
-                element : <CustomerService />
+                element : <CustomerService />,
+                children: [
+                    {
+                        path: ":details",
+                        element: <CustomerService />,
+                    }
+                ]
             },
             {
                 path : "/signIn", 

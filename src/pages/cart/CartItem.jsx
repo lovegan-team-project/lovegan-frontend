@@ -1,8 +1,8 @@
 import React from 'react';
 import S from './style';
 
-const Cart = () => {
+const CartItem = () => {
 
 };
 
-export default Cart;
+export default CartItem;
