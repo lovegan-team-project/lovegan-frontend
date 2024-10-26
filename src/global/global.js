@@ -23,7 +23,18 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'SpoqaHanSansNeo-Regular',sans-serif;
     }
 
-
-
+    button{
+        /* width: 20px; */
+        /* height: 20px; */
+        padding: 4px 12px;
+        border-width: 1px;
+        border-radius: 50px;
+        /* border-color: ; */
+    }
+    
+    button:hover{
+        /* border-color: ; */
+    }
+    
 ` 
 export default GlobalStyle;

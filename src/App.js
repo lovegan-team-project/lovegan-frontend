@@ -2,16 +2,16 @@ import { RouterProvider} from 'react-router-dom';
 import './App.css';
 import router from './routes/router';
 import GlobalStyle from './global/global';
-//import { ThemeProvider } from 'styled-components';
-//import theme from './global/theme';
+import { ThemeProvider } from 'styled-components';
+import theme from './global/theme';
 
 function App() {
   return (
     <>
-    {/* <ThemeProvider theme={theme}> */}
+    <ThemeProvider theme={theme}>
       <RouterProvider router={router} />
-      <GlobalStyle /> 
-    {/* </ThemeProvider>  */}
+      <GlobalStyle />
+    </ThemeProvider> 
     </>
 
   );
