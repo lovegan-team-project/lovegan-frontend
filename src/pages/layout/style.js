@@ -125,11 +125,19 @@ S.InputButton = styled.button`
    
 `
 
-S.Main = styled.main`
+S.Main1 = styled.main`
 
     flex: 1;
     width: 100%;
     padding-top: 100px;
+    //padding-bottom: 293px;
+ 
+
+`
+S.Main2 = styled.main`
+
+    flex: 1;
+    width: 100%;
     //padding-bottom: 293px;
  
 
@@ -142,7 +150,7 @@ S.Footer = styled.footer`
     display: flex;
     flex-direction: column;
     background-color: ${({theme})=> theme.PALLETTE.brand["primary"] };
-    
+    margin-top: 293px;
 
 `
 S.logoWrapper = styled.div`
@@ -156,7 +164,7 @@ S.TextBoxWrapper = styled.div`
     height : 84px;
 
 `
-S.textBox1 = styled.p`
+S.TextBox1 = styled.p`
     
     width: 256px;
     height: 18px;
@@ -167,7 +175,7 @@ S.textBox1 = styled.p`
     }
 
 `
-S.textBox2 = styled.div`
+S.TextBox2 = styled.div`
 
     width: 613px;
     height: 15px;

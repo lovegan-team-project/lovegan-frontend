@@ -1,6 +1,7 @@
 import styled from "styled-components";
-
+import { flexCenter, flexCenterColumn } from "../../global/common";
 const S={};
+
 S.ProductContainer = styled.div`
     
 `
@@ -24,6 +25,57 @@ S.ToggleContainer = styled.div`
     background-color: #E6E6E6;
     border-radius: 30px;
     margin: 0 790px 60px 790px;
+    position: relative;
+    display: flex;
+    text-align: center;
+
+   & .toggleButtonFood{
+
+        width: 160px;
+        height: 45px;
+        border-radius: 20px;
+        background-color: #E6E6E6;
+        text-align: center;
+        margin : 1px 0px 1px 5px;
+        font-size : 16px;
+        padding: 16px 57.5px;
+        color: #8D8D8D;
+   }
+   & .toggleButtonOther{
+
+        width: 160px;
+        height: 45px;
+        border-radius: 20px;
+        background-color: #E6E6E6;
+        text-align: center;
+        margin : 1px 0px 1px 5px;
+        font-size : 16px;
+        padding: 16px 53px;
+        color: #8D8D8D;
+   }
+   & .button{
+        position: absolute;
+        width: 160px;
+        height: 45px;
+        border-radius: 20px;
+        top: 5px;
+        left: 5px;
+        background-color: white;
+        
+        &.foodActive{
+            border: 1px solid #333333;
+            padding: 12.5px 57.5px;
+            transform: translate(0px);
+            transition: 0.5s;
+        }
+        &.otherActive{
+            border: 1px solid #333333;
+            padding: 12.5px 53px;
+            transform: translate(170px);
+            transition: 0.5s;
+        }
+   }
+    
 `
 S.MainWrapper = styled.div`
     display: flex;
@@ -39,6 +91,48 @@ S.SideMenuWrapper = styled.div`
     }
 
 
+`
+S.SideFilterWrapper = styled.div`
+    display: ${flexCenterColumn};
+    width: 134px;
+    height: 1379px;
+    //border: 1px solid black;
+
+
+    & .filterWrapper {
+        padding-bottom: 20px;
+        border-bottom: 2px solid #C0C0C0;
+
+    }
+   
+`
+
+
+
+S.MainFilterButton = styled.button`
+    font-size: ${({theme})=> theme.FONT_SIZE["title"]};
+    color: #333333;
+    font-weight : 500;
+    padding: 0px;
+    height: 25px;
+    text-align: left;
+    background-color: white;
+    outline: none;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 4px;
+    
+`
+S.UnderFilterButton = styled.button`
+
+    padding: 0px;
+    width: 118px;
+    height: 18px;
+    text-align: left;
+    background-color: white;
+    outline: none;
+    border: none;
+    margin-top: 8px;
 `
 S.ProductWrapper = styled.div`
     width: 1100px;
@@ -70,40 +164,346 @@ S.ProductTagWrapper = styled.div`
     width: 206px;
     height: 26px;
     display: flex;
-    justify-content: space-between;
     margin-right: 541px;
-
-    & button {
-        width: 57px;
-        height: 26px;
-        background-color: white;
-        border: 1px solid #D9D9D9;
-        border-radius: 50px;
-        text-align: center;
+    text-align: center;
+   
+    & .active div {
+        background-color : ${({theme})=> theme.PALLETTE.brand["primary"]} !important;
+        color: white;  
+        
     }
 
-    & button:hover{
-        color: ${({theme})=>theme.PALLETTE.brand["primary"]};
+    & .normal div {
+        
+        background-color : white !important;
+        color: black;import { handleActions } from 'redux-actions';
+import { Aos } from 'aos';
+
+       
+
     }
+   
+   
+    & a {
+        color: #333333;
+    }
+        
 `
+S.NewButton = styled.div`
+    width: 55px;
+    height: 26px;
+    border: 1px solid #D9D9D9;
+    border-radius: 50px;
+    text-align: center;
+    margin-right: 18px;
+    font-size: 14px;
+    padding: 4px 12px;
+    ${flexCenter}
+`
+
+S.BestButton = styled.div`
+
+    width: 58px;
+    height: 26px;
+    border: 1px solid #D9D9D9;
+    border-radius: 50px;
+    text-align: center;
+    margin-right: 18px;
+    font-size: 14px;
+    padding: 4px 12px;
+    background-color: white;
+    ${flexCenter}
+
+
+`
+
+S.SaleButton = styled.div`
+    width: 57px;
+    height: 26px;
+    background-color: white;
+    border: 1px solid #D9D9D9;
+    border-radius: 50px;
+    text-align: center;
+    margin-right: 18px;
+    font-size: 14px;
+    padding: 4px 12px;
+    background-color: white;
+    ${flexCenter}
+`
+
 S.ProductSortWrapper = styled.div`
     width: 353px;
     height: 18px;
     display: flex;
     justify-content: space-between;
-   
-    & button {
+        
+    & button.active {
+
+        padding: 0px;
         background-color: white;
         font-size: 14px;
+        outline: none;
+        font-weight: 700;
+    }
+
+    & button.normal {
+
         padding: 0px;
+        background-color: white;
+        font-size: 14px;
+        outline: none;
+
+    & p {
+
+        font-size: 14px;
+        color: #8D8D8D;
+    } 
+        
       
     }
+`
 
-    & button:hover{
-        color: ${({theme})=>theme.PALLETTE.brand["primary"]};
+S.ProductMainContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 34px;
+    width: 1100px;
+    height: 1281px;
+`
+S.ProductRowItemContainer = styled.div`
+    display: flex;
+    width: 1100px;
+    height: 399px;
+    margin-bottom: 42px;
+`
+S.ProductItemContainer = styled.div`
+    margin-right: 40px;
+    width: 100%;
+    height: 399px;
+
+`
+S.ItemImgWrapper = styled.div`
+    width: 340px;
+    height: 240px;
+    border-radius: 10px;
+    background-color: #E6E6E6;
+
+`
+S.ItemTitle = styled.div`
+    width : 340px;
+    height: 25px;
+    font-size: ${({theme})=> theme.FONT_SIZE["title"] };
+    margin-top: 10px;
+    margin-left: 4px;
+    font-weight: 500;
+`
+S.ItemExplain = styled.div`
+
+    width: 340px;
+    height: 18px;
+    color: ${({theme})=> theme.PALLETTE.grey["8"]};
+    font-size: ${({theme})=> theme.FONT_SIZE["paragraph"] };
+    margin : 4px 0 0 4px;
+ 
+`
+S.ItemPrice = styled.div`
+    display: flex;
+    width: 340px;
+    margin: 12px 0 4px 4px;
+    font-size: ${({theme})=> theme.FONT_SIZE["h4"] };
+    
+
+`
+S.Discount = styled.div`
+    width: 51px;
+    height: 30px;
+    color: ${({theme})=>theme.PALLETTE.sub["secondary"]};
+    margin-right: 4px;
+
+`
+S.OriginPrice = styled.div`
+
+    width: 61px;
+    height: 18px;
+    font-size: 14px;
+    margin: 6px 6px;
+    color: #8D8D8D;
+    text-decoration: line-through;
+
+`
+S.ItemStar = styled.div`
+    margin : 4px 0 0 4px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    & img{
+        width: 15px;
+        height: 15px;
+        margin-right: 3px;
     }
+   
+`
+S.Review = styled.span`
+    font-size: 14px;
 
+`
+
+S.ItemTagWrapper = styled.div`
+
+    width: 340px;
+    height: 26px;
+    margin-top: 12px;
+`
+S.Tag = styled.button`
+    
+    width: 46px;
+    height: 26px;
+    background: ${({theme})=> theme.PALLETTE.brand["primary"]};
+    color: #ffffff;
+    font-size: 14px;
+    border-radius: 50px;
+    text-align: center;
+    font-weight: 500;
+    text-align: center;
+    padding: 4px 12px;
+    ${flexCenter}
+    
+`
+
+// product details
+
+S.ProductDetailContainer = styled.div`
+
+    width: 1420px;
+    height: 1162px;
+    margin: 0 250px;
+`
+S.DetailMainWrapper = styled.div`
+    display: flex;
 
 
 `
+S.ImgWrapper = styled.div`
+   
+`
+S.DetailContainer = styled.div`
+    width: 720px;
+    height: 917px;
+    margin-left: 60px;
+
+`
+S.ProductDetailTitle = styled.div`
+    width: 720px;
+    height: 45px;
+    font-size: 36px;
+
+`
+S.ProductExplain = styled.p`
+    width: 100%;
+    height: 18px;
+    font-size: 14px;
+    color: ${({theme})=> theme.PALLETTE.grey["8"] };
+    margin-top: 6px;
+
+`
+S.ProductStarWrapper = styled.div`
+    width: 100%;
+    height: 21px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    & img{
+        margin-right: 12px;
+    }
+
+`
+S.ProductPriceWrapper = styled.div`
+    width: 100%;
+    height: 90px;
+    margin-top: 32px;
+    border-bottom: 1px solid #A6A6A6;
+`
+S.DiscountRate = styled.span`
+    width: 101px;
+    height: 100%;
+    font-size: ${({theme})=> theme.FONT_SIZE["h1"]};
+    font-weight: bold;
+    color : ${({theme})=> theme.PALLETTE.sub["secondary"] };
+    margin-right: 20px;
+`
+S.DiscountPrice = styled.span`
+    width: 199x;
+    height: 100%;
+    font-size: ${({theme})=> theme.FONT_SIZE["h1"]};
+    font-weight: bold;
+    color : ${({theme})=> theme.PALLETTE.sub["primary_black"] };
+    margin-right: 20px;
+`
+S.OriginalPrice = styled.span`
+    width: 83px;
+    height: 25px;
+    font-size: 20px;
+    color: ${({theme})=> theme.PALLETTE.grey["8"] };
+    text-decoration-line: line-through;
+`
+S.ProductDetailBar = styled.div`
+    width: 100%;
+    height: 60px;
+    border: 1px solid black;
+`
+S.ProductOptionCheckContainer = styled.div`
+    width: 100%;
+    height: 2106px;
+    border: 1px solid black;
+`
+S.TagContainer = styled.div`
+    margin: 51px 0px 36px 0px;
+    font-size: 14px;
+    width: 300px;
+    height: 20px;
+    color: ${({theme})=> theme.PALLETTE.grey["8"] };
+    & img{
+        margin : 0 8px 0 8px
+    }
+
+`
+S.MainImgWrapper = styled.div`
+    width: 640px;
+    height: 640px;
+    & img{
+        width: 640px;
+        height: 640px;
+    }
+`
+S.SubImgWrapper = styled.div`
+
+    width: 640px;
+    height: 100px;
+    display: flex;
+    margin-top: 18px;
+
+    & img{
+        
+        width: 100px;
+        height: 100px;
+        margin-right: 8px;
+    }
+
+
+`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export default S;
