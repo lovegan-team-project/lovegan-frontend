@@ -9,16 +9,10 @@ function App() {
   
   return (
     <>
-    
-   
     <ThemeProvider theme={theme}>
-      
       <RouterProvider router={router} />
-    
-      <GlobalStyle /> 
-        
+      <GlobalStyle />
     </ThemeProvider> 
-  
     </>
 
   );
