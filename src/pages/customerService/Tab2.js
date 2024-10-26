@@ -3,8 +3,10 @@ import S from './style';
 import { Link } from 'react-router-dom';
 
 const Tab2 = () => {
+    
     return (
             <S.Wrap>
+                <button>button</button>
                 <S.Div>
                     <S.H2>자주하는 질문</S.H2>
                     <S.P>고객님들이 가장 자주하시는 질문을 모았습니다.</S.P>
