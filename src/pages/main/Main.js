@@ -9,6 +9,10 @@ import main04 from './images/main04.svg';
 import main05 from './images/main05.svg';
 import main06 from './images/main06.svg';
 import main07 from './images/main07.svg';
+import communityPic01 from './images/community01.png'
+import communityPic02 from './images/community02.png'
+import communityPic03 from './images/community03.png'
+import user from './images/userPic.png'
 import styled from "styled-components";
 import NextArrow from './NextArrow';
 import PreArrow from './PreArrow';
@@ -95,7 +99,46 @@ const Main = () => {
 
     </S.MainContainer2>
     <S.MainContainer3>
-      
+      <S.Main3Title>유저들의 비건 이야기🌷</S.Main3Title>
+      <S.Main3SubTitle>어디서도 구하기 힘든 꿀팁 구경하러가기</S.Main3SubTitle>
+    <S.ContentWrapper>
+      <S.ContentContainer>
+        <img src={communityPic01}></img>
+        <S.ContentTitle>게시물 제목</S.ContentTitle>
+        <S.ContentUser><img src={user}></img>유저 닉네임</S.ContentUser>
+        <S.FunctionContainer>
+          <div>스크랩 <span className="save">24</span>·</div>
+          <div>좋아요 <span className="like">80</span>·</div>
+          <div>댓글 <span className="review">604</span>·</div>
+          <div>조회수<span className="click"> 713</span></div>
+          </S.FunctionContainer>
+
+      </S.ContentContainer>
+      <S.ContentContainer>
+        <img src={communityPic02}></img>
+        <S.ContentTitle>게시물 제목</S.ContentTitle>
+        <S.ContentUser><img src={user}></img>유저 닉네임</S.ContentUser>
+        <S.FunctionContainer>
+          <div>스크랩 <span className="save">24</span>·</div>
+          <div>좋아요 <span className="like">80</span>·</div>
+          <div>댓글 <span className="review">604</span>·</div>
+          <div>조회수<span className="click"> 713</span></div>
+          </S.FunctionContainer>
+ 
+      </S.ContentContainer>
+      <S.ContentContainer>
+        <img src={communityPic03}></img>
+        <S.ContentTitle>게시물 제목</S.ContentTitle>
+        <S.ContentUser><img src={user}></img>유저 닉네임</S.ContentUser>
+        <S.FunctionContainer>
+          <div>스크랩 <span className="save">24</span>·</div>
+          <div>좋아요 <span className="like">80</span>·</div>
+          <div>댓글 <span className="review">604</span>·</div>
+          <div>조회수<span className="click"> 713</span></div>
+          </S.FunctionContainer>
+
+      </S.ContentContainer>
+    </S.ContentWrapper>
     </S.MainContainer3>
     </>
   );
