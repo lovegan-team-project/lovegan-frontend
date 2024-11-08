@@ -13,7 +13,11 @@ import right_button from './icons/right_button.svg'
 const Diary = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
     const [days, setDays] = useState([]);
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate, setSelectedDate] = useState({
+        day : currentDate.getDate(),
+        month : currentDate.getMonth(),
+        year : currentDate.getFullYear(),
+    });
     const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
     const [isInputModalOpen, setIsInputModalOpen] = useState(false);
     const [foodTime, setFoodTime] = useState("아침");
@@ -23,8 +27,6 @@ const Diary = () => {
 
     useEffect(() => {
         renderCalendar();
-        const today = new Date();
-        setSelectedDate(today.getDate());
     }, [currentDate]);
 
     const renderCalendar = () => {
@@ -67,13 +69,18 @@ const Diary = () => {
 
 
     const changeMonth = (step) => {
-        setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() + step)));
+        const newDate = new Date(currentDate);
+        newDate.setMonth(currentDate.getMonth() + step);
+        setCurrentDate(newDate)
     };
     
     const clickDate = (day) => {
-        const year = currentDate.getFullYear();
-        const month = currentDate.getMonth() + 1; 
-        setSelectedDate(day); 
+       
+        setSelectedDate({
+            day : day,
+            month : currentDate.getMonth(),
+            year : currentDate.getFullYear()
+        }); 
     }
 
     const openModal = (time) => {
@@ -112,7 +119,7 @@ const Diary = () => {
                     ))}
                     {days.map((day, index) => (
                         <S.Day key={index} onClick={() => clickDate(day.day)} isCurrentMonth = {day.isCurrentMonth}>
-                            <S.DayCircle isSelected={selectedDate === day.day} isCurrentMonth={day.isCurrentMonth} isToday={day.isToday}>
+                            <S.DayCircle isSelected={selectedDate.day === day.day && selectedDate.month === currentDate.getMonth() && selectedDate.year === currentDate.getFullYear()} isCurrentMonth={day.isCurrentMonth} isToday={day.isToday}>
                                 {day.day}
                             </S.DayCircle>
                         </S.Day>
@@ -123,7 +130,11 @@ const Diary = () => {
             <div>
                 <S.DiaryFoodBox>
                     <S.Diary>DIARY</S.Diary>
-                    <S.SelectedDate>{currentDate.getFullYear()}년 {currentDate.getMonth() + 1}월 {selectedDate}일</S.SelectedDate>
+                    <S.SelectedDate>
+                        {selectedDate
+                            ? `${selectedDate.year}년 ${selectedDate.month + 1}월 ${selectedDate.day}일`
+                            : `${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월 ${currentDate.getDate()}일`}
+                    </S.SelectedDate>
                     {/* 아침 */}
                     <S.FoodBox>
                         <S.FoodInfo>
