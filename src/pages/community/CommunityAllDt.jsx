@@ -1,117 +1,111 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import S, { FollowButton, LikeButton, LikeButtonMin, ReplyTexts, ScrapButton } from './style';
+import { Icon } from '@iconify/react'
 import unsplash from './image/unsplash.svg';
 import unsplash1 from './image/unsplash1.svg';
 import unsplash2 from './image/unsplash2.svg';
 import unsplash3 from './image/unsplash3.svg';
 import cmUser from './image/cmUser.svg';
 import cmUser1 from './image/cmUser1.svg';
-import cmUser2 from './image/cmUser2.svg';
+import left from './image/left.svg';
+import right from './image/right.svg';
 import { ReactComponent as like} from './image/like.svg';
 import { ReactComponent as scrap} from './image/scrap.svg';
 import comment_one from './image/comment_one.svg';
+import Comment from './Comment';
+import LikeBtMin from './LikeBtMin';
 
-const CommunityAllDt = () => {
-
-    // 반복되는 이미지, 댓글 등
-    const cmImg = [
-        cmUser1, cmUser2,
-    ]
-    const comment = Array(5).fill().map((_, index) => ({
-        cmImgs : cmImg[index % cmImg.length],
-        userNkN : '유저 닉네임',
-    }));
+const CommunityAllDt = (props) => {
 
     // 팔로우 버튼 클릭, 호버 색 변경
     const [colorChange, setColorChange] = useState('#03A63C');
-    const [textColor, setTextColor] = useState('#fff')
-    
-    // like, scrap 버튼 클릭 상태
+    const [textColor, setTextColor] = useState('#fff')    
+    // // like, scrap 버튼 클릭 상태
     const [likeColor, setLikeColor] = useState('#fff')
     const [scrapColor, setScrapColor] = useState('#fff')
+    // // 각 댓글별 좋아요 버튼 클릭 상태 (배열로 관리)
+    const [likeMinStates, setLikeMinStates] = useState('#fff');
 
-    // 각 댓글별 좋아요 버튼 클릭 상태 (배열로 관리)
-    const [likeMinStates, setLikeMinStates] = useState(Array(comment.length).fill('#fff'));
-    const [likeSmallState, setLikeSmaillState] = useState(Array(comment.length).fill('#fff'));
-
-    // 각 댓글별 답글 입력창 상태(열림/닫힘)
-    const [replyInput, setReplyInput] = useState(Array(comment.length).fill(false))
-
-    // 각 댓글별 답글 내용 저장
-    const [replies, setReplies] = useState(Array(comment.length).fill(''));
-
-    // 입력한 답글 내용 저장 (임시 저장)
-    const [replyTexts, setReplyTexts] = useState(Array(comment.length).fill(''));
-
-    // 답글 보이고 안보이기
-    const [replyInputVisible, setReplyInputVisible] = useState(false);
-
-    // 팔로우 버튼 색 변경 함수
+    // // 팔로우 버튼 색 변경 함수
     const onChangeColor = () => {
         setColorChange(prevColor => (prevColor === '#03A63C' ? '#fafafa' : '#03A63C'))
         setTextColor(prevColor => (prevColor === '#fff' ? '#333' : '#fff'))
     };
     
-    // like 버튼 색변경 함수
+    // // like 버튼 색변경 함수
     const onChangeLike = () => {
-        setLikeColor(prevColor => (prevColor === '#fff' ? '#D8590E' : '#fff'))
+        setLikeColor(prevColor => (prevColor === '#fff' ? '#F27830' : '#fff'))
     };
     
-    // scrap 버튼 색변경 함수
+    // // scrap 버튼 색변경 함수
     const onChangeScrap = () => {
-        setScrapColor(prevColor => (prevColor === '#fff' ? '#D8590E' : '#fff'))
+        setScrapColor(prevColor => (prevColor === '#fff' ? '#F27830' : '#fff'))
     };
 
-    // 개별 댓글 좋아요 상태 변경 함수
-    const onChangeLikeMin = (index) => {
-        setLikeMinStates(prevStates => 
-            prevStates.map((color, i) => i === index ? (color === '#fff' ? '#D8590E' : '#fff') : color)
-        );
+    const [changeVal, setChangeVal] = useState("");
+    const [inputVal1, setInputVal1] = useState("");
+    // 댓글 달기 클릭 -> input 박스 보임 여부
+    const [visibleInput, setVisibleInput] = useState(false);
+    const inputChange2 = (e) => {
+        setInputVal1(e.target.value);
     };
-
-    // 개별 댓글 작은 좋아요 상태 변경 함수
-    const onChangeLikeSmall = (index) => {
-        setLikeSmaillState(prevStates => 
-            prevStates.map((color, i) => i === index ? (color === '#fff' ? '#D8590E' : '#fff') : color)
-        );
+    const textChange = () => {
+        setChangeVal(inputVal1);
+        setInputVal1(""); // 초기화
+        setVisibleInput(!visibleInput)
     };
+    
+    
 
-    // 답글 입력창 열기/닫기
-    const buttonReplyInput = (index) => {
-        setReplyInput(prevVisible => 
-            prevVisible.map((visible, i) => i === index ? !visible : visible)
-        );
-    };
+    // // 개별 댓글 작은 좋아요 상태 변경 함수
+    // const onChangeLikeSmall = (index) => {
+    //     setLikeSmaillState(prevStates => 
+    //         prevStates.map((color, i) => i === index ? (color === '#fff' ? '#D8590E' : '#fff') : color)
+    //     );
+    // };
 
-    // 답글 입력 상태 저장
-    const handleReplyChange = (index, event) => {
-        const newReplies = [...replyTexts];
-        newReplies[index] = event.target.value;
-        setReplyTexts(newReplies);
+    // // 답글 입력창 열기/닫기
+    // const buttonReplyInput = (index) => {
+    //     setReplyInput(prevVisible => 
+    //         prevVisible.map((visible, i) => i === index ? !visible : visible)
+    //     );
+    // };
 
-        // const newReplyTexts = [...replyTexts];
-        // newReplyTexts[index] = '';
-        // setReplyTexts(newReplyTexts);
-    };
+    // // 답글 입력 상태 저장
+    // const handleReplyChange = (index, event) => {
+    //     const newReplies = [...replyTexts];
+    //     newReplies[index] = event.target.value;
+    //     setReplyTexts(newReplies);
 
-    // 입력된 답글을 저장하고 입력창 닫기
-    const submitReply = (index) => {
-        const newReplies = [...replies];
-        newReplies[index] = [...newReplies[index], replyTexts[index]]; // 해당 댓글에 답글 추가
-        setReplies(newReplies);
+    //     // const newReplyTexts = [...replyTexts];
+    //     // newReplyTexts[index] = '';
+    //     // setReplyTexts(newReplyTexts);
+    // };
 
-        console.log(replyTexts[index])
+    // // 입력된 답글을 저장하고 입력창 닫기
+    // const submitReply = (index) => {
+    //     const newReplies = [...replies];
+    //     newReplies[index] = [...newReplies[index], replyTexts[index]]; // 해당 댓글에 답글 추가
+    //     setReplies(newReplies);
 
-        // 답글 창 닫기
-        setReplyInput(prevVisible => 
-            prevVisible.map((visible, i) => i === index ? false : visible)
-        );
+    //     console.log(replyTexts[index])
 
-        // 입력 필드 초기화
-        // const newReplyTexts = [...replyTexts];
-        // newReplyTexts[index] = '';
-        // setReplyTexts(newReplyTexts);
-    };
+    //     // 답글 창 닫기
+    //     setReplyInput(prevVisible => 
+    //         prevVisible.map((visible, i) => i === index ? false : visible)
+    //     );
+
+    //     // 입력 필드 초기화
+    //     // const newReplyTexts = [...replyTexts];
+    //     // newReplyTexts[index] = '';
+    //     // setReplyTexts(newReplyTexts);
+    // };
+
+    // 태그버튼
+    const [nextClick, setNextClick] = useState()
+    useEffect(()=>{
+        setNextClick()
+    }, [setNextClick])
 
     return (
         <S.PostWrapper>
@@ -140,11 +134,7 @@ const CommunityAllDt = () => {
                     <S.Introduce>유저 한 줄 소개</S.Introduce>
                 </div>
                 <FollowButton 
-                    onClick={onChangeColor} 
-                    color={colorChange} 
-                    text={textColor}>
-                    팔로우
-                </FollowButton> 
+                    onClick={onChangeColor} color={colorChange} text={textColor}>팔로우</FollowButton> 
             </S.UserInfo>
             <hr/>
             <p className='write'>
@@ -178,95 +168,45 @@ const CommunityAllDt = () => {
             <S.commentNum>
                 댓글
                 <div>59</div>
-            </S.commentNum>
-            <S.typing>
-                <img src={cmUser} alt='댓글달기' />
-                <input type="text" placeholder='칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)'/>
-                <button>입력</button>
-            </S.typing>
-            <S.Recomment>
-                {comment.map((cm, index) => (
-                    <S.RecommentBox key={index}>
-                        <img src={cm.cmImgs} alt={`게시물${index + 1}`}></img>
+            </S.commentNum>           
+                <S.typing>
+                    <img src={cmUser} alt='댓글달기' />
+                    <input type="text" value={inputVal1} onChange={(e) => inputChange2(e)} placeholder='칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)'></input>
+                    <button className='textChange' onClick={textChange}>입력</button>
+                </S.typing>
+        <S.Recomment>
+            {visibleInput &&
+                <S.RecommentBox className='commentBox'>
+                <img src={cmUser} alt='cmUser'></img>
                         <div className='userBox'>
-                            <div>{cm.userNkN}</div>
-                            {/* <p>
-                                0000님 글 너무 공감돼요! 저도 요즘 단호박 수프 자주 해먹어요.
-                                두유 말고 코코넛밀크 넣으면 더 달콤하고 부드럽더라고요,
-                                혹시 코코넛 좋아하시면 한 번 시도해보세요! 🍂 <br />
-                                저도 요즘 가을 되니까 따뜻한 음식이 자꾸 땡겨요. <br />
-                                레시피 공유해주시면 저도 따라 만들어보고 싶어요~
-                            </p> */}
-                                
-                        <S.dtInfo>
-                            <p>작성 시간</p>
-                            <span>·</span>
-                            <LikeButtonMin onClick={() => onChangeLikeMin(index)}
-                                color={likeMinStates[index]} src={like} alt='좋아요' />
-                            <p>좋아요</p>
-                            <span>·</span>
-                            <p onClick={() => buttonReplyInput(index)}>답글 달기</p>
-                            <span>·</span>
-                            <p>신고</p>
-                        </S.dtInfo>
+                            <div>유저 닉네임</div>
+                            <p className='detail'>{changeVal}</p>
 
-                        {/* 답글 입력창 */}
-                        {replyInput[index] && (
-                            <S.InputComment>
-                                <img src={cm.cmImgs} alt={`게시물${index + 1}`}></img>
-                                <input
-                                    type="text" 
-                                    value={replyTexts[index]} 
-                                    onChange={(e) => handleReplyChange(index, e)} 
-                                    placeholder="답글을 입력하세요" 
-                                />
-                                <button onClick={() => submitReply(index)} >입력</button>
-                            </S.InputComment>
-                        )}
-                        
-                        <S.Recomment1>
-                            <img src={cm.cmImgs} alt={`게시물${index + 1}`} />
-                            <div>
-                                <div>유저 닉네임</div>
-                                <S.goolbang>@유저 닉네임</S.goolbang>
-                            {replyTexts[index] && (
-                                <p
-                                    type="text" 
-                                    value={replyTexts[index]} 
-                                    onChange={(e) => handleReplyChange(index, e)} 
-                                >
-                                    <ReplyTexts>{replyTexts[index]}</ReplyTexts>
-                                </p>
-                            )}
+                            <S.dtInfo>
+                                <p>1주</p>
+                                <span>·</span>
+                                <LikeBtMin />
+                                <p>좋아요</p>
+                                <span>·</span>
+                                {/* 답글 달기 클릭 -> input 박스 보이게 해야함 */}
+                                <p>답글 달기</p>
+                                <span>·</span>
+                                <p>신고</p>
+                            </S.dtInfo>
 
-                        <S.dtInfo>
-                            <p>작성 시간</p>
-                            <span>·</span>
-                            <LikeButtonMin onClick={() => onChangeLikeSmall(index)} 
-                                color={likeSmallState[index]} src={like} alt='좋아요'/>
-                            <p>좋아요</p>
-                            <span>·</span>
-                            {/* 위의 답글달기 동작이랑 같아서 주석함*/}
-                            {/* 함수를 바꿔서 동작이 따로 움직이도록 하기 */}
-                            {/* onClick={() => buttonReplyInput(index)} */}
-                            <p >답글 달기</p>
-                            <span>·</span>
-                            <p>신고</p>
-                        </S.dtInfo>
                         </div>
-                        </S.Recomment1>
-                    </div>
-                </S.RecommentBox>
-                ))}
+                    </S.RecommentBox>
+                    } 
             </S.Recomment>
+            
             <S.nextPage>
-                <S.Arrow />
-                <p>1</p>
-                <p>2</p>
-                <p>3</p>
-                <p>4</p>
-                <p>5</p>
-                <S.Arrow1 />
+                <img className='left' src={left} />
+                <button className={nextClick === "one" ? "click" : "unClick"} onClick={()=>setNextClick("one")}><p>1</p></button>
+                <button className={nextClick === "two" ? "click" : "unClick"} onClick={()=>setNextClick("two")}><p>2</p></button>
+                <button className={nextClick === "three" ? "click" : "unClick"} onClick={()=>setNextClick("three")}><p>3</p></button>
+                <button className={nextClick === "four" ? "click" : "unClick"} onClick={()=>setNextClick("four")}><p>4</p></button>
+                <button className={nextClick === "five" ? "click" : "unClick"} onClick={()=>setNextClick("five")}><p>5</p></button>
+                <img className='right' src={right} />
             </S.nextPage>
         </S.PostWrapper>
     );
