@@ -19,6 +19,7 @@ import PreArrow from './PreArrow';
 import Best from './Best';
 import New from "./New";
 import S from "./style";
+
 import { useNavigate } from "react-router-dom";
 
 const StyledSlider = styled(Slider)`
@@ -63,9 +64,11 @@ const Main = () => {
   return (
     <>
     <S.MainContainer1>
+   
       <StyledSlider {...settings}>
         <div style={style}>
           <img src={main01} alt="슬라이더1" />
+          
         </div>
         <div style={style}>
           <img src={main02} alt="슬라이더2" />
@@ -102,7 +105,7 @@ const Main = () => {
       <S.Main3Title>유저들의 비건 이야기🌷</S.Main3Title>
       <S.Main3SubTitle>어디서도 구하기 힘든 꿀팁 구경하러가기</S.Main3SubTitle>
     <S.ContentWrapper>
-      <S.ContentContainer>
+      <S.ContentContainer onClick={()=> {navigate("/community")}}>
         <img src={communityPic01}></img>
         <S.ContentTitle>게시물 제목</S.ContentTitle>
         <S.ContentUser><img src={user}></img>유저 닉네임</S.ContentUser>
