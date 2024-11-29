@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import S, { FollowButton, LikeButton, LikeButtonMin, ReplyTexts, ScrapButton } from './style';
 import { Icon } from '@iconify/react'
-import unsplash from './image/unsplash.svg';
-import unsplash1 from './image/unsplash1.svg';
-import unsplash2 from './image/unsplash2.svg';
-import unsplash3 from './image/unsplash3.svg';
+import unsplash1 from './image/unsplash1.png'
+import unsplash2 from './image/unsplash2.png'
+import unsplash3 from './image/unsplash3.png'
+import unsplash4 from './image/unsplash4.png'
 import cmUser from './image/cmUser.svg';
 import cmUser1 from './image/cmUser1.svg';
 import left from './image/left.svg';
@@ -155,10 +155,10 @@ const CommunityAllDt = (props) => {
             </p>
             <hr />
             <S.dtImg>
-                <img src={unsplash} alt='포스트 사진1'/>
-                <img src={unsplash1} alt='포스트 사진2'/>
-                <img src={unsplash2} alt='포스트 사진3'/>
-                <img src={unsplash3} alt='포스트 사진4'/>
+                <img src={unsplash1} alt='포스트 사진1'/>
+                <img src={unsplash2} alt='포스트 사진2'/>
+                <img src={unsplash3} alt='포스트 사진3'/>
+                <img src={unsplash4} alt='포스트 사진4'/>
             </S.dtImg>
             <hr />
             <S.dtInfo>
