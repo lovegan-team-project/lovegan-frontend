@@ -29,12 +29,14 @@ export const FollowButton = styled.button`
 // like 버튼
 export const LikeButton = styled(like)`
     cursor: pointer;
-    fill: ${(props) => props.color || '#F27830'};
-    stroke: ${(props) => props.stroke === '#fff' ? '#333' : '#F27830'};
+    width: fit-content;
+    height: fit-content;
+    fill: ${(props) => props.color === '#fff' ? '#fff' : '#F27830'};
+    stroke: ${(props) => props.stroke === '#8D8D8D' ? '#8D8D8D' : '#F27830'};
 
     &:hover path{
-        background-color: #D8590E;
-        stroke: ${(props) => props.stroke === '#333' ? '#D8590E' : '#D8590E'};
+        fill: ${(props) => props.color === "#fff" ? "#F27830" : "#D8590E"};
+        stroke: ${(props) => props.stroke === '#8D8D8D' ? '#F27830' : '#D8590E'};
     }
 `
 
@@ -48,22 +50,20 @@ export const LikeButtonMin = styled(like)`
     fill: ${(props) => props.color || '#D8590E'};
 
     &:hover path{
-        background-color: #D8590E;
-        stroke: ${(props) => props.stroke === '#333' ? '#D8590E' : '#D8590E'};
+    background-color: #D8590E;
+    stroke: ${(props) => props.stroke === '#333' ? '#D8590E' : '#D8590E'};
     }
 `
 
 // scrap 버튼
 export const ScrapButton = styled(scrap)`
     cursor: pointer;
-    width: 30px;
-    height: 30px;
-
-    fill: ${(props) => props.color || '#D8590E'};
+    fill: ${(props) => props.color === '#fff' ? '#fff' : '#F27830'};
+    stroke: ${(props) => props.stroke === '#8D8D8D' ? '#8D8D8D' : '#F27830'};
 
     &:hover path{
-        background-color: #D8590E;
-        stroke: ${(props) => props.stroke === '#333' ? '#D8590E' : '#D8590E'};
+    fill: ${(props) => props.color === "#fff" ? "#F27830" : "#D8590E"};
+    stroke: ${(props) => props.stroke === '#8D8D8D' ? '#F27830' : '#D8590E'};
     }
 `
 
@@ -73,23 +73,8 @@ export const LikeButtonCmAll = styled(like)`
     stroke: ${(props) => props.stroke === '#333' ? '#333' : '#F27830'};
 
     &:hover path{
-        background-color: #F27830;
-        stroke: ${(props) => props.stroke === '#333' ? '#939393' : '#F27830'};
-    }
-`
-
-export const ScrapButtonCmAll = styled(scrap)`
-    cursor: pointer;
-    fill: ${(porps) => porps.color === "#fff" ? "#fff" : "#F27830"};
-    fill-opacity: ${(props) => props.scrapOpacity === true ? 0.35 : 0.5};
-    stroke: ${(props) => props.stroke === true ? '#fff' : '#F27830'};
-    stroke-opacity: ${(props) => props.opacity === true ? 0.5 : 0.35};
-    
-    &:hover path{
-        /* fill: ${(props) => props.color === '#fff' ? '' : "#F27830"}; */
-        fill-opacity: ${(props) => props.scrapOpacity === true || 0.5};        
-        stroke: ${(props) => props.stroke  === true ? '#fff' :'#F27830'};
-        stroke-opacity: ${(props) => props.opacity === true || 0.5};
+    fill: ${(props) => props.color === "#fff" ? "#fff" : "#D8590E"};
+    stroke: ${(props) => props.stroke === '#333' ? '#939393' : '#D8590E'};
     }
 `
 
@@ -99,8 +84,22 @@ export const ScrapButtonBlack = styled(scrapBlack)`
     stroke: ${(props) => props.stroke === '#333' ? '#333' : '#F27830'};
     
     &:hover path{
-        background-color: #F27830;
-        stroke: ${(props) => props.stroke === '#333' ? '#939393' : '#F27830'};
+    fill: ${(props) => props.color === "#fff" ? "#fff" : "#D8590E"};
+    stroke: ${(props) => props.stroke === '#333' ? '#939393' : '#D8590E'};
+    }
+`
+
+export const ScrapButtonCmAll = styled(scrap)`
+    cursor: pointer;
+    fill: ${(porps) => porps.color === '#fff' ? "#fff" : "#F27830"};
+    fill-opacity: ${(props) => props.opacity === true ? 0.5 : 1};
+    stroke: ${(props) => props.stroke === '#fff' ? '#fff' : '#F27830'};
+    
+    &:hover path{
+    fill: ${(props) => props.color === '#fff' ? '#fff' : '#D8590E'};
+    fill-opacity: ${(props) => props.opacity === true ? 0.5 : 1};
+    /* fill-opacity: ${(props) => props.opacity === '#fff' || 0.5}; */
+    stroke: ${(props) => props.color === '#fff' ? '#fff' : '#D8590E'};
     }
 `
 

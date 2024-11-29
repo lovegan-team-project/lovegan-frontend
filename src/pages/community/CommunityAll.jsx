@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import LikeBt from './LikeBt';
 import Follow from './Follow';
 import ScrapBlack from './ScrapBlack';
+import CheckboxButton from '../../components/checkbox/CheckboxButton';
+import CheckboxBt from '../../componenet/checkbox/CheckboxBt';
 
 const CommunityAll = () => {
 
@@ -112,13 +114,13 @@ const CommunityAll = () => {
                 
                 <div className='toggleAll' onClick={slideToTag}>ALL</div>
                 <div className='toggleFollow' onClick={slideToTag}>FOLLOW</div>
-                
                 <span className={`button ${isSlide ? "allActive" : "followActive"}`}>{isSlide ? "ALL" : "FOLLOW"}</span>
             </S.CommunityToggle>
+            <CheckboxButton />
 
             <S.mainWrapper>
                 <div className='top'>
-                    <S.totalNum><p>전체 13,429</p></S.totalNum>
+                    <S.totalNum><p>전체 13,429</p></S.totalNum>                    
                     <S.tagButton>
                         <button className={tagClick === "like" ? "click" : "unClick"} onClick={()=>setTagClick("like")}><p>좋아요순</p></button>
                         <button className={tagClick === "new" ? "click" : "unClick"} onClick={()=>setTagClick("new")}><p>최신순</p></button>

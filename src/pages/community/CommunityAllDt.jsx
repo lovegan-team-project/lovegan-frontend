@@ -22,24 +22,30 @@ const CommunityAllDt = (props) => {
     const [textColor, setTextColor] = useState('#fff')    
     // // like, scrap 버튼 클릭 상태
     const [likeColor, setLikeColor] = useState('#fff')
+    const [likeStroke, setLikeStroke] = useState('#8D8D8D')
+    
     const [scrapColor, setScrapColor] = useState('#fff')
+    const [scrapStroke, setScrapStroke] = useState('#8D8D8D')
+
     // // 각 댓글별 좋아요 버튼 클릭 상태 (배열로 관리)
     const [likeMinStates, setLikeMinStates] = useState('#fff');
 
     // // 팔로우 버튼 색 변경 함수
     const onChangeColor = () => {
         setColorChange(prevColor => (prevColor === '#03A63C' ? '#fafafa' : '#03A63C'))
-        setTextColor(prevColor => (prevColor === '#fff' ? '#333' : '#fff'))
+        setTextColor(prevText => (prevText === '#fff' ? '#333' : '#fff'))
     };
     
     // // like 버튼 색변경 함수
     const onChangeLike = () => {
         setLikeColor(prevColor => (prevColor === '#fff' ? '#F27830' : '#fff'))
+        setLikeStroke(prevStroke => (prevStroke === '#8D8D8D' ? '#F27830' : '#8D8D8D'))
     };
     
     // // scrap 버튼 색변경 함수
     const onChangeScrap = () => {
         setScrapColor(prevColor => (prevColor === '#fff' ? '#F27830' : '#fff'))
+        setScrapStroke(prevStroke => (prevStroke === '#8D8D8D' ? '#F27830' : '#8D8D8D'))
     };
 
     const [changeVal, setChangeVal] = useState("");
@@ -114,11 +120,11 @@ const CommunityAllDt = (props) => {
             </S.HeadLine>
             <S.sideBar>
                 <S.sideC>
-                    <LikeButton src={like} alt='좋아요' onClick={onChangeLike} color={likeColor} />
+                    <LikeButton src={like} alt='좋아요' onClick={onChangeLike} color={likeColor} stroke={likeStroke}/>
                 </S.sideC>
                 <p>1,856</p>
                 <S.sideC>
-                    <ScrapButton src={scrap} alt='스크랩' onClick={onChangeScrap} color={scrapColor} />
+                    <ScrapButton src={scrap} alt='스크랩' onClick={onChangeScrap} color={scrapColor} stroke={scrapStroke}/>
                 </S.sideC>
                 <p>4,774</p>
                 <hr />
