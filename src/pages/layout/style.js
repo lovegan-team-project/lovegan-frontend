@@ -18,7 +18,7 @@ S.Header = styled.header`
     justify-content: flex-start;
     z-index: 9999;
     background-color: white;
-    box-shadow: 0 4px 4px 0 rgb(0,0,0,0.2);
+    //box-shadow: 0 4px 4px 0 rgb(0,0,0,0.2);
     //box-shadow: h-shadow v-shadow blur spread color inset;
     
    
@@ -27,7 +27,6 @@ S.Header = styled.header`
         height: 65px;
         margin: 18px 100px 17px 250px;
         justify-content: center;
-        
    }
 
 
@@ -150,7 +149,7 @@ S.Footer = styled.footer`
     display: flex;
     flex-direction: column;
     background-color: ${({theme})=> theme.PALLETTE.brand["primary"] };
-    margin-top: 293px;
+    
 
 `
 S.logoWrapper = styled.div`

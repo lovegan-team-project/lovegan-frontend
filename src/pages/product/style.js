@@ -423,6 +423,143 @@ S.ProductPriceWrapper = styled.div`
     margin-top: 32px;
     border-bottom: 1px solid #A6A6A6;
 `
+S.OrderDetailContainer = styled.div`
+    width: 100%;
+    height: 486px;
+    border-bottom: 1px solid #A6A6A6;
+
+
+`
+S.ProductDeliveryDetail = styled.div`
+    width: 100%;
+    height : 148px;
+    display: flex;
+    margin: 30px 0;
+`
+S.DeliveryTitle = styled.div`
+    width: 26px;
+    height: 18px;
+    font-size: 14px;
+    color: ${({theme})=> theme.PALLETTE.grey["8"] };
+    margin-right: 24px;
+`
+S.BenefitTitle = styled.div`
+    width: 26px;
+    height: 18px;
+    font-size: 14px;
+    color: ${({theme})=> theme.PALLETTE.grey["8"] };
+    margin-right: 24px;
+`
+S.ProductBenefitDetail = styled.div`
+    width: 100%;
+    height: 18px;
+    display: flex;
+    margin-bottom: 30px;
+
+`
+S.BenefitDetail = styled.div`
+    width: 200px;
+    height: 18px;
+    color: #333333;
+`
+S.DeliveryDetails = styled.div`
+    width: 400px;
+    height: 148px;
+    font-size: 14px;
+`
+S.DeliverySubtitle = styled.div`
+    width: 52px;
+    height: 18px;
+    color: #333333;
+    margin-bottom: 10px;
+`
+S.DeliveryPrice = styled.div`
+    width: 203px;
+    height: 36px;
+    margin-bottom: 20px;
+    color: ${({theme})=> theme.PALLETTE.grey["8"] };
+    line-height: normal;
+
+`
+S.DeliveryExpressPrice = styled.div`
+    width: 357px;
+    height: 36px;
+    color: ${({theme})=> theme.PALLETTE.grey["8"] };
+    line-height: normal;
+
+`
+S.ProductComponentDetail = styled.div`
+    width: 100%;
+    height: 18px;
+    display: flex;
+    margin-bottom: 30px;
+
+`
+S.ComponentTitle = styled.div`
+    width: 26px;
+    height: 18px;
+    font-size: 14px;
+    color: ${({theme})=> theme.PALLETTE.grey["8"] };
+    margin-right: 24px;
+
+`
+S.ComponentDetail = styled.div`
+    width: 200px;
+    height: 18px;
+    color: #333333;
+    font-size: 14px;
+    margin-bottom: 30px;
+`
+S.ProductOptionDetail = styled.div`
+    width: 100%;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    & select{
+        width: 640px;
+        height: 42px;
+        border-color: ${({theme})=> theme.PALLETTE.grey["8"] };
+        border-radius: 5px;
+        font-size: 14px;
+        padding-left: 18px;
+    }
+
+`
+S.OptionTitle = styled.div`
+    width: 55px;
+    height: 18px;
+    font-size: 14px;
+    color: ${({theme})=> theme.PALLETTE.grey["8"] };
+    margin-right: 25px;
+
+`
+S.OptionResultBox = styled.div`
+    width: 640px;
+    height: 120px;
+    background-color: ${({theme})=> theme.PALLETTE.grey["0"] };
+    margin-left: 80px;
+    padding: 20px 0 0 24px;
+`
+S.OptionProductName = styled.p`
+    width: 80px;
+    height: 18px;
+    font-size: 14px;
+`
+S.OrderPriceWrapper = styled.div`
+    width: 100%;
+    height: 45px;
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-between;
+`
+S.OrderTotalPrice = styled.div`
+    width: 150px;
+    height: 45px;
+    font-size: 36px;
+    font-weight: bold;
+
+`
 S.DiscountRate = styled.span`
     width: 101px;
     height: 100%;
