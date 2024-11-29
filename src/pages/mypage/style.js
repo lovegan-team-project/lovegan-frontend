@@ -27,7 +27,7 @@ S.Sidebar = styled.div`
 `;
 
 S.Content = styled.div`
-    width: 1060px;
+    width: 1020px;
     padding: 40px;
     background-color: #ffffff;
     border-radius: 10px;
@@ -40,7 +40,7 @@ S.ProfileInfoWrapper = styled.div`
     align-items: center;
 
     & img {
-        margin-right: 30px;
+        margin-right: 20px;
     }
 
     & h4 {
