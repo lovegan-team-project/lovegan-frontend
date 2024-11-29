@@ -1,5 +1,5 @@
 import React from 'react';
-import {ReactComponent as LogoWhite} from './images/logo-white.svg'
+import {ReactComponent as LogoBlack} from './images/logo-black.svg'
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import S from './style';
 
@@ -60,7 +60,7 @@ const Layout = () => {
           
                 <S.Footer>
                     {/* <Link to={"/customerService"}>고객센터</Link> */}
-                    <S.logoWrapper><LogoWhite /></S.logoWrapper>
+                    <S.logoWrapper><LogoBlack /></S.logoWrapper>
                     <S.TextBox1><strong>이용약관 ㅣ 개인정보처리방침 ㅣ <Link to={"/customerService"}>고객센터</Link></strong></S.TextBox1>
                     <S.TextBoxWrapper>
                         <S.TextBox2>법인명 : LOVEgan ㅣ 대표자 : 000 ㅣ 사업자 등록번호 : 000-00-00000  |  사업장 소재지 : 서울 강남구 테헤란로 146 </S.TextBox2>

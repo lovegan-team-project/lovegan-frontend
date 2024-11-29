@@ -12,13 +12,14 @@ S.Header = styled.header`
 
     
     position: fixed;
-    width: 1920px;
+    width: 100%;
     height : 100px;
     display: flex;
     justify-content: flex-start;
     z-index: 9999;
     background-color: white;
-    //box-shadow: 0 4px 4px 0 rgb(0,0,0,0.2);
+    //border-bottom: 1px rgba(0, 0, 0, 0.3)
+    //box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
     //box-shadow: h-shadow v-shadow blur spread color inset;
     
    
@@ -143,12 +144,12 @@ S.Main2 = styled.main`
 `
 
 S.Footer = styled.footer`
-    color: white;
+    color: #333333;
     width: 100%;
     height: 293px;
     display: flex;
     flex-direction: column;
-    background-color: ${({theme})=> theme.PALLETTE.brand["primary"] };
+    background-color: #F2F2F2
     
 
 `
@@ -170,7 +171,7 @@ S.TextBox1 = styled.p`
     font-size: 14px;
     margin : 42.92px 1414px 15px 250px;
     & a {
-        color: white;
+        color: #333333;
     }
 
 `
