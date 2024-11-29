@@ -12,7 +12,7 @@ const Vege = () => {
     return (
         <S.TagItemWrapper>
             <S.ItemContainer onClick={()=>{navigate("/details")}}>
-                <img className='like' src={Like} alt='하트' />
+                {/* <img className='like' src={Like} alt='하트' /> */}
                 <img src={Product01} alt='아보카도'></img>
                 <S.ItemTitle>아보카도</S.ItemTitle>
                 <S.ItemExplain>유기농 아보카도 3+1 개입</S.ItemExplain>
