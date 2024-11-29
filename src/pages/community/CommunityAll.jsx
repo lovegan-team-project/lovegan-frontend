@@ -9,7 +9,6 @@ import LikeBt from './LikeBt';
 import Follow from './Follow';
 import ScrapBlack from './ScrapBlack';
 import CheckboxButton from '../../components/checkbox/CheckboxButton';
-import CheckboxBt from '../../componenet/checkbox/CheckboxBt';
 
 const CommunityAll = () => {
 
@@ -118,7 +117,6 @@ const CommunityAll = () => {
                 <div className='toggleFollow' onClick={slideToTag}>FOLLOW</div>
                 <span className={`button ${isSlide ? "allActive" : "followActive"}`}>{isSlide ? "ALL" : "FOLLOW"}</span>
             </S.CommunityToggle>
-            <CheckboxButton />
 
             <S.mainWrapper>
                 <div className='top'>

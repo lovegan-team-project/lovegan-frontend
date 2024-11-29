@@ -145,7 +145,6 @@ S.CommunityToggle = styled.div`
         margin: 1px 0px 1px 5px;
         font-size: 16px;
         padding: 16px 57px;
-        /* padding: 12.5px 66px; */
         color: #8D8D8D;
     }
 
