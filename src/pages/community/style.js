@@ -145,7 +145,6 @@ S.CommunityToggle = styled.div`
         margin: 1px 0px 1px 5px;
         font-size: 16px;
         padding: 16px 57px;
-        /* padding: 12.5px 66px; */
         color: #8D8D8D;
     }
 
@@ -207,6 +206,7 @@ S.mainWrapper = styled.div`
     & .top {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 60px;
     }    
 `
 
@@ -243,7 +243,13 @@ S.tagButton = styled.div`
      }
 `
 
-S.FeedBox = styled.div`
+S.FeedBoxAll = styled.div`
+    width: 1320px; 
+    height: 1563px;
+    display: inline-block;
+`
+
+S.FeedBoxFollow = styled.div`
     width: 1320px; 
     height: 1467px;
     display: inline-block;
@@ -320,8 +326,8 @@ S.PostUser = styled.div`
 S.PostUser1 = styled.div`
     width: 1320px;
     height: 449px;
-    /* margin-bottom: 60px; */
-    margin-top: 60px;
+    margin-bottom: 60px;
+    /* margin-top: 60px; */
 `
 
 S.PostUserImage = styled.div`

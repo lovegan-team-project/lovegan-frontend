@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import ScrapBt from './ScrapBt';
 
 const CommunityFollow  = () => {
+    
+    window.scrollTo(0,0);
 
     // 토글 버튼 클릭시 글, 위치 변경
     const [isSlide, setIsSlide] = useState(true);
@@ -29,7 +31,7 @@ const CommunityFollow  = () => {
     }
 
     return (
-        <S.CommunityContainer>
+        <S.CommunityContainer data-aos="fade-in">
             <S.CommunityTitle>COMMUNITY</S.CommunityTitle>
             <S.CommunitySubTitle>지속 가능한 세상을 함께 만들어가는 공간</S.CommunitySubTitle>
 
@@ -53,7 +55,7 @@ const CommunityFollow  = () => {
                     </S.tagButton>
                 </div>
 
-                <S.FeedBox className='전체 박스'>
+                <S.FeedBoxFollow className='전체 박스'>
                         
                         <S.Feed2 className='게시물'>
                             <S.PostUser1 className='게시물1'>
@@ -279,7 +281,7 @@ const CommunityFollow  = () => {
                         </S.Feed2>
 
 
-                </S.FeedBox>
+                </S.FeedBoxFollow>
 
             </S.mainWrapper>
         </S.CommunityContainer>
