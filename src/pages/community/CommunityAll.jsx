@@ -112,7 +112,6 @@ const CommunityAll = () => {
             <S.CommunitySubTitle>지속 가능한 세상을 함께 만들어가는 공간</S.CommunitySubTitle>
 
             <S.CommunityToggle>
-                
                 <div className='toggleAll' onClick={slideToTag}>ALL</div>
                 <div className='toggleFollow' onClick={slideToTag}>FOLLOW</div>
                 <span className={`button ${isSlide ? "allActive" : "followActive"}`}>{isSlide ? "ALL" : "FOLLOW"}</span>
@@ -130,7 +129,7 @@ const CommunityAll = () => {
                     </S.tagButton>
                 </div>
 
-                <S.FeedBox className='전체 박스'>
+                <S.FeedBoxAll className='전체 박스'>
 
                 <S.Feed1 className='게시물'>
                     <S.PostUser1 className='게시물1'>
@@ -350,7 +349,7 @@ const CommunityAll = () => {
 
                 </S.Feed1>
 
-                </S.FeedBox>
+                </S.FeedBoxAll>
             </S.mainWrapper>
         </S.CommunityContainer>
     );
