@@ -18,7 +18,22 @@ import Sale from "../pages/product/Sale";
 import ProductDetails from "../pages/product/ProductDetails";
 import SignIn from './../pages/login/signIn/SignIn';
 import Login from './../pages/login/login/Login';
+<<<<<<< HEAD
 import CommunityAllDt from "../pages/community/CommunityAllDt";
+=======
+import MyPage from "../pages/mypage/MyPage";
+import Posts from "../pages/mypage/Posts";
+import Following from "../pages/mypage/Following";
+import Likes from "../pages/mypage/Likes";
+import Scrap from "../pages/mypage/Scrap";
+import CouponBook from "../pages/mypage/CouponBook";
+import Orders from "../pages/mypage/Orders";
+import Reviews from "../pages/mypage/Reviews";
+import Inquiries from "../pages/mypage/Inquiries";
+import Shippings from "../pages/mypage/Shippings";
+import AccountInfo from "../pages/mypage/AccountInfo";
+import ChangePassword from "../pages/mypage/ChangePassword";
+>>>>>>> lovegan-yeain
 
 
 const router = createBrowserRouter([
@@ -113,9 +128,56 @@ const router = createBrowserRouter([
                 path : "/signIn", 
                 element : <SignIn />
             },     
-                        
-            
-
+            {
+                path: "/mypage", 
+                element: <MyPage />,
+                children: [
+                    { 
+                        path: "activity/posts",
+                        element: <Posts />,
+                    },
+                    { 
+                        path: "activity/following",
+                        element: <Following />,
+                    },
+                    { 
+                        path: "activity/likes",
+                        element: <Likes />,
+                    },
+                    { 
+                        path: "activity/scrap",
+                        element: <Scrap />,
+                    },
+                    { 
+                        path: "activity/couponbook",
+                        element: <CouponBook />,
+                    },
+                    { 
+                        path: "shopping/orders",
+                        element: <Orders />,
+                    },
+                    { 
+                        path: "shopping/reviews",
+                        element: <Reviews />,
+                    },
+                    { 
+                        path: "shopping/inquiries",
+                        element: <Inquiries />,
+                    },
+                    { 
+                        path: "settings/shippings",
+                        element: <Shippings />,
+                    },
+                    { 
+                        path: "settings/accountInfo",
+                        element: <AccountInfo />,
+                    },
+                    {
+                        path: "settings/changePassword",
+                        element: <ChangePassword />,
+                    },
+                ],
+            },          
         ]
     },
     {

@@ -23,6 +23,9 @@ const theme ={};
             6 : "#A6A6A6",
             7 : "#999999",
             8 : "#8D8D8D"
+        },
+        myGrey: {
+            background: "#F7F8FA"
         }
     }
     
