@@ -7,6 +7,8 @@ import Product from './../pages/product/Product';
 import Restaurant from './../pages/restaurant/Restaurant';
 import Diary from './../pages/diary/Diary';
 import Community from './../pages/community/Community';
+import CommunityFollow from "../pages/community/CommunityFollow";
+import CommunityAll from "../pages/community/CommunityAll";
 import SignUp from './../pages/login/signUp/SignUp';
 import Search from './../search/Search';
 import CustomerService from "../pages/customerService/CustomerService";
@@ -16,6 +18,7 @@ import Sale from "../pages/product/Sale";
 import ProductDetails from "../pages/product/ProductDetails";
 import SignIn from './../pages/login/signIn/SignIn';
 import Login from './../pages/login/login/Login';
+import CommunityAllDt from "../pages/community/CommunityAllDt";
 
 
 const router = createBrowserRouter([
@@ -67,7 +70,22 @@ const router = createBrowserRouter([
             },
             {
                 path : "/community",
-                element : <Community />
+                element : <Community />,
+                children : [
+                    {
+                        index : true,
+                        element : <CommunityAll />,
+                    },
+                    {
+                        path : "CommunityFollow",
+                        element : <CommunityFollow />
+                    },
+                    {
+                        path : "CommunityAllDt",
+                        element : <CommunityAllDt />
+                    }
+
+                ]
             },
             {
                 path : "/login", 

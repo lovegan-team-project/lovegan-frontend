@@ -1,18 +1,12 @@
-import React from 'react';
-// import CommunityFollow from './CommunityFollow';
-// import CommunityAllDt from './CommunityAllDt';
-import CommunityAll from './CommunityAll';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 
 const Community = () => {
     
     return (
-        <>
-            <CommunityAll /> 
-            {/* <CommunityAllDt /> */}
-            {/* <CommunityFollow /> */}
-        </>
+        <Outlet />  
     );
+    
 };
 
-export default Community;   
+export default Community;
