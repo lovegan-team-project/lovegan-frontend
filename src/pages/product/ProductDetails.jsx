@@ -6,7 +6,9 @@ import MainSubPic from './images/Rectangle 340.png'
 import SubPic from './images/Rectangle 341.png'
 import Star from './images/star.png'
 const ProductDetails = () => {
+    window.scrollTo(0,0);
     return (
+        
         <>
             <S.ProductDetailContainer>
                 <S.TagContainer>

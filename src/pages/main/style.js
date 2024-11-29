@@ -135,9 +135,17 @@ S.TagItemWrapper = styled.div`
 
 `
 S.ItemContainer = styled.div`
+    
     width: 340px;
     height: 399px;
     margin-right: 20px;
+
+    /* & img.like {
+       position: fixed;
+       top: 78%;
+       left: 587px;
+
+    } */
     
 `
 S.ItemTitle = styled.div`
