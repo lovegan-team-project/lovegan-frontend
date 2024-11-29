@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CheckedBox from './style';
 
 const CheckboxButton = ({children, variant, shape, boxSize, checkColor, ...rest}) => {
@@ -15,7 +15,7 @@ const CheckboxButton = ({children, variant, shape, boxSize, checkColor, ...rest}
             shape={shape}
             boxSize={boxSize}
             checked={isChecked}
-            onChange={handleCheckedboxChange}
+            onChange={handleCheckedBoxChange}
             checkColor={checkColor}
             {...rest}
         >

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import S, { FollowButton, LikeButton, LikeButtonMin, ReplyTexts, ScrapButton } from './style';
 import { Icon } from '@iconify/react'
-import unsplash from './image/unsplash.svg';
-import unsplash1 from './image/unsplash1.svg';
-import unsplash2 from './image/unsplash2.svg';
-import unsplash3 from './image/unsplash3.svg';
+import unsplash1 from './image/unsplash1.png'
+import unsplash2 from './image/unsplash2.png'
+import unsplash3 from './image/unsplash3.png'
+import unsplash4 from './image/unsplash4.png'
 import cmUser from './image/cmUser.svg';
 import cmUser1 from './image/cmUser1.svg';
 import left from './image/left.svg';
@@ -22,24 +22,30 @@ const CommunityAllDt = (props) => {
     const [textColor, setTextColor] = useState('#fff')    
     // // like, scrap 버튼 클릭 상태
     const [likeColor, setLikeColor] = useState('#fff')
+    const [likeStroke, setLikeStroke] = useState('#8D8D8D')
+    
     const [scrapColor, setScrapColor] = useState('#fff')
+    const [scrapStroke, setScrapStroke] = useState('#8D8D8D')
+
     // // 각 댓글별 좋아요 버튼 클릭 상태 (배열로 관리)
     const [likeMinStates, setLikeMinStates] = useState('#fff');
 
     // // 팔로우 버튼 색 변경 함수
     const onChangeColor = () => {
         setColorChange(prevColor => (prevColor === '#03A63C' ? '#fafafa' : '#03A63C'))
-        setTextColor(prevColor => (prevColor === '#fff' ? '#333' : '#fff'))
+        setTextColor(prevText => (prevText === '#fff' ? '#333' : '#fff'))
     };
     
     // // like 버튼 색변경 함수
     const onChangeLike = () => {
         setLikeColor(prevColor => (prevColor === '#fff' ? '#F27830' : '#fff'))
+        setLikeStroke(prevStroke => (prevStroke === '#8D8D8D' ? '#F27830' : '#8D8D8D'))
     };
     
     // // scrap 버튼 색변경 함수
     const onChangeScrap = () => {
         setScrapColor(prevColor => (prevColor === '#fff' ? '#F27830' : '#fff'))
+        setScrapStroke(prevStroke => (prevStroke === '#8D8D8D' ? '#F27830' : '#8D8D8D'))
     };
 
     const [changeVal, setChangeVal] = useState("");
@@ -114,11 +120,11 @@ const CommunityAllDt = (props) => {
             </S.HeadLine>
             <S.sideBar>
                 <S.sideC>
-                    <LikeButton src={like} alt='좋아요' onClick={onChangeLike} color={likeColor} />
+                    <LikeButton src={like} alt='좋아요' onClick={onChangeLike} color={likeColor} stroke={likeStroke}/>
                 </S.sideC>
                 <p>1,856</p>
                 <S.sideC>
-                    <ScrapButton src={scrap} alt='스크랩' onClick={onChangeScrap} color={scrapColor} />
+                    <ScrapButton src={scrap} alt='스크랩' onClick={onChangeScrap} color={scrapColor} stroke={scrapStroke}/>
                 </S.sideC>
                 <p>4,774</p>
                 <hr />
@@ -149,10 +155,10 @@ const CommunityAllDt = (props) => {
             </p>
             <hr />
             <S.dtImg>
-                <img src={unsplash} alt='포스트 사진1'/>
-                <img src={unsplash1} alt='포스트 사진2'/>
-                <img src={unsplash2} alt='포스트 사진3'/>
-                <img src={unsplash3} alt='포스트 사진4'/>
+                <img src={unsplash1} alt='포스트 사진1'/>
+                <img src={unsplash2} alt='포스트 사진2'/>
+                <img src={unsplash3} alt='포스트 사진3'/>
+                <img src={unsplash4} alt='포스트 사진4'/>
             </S.dtImg>
             <hr />
             <S.dtInfo>

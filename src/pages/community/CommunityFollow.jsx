@@ -54,7 +54,7 @@ const CommunityFollow  = () => {
                 </div>
 
                 <S.FeedBox className='전체 박스'>
-
+                        
                         <S.Feed2 className='게시물'>
                             <S.PostUser1 className='게시물1'>
                             <S.PostImage onClick={toPostsOnClick}>

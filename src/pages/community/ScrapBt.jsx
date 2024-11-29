@@ -3,18 +3,19 @@ import scrap from './image/scrap.svg';
 import { ScrapButtonCmAll } from './style';
 
 const ScrapBt = () => {
-    const [scrapClick, setScrapClick] = useState("#fff")
+
+    const [scrapColor, setScrapColor] = useState('#fff')
+    const [scrapStroke, setScrapStroke] = useState('#fff')
     const [scrapOpacity, setScrapOpacity] = useState(true)
-    const [hoverStrorke, setHoverStroke] = useState(true)
-    const scrapColor = () => {
-        setScrapClick(prevColor => (prevColor === '#fff' ? '#F27830' : '#fff'))
-        setHoverStroke((prevStroke) => !prevStroke)
-        setScrapOpacity((prevOpacity) => !prevOpacity);
-        // if()
+
+    const scrapChange = () => {
+        setScrapColor(prevColor => (prevColor === '#fff' ? '#F27830' : '#fff'))
+        setScrapStroke(prevStroe => (prevStroe === '#fff' ? '#F27830' : '#fff'))
+        setScrapOpacity(prevOpacity => (!prevOpacity ))
     }
 
     return (
-        <ScrapButtonCmAll src={scrap} onClick={scrapColor} color={scrapClick} stroke={hoverStrorke} scrapOpacity={scrapOpacity}/>
+        <ScrapButtonCmAll src={scrap} onClick={scrapChange} color={scrapColor} stroke={scrapStroke} opacity={scrapOpacity}/>
     );
 };
 
