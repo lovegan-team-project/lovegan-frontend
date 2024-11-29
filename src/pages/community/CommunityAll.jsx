@@ -13,6 +13,8 @@ import CheckboxBt from '../../componenet/checkbox/CheckboxBt';
 
 const CommunityAll = () => {
 
+    window.scrollTo(0,0);
+
     // const location = useLocation();
 
     // 토글 버튼 클릭시 글, 위치 변경
@@ -106,7 +108,7 @@ const CommunityAll = () => {
     ]
 
     return (
-        <S.CommunityContainer>
+        <S.CommunityContainer data-aos="fade-in">
             <S.CommunityTitle>COMMUNITY</S.CommunityTitle>
             <S.CommunitySubTitle>지속 가능한 세상을 함께 만들어가는 공간</S.CommunitySubTitle>
 
