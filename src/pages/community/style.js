@@ -1,6 +1,8 @@
 import styled, { keyframes } from "styled-components";
 import { ReactComponent as like } from './image/like.svg';
 import { ReactComponent as scrap } from './image/scrap.svg';
+import { ReactComponent as scrapBlack } from './image/scrapBlack.svg';
+import { flexCenter, flexCenterColumn, flexCenterRow } from "../../global/common";
 
 // 토글 슬라이드
 const slideln = keyframes`
@@ -10,6 +12,7 @@ const slideln = keyframes`
         transform: translateX(170px);
     }
 `
+
 // 팔로우 버튼 클릭, 호버 색 변경
 export const FollowButton = styled.button`
     background-color: ${(props) => props.color || '#03A63C'};
@@ -26,14 +29,17 @@ export const FollowButton = styled.button`
 // like 버튼
 export const LikeButton = styled(like)`
     cursor: pointer;
-
-    fill: ${(props) => props.color || '#D8590E'};
+    width: fit-content;
+    height: fit-content;
+    fill: ${(props) => props.color === '#fff' ? '#fff' : '#F27830'};
+    stroke: ${(props) => props.stroke === '#8D8D8D' ? '#8D8D8D' : '#F27830'};
 
     &:hover path{
-        background-color: #D8590E;
-        stroke: ${(props) => props.stroke === '#333' ? '#D8590E' : '#D8590E'};
+        fill: ${(props) => props.color === "#fff" ? "#F27830" : "#D8590E"};
+        stroke: ${(props) => props.stroke === '#8D8D8D' ? '#F27830' : '#D8590E'};
     }
 `
+
 // 작은 like 버튼
 export const LikeButtonMin = styled(like)`
     cursor: pointer;
@@ -44,22 +50,56 @@ export const LikeButtonMin = styled(like)`
     fill: ${(props) => props.color || '#D8590E'};
 
     &:hover path{
-        background-color: #D8590E;
-        stroke: ${(props) => props.stroke === '#333' ? '#D8590E' : '#D8590E'};
+    background-color: #D8590E;
+    stroke: ${(props) => props.stroke === '#333' ? '#D8590E' : '#D8590E'};
     }
 `
 
 // scrap 버튼
 export const ScrapButton = styled(scrap)`
     cursor: pointer;
-    width: 30px;
-    height: 30px;
-
-    fill: ${(props) => props.color || '#D8590E'};
+    fill: ${(props) => props.color === '#fff' ? '#fff' : '#F27830'};
+    stroke: ${(props) => props.stroke === '#8D8D8D' ? '#8D8D8D' : '#F27830'};
 
     &:hover path{
-        background-color: #D8590E;
-        stroke: ${(props) => props.stroke === '#333' ? '#D8590E' : '#D8590E'};
+    fill: ${(props) => props.color === "#fff" ? "#F27830" : "#D8590E"};
+    stroke: ${(props) => props.stroke === '#8D8D8D' ? '#F27830' : '#D8590E'};
+    }
+`
+
+export const LikeButtonCmAll = styled(like)`
+    cursor: pointer;
+    fill: ${(props) => props.color === "#fff" ? "#fff" : "#F27830"};
+    stroke: ${(props) => props.stroke === '#333' ? '#333' : '#F27830'};
+
+    &:hover path{
+    fill: ${(props) => props.color === "#fff" ? "#fff" : "#D8590E"};
+    stroke: ${(props) => props.stroke === '#333' ? '#939393' : '#D8590E'};
+    }
+`
+
+export const ScrapButtonBlack = styled(scrapBlack)`
+    cursor: pointer;
+    fill: ${(props) => props.color === "#fff" ? "#fff" : "#F27830"};
+    stroke: ${(props) => props.stroke === '#333' ? '#333' : '#F27830'};
+    
+    &:hover path{
+    fill: ${(props) => props.color === "#fff" ? "#fff" : "#D8590E"};
+    stroke: ${(props) => props.stroke === '#333' ? '#939393' : '#D8590E'};
+    }
+`
+
+export const ScrapButtonCmAll = styled(scrap)`
+    cursor: pointer;
+    fill: ${(porps) => porps.color === '#fff' ? "#fff" : "#F27830"};
+    fill-opacity: ${(props) => props.opacity === true ? 0.5 : 1};
+    stroke: ${(props) => props.stroke === '#fff' ? '#fff' : '#F27830'};
+    
+    &:hover path{
+    fill: ${(props) => props.color === '#fff' ? '#fff' : '#D8590E'};
+    fill-opacity: ${(props) => props.opacity === true ? 0.5 : 1};
+    /* fill-opacity: ${(props) => props.opacity === '#fff' || 0.5}; */
+    stroke: ${(props) => props.color === '#fff' ? '#fff' : '#D8590E'};
     }
 `
 
@@ -87,114 +127,153 @@ S.CommunitySubTitle = styled.div`
 `
 
 S.CommunityToggle = styled.div`
-    display: flex;
-    align-items: center;
     width: 340px;
     height: 55px;
     background-color: #E6E6E6;
     border-radius: 50px;
     margin: 0 790px 40px 760px;
-    padding: 5px;
-`
-
-S.textnToggle = styled.div`
-    height: 20px;
-    font-size: ${({theme}) => theme.FONT_SIZE["subtitle"]};
-    font-weight: ${({theme}) => theme.FONT_WEIGHT["medium "]};
+    position: relative;
     display: flex;
     align-items: center;
-`
 
-S.toggleText1 = styled.div`
-    width: 160px;
-    height: 45px;
-    margin: 0 10px 0 0;
-    background-color: #E6E6E6;
-    border-radius: 50px;
-    font-size: ${({theme}) => theme.FONT_SIZE["subtitle"]};
-    font-weight: ${({theme}) => theme.FONT_WEIGHT["medium "]};
-    color: #8d8d8d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-`
+    & .toggleAll {
+        width: 160px;
+        height: 45px;
+        border-radius: 20px;
+        background-color: #E6E6E6;
+        text-align: center;
+        margin: 1px 0px 1px 5px;
+        font-size: 16px;
+        padding: 16px 57px;
+        /* padding: 12.5px 66px; */
+        color: #8D8D8D;
+    }
 
-S.toggleButtonAll = styled.div`
-    width: 160px;
-    height: 45px;
-    padding: 12.5px 0 12.5px 0;
-    border: 1px solid #333333;
-    border-radius: 50px;
-    background: #fff;
-    font-size: ${({theme}) => theme.FONT_SIZE["subtitle"]};
-    font-weight: ${({theme}) => theme.FONT_WEIGHT["medium "]};
-    transition: color 0.3s ease;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    transition: transform 0.3s;
+    & .toggleFollow {
+        width: 160px;
+        height: 45px;
+        border-radius: 20px;
+        background-color: #E6E6E6;
+        text-align: center;
+        margin: 1px 0px 1px 5px;
+        font-size: 16px;
+        padding: 16px 57px;
+        color: #8D8D8D;
+    }
 
-    &.slide {
-        animation: ${slideln} 0.3s forwards;
+    & .button {
+        position: absolute;
+        width : 160px;
+        height: 45px;
+        border-radius: 20px;
+        top: 5px;
+        left: 5px;
+        background-color: white;
+        font-size: 16px;
+
+        &.allActive{
+            border: 1px solid #333333;
+            padding: 12.5px 66px;
+            transform: translate(0px);
+            transition: 0.5s;
+        }
+        &.followActive{
+            border: 1px solid #333333;
+            padding: 12.5px 47.5px;
+            transform: translate(170px);
+            transition: 0.5s;
+        }
+
+        &.clickAllActive{
+            border: 1px solid #333333;
+            padding: 12.5px 47.5px;
+            transform: translate(170px);
+            transition: 0.5s;
+        }
+
+        &.clickFollowActive{
+            border: 1px solid #333333;
+            padding: 12.5px 66px;
+            transform: translate(0px);
+            transition: 0.5s;
+        }   
     }
 `
 
 S.mainWrapper = styled.div`
-    /* background-color: lightgray; */
     width: 1320px;
     margin: 0 300px;
+
+    & .top {
+        display: flex;
+        justify-content: space-between;
+    }    
 `
 
 S.totalNum = styled.div`
     font-size: ${({theme}) => theme.FONT_SIZE["subtitle"]};
     width: 85px;
     height: 20px;
-    float: left;
-    margin: 0 0 40px 0;
+    ${flexCenter}
 `
 
 S.tagButton = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    width: 380px;
-    /* float: right; */
-    margin: 0 0 40px 933px;
-    padding-right: 0 20px 0 0;
+    width: 340px;
     height: 18px;
-    font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
 
-    & div {
-        margin-left: 20px;        
-    }
+     & button.click {
+        padding: 0px;
+        background-color: white;
+        font-size: 14px;
+        outline: none;
+        font: ${({theme}) => theme.FONT_WEIGHT["bold"]};
+     }
+     & button.unClick {
+        padding: 0px;
+        background-color: white;
+        font-size: 14px;
+        outline: none;
+
+        & p{
+            font-size: 14px;
+            color: #8D8D8D;
+        }
+     }
 `
 
 S.FeedBox = styled.div`
-    max-width: 1320px; 
-    max-height: 1320px;
-    display: grid; /* Grid 사용 */
-    grid-template-columns: repeat(3, 420px); /* 3개의 열 생성 */
-    gap: 30px; /* 요소 간의 간격 */
-    justify-content: end;
+    width: 1320px; 
+    height: 1467px;
+    display: inline-block;
 `
 
 S.Feed1 = styled.div`
     width: 420px;
     height: 394px;
+    margin: 0 0 120px 0;
+    display: flex;
+`
+
+S.Feed2 = styled.div`
+    width: 420px;
+    height: 394px;
     margin: 0 0 60px 0;
+    display: flex;
 `
 
 S.PostImage = styled.div`
     width: 420px;
     height: 300px;
     margin: 0 30px 12px 0;
-    background-color: #fff;
+    background-color: #d9d9d9;
     border-radius: 6px;
     position: relative;
+    /* cursor: pointer; */
+`
 
-    & div {
+S.Views = styled.p`
         position: absolute;
         top: 268px;
         left: 326px;
@@ -203,11 +282,9 @@ S.PostImage = styled.div`
         font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
         color: #fff;
         text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    }
 `
 
 S.type = styled.p`
-    /* background-color: red; */
     position: absolute;
     top: 238px;
     left: 356px;
@@ -220,9 +297,16 @@ S.PostTitle = styled.div`
 
 S.PostTitleCenter = styled.div`
     font-size: ${({theme}) => theme.FONT_SIZE["title"]};
-    display: flex;
-    justify-content: center;
-    margin: 12px 0 10px 0;
+    /* display: flex; */
+    display: ${flexCenter};
+    margin: 12px 162px 10px 161px;
+`
+
+S.PostTitleLeft = styled.div`
+    font-size: ${({theme}) => theme.FONT_SIZE["title"]};
+     margin-bottom: 8px;
+     width: fit-content;
+     /* cursor: pointer; */
 `
 
 S.PostUser = styled.div`
@@ -234,10 +318,10 @@ S.PostUser = styled.div`
 `
 
 S.PostUser1 = styled.div`
-    width: 159px;
-    height: 36px;
-    display: flex;
-    margin: 0 0 18px 0;
+    width: 1320px;
+    height: 449px;
+    /* margin-bottom: 60px; */
+    margin-top: 60px;
 `
 
 S.PostUserImage = styled.div`
@@ -249,12 +333,46 @@ S.PostUserImage = styled.div`
     float: left;
 `
 
+S.text = styled.div`
+    /* margin-right: 261px; */
+    display: flex;
+    width: 100%;
+    margin-bottom: 18px;
+`
+
+S.text2 = styled.div`
+    display: flex;
+    width: 100%;
+    margin-bottom: 12px;
+`
+
+S.TextInfo = styled.div`
+    display: flex;
+    height: fit-content;
+    /* 커뮤니티all 페이지에서 적용되면 안됨. */
+    /* align-items: center; */
+
+    & .profileUserName{
+        align-items: center;
+    }
+`
+
 S.PostUserImage1 = styled.div`
     width: 36px;
     height: 36px;
     margin: 0 8px 0 0;
     background-color: #d9d9d9;
     border-radius: 50px;
+    display: flex;
+`
+
+S.Profile = styled.div`
+    width: 20px;
+    height: 20px;
+    margin: 1px 8px 1px 0;
+    background-color: #d9d9d9;
+    border-radius: 50px;
+    display: flex;
 `
 
 S.PostUserImage2 = styled.div`
@@ -267,7 +385,22 @@ S.PostUserImage2 = styled.div`
 S.PostUserName = styled.div`
     font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
     margin: 1px 0 1px 0px;
-    /* align-items: ; */
+`
+
+S.PostUserName2 = styled.div`
+    font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+    margin: 1px 0 1px 0px;
+    display: flex;
+    align-items: center;
+`
+
+S.UserIntro = styled.div`
+    width: fit-content;
+    height: fit-content;
+    margin: 21px 0 1px 0;
+    font-size: ${({theme}) => theme.FONT_SIZE["small"]};
+    color: ${({theme}) => theme.PALLETTE.grey[8]};
+    position: absolute;
 `
 
 S.UserNickname = styled.span`
@@ -276,17 +409,22 @@ S.UserNickname = styled.span`
     margin-top: 1px;
 `
 
-S.FollowUser = styled.span`
-    color: ${({theme}) => theme.PALLETTE.brand["primary"]};
+S.FollowUser = styled.div`
+    font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+    margin: 1px 0 1px 0px;
+    position: relative;
+    cursor: pointer;
+
+    & p{
+        color: ${({theme}) => theme.PALLETTE.brand["primary"]};         
+    }
 `
 
 S.Introduce = styled.div`
-    font-size: ${({theme}) => theme.FONT_SIZE["small"]};
+    font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
     color: ${({theme}) => theme.PALLETTE.grey[8]};
-    margin: 6px 0 0 0;
-    width: 50px;
+    margin: 4px 0 0 12px;
     height: 15px;
-
 `
 
 S.FeedTags = styled.div`
@@ -298,12 +436,13 @@ S.FeedTags = styled.div`
 `
 
 S.FeedOption = styled.div`
-    width: 354px;
+    width: fit-content;
     height: 48px;
-    margin: 0 33px 0 33px;
+    margin: 0 33px;
     padding: 0 0 8px 0;
     display: flex;
     justify-content: center;
+    align-items: center;
 
     & div {
         font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
@@ -311,7 +450,7 @@ S.FeedOption = styled.div`
         align-items: center;
         width: 26px; 
         height: 18px;
-        margin: 11px 8px 19px 4px;
+        margin: 11px 60px 11px 4px;
     }
 `
 
@@ -386,9 +525,9 @@ S.UserInfo = styled.div`
     display: flex;
     align-items: center;
     
-    & div {
+    /* & div {
         margin-left: 12px;
-    }
+    } */
     
     & button { 
         margin-left: auto;
@@ -398,7 +537,7 @@ S.UserInfo = styled.div`
         border-radius: 5px;
         font-size: ${({theme}) => theme.FONT_SIZE["subtitle"]};     
     }
-    `
+`
 
 S.UserImage = styled.p`
     width: 60px;
@@ -407,19 +546,18 @@ S.UserImage = styled.p`
     background-color: #d9d9d9;
     `
 
-S.UserNickPost = styled.p`
-    /* width: 78px; */
+S.UserNickPost = styled.div`
     height: 20px;
-    margin-bottom: 4px;
+    margin: 7px 0 4px 12px;
     font-size: ${({theme}) => theme.FONT_SIZE["subtitle"]};     
-    `
+`
 
-S.Introduce = styled.p`
-    /* width: 87px; */
-    height: 18px;
-    margin-top: 4px;
-    font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
-    `
+// S.Introduce = styled.p`
+//     width: 87px;
+//     height: 18px;
+//     margin-top: 4px;
+//     font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+//     `
 S.dtImg = styled.div`
     margin-top: 30px;
 
@@ -453,11 +591,22 @@ S.dtInfo = styled.div`
     }
 
     & p {
-        cursor: pointer;
+        /* cursor: pointer; */
         display: block;
         justify-content: end;
     }
+`
 
+S.dtInfo1 = styled.div`
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    color: ${({theme}) => theme.PALLETTE.grey[8]};
+    position: relative;
+
+    & span {
+        margin: 0 8px 0 8px;
+    }
 `
 
 S.commentNum = styled.div`
@@ -484,7 +633,7 @@ S.typing = styled.div`
         border-style: solid;
         border-width: 1px;
         margin-left: 16px;
-        padding: 12px 16px;
+        padding: 12px 50px 12px 16px;
         color: ${({theme}) => theme.PALLETTE.grey[8]};
         border-radius: 5px;
     }
@@ -504,16 +653,17 @@ S.Recomment = styled.div`
 `
 S.RecommentBox = styled.div`
     display: flex;
-    margin-bottom: 30px;
+    margin-top: 30px;
     font-size: ${({theme}) => theme.FONT_SIZE["subtitle"]};
     
+
     & img {
         margin-right: 8px;
         position: relative;
         height: fit-content;
     }
     
-    & p {
+    & .detail {
         margin: 10px 0 10px 0;
     }
 `
@@ -522,11 +672,16 @@ S.InputComment = styled.div`
     position: relative;
     display: flex;
     width: 670px;
+    margin-left: 50px;
     margin-top: 20px;
-    padding: 20px 16px;
+    padding: 20px 0 16px;
     justify-content: flex-end;
     align-items: center;
     /* background-color: ${({theme}) => theme.PALLETTE.grey[0]}; */
+
+    & img {
+        margin-right: 16px;
+    }
     
     & input {
         width: 612px;
@@ -556,9 +711,27 @@ export const ReplyTexts = styled.div`
 S.Recomment1 = styled.div`
     width: 670px;
     margin-top: 20px;
+    margin-left: 50px;
     padding: 20px 16px;
     display: flex;
     background-color: ${({theme}) => theme.PALLETTE.grey[0]};
+
+    & .userInfo {
+        margin-left: 8px;
+    }
+
+    & .userInfoIn {
+        display: flex;
+    }
+
+    & .writeComment {
+        margin: 10px 4px 0 0;
+        font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+    }
+
+    & img {
+        height: fit-content;
+    }
 
     & input {
         width: 612px;
@@ -582,39 +755,54 @@ S.Recomment1 = styled.div`
 `
 
 S.goolbang = styled.div`
+    /* display: flex; */
     font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
     color: ${({theme}) => theme.PALLETTE.brand["primary"]};
     margin: 10px 4px 0 0;
     float: left;
 `
 
-S.nextPage = styled.p`
-    display: flex;
-    justify-content: center;
+S.nextPage = styled.div`
+    ${flexCenter}
     margin-top: 40px;
-    align-items: center;
-    
+
     & p {
-        padding: 8px;
+        font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+        width: 22px;
+        height: 22px;
+
+        &:hover {
+            color: #03A63C;
+        }
+    }
+        
+    & button {
+        margin: 0 8px 0 8px;
+    }
+
+    & button.click {
+        padding: 0px;
+        outline: none;
+        background-color: #03A63C;
+        width: 22px;
+        height: 22px;
+        text-align: center;
+        border-radius: 50%;
+
+        & p{
+            color: #fff;
+            width: 22px;
+            height: 22px;
+        }
+    }
+
+    & button.unClick {
+        padding: 0px;
+        background-color: white;
+        outline: none;   
     }
 `
 
-S.Arrow = styled.div`
-    width: 0;
-    height: 0;
-    margin-right: 8px;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right: 10px solid ${({theme}) => theme.PALLETTE.grey[8]};
-`
 
-S.Arrow1 = styled.div`
-    width: 0;
-    height: 0;
-    margin-left: 8px;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 10px solid ${({theme}) => theme.PALLETTE.grey[8]};
-`
 
 export default S;

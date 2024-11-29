@@ -1,137 +1,361 @@
-import React, { useState } from 'react';
-// import CheckboxBt from '../../componenet/checkbox/CheckboxBt';
-// import Radio from '../../componenet/radioButton/Radio';
-// import Dropdown from '../../componenet/dropdown/Dropdown';
-// import theme from '../../global/theme';
+import React, { useEffect, useState } from 'react';
 import S from './style';
-import Post1 from './image/Post1.svg';
-import Post2 from './image/Post2.svg';
-import Post3 from './image/Post3.svg';
-import Post4 from './image/Post4.svg';
-import Post5 from './image/Post5.svg';
-import Post6 from './image/Post6.svg';
-import Post7 from './image/Post7.svg';
-import Post8 from './image/Post8.svg';
-import Post9 from './image/Post9.svg';
-// import Post1User from './image/Post1User.svg';
-// import Post2user from './image/Post2User.svg';
-// import Post3User from './image/Post3User.svg';
-// import Post4User from './image/Post4User.svg';
-// import Post5User from './image/Post5User.svg';
-// import Post6User from './image/Post6User.svg';
-// import Post7User from './image/Post7User.svg';
-// import Post8User from './image/Post8User.svg';
-// import Post9User from './image/Post9User.svg';
 import like from './image/like.svg';
-import scrap from './image/scrap.svg';
+// import scrap from './image/scrap.svg';
+import scrapBlack from './image/scrapBlack.svg';
 import comment_one from './image/comment_one.svg';
+import { useNavigate } from 'react-router-dom';
+import LikeBt from './LikeBt';
+import Follow from './Follow';
+import ScrapBlack from './ScrapBlack';
+import CheckboxButton from '../../components/checkbox/CheckboxButton';
+import CheckboxBt from '../../componenet/checkbox/CheckboxBt';
 
 const CommunityAll = () => {
 
-    // 토글 버튼 상태 변경 시
-    const [isFollow, setIsFollow] = useState(false);
-    const [text, setText] = useState("ALL");
+    window.scrollTo(0,0);
 
-    // 드롭다운 사용시 필요 ->
-    // const [selectedOption, setSelectedOption] = useState(null);
+    // const location = useLocation();
 
-    // const options = [
-    //     { label: '옵션 1 입니다. 자기소개 페이지로 이동하는 옵션입니다', value: '옵션 1'},
-    //     { label: '옵션 2', value: '옵션 2'},
-    //     { label: '옵션 3', value: '옵션 3'},
-    //     { label: '옵션 4입니다.', value: '옵션 4'},
-    //     { label: '옵션 5', value: '옵션 5'},
-    // ];
+    // 토글 버튼 클릭시 글, 위치 변경
+    const [isSlide, setIsSlide] = useState(true);
+    const navigate = useNavigate();
+    const slideToTag = () => {
+        setIsSlide(!isSlide)
+        navigate("/community/CommunityFollow")
+    }
 
-    // const handleOptionSelect = (option) => {
-    //     setSelectedOption(option);
-    // };
-    // -> 끝.
+    
+    // 태그버튼
+    const [tagClick, setTagClick] = useState("like")
+    useEffect(()=>{
+        setTagClick("like")
+    }, [setTagClick])
 
-    // 토글 버튼 상태 변경
-    const handleToggle = () => {
-        setIsFollow(prev => !prev);
-        setText(prevText => (prevText === "ALL" ? "FOLLOW" : "ALL"))
-    };
+    // 글로 페이지 이동
+    const toPostsOnClick = () => {
+        navigate("/community/CommunityAllDt")
+    }   
+    
+    // 좋아요 클릭 시 색상 변경
+    // const [likeClick, setLikeClick] = useState("#fff")    
+    // const likeColor = () => {
+    //     setLikeClick(prevColor => (prevColor === '#fff' ? '#F27830' : '#fff'))
+    // }
 
-    const postImages = [
-        Post1, Post2, Post3, Post4, Post5, Post6, Post7, Post8, Post9,
+    // 스크랩 클릭 시 색상 변경
+    // const [scrapClick, setScrapClick] = useState("#fff")
+    // const scrapColor = () => {
+    //     setScrapClick(prevColor => (prevColor === '#fff' ? '#F27830' : '#fff'))
+    // }
+    
+    // 좋아요 버튼 컴포넌트에서 만들기
+    const likeData = [
+        {
+            id : 1,
+            likeBt : <img src={like} alt="likeBt"></img>,
+            scrapBt : <img src={scrapBlack} alt="scrapBt"></img>,
+            follow : 1,
+        },
+        {
+            id : 2,
+            likeBt : <img src={like} alt="likeBt"></img>,
+            scrapBt : <img src={scrapBlack} alt="scrapBt"></img>,
+            follow : 2,
+        },
+        {
+            id : 3,
+            likeBt : <img src={like} alt="likeBt"></img>,
+            scrapBt : <img src={scrapBlack} alt="scrapBt"></img>,
+            follow : 3,
+        },
+        {
+            id : 4,
+            likeBt : <img src={like} alt="likeBt"></img>,
+            scrapBt : <img src={scrapBlack} alt="scrapBt"></img>,
+            follow : 4,
+        },
+        {
+            id : 5,
+            likeBt : <img src={like} alt="likeBt"></img>,
+            scrapBt : <img src={scrapBlack} alt="scrapBt"></img>,
+            follow : 5,
+        },
+        {
+            id : 6,
+            likeBt : <img src={like} alt="likeBt"></img>,
+            scrapBt : <img src={scrapBlack} alt="scrapBt"></img>,
+            follow : 6,
+        },
+        {
+            id : 7,
+            likeBt : <img src={like} alt="likeBt"></img>,
+            scrapBt : <img src={scrapBlack} alt="scrapBt"></img>,
+            follow : 7,
+        },
+        {
+            id : 8,
+            likeBt : <img src={like} alt="likeBt"></img>,
+            scrapBt : <img src={scrapBlack} alt="scrapBt"></img>,
+            follow : 8,
+        },
+        {
+            id : 9,
+            likeBt : <img src={like} alt="likeBt"></img>,
+            scrapBt : <img src={scrapBlack} alt="scrapBt"></img>,
+            follow : 9,
+        },
     ]
 
-    const posts = Array(9).fill().map((_, index) => ({
-        UserNickname: '유저 닉네임',
-        Introduce: '한 줄 소개',
-        PostImage: postImages[index % postImages.length],
-        postTitle: '게시물 제목',
-        likes: 136,
-        views : '조회수 6,841'
-    }));
-    
     return (
-        <S.CommunityContainer>
+        <S.CommunityContainer data-aos="fade-in">
             <S.CommunityTitle>COMMUNITY</S.CommunityTitle>
             <S.CommunitySubTitle>지속 가능한 세상을 함께 만들어가는 공간</S.CommunitySubTitle>
 
             <S.CommunityToggle>
-                <S.toggleText1 onClick={handleToggle}>
-                    ALL
-                </S.toggleText1>
-                <S.toggleText1 onClick={handleToggle}>
-                    FOLLOW
-                </S.toggleText1>
-                <S.toggleButtonAll 
-                    onClick={handleToggle} 
-                    style={{ transform: isFollow ? "translateX(170px)" : "translate(0)"}}>
-                    <S.textnToggle onClick={handleToggle}>
-                        <div onClick={handleToggle}>{text}</div>
-                    </S.textnToggle>
-                </S.toggleButtonAll>
+                
+                <div className='toggleAll' onClick={slideToTag}>ALL</div>
+                <div className='toggleFollow' onClick={slideToTag}>FOLLOW</div>
+                <span className={`button ${isSlide ? "allActive" : "followActive"}`}>{isSlide ? "ALL" : "FOLLOW"}</span>
             </S.CommunityToggle>
+            <CheckboxButton />
 
             <S.mainWrapper>
-                <S.totalNum>전체 13,429</S.totalNum>
-                <S.tagButton>
-                    <div>좋아요순</div>
-                    <div>최신순</div>
-                    <div>댓글많은순</div>
-                    <div>조회수순</div>
-                    <div>스크랩순</div>
-                </S.tagButton>
+                <div className='top'>
+                    <S.totalNum><p>전체 13,429</p></S.totalNum>                    
+                    <S.tagButton>
+                        <button className={tagClick === "like" ? "click" : "unClick"} onClick={()=>setTagClick("like")}><p>좋아요순</p></button>
+                        <button className={tagClick === "new" ? "click" : "unClick"} onClick={()=>setTagClick("new")}><p>최신순</p></button>
+                        <button className={tagClick === "coment" ? "click" : "unClick"} onClick={()=>setTagClick("coment")}><p>댓글많은순</p></button>
+                        <button className={tagClick === "view" ? "click" : "unClick"} onClick={()=>setTagClick("view")}><p>조회수순</p></button>
+                        <button className={tagClick === "scrap" ? "click" : "unClick"} onClick={()=>setTagClick("scrap")}><p>스크랩순</p></button>
+                    </S.tagButton>
+                </div>
 
-                <S.FeedBox>
-                    {/* 반복되는 코드 -> 반복문 돌림 */}
-                    {posts.map((post, index) => (
-                    <S.Feed1 key={index}>
-                        <S.PostUser1>
-                            <S.PostUserImage1 />
-                            <S.PostUserName>
-                                <S.UserNickname>
-                                    {post.UserNickname}
-                                </S.UserNickname>
-                                <span>·</span>
-                                <S.FollowUser>팔로우</S.FollowUser>
-                                <S.Introduce>{post.Introduce}</S.Introduce>
-                            </S.PostUserName>
-                        </S.PostUser1>
-                        <S.PostImage>
-                            <img src={post.PostImage} alt={`게시물${index + 1}`}/>
-                            <div>{post.views}</div>
-                        </S.PostImage>
-                        <S.PostTitleCenter>{post.postTitle}{index + 1}</S.PostTitleCenter>
+                <S.FeedBox className='전체 박스'>
+
+                <S.Feed1 className='게시물'>
+                    <S.PostUser1 className='게시물1'>
+                        <S.text>
+                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.TextInfo>
+                            <S.PostUserName>유저 이름</S.PostUserName>
+                            <div>·</div>
+                            <S.FollowUser>
+                                {/* <p onClick={followColorChange} style={{color : isFollow}}>팔로우</p> */}
+                                <Follow likeData={likeData}/>
+                            </S.FollowUser>
+                            <S.UserIntro>한 줄 소개</S.UserIntro>
+                            </S.TextInfo>
+                        </S.text>
+                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
                         <S.FeedOption>
-                            <img src={like} alt='좋아요'/>
-                            <div>{post.likes}</div>
-                            <img src={scrap} alt='스크랩'/>
-                            <div>{post.likes}</div>
-                            <img src={comment_one} alt='댓글'/>
-                            <div>{post.likes}</div>
+                            <LikeBt likeData={likeData}/>
+                            <div>136</div>
+                            <ScrapBlack likeData={likeData} />
+                            <div>427</div>
+                            <img src={comment_one} alt='commentBt'></img>
+                            <div>63</div>
                         </S.FeedOption>
-                    </S.Feed1>
-                    ))};
+                    </S.PostUser1>
+                    <S.PostUser1 className='게시물2'>
+                        <S.text>
+                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.TextInfo>
+                            <S.PostUserName>유저 이름</S.PostUserName>
+                            <div>·</div>
+                            <S.FollowUser>
+                                <Follow likeData={likeData}/>
+                            </S.FollowUser>
+                            <S.UserIntro>한 줄 소개</S.UserIntro>
+                            </S.TextInfo>
+                        </S.text>
+                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
+                        <S.FeedOption>
+                            <LikeBt likeData={likeData}/>
+                            <div>136</div>
+                            <ScrapBlack likeData={likeData}/>
+                            <div>427</div>
+                            <img src={comment_one} alt='commentBt'></img>
+                            <div>63</div>
+                        </S.FeedOption>
+                    </S.PostUser1>
+                    <S.PostUser1 className='게시물3'>
+                        <S.text>
+                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.TextInfo>
+                            <S.PostUserName>유저 이름</S.PostUserName>
+                            <div>·</div>
+                            <S.FollowUser>
+                                <Follow likeData={likeData}/>
+                            </S.FollowUser>                            
+                            <S.UserIntro>한 줄 소개</S.UserIntro>
+                            </S.TextInfo>
+                        </S.text>
+                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
+                        <S.FeedOption>
+                            <LikeBt likeData={likeData}/>
+                            <div>136</div>
+                            <ScrapBlack likeData={likeData}/>
+                            <div>427</div>
+                            <img src={comment_one} alt='commentBt'></img>
+                            <div>63</div>
+                        </S.FeedOption>
+                    </S.PostUser1>
+
+                </S.Feed1>
+                <S.Feed1 className='게시물'>
+                    <S.PostUser1 className='게시물1'>
+                        <S.text>
+                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.TextInfo>
+                            <S.PostUserName>유저 이름</S.PostUserName>
+                            <div>·</div>
+                            <S.FollowUser>
+                                <Follow likeData={likeData}/>
+                            </S.FollowUser>                            
+                            <S.UserIntro>한 줄 소개</S.UserIntro>
+                            </S.TextInfo>
+                        </S.text>
+                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
+                        <S.FeedOption>
+                            <LikeBt likeData={likeData}/>
+                            <div>136</div>
+                            <ScrapBlack likeData={likeData}/>
+                            <div>427</div>
+                            <img src={comment_one} alt='commentBt'></img>
+                            <div>63</div>
+                        </S.FeedOption>
+                    </S.PostUser1>
+                    <S.PostUser1 className='게시물2'>
+                        <S.text>
+                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.TextInfo>
+                            <S.PostUserName>유저 이름</S.PostUserName>
+                            <div>·</div>
+                            <S.FollowUser>
+                                <Follow likeData={likeData}/>
+                            </S.FollowUser>                            
+                            <S.UserIntro>한 줄 소개</S.UserIntro>
+                            </S.TextInfo>
+                        </S.text>
+                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
+                        <S.FeedOption>
+                            <LikeBt likeData={likeData}/>
+                            <div>136</div>
+                            <ScrapBlack likeData={likeData}/>
+                            <div>427</div>
+                            <img src={comment_one} alt='commentBt'></img>
+                            <div>63</div>
+                        </S.FeedOption>
+                    </S.PostUser1>
+                    <S.PostUser1 className='게시물3'>
+                        <S.text>
+                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.TextInfo>
+                            <S.PostUserName>유저 이름</S.PostUserName>
+                            <div>·</div>
+                            <S.FollowUser>
+                                <Follow likeData={likeData}/>
+                            </S.FollowUser>                            
+                            <S.UserIntro>한 줄 소개</S.UserIntro>
+                            </S.TextInfo>
+                        </S.text>
+                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
+                        <S.FeedOption>
+                            <LikeBt likeData={likeData}/>
+                            <div>136</div>
+                            <ScrapBlack likeData={likeData}/>
+                            <div>427</div>
+                            <img src={comment_one} alt='commentBt'></img>
+                            <div>63</div>
+                        </S.FeedOption>
+                    </S.PostUser1>
+
+                </S.Feed1>
+                <S.Feed1 className='게시물'>
+                    <S.PostUser1 className='게시물1'>
+                        <S.text>
+                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.TextInfo>
+                            <S.PostUserName>유저 이름</S.PostUserName>
+                            <div>·</div>
+                            <S.FollowUser>
+                                <Follow likeData={likeData}/>
+                            </S.FollowUser>                            
+                            <S.UserIntro>한 줄 소개</S.UserIntro>
+                            </S.TextInfo>
+                        </S.text>
+                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
+                        <S.FeedOption>
+                            <LikeBt likeData={likeData}/>
+                            <div>136</div>
+                            <ScrapBlack likeData={likeData}/>
+                            <div>427</div>
+                            <img src={comment_one} alt='commentBt'></img>
+                            <div>63</div>
+                        </S.FeedOption>
+                    </S.PostUser1>
+                    <S.PostUser1 className='게시물2'>
+                        <S.text>
+                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.TextInfo>
+                            <S.PostUserName>유저 이름</S.PostUserName>
+                            <div>·</div>
+                            <S.FollowUser>
+                                <Follow likeData={likeData}/>
+                            </S.FollowUser>                            
+                            <S.UserIntro>한 줄 소개</S.UserIntro>
+                            </S.TextInfo>
+                        </S.text>
+                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
+                        <S.FeedOption>
+                            <LikeBt likeData={likeData}/>
+                            <div>136</div>
+                            <ScrapBlack likeData={likeData}/>
+                            <div>427</div>
+                            <img src={comment_one} alt='commentBt'></img>
+                            <div>63</div>
+                        </S.FeedOption>
+                    </S.PostUser1>
+                    <S.PostUser1 className='게시물3'>
+                        <S.text>
+                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.TextInfo>
+                            <S.PostUserName>유저 이름</S.PostUserName>
+                            <div>·</div>
+                            <S.FollowUser>
+                                <Follow likeData={likeData}/>
+                            </S.FollowUser>                            
+                            <S.UserIntro>한 줄 소개</S.UserIntro>
+                            </S.TextInfo>
+                        </S.text>
+                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
+                        <S.FeedOption>
+                            <LikeBt likeData={likeData}/>
+                            <div>136</div>
+                            <ScrapBlack likeData={likeData}/>
+                            <div>427</div>
+                            <img src={comment_one} alt='commentBt'></img>
+                            <div>63</div>
+                        </S.FeedOption>
+                    </S.PostUser1>
+
+                </S.Feed1>
+
                 </S.FeedBox>
             </S.mainWrapper>
         </S.CommunityContainer>
     );
 };
 
-export default CommunityAll;   
+export default CommunityAll;
