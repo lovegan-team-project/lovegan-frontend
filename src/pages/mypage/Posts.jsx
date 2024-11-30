@@ -15,27 +15,27 @@ const Posts = () => {
                     <S.Content>
                         <img src={my_post1} alt="" />
                         <span>24.11.01</span>
-                        <p>제목</p>
+                        <p className='post-title'>제목</p>
                     </S.Content>
                     <S.Content>
                         <img src={my_post2} alt="" />
                         <span>24.11.01</span>
-                        <p>제목</p>
+                        <p className='post-title'>제목</p>
                     </S.Content>
                     <S.Content>
                         <img src={my_post3} alt="" />
                         <span>24.11.01</span>
-                        <p>제목</p>
+                        <p className='post-title'>제목</p>
                     </S.Content>
                     <S.Content>
                         <img src={my_post4} alt="" />
                         <span>24.11.01</span>
-                        <p>제목</p>
+                        <p className='post-title'>제목</p>
                     </S.Content>
                     <S.Content>
                         <img src={my_post5} alt="" />
                         <span>24.11.01</span>
-                        <p>제목</p>
+                        <p className='post-title'>제목</p>
                     </S.Content>
                 </S.ContentWrapper>
             </div>
