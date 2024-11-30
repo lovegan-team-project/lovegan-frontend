@@ -30,3 +30,13 @@ export const inputBackground = css`
   background-color: gray;
   margin: 4px;
 `;
+
+export const flexRow = css`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const flexColumn = css`
+  display: flex;
+  flex-direction: column;
+`;

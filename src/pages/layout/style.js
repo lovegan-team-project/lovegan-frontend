@@ -11,6 +11,7 @@ S.Wrapper = styled.div`
 S.Header = styled.header`
 
     
+
     position: fixed;
 
     width: 100%;
