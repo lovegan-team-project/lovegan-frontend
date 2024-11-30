@@ -12,10 +12,11 @@ S.Header = styled.header`
 
     
     position: fixed;
+
     width: 100%;
     height : 100px;
     display: flex;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
     z-index: 9999;
     background-color: white;
     //border-bottom: 1px rgba(0, 0, 0, 0.3)
