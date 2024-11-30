@@ -26,7 +26,7 @@ const CustomerService = () => {
             {details == "notice" && (<Notice />) }
 
             {/* 1:1문의 -> 글 작성 버튼 누르면 이동 */}
-            {details == "register" && (<Register />)}
+            {details == "register" && (<Register />) }
 
             {/* 1:1문의 -> 제목 누르면 이동 */}
             {details == "registerComplete" && (<RegisterComplete />) }

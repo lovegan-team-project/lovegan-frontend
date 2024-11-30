@@ -44,6 +44,10 @@ S.TabButton = styled.button`
     border-left: none;
     border-right: none;
     cursor: pointer;
+
+    & :active{
+        height: 900px;
+    }
 `;
 
 S.Wrap = styled.div`
@@ -74,12 +78,10 @@ S.T_wrapper = styled.div`
     border-left:none;
     border-right:none;
 
-    & .faqTable{
-        & tbody{
-            & tr:active{
-                height: 300px;
-            }
-        }
+    & .answer{
+        margin-top: 10px;
+        color: #555;
+        font-size: 0.9em;
     }
 
     & table{

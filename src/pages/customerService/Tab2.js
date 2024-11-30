@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import S from './style';
 import { Link } from 'react-router-dom';
+import { divIcon } from 'leaflet';
 
 const Tab2 = () => {
+
+    // 열림,닫힘 상태 관리
+    const [isOpen,setIsOpen] = useState(false);
+
+    // 상태 토글
+    const toggleAnswer = () => {
+        setIsOpen((prev)=>!prev);
+    }
+    
     return (
             <S.Wrap>
                 <S.Div>
@@ -20,9 +30,19 @@ const Tab2 = () => {
                         </thead>
 
                         <tbody>
-                            <tr >
+                            {/* 클릭시 토글 이벤트 발생 */}
+                            <tr onClick={toggleAnswer}>
                                 <td>1</td>
-                                <td>교환/반품 진행 시, 배송비가 부과 되나요?</td>
+                                <td>
+                                    <div>
+                                        교환/반품 진행 시, 배송비가 부과 되나요?
+                                        {isOpen&&(
+                                        <div className='answer'>
+                                            -단순변심에 의한 교환/반품 시 배송비 6,000원을 고객님께서 부담하셔야 합니다.
+                                        </div>
+                                        )}
+                                    </div>
+                                </td>
                             </tr>
 
                             <tr >
