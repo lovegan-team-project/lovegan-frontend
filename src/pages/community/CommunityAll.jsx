@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import LikeBt from './LikeBt';
 import Follow from './Follow';
 import ScrapBlack from './ScrapBlack';
-import CheckboxButton from '../../components/checkbox/CheckboxButton';
 
 const CommunityAll = () => {
 
