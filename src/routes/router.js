@@ -10,7 +10,7 @@ import Community from './../pages/community/Community';
 import CommunityFollow from "../pages/community/CommunityFollow";
 import CommunityAll from "../pages/community/CommunityAll";
 import SignUp from './../pages/login/signUp/SignUp';
-import Search from './../search/Search';
+import Search from './../pages/search/Search';
 import CustomerService from "../pages/customerService/CustomerService";
 import New from "../pages/product/New";
 import Best from "../pages/product/Best";
