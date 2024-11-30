@@ -18,9 +18,7 @@ import Sale from "../pages/product/Sale";
 import ProductDetails from "../pages/product/ProductDetails";
 import SignIn from './../pages/login/signIn/SignIn';
 import Login from './../pages/login/login/Login';
-<<<<<<< HEAD
 import CommunityAllDt from "../pages/community/CommunityAllDt";
-=======
 import MyPage from "../pages/mypage/MyPage";
 import Posts from "../pages/mypage/Posts";
 import Following from "../pages/mypage/Following";
@@ -33,7 +31,6 @@ import Inquiries from "../pages/mypage/Inquiries";
 import Shippings from "../pages/mypage/Shippings";
 import AccountInfo from "../pages/mypage/AccountInfo";
 import ChangePassword from "../pages/mypage/ChangePassword";
->>>>>>> lovegan-yeain
 
 
 const router = createBrowserRouter([

@@ -2,39 +2,25 @@ import styled from "styled-components";
 const S = {}
 
 S.Wrapper = styled.div`
-    width: 100%;
+    
     display: flex;
     flex-direction: column;
-    align-items: center;
+    min-height: 100vh;
+  
 `
-S.Container = styled.div`
-    width: 100%;
-    max-width: 1920px;
-    margin: 0 auto; /* 중앙 정렬 */
-`;
-
-
 S.Header = styled.header`
+
+    
+
     position: fixed;
-<<<<<<< HEAD
     width: 100%;
     height : 100px;
-=======
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100px;
->>>>>>> lovegan-yeain
     display: flex;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
     z-index: 9999;
     background-color: white;
-<<<<<<< HEAD
     //border-bottom: 1px rgba(0, 0, 0, 0.3)
     //box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
-=======
-    box-shadow: -4px 0px 4px 0 rgb(0,0,0,0.2);
->>>>>>> lovegan-yeain
     //box-shadow: h-shadow v-shadow blur spread color inset;
     
    
@@ -169,6 +155,7 @@ S.Footer = styled.footer`
 
 `
 S.logoWrapper = styled.div`
+
     width: 121px;
     height: 45px;
     margin: 38px 1557px 0px 242px;
