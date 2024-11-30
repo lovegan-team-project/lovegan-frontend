@@ -24,7 +24,7 @@ import ResetPW from "../pages/login/findPW/ResetPW";
 import CommunityAllDt from "../pages/community/CommunityAllDt";
 import MyPage from "../pages/mypage/MyPage";
 import Posts from "../pages/mypage/Posts";
-import Following from "../pages/mypage/Following";
+import Follow from "../pages/mypage/Follow";
 import Likes from "../pages/mypage/Likes";
 import Scrap from "../pages/mypage/Scrap";
 import CouponBook from "../pages/mypage/CouponBook";
@@ -142,8 +142,8 @@ const router = createBrowserRouter([
                         element: <Posts />,
                     },
                     { 
-                        path: "activity/following",
-                        element: <Following />,
+                        path: "activity/follow",
+                        element: <Follow />,
                     },
                     { 
                         path: "activity/likes",

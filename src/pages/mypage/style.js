@@ -86,6 +86,10 @@ S.FollowInfoWrapper = styled.div`
         background-color: ${({theme})=>theme.PALLETTE.grey["2"]};
         margin: 0px 16px;
     }
+
+    & button {
+        cursor: pointer;
+    }
 `;
 
 S.MenuSection = styled.section`

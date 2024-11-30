@@ -1,6 +1,6 @@
 import React from 'react';
 import S from './style.js'
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import user_default from './images/user_default.svg';
 import scrap from './icons/scrap.svg';
 import like from './icons/like.svg';
@@ -16,6 +16,14 @@ import user from './icons/user.svg';
 
 
 const MyPage = () => {
+
+    const navigate = useNavigate();
+
+    const handleSettingsClick = () => {
+        navigate('/mypage/settings/accountInfo');
+    };
+
+
     return (
         <S.Background>
             <S.Container>
@@ -35,7 +43,7 @@ const MyPage = () => {
                             <span className='title'>팔로잉</span>
                             <span className='content'>0</span>
                         </div>
-                        <button type="button">설정</button>
+                        <button type="button" onClick={handleSettingsClick}>설정</button>
                     </S.FollowInfoWrapper>
                     <S.MenuSection>
                         <div className='wrapper'>
@@ -60,7 +68,7 @@ const MyPage = () => {
                     <S.MenuListWrapper>
                             <p className='menu-title'>My Activity</p>
                             <S.MenuListNavLink to="/mypage/activity/posts"><img src={document} alt="" /><span className='menu-content'>게시물</span></S.MenuListNavLink>
-                            <S.MenuListNavLink to="/mypage/activity/following"><img src={three_bar} alt="" /><span className='menu-content'>팔로워/팔로잉</span></S.MenuListNavLink>
+                            <S.MenuListNavLink to="/mypage/activity/follow"><img src={three_bar} alt="" /><span className='menu-content'>팔로워/팔로잉</span></S.MenuListNavLink>
                             <S.MenuListNavLink to="/mypage/activity/likes"><img src={like} alt="" /><span className='menu-content'>좋아요</span></S.MenuListNavLink>
                             <S.MenuListNavLink to="/mypage/activity/scrap"><img src={scrap} alt="" /><span className='menu-content'>스크랩</span></S.MenuListNavLink>
                             <S.MenuListNavLink to="/mypage/activity/couponbook"><img src={coupon} alt="" /><span className='menu-content'>쿠폰북</span></S.MenuListNavLink>
