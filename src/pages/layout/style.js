@@ -13,6 +13,7 @@ S.Header = styled.header`
     
 
     position: fixed;
+
     width: 100%;
     height : 100px;
     display: flex;

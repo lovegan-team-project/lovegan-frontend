@@ -25,6 +25,10 @@ S.Login = styled.input`
     border-radius: 5px;
     box-sizing: border-box;
     margin-top: 258px;
+    &:focus {
+        border-color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+        outline: none;
+    }
 `
 S.Password = styled.input`
     width: 380px;
@@ -33,6 +37,10 @@ S.Password = styled.input`
     border-radius: 5px;
     box-sizing: border-box;
     margin-top: 8px;
+    &:focus {
+        border-color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+        outline: none;
+    }
 `
 S.FoundIdAndPassword = styled.div`
     width: 158px;

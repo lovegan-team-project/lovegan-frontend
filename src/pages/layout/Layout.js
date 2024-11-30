@@ -11,10 +11,7 @@ const Layout = () => {
     const location = useLocation();
     const pathsWithHeader = ["/", "/brand", "/product", "/diary", "/community", "/community/CommunityFollow","/community/CommunityAllDt", "/details", "/details", "/signIn", "/findId", "/findPW", "/resetPW"];
 
-
     const showHeader = pathsWithHeader.includes(location.pathname);
-
-
     return (
         <>
         <S.Wrapper>
