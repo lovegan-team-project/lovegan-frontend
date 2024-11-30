@@ -19,6 +19,12 @@ const Login = () => {
     const clickToMain = () => {
         navigate('/')
     }
+    const clickToFindId = () => {
+        navigate('/findId')
+    }
+    const clickToFindPW = () => {
+        navigate('/findPW')
+    }
     return (
         <div>
             <S.Wrapper>
@@ -29,9 +35,9 @@ const Login = () => {
                     <S.Password placeholder='비밀번호를 입력해주세요'></S.Password>
                 </div>
                 <S.FoundIdAndPassword>
-                    <S.FoundId>아이디 찾기</S.FoundId>
+                    <S.FoundId onClick={clickToFindId}>아이디 찾기</S.FoundId>
                     <S.Line></S.Line>
-                    <S.FoundPW>비밀번호 재설정</S.FoundPW>
+                    <S.FoundPW onClick={clickToFindPW}>비밀번호 재설정</S.FoundPW>
                 </S.FoundIdAndPassword>
 
                 <S.Button>

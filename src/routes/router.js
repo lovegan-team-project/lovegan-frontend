@@ -18,7 +18,11 @@ import Sale from "../pages/product/Sale";
 import ProductDetails from "../pages/product/ProductDetails";
 import SignIn from './../pages/login/signIn/SignIn';
 import Login from './../pages/login/login/Login';
+import FindId from './../pages/login/findId/FindId';
+import EmailAuthenticate from "../pages/login/findId/EmailAuthenticate";
+import ResetPW from "../pages/login/findPW/ResetPW";
 import CommunityAllDt from "../pages/community/CommunityAllDt";
+
 
 
 const router = createBrowserRouter([
@@ -88,14 +92,6 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path : "/login", 
-                element : <Login />
-            },
-            {
-                path : "/signUp", 
-                element : <SignUp />
-            },
-            {
                 path : "/search", 
                 element : <Search />
             },
@@ -111,17 +107,37 @@ const router = createBrowserRouter([
             },
             {
                 path : "/signIn", 
-                element : <SignIn />
-            },     
-                        
+                element : <SignIn />,
+            },  
+            {
+                path : "/findId",
+                element : <FindId />
+            },
+            {
+                path : "/findPW",
+                element : <EmailAuthenticate />,
+            },
+            {
+                path : "/resetPW",
+                element : <ResetPW />
+            }           
             
 
         ]
     },
     {
+        path : "/signUp", 
+        element : <SignUp />
+    },
+    {
+        path : "/login", 
+        element : <Login />
+    },
+    {
         path : "*",
         element : <PageNotFound />
-    }
+    },
+    
 
 ])
 

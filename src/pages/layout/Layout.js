@@ -9,7 +9,8 @@ const Layout = () => {
     // 검색 창에서 돋보기 버튼을 눌렀을 때 search 페이지로 이동
     const navigate = useNavigate();
     const location = useLocation();
-    const pathsWithHeader = ["/", "/brand", "/product", "/diary", "/community", "/community/CommunityFollow","/community/CommunityAllDt", "/details"];
+    const pathsWithHeader = ["/", "/brand", "/product", "/diary", "/community", "/community/CommunityFollow","/community/CommunityAllDt", "/details", "/details", "/signIn", "/findId", "/findPW", "/resetPW"];
+
     const showHeader = pathsWithHeader.includes(location.pathname);
 
 
