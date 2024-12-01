@@ -13,8 +13,6 @@ const CommunityAll = () => {
 
     window.scrollTo(0,0);
 
-    // const location = useLocation();
-
     // 토글 버튼 클릭시 글, 위치 변경
     const [isSlide, setIsSlide] = useState(true);
     const navigate = useNavigate();
@@ -22,7 +20,6 @@ const CommunityAll = () => {
         setIsSlide(!isSlide)
         navigate("/community/CommunityFollow")
     }
-
     
     // 태그버튼
     const [tagClick, setTagClick] = useState("like")
@@ -35,19 +32,6 @@ const CommunityAll = () => {
         navigate("/community/CommunityAllDt")
     }   
     
-    // 좋아요 클릭 시 색상 변경
-    // const [likeClick, setLikeClick] = useState("#fff")    
-    // const likeColor = () => {
-    //     setLikeClick(prevColor => (prevColor === '#fff' ? '#F27830' : '#fff'))
-    // }
-
-    // 스크랩 클릭 시 색상 변경
-    // const [scrapClick, setScrapClick] = useState("#fff")
-    // const scrapColor = () => {
-    //     setScrapClick(prevColor => (prevColor === '#fff' ? '#F27830' : '#fff'))
-    // }
-    
-    // 좋아요 버튼 컴포넌트에서 만들기
     const likeData = [
         {
             id : 1,
