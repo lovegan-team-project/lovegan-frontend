@@ -2,7 +2,7 @@ import React from 'react';
 import {ReactComponent as LogoBlack} from './images/logo-black.svg'
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import S from './style';
-
+import { useState } from "react";
 
 const Layout = () => {
 
@@ -10,9 +10,17 @@ const Layout = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const pathsWithHeader = ["/", "/brand", "/product", "/diary", "/community", "/community/CommunityFollow","/community/CommunityAllDt", "/details", "/signIn", "/findId", "/findPW", "/resetPW","/customerService","/search"];
-
-
+    const [searchTerm, setSearchTerm] = useState();
+    
     const showHeader = pathsWithHeader.includes(location.pathname);
+    
+    const handleSearch = () => {
+        if (searchTerm) {
+            // search에 query가 searchTerm인곳으로 navigate
+            navigate(`/search?query=${searchTerm}`);
+        }
+    };
+
     return (
         <>
         <S.Wrapper>
@@ -28,13 +36,18 @@ const Layout = () => {
                     <NavLink to={"/community"}>COMMUNITY</NavLink>
                     </S.NavContainer>
                     
-                    <form action=""><S.Input type='text' placeholder='  검색어를 입력하세요' onKeyDown={(e)=>{
+                    <form onSubmit={(e) => {
+                    e.preventDefault(); // 폼 기본 동작 방지
+                     handleSearch(); // 검색 실행
+                    }}>
+                        <S.Input type='text' placeholder='  검색어를 입력하세요' onChange={(e)=>setSearchTerm(e.target.value)} onKeyDown={(e)=>{
                         // input에서 엔터키 눌렀을 때 search 페이지로 이동
+                        // query로 input에 있는 searchTerm을 전달
                         if(e.key==="Enter"){
-                            navigate('/search')
+                            navigate(`/search?query=${searchTerm}`)
                         }
                     }}></S.Input>
-                    <S.InputButton onClick={()=>{ navigate("/search")}}></S.InputButton>
+                    <S.InputButton onClick={()=>{handleSearch()}}></S.InputButton>
                     </form>
             
                     
@@ -76,4 +89,4 @@ const Layout = () => {
     );
 };
 
-export default Layout;
+export default Layout;     

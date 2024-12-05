@@ -116,7 +116,7 @@ S.T_wrapper = styled.div`
         }
     }
 `
-/* Arrow style */
+// /* Arrow style */
 S.A_Div = styled.div`
     width: 300px;
     height: 300px;
@@ -127,21 +127,61 @@ S.A_Div = styled.div`
 
 `
 
-S.A_Button = styled.div`
-    & button {
-        background: none;
-        font-size: 15px;
-        color: ${({theme})=> theme.PALLETTE.brand["primary"]};
-        cursor: pointer;
+// S.A_Button = styled.div`
+//     & button {
+//         background: none;
+//         font-size: 15px;
+//         color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+//         cursor: pointer;
         
-        /* & .active {
-            background: #333333;
-            width: 23px;
-            height: 23px;
-            line-height: 23px;
-            border-radius: 50%;
-            text-align: center;
-        } */
+//         /* & .active {
+//             background: #333333;
+//             width: 23px;
+//             height: 23px;
+//             line-height: 23px;
+//             border-radius: 50%;
+//             text-align: center;
+//         } */
+//     }
+// `
+
+S.nextPage = styled.div`
+    margin-top: 40px;
+
+    & p {
+        font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+        width: 22px;
+        height: 22px;
+
+        &:hover {
+            color: #03A63C;
+        }
+    }
+        
+    & button {
+        margin: 0 8px 0 8px;
+    }
+
+    & button.click {
+        padding: 0px;
+        outline: none;
+        background-color: #03A63C;
+        width: 22px;
+        height: 22px;
+        text-align: center;
+        border-radius: 50%;
+
+        & p{
+            color: #fff;
+            width: 22px;
+            height: 22px;
+        }
+    }
+
+    & button.unClick {
+        padding: 0px;
+        background-color: white;
+        outline: none;   
     }
 `
 
