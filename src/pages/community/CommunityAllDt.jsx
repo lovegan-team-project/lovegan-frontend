@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import S, { FollowButton, LikeButton, LikeButtonMin, ReplyTexts, ScrapButton } from './style';
-import { Icon } from '@iconify/react'
 import unsplash1 from './image/unsplash1.png'
 import unsplash2 from './image/unsplash2.png'
 import unsplash3 from './image/unsplash3.png'
 import unsplash4 from './image/unsplash4.png'
-import cmUser from './image/cmUser.svg';
-import cmUser1 from './image/cmUser1.svg';
+import UserImg2 from './image/UserImg2.png';
 import left from './image/left.svg';
 import right from './image/right.svg';
 import { ReactComponent as like} from './image/like.svg';
 import { ReactComponent as scrap} from './image/scrap.svg';
 import comment_one from './image/comment_one.svg';
-import Comment from './Comment';
 import LikeBtMin from './LikeBtMin';
+// import Comment from './Comment';
 
 const CommunityAllDt = (props) => {
 
@@ -176,14 +174,14 @@ const CommunityAllDt = (props) => {
                 <div>59</div>
             </S.commentNum>           
                 <S.typing>
-                    <img src={cmUser} alt='댓글달기' />
+                    <img src={UserImg2} alt='유저프로필' />
                     <input type="text" value={inputVal1} onChange={(e) => inputChange2(e)} placeholder='칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)'></input>
                     <button className='textChange' onClick={textChange}>입력</button>
                 </S.typing>
         <S.Recomment>
             {visibleInput &&
                 <S.RecommentBox className='commentBox'>
-                <img src={cmUser} alt='cmUser'></img>
+                <img src={UserImg2} alt='cmUser'></img>
                         <div className='userBox'>
                             <div>유저 닉네임</div>
                             <p className='detail'>{changeVal}</p>
