@@ -4,6 +4,12 @@ import { NavLink } from 'react-router-dom';
 
 const S = {};
 
+
+S.ContentTitle = styled.h3`
+    font-size: ${({theme})=>theme.FONT_SIZE["h3"]};
+    font-weight: ${({theme})=>theme.FONT_WEIGHT["bold"]};
+`;
+
 S.Background = styled.div`
     width: 100%;
     height: 100%;
@@ -139,7 +145,7 @@ S.MenuListNavLink = styled(NavLink)`
     border-radius: 6px;
 
     & span.menu-content {
-        font-size: ${({theme})=>theme.FONT_SIZE["small"]};
+        font-size: ${({theme})=>theme.FONT_SIZE["p"]};
         font-weight: ${({theme})=>theme.FONT_WEIGHT["regular"]};
     }
 

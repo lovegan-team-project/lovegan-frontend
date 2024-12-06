@@ -25,7 +25,8 @@ const theme ={};
             8 : "#8D8D8D"
         },
         myGrey: {
-            background: "#F7F8FA"
+            background: "#F7F8FA",
+            disable: "#FAFAFA"
         }
     }
     

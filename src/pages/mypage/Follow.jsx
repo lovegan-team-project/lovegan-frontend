@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import S from './followStyle';
+import FS from './followStyle';
 import { flexRow } from '../../global/common';
 import magnifier from './icons/magnifier.svg'
 import FollowingList from './FollowingList.jsx';
@@ -20,28 +20,28 @@ const Follow = () => {
 
     return (
         <div>
-            <S.ToggleContainer>
-                <S.ToggleButton
+            <FS.ToggleContainer>
+                <FS.ToggleButton
                      isActive={activeOption}
                      position={getButtonPosition(activeOption)}
                 />
                 {options.map(option => (
-                    <S.ToggleOption
+                    <FS.ToggleOption
                         key={option}
                         isActive={activeOption === option}
                         onClick={() => handleOptionClick(option)}
                     >
                         {option}
-                    </S.ToggleOption>
+                    </FS.ToggleOption>
                 ))}
-            </S.ToggleContainer>
-            <S.Overview>
-                <S.FlexRow><span>전체</span><span>253</span></S.FlexRow>
-                <S.SearchContainer>
+            </FS.ToggleContainer>
+            <FS.Overview>
+                <FS.FlexRow><span>전체</span><span>253</span></FS.FlexRow>
+                <FS.SearchContainer>
                     <input type="text" placeholder='검색' />
                     <img src={magnifier} alt="" />
-                </S.SearchContainer>
-            </S.Overview>
+                </FS.SearchContainer>
+            </FS.Overview>
             <div>
                 {activeOption === '팔로잉' && <FollowingList />}
                 {activeOption === '팔로워' && <FollowerList />}
