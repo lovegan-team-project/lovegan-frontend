@@ -2,9 +2,9 @@ import styled from "styled-components";
 import theme from '../../global/theme.js';
 import common, { flexRow } from '../../global/common.js';
 
-const S = {};
+const FS = {};
 
-S.ToggleContainer = styled.div`
+FS.ToggleContainer = styled.div`
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -16,7 +16,7 @@ S.ToggleContainer = styled.div`
     background-color: ${({ theme }) => theme.PALLETTE.myGrey["background"]};
 `;
 
-S.ToggleOption = styled.span`
+FS.ToggleOption = styled.span`
     flex: 1;
     text-align: center;
     font-size: 16px;
@@ -25,7 +25,7 @@ S.ToggleOption = styled.span`
     cursor: pointer;
 `;
 
-S.ToggleButton = styled.div`
+FS.ToggleButton = styled.div`
     position: absolute;
     left: ${({ position }) => position};  // position 값을 직접 사용
     width: 160px;
@@ -37,12 +37,12 @@ S.ToggleButton = styled.div`
     z-index: 1;
 `;
 
-S.Overview = styled.div`
+FS.Overview = styled.div`
     ${flexRow}
     justify-content: space-between;
 `;
 
-S.FlexRow = styled.div`
+FS.FlexRow = styled.div`
     ${flexRow}
     align-items: center;
 
@@ -57,7 +57,7 @@ S.FlexRow = styled.div`
     }
 `;
 
-S.SearchContainer = styled.div`
+FS.SearchContainer = styled.div`
     position: relative;
     width: 260px;
 
@@ -88,7 +88,7 @@ S.SearchContainer = styled.div`
 `;
 
 
-S.FollowHeader = styled.div`
+FS.FollowHeader = styled.div`
     margin-top: 10px;
     width: 100%;
     display: flex;
@@ -107,7 +107,7 @@ S.FollowHeader = styled.div`
     }
 `;
 
-S.FollowData = styled.div`
+FS.FollowData = styled.div`
     width: 100%;
     ${flexRow}
     align-items: center;
@@ -154,9 +154,45 @@ S.FollowData = styled.div`
         & img {
             cursor: pointer;
         }
+
+        & div {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+        }
+
+        & button.follow-back-btn {
+            border-radius: 6px;
+            padding: 8px 16px;
+            background-color: ${({ theme }) => theme.PALLETTE.brand["primary"]};
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & img {
+                padding-top: 2px;
+            }
+        }
+
+        & button.following-btn {
+            width: 98px;
+            border-radius: 6px;
+            padding: 8px 16px;
+            background-color: ${({ theme }) => theme.PALLETTE.myGrey["disable"]};
+            color: ${({ theme }) => theme.PALLETTE.grey["8"]};
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & img {
+                padding-top: 2px;
+            }
+
+        }
     }
 
 `;
 
 
-export default S;
+export default FS;

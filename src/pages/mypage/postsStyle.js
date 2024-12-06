@@ -1,25 +1,21 @@
 import styled from "styled-components";
 import { flexCenterColumn  } from '../../global/common.js';
 
-const S = {};
+const PS = {};
 
-S.ContentDivider = styled.div`
+PS.ContentDivider = styled.div`
     border: 0;
     background-color: ${({theme})=>theme.PALLETTE.grey["2"]};
     height: 1px;
     width: 100%;
 `;
 
-S.ContentTitle = styled.h3`
-    font-size: ${({theme})=>theme.FONT_SIZE["h3"]};
-    font-weight: ${({theme})=>theme.FONT_WEIGHT["bold"]};
-`;
 
-S.FilterWrapper = styled.div`
+PS.FilterWrapper = styled.div`
     ${flexCenterColumn}
 `;
 
-S.FilterList = styled.div`
+PS.FilterList = styled.div`
     display: flex;
     flex-direction: row;
     width: 200px;
@@ -42,7 +38,7 @@ S.FilterList = styled.div`
     }
 `;
 
-S.ContentWrapper = styled.div`
+PS.ContentWrapper = styled.div`
     margin-top: 40px;
     display: grid;
     grid-template-columns: repeat(3, 300px);
@@ -50,7 +46,7 @@ S.ContentWrapper = styled.div`
     gap: 20px; 
 `;
 
-S.Content = styled.div`
+PS.Content = styled.div`
     position: relative;
     display: inline-block;
 
@@ -83,4 +79,4 @@ S.Content = styled.div`
     }
 `;
 
-export default S;
+export default PS;

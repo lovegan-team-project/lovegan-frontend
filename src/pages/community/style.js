@@ -46,12 +46,12 @@ export const LikeButtonMin = styled(like)`
     width: 18px;
     height: 18px;
     margin-right: 4px;
-
-    fill: ${(props) => props.color || '#D8590E'};
+    fill: ${(props) => props.color === "#fff" ? "#fff" : "#F27830"};
+    stroke: ${(props) => props.stroke === '#333' ? '#333' : '#F27830'};
 
     &:hover path{
-    background-color: #D8590E;
-    stroke: ${(props) => props.stroke === '#333' ? '#D8590E' : '#D8590E'};
+        fill: ${(props) => props.color === "#fff" ? "#fff" : "#D8590E"};
+        stroke: ${(props) => props.stroke === '#333' ? '#939393' : '#D8590E'};
     }
 `
 
@@ -468,7 +468,7 @@ S.FeedFilter = styled.p`
 
 S.PostWrapper = styled.div`
     width: 720px;
-    margin: 0 600px 0 600px;
+    margin: 0 600px 122px 600px;
     color: ${({theme}) => theme.PALLETTE.brand["primary_black"]};
     position: relative;
 
@@ -809,6 +809,8 @@ S.nextPage = styled.div`
     }
 `
 
-
+S.Arrowbt = styled.button`
+    
+`
 
 export default S;
