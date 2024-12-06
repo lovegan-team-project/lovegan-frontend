@@ -809,6 +809,8 @@ S.nextPage = styled.div`
     }
 `
 
-
+S.Arrowbt = styled.button`
+    
+`
 
 export default S;
