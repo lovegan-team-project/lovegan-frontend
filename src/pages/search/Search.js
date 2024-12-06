@@ -5,11 +5,23 @@ import FoodComponent from './FoodComponent';
 import OtherComponent from './OtherComponent';
 import CommunityComponent from './CommunityComponent';
 import RestaurantComponent from './RestaurantComponent';
+import { useLocation } from 'react-router-dom';
+
 
 const Search = () => {
+    // 화면 랜더링시 맨위로 이동
+    window.scrollTo(0,0);
+
+    const location = useLocation();
+
+    // 검색 파라미터 생성
+    const queryParams = new URLSearchParams(location.search);
+    // query(키) 의 값을 들고옴
+    const searchQuery = queryParams.get('query');
+
     return (
         <S.Wrapper>
-            <h4>'ㅇㅇㅇ'에 대한 검색 결과</h4>
+            <h4>'{searchQuery}'에 대한 검색 결과</h4>
             <hr className='line' />
             {/* food 검색결과 */}
             <S.Food>
