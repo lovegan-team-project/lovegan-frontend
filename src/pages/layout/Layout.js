@@ -1,5 +1,5 @@
 import React from 'react';
-import {ReactComponent as LogoBlack} from './images/logo-black.svg'
+import {ReactComponent as LogoBlack} from './images/logo-black.svg';
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import S from './style';
 import { useState } from "react";
