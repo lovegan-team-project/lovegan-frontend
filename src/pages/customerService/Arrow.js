@@ -6,20 +6,22 @@ import right from './img/right.svg'
 const Arrow = () => {
 
     // onClick시 버튼 색 변경
-    const [clickColor,setClickColor] = useState("one");
+    const [nextClick,setNextClick] = useState("one");
 
     useEffect(()=>{
-        setClickColor("one")
-    },[setClickColor])
+        setNextClick("one")
+    },[setNextClick])
 
     return (
-        <S.A_Button>
-            <button><img src={left} alt="left" /></button>
-            <button className={clickColor === "one" ? "active" : "" } onClick={()=>setClickColor('one')}>1</button>
-            <button className={clickColor === "two" ? "active" : "" } onClick={()=>setClickColor('two')}>2</button>
-            <button className={clickColor === "three" ? "active" : "" } onClick={()=>setClickColor('three')}>3</button>
-            <button><img src={right} alt="right" /></button>
-        </S.A_Button>
+        <S.nextPage>
+                <img className='left' src={left} />
+                <button className={nextClick === "one" ? "click" : "unClick"} onClick={()=>setNextClick("one")}><p>1</p></button>
+                <button className={nextClick === "two" ? "click" : "unClick"} onClick={()=>setNextClick("two")}><p>2</p></button>
+                <button className={nextClick === "three" ? "click" : "unClick"} onClick={()=>setNextClick("three")}><p>3</p></button>
+                <button className={nextClick === "four" ? "click" : "unClick"} onClick={()=>setNextClick("four")}><p>4</p></button>
+                <button className={nextClick === "five" ? "click" : "unClick"} onClick={()=>setNextClick("five")}><p>5</p></button>
+                <img className='right' src={right} />
+        </S.nextPage>
     );
 };
 

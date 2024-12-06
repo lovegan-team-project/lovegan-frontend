@@ -8,6 +8,9 @@ import RegisterComplete from './RegisterComplete';
 
 const CustomerService = () => {
 
+    // 화면 랜더링시 맨위로 이동
+    window.scrollTo(0,0);
+
     // 쿼리스트링 키값으로 페이지 이동
     const [searchParams] = useSearchParams();
 
@@ -26,7 +29,7 @@ const CustomerService = () => {
             {details == "notice" && (<Notice />) }
 
             {/* 1:1문의 -> 글 작성 버튼 누르면 이동 */}
-            {details == "register" && (<Register />)}
+            {details == "register" && (<Register />) }
 
             {/* 1:1문의 -> 제목 누르면 이동 */}
             {details == "registerComplete" && (<RegisterComplete />) }

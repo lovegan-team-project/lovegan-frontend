@@ -1,4 +1,4 @@
-
+import downIcon from './icons/down.svg';
 import styled from "styled-components";
 
 const S = {};
@@ -164,12 +164,27 @@ S.EmailInput = styled.input`
     height: 42px;
     border: 1px solid ${({theme})=>theme.PALLETTE.grey["8"]};
     border-radius: 5px;
+    &:focus {
+        border-color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+        outline: none;
+    }
 `
-S.EmailDropDown = styled.input`
+S.EmailDropDown = styled.select`
     width: 170px;
     height: 42px;
     border: 1px solid ${({theme})=>theme.PALLETTE.grey["8"]};
     border-radius: 5px;
+    padding: 8px 10px;
+    color: ${({theme})=>theme.PALLETTE.grey["8"]};
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none; 
+    background: ${({theme}) => theme.PALLETTE.white} url(${downIcon}) no-repeat right 10px center;
+    background-position: right 10px center; 
+    &:focus {
+        border-color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+        outline: none;
+    }
 `
 S.EmailButton = styled.div`
     width: 380px;
@@ -199,16 +214,35 @@ S.EmailCertifyBox = styled.div`
         color: ${({theme})=> theme.PALLETTE.brand["primary_black"]};
     }
 `
+S.CertifyCodeContainer = styled.div`
+    position: relative;
+    display: inline-block;
+    width: 332px;
+    height: 42px;
+`
 S.CertifyCode = styled.input`
     width: 332px;
     height: 42px;
     border: 1px solid ${({theme})=>theme.PALLETTE.grey["8"]};
     border-radius: 5px;
+    font-size: ${({theme})=>theme.FONT_SIZE["paragraph"]};
+    font-weight: ${({theme})=>theme.FONT_WEIGHT["regular"]};
     color: ${({theme})=>theme.PALLETTE.grey["8"]};
     margin-top: 8px;
 `
+S.EmailConfirm = styled.span`
+    font-size: ${({theme})=>theme.FONT_SIZE["paragraph"]};
+    font-weight: ${({theme})=>theme.FONT_WEIGHT["regular"]};
+    color: ${({theme})=>theme.PALLETTE.grey["8"]};
+    position: absolute;
+    right: 16px;
+    top: 50%; 
+    display: flex; 
+    align-items: center; 
+    cursor: pointer; 
+`
 S.ReCertifyCode = styled.div`
-    margin-top: 8px;
+    margin-top: 16px;
     display: flex;
     flex-direction: row;
     width: 332px;
@@ -235,6 +269,16 @@ S.ResendCode = styled.div`
     align-items: center;
     text-decoration: underline;
 `
+S.PhoneInput = styled.input`
+    width: 380px;
+    height: 42px;
+    border: 1px solid ${({theme})=>theme.PALLETTE.grey["8"]};
+    border-radius: 5px;
+    &:focus {
+        border-color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+        outline: none;
+    }
+`
 S.Password = styled.div`
     color: ${({theme})=> theme.PALLETTE.brand["primary_black"]};
     font-size: ${({theme})=>theme.FONT_SIZE["subtitle"]};
@@ -257,6 +301,10 @@ S.PasswordInput = styled.input`
     font-size: ${({theme})=>theme.FONT_SIZE["paragraph"]};
     font-weight: ${({theme})=>theme.FONT_WEIGHT["regular"]};
     margin-top: 8px;
+    &:focus {
+        border-color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+        outline: none;
+    }
 `
 S.Nickname = styled.div`
     color: ${({theme})=> theme.PALLETTE.brand["primary_black"]};
@@ -280,6 +328,10 @@ S.NicknameInput = styled.input`
     font-size: ${({theme})=>theme.FONT_SIZE["paragraph"]};
     font-weight: ${({theme})=>theme.FONT_WEIGHT["regular"]};
     margin-top: 8px;
+    &:focus {
+        border-color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+        outline: none;
+    }
 `
 S.Agree = styled.div`
     color: ${({theme})=> theme.PALLETTE.brand["primary_black"]};
@@ -294,8 +346,61 @@ S.AgreeContainer = styled.div`
     border-radius: 5px;
     margin-top: 12px;
 `
-S.AllAgree = styled.input`
+S.AllAgree = styled.div`
+    width: 227px;
+    height: 22px;
+    line-height: 22px;
+    margin-left: 30px;
+    margin-top: 24px;
+    font-size: ${({theme})=>theme.FONT_SIZE["subtitle"]};
+    font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
+    color: ${({theme})=> theme.PALLETTE.brand["primary_black"]};
+    & span {
+        font-size: ${({theme})=>theme.FONT_SIZE["small"]};
+        font-weight: ${({theme})=>theme.FONT_WEIGHT["regular"]};
+        color: ${({theme})=>theme.PALLETTE.grey["8"]};
+        margin-left: 8px;
+        padding-bottom: 3px;
+    }
+`
+S.AgreeDivider = styled.div`
+    width: 360px;
+    height: 1px;
+    background-color: ${({theme})=>theme.PALLETTE.grey["8"]};
+    margin-top: 24px;
+    position: relative;
+    left : 50%;
+    transform: translateX(-50%);
+    margin-bottom: 6px;
+`
+S.EachAgree = styled.div`
+    width: 227px;
+    margin-left: 30px;
+    margin-top: 22px;
 
+`
+S.AgreeLabel = styled.label`
+    width: 320px;
+    height: 22px;
+    display: flex;
+    margin-top: 16px;
+    font-size: ${({theme})=>theme.FONT_SIZE["paragraph"]};
+    font-weight: ${({theme})=>theme.FONT_WEIGHT["regular"]};
+    line-height: 22px;
+    & span {
+        margin-left: 8px;
+        font-size: ${({theme})=>theme.FONT_SIZE["small"]};
+        font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
+    }
+    & img {
+        margin-left: auto;
+    }
+`
+S.Required = styled.span`
+    color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+`
+S.Option = styled.span`
+    color: ${({theme})=>theme.PALLETTE.grey["8"]};
 `
 S.SignUpButton = styled.div`
     width: 380px;

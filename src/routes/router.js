@@ -10,7 +10,7 @@ import Community from './../pages/community/Community';
 import CommunityFollow from "../pages/community/CommunityFollow";
 import CommunityAll from "../pages/community/CommunityAll";
 import SignUp from './../pages/login/signUp/SignUp';
-import Search from './../search/Search';
+import Search from './../pages/search/Search';
 import CustomerService from "../pages/customerService/CustomerService";
 import New from "../pages/product/New";
 import Best from "../pages/product/Best";
@@ -18,7 +18,23 @@ import Sale from "../pages/product/Sale";
 import ProductDetails from "../pages/product/ProductDetails";
 import SignIn from './../pages/login/signIn/SignIn';
 import Login from './../pages/login/login/Login';
+import FindId from './../pages/login/findId/FindId';
+import EmailAuthenticate from "../pages/login/findId/EmailAuthenticate";
+import ResetPW from "../pages/login/findPW/ResetPW";
 import CommunityAllDt from "../pages/community/CommunityAllDt";
+import MyPage from "../pages/mypage/MyPage";
+import Posts from "../pages/mypage/Posts";
+import Follow from "../pages/mypage/Follow";
+import Likes from "../pages/mypage/Likes";
+import Scrap from "../pages/mypage/Scrap";
+import CouponBook from "../pages/mypage/CouponBook";
+import Orders from "../pages/mypage/Orders";
+import Reviews from "../pages/mypage/Reviews";
+import Inquiries from "../pages/mypage/Inquiries";
+import Shippings from "../pages/mypage/Shippings";
+import AccountInfo from "../pages/mypage/AccountInfo";
+import ChangePassword from "../pages/mypage/ChangePassword";
+
 
 
 const router = createBrowserRouter([
@@ -88,14 +104,6 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path : "/login", 
-                element : <Login />
-            },
-            {
-                path : "/signUp", 
-                element : <SignUp />
-            },
-            {
                 path : "/search", 
                 element : <Search />
             },
@@ -112,16 +120,84 @@ const router = createBrowserRouter([
             {
                 path : "/signIn", 
                 element : <SignIn />
-            },     
-                        
-            
-
+            },
+            {
+                path : "/findId",
+                element : <FindId />
+            },
+            {
+                path : "/findPW",
+                element : <EmailAuthenticate />,
+            },
+            {
+                path : "/resetPW",
+                element : <ResetPW />
+            },
+            {
+                path: "/mypage", 
+                element: <MyPage />,
+                children: [
+                    { 
+                        path: "activity/posts",
+                        element: <Posts />,
+                    },
+                    { 
+                        path: "activity/follow",
+                        element: <Follow />,
+                    },
+                    { 
+                        path: "activity/likes",
+                        element: <Likes />,
+                    },
+                    { 
+                        path: "activity/scrap",
+                        element: <Scrap />,
+                    },
+                    { 
+                        path: "activity/couponbook",
+                        element: <CouponBook />,
+                    },
+                    { 
+                        path: "shopping/orders",
+                        element: <Orders />,
+                    },
+                    { 
+                        path: "shopping/reviews",
+                        element: <Reviews />,
+                    },
+                    { 
+                        path: "shopping/inquiries",
+                        element: <Inquiries />,
+                    },
+                    { 
+                        path: "settings/shippings",
+                        element: <Shippings />,
+                    },
+                    { 
+                        path: "settings/accountInfo",
+                        element: <AccountInfo />,
+                    },
+                    {
+                        path: "settings/changePassword",
+                        element: <ChangePassword />,
+                    },
+                ],
+            },              
         ]
+    },
+    {
+        path : "/signUp", 
+        element : <SignUp />
+    },
+    {
+        path : "/login", 
+        element : <Login />
     },
     {
         path : "*",
         element : <PageNotFound />
-    }
+    },
+    
 
 ])
 
