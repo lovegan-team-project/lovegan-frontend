@@ -139,13 +139,19 @@ S.ItemContainer = styled.div`
     width: 340px;
     height: 399px;
     margin-right: 20px;
+    & div.mainPhotoWrapper {
+        width: 340px;
+        height: 240px;
+        position: relative;
 
-    /* & img.like {
-       position: fixed;
-       top: 78%;
-       left: 587px;
+    }
 
-    } */
+    & img.like {
+       z-index: 9999;
+        position: relative;
+        top: -55px;
+        left: 279px;
+    }
     
 `
 S.ItemTitle = styled.div`
