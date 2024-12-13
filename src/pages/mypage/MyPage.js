@@ -2,8 +2,8 @@ import React from 'react';
 import S from './style.js'
 import { Outlet, useNavigate } from 'react-router-dom';
 import user_default from './images/user_default.svg';
-import scrap from './icons/scrap.svg';
-import like from './icons/like.svg';
+import scrap from './icons/menu-scrap.svg';
+import like from './icons/menu-like.svg';
 import coupon from './icons/coupon.svg';
 import document from './icons/document.svg';
 import all_aplication from './icons/all_aplication.svg';
