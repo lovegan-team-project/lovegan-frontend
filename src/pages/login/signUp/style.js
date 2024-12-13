@@ -3,6 +3,10 @@ import styled from "styled-components";
 
 const S = {};
 
+S.Form = styled.div`
+    width: 100%;
+    height: 100%;
+`
 S.Wrapper = styled.div`
     position: absolute;
     width: 380px;
@@ -434,5 +438,8 @@ S.ToLogin = styled.div`
     font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
     color: ${({theme})=> theme.PALLETTE.brand["primary_black"]};
     text-decoration: underline;
+`
+S.ConfirmMessage = styled.div`
+    
 `
 export default S;
