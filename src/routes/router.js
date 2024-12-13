@@ -89,19 +89,19 @@ const router = createBrowserRouter([
                 element : <Community />,
                 children : [
                     {
-                        index : true,
+                        // index : true,
+                        path : "CommunityAll",
                         element : <CommunityAll />,
                     },
                     {
                         path : "CommunityFollow",
                         element : <CommunityFollow />
                     },
-                    {
-                        path : "CommunityAllDt",
-                        element : <CommunityAllDt />
-                    }
-
                 ]
+            },
+            {
+                path : "/community/CommunityAllDt",
+                element : <CommunityAllDt />
             },
             {
                 path : "/search", 

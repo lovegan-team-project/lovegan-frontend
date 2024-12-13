@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import theme from "../../global/theme";
 import { ReactComponent as like } from './image/like.svg';
 import { ReactComponent as scrap } from './image/scrap.svg';
 import { ReactComponent as scrapBlack } from './image/scrapBlack.svg';
@@ -106,7 +107,6 @@ export const ScrapButtonCmAll = styled(scrap)`
 const S = {};
 
 S.CommunityContainer = styled.div`
-
 `
 
 S.CommunityTitle = styled.div`
@@ -136,7 +136,7 @@ S.CommunityToggle = styled.div`
     display: flex;
     align-items: center;
 
-    & .toggleAll {
+    /* & .toggleAll {
         width: 160px;
         height: 45px;
         border-radius: 20px;
@@ -196,7 +196,28 @@ S.CommunityToggle = styled.div`
             transform: translate(0px);
             transition: 0.5s;
         }   
-    }
+    } */
+`
+S.ToggleComponent = styled.span`
+    flex: 1;
+    text-align: center;
+    font-size: 16px;
+    color: ${({ isActive }) => (isActive ? theme.PALLETTE.brand["primary_black"] : theme.PALLETTE.grey["8"])}; 
+    z-index: 2;
+    cursor: pointer;
+`
+
+S.ToggleButton = styled.div`
+    position: absolute;
+    left: ${({ position }) => position};
+    width : 160px;
+    height: 45px;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: left 0.5s ease;
+    z-index: 1;
 `
 
 S.mainWrapper = styled.div`
@@ -229,12 +250,14 @@ S.tagButton = styled.div`
         font-size: 14px;
         outline: none;
         font: ${({theme}) => theme.FONT_WEIGHT["bold"]};
+        cursor: pointer;
      }
      & button.unClick {
         padding: 0px;
         background-color: white;
         font-size: 14px;
         outline: none;
+        cursor: pointer;
 
         & p{
             font-size: 14px;

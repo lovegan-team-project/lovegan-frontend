@@ -8,12 +8,12 @@ const CommunityFollow  = () => {
     window.scrollTo(0,0);
 
     // 토글 버튼 클릭시 글, 위치 변경
-    const [isSlide, setIsSlide] = useState(true);
+    // const [isSlide, setIsSlide] = useState(true);
     const navigate = useNavigate();
-    const slideToTag = () => {
-        setIsSlide(!isSlide)
-        navigate("/community")
-    }
+    // const slideToTag = () => {
+    //     setIsSlide(!isSlide)
+    //     navigate("/community")
+    // }
 
     // 태그버튼
     const [tagClick, setTagClick] = useState("like")
@@ -27,22 +27,10 @@ const CommunityFollow  = () => {
     }   
     const bookmarkClick = (event) => {
         event.stopPropagation();
-        // console.log("Bookmark Clicked!")
     }
 
     return (
-        <S.CommunityContainer data-aos="fade-in">
-            <S.CommunityTitle>COMMUNITY</S.CommunityTitle>
-            <S.CommunitySubTitle>지속 가능한 세상을 함께 만들어가는 공간</S.CommunitySubTitle>
-
-            {/* 슬라이드 토글 기능 */}
-            <S.CommunityToggle>
-                    <div className='toggleAll' onClick={slideToTag}>ALL</div>
-                    <div className='toggleFollow' onClick={slideToTag}>FOLLOW</div>
-                    
-                <span className={`button ${isSlide ? "clickAllActive" : "clickFollowActive"}`}>{isSlide ? "FOLLOW" : "ALL"}</span>
-            </S.CommunityToggle>
-
+        <S.CommunityContainer>
             <S.mainWrapper>
                 <div className='top'>
                     <S.totalNum><p>전체 13,429</p></S.totalNum>
