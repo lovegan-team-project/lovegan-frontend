@@ -59,6 +59,7 @@ const CommunityAllDt = (props) => {
         setVisibleInput(!visibleInput)
     };
     
+
     // // 개별 댓글 작은 좋아요 상태 변경 함수
     // const onChangeLikeSmall = (index) => {
     //     setLikeSmaillState(prevStates => 
@@ -176,29 +177,28 @@ const CommunityAllDt = (props) => {
                     <input type="text" value={inputVal1} onChange={(e) => inputChange2(e)} placeholder='칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)'></input>
                     <button className='textChange' onClick={textChange}>입력</button>
                 </S.typing>
-        <S.Recomment>
-            {visibleInput &&
+            <S.Recomment>
+
+            {/* {visibleInput && */}
                 <S.RecommentBox className='commentBox'>
-                <img src={UserImg2} alt='cmUser'></img>
-                        <div className='userBox'>
-                            <div>유저 닉네임</div>
-                            <p className='detail'>{changeVal}</p>
-
-                            <S.dtInfo>
-                                <p>1주</p>
-                                <span>·</span>
-                                <LikeBtMin />
-                                <p>좋아요</p>
-                                <span>·</span>
-                                {/* 답글 달기 클릭 -> input 박스 보이게 해야함 */}
-                                <p>답글 달기</p>
-                                <span>·</span>
-                                <p>신고</p>
-                            </S.dtInfo>
-
-                        </div>
-                    </S.RecommentBox>
-                    } 
+                 <img src={UserImg2} alt='cmUser'></img>
+                         <div className='userBox'>
+                             <div>유저 닉네임</div>
+                             <p className='detail'>{changeVal}</p>
+                             <S.dtInfo>
+                                 <p>1주</p>
+                                 <span>·</span>
+                                 <LikeBtMin />
+                                 <p>좋아요</p>
+                                 <span>·</span>
+                                 {/* 답글 달기 클릭 -> input 박스 보이게 해야함 */}
+                                 <p>답글 달기</p>
+                                 <span>·</span>
+                                 <p>신고</p>
+                             </S.dtInfo>
+                         </div>
+                     </S.RecommentBox>
+                    {/* }  */}
             </S.Recomment>
             
             <S.nextPage>
