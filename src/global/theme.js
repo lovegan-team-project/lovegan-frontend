@@ -9,7 +9,7 @@ const theme ={};
             primary_black : "#333333"
         },
         sub : {
-            secondary_light : "#F25050",
+            secondary_light : "#FCE3D4",
             secondary : "#F27830",
             warning : "#F25050"
         },

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import common, { flexRow } from '../../global/common.js';
 
+
 const SpS = {};
 
 SpS.ShippingHeader = styled.div`
@@ -33,5 +34,59 @@ SpS.ShippingHeader = styled.div`
         width: 80px;
     }
 `;
+
+SpS.shippingPlusWrapper = styled.div`
+    cursor: pointer;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin: 16px 0px;
+
+    & img {
+        width: 22px;
+        height: 22px;
+    }
+`;
+
+SpS.ShippingData = styled.div`
+    ${flexRow}
+    align-items: center;
+    justify-content: center;
+    padding: 28px 0px;
+    border-bottom: 1px solid ${({ theme }) => theme.PALLETTE.grey["0"]};
+
+    & div:first-child {
+        width: 100px;
+        text-align: center;
+    }
+
+    & div:nth-child(2) {
+        width: 200px;
+        padding-left: 4px;
+    }
+
+    & div:nth-child(3) {
+        width: 460px;
+    }
+
+    & div:nth-child(4) {
+        width: 120px;
+    }
+
+    & div:nth-child(5) {
+        width: 60px;
+        & img { margin: 0 auto }
+    }
+
+    & div.default {
+        border-radius: 20px;
+        padding: 8px 10px;
+        color: ${({ theme }) => theme.PALLETTE.sub["secondary"]};
+        border: 1px solid ${({ theme }) => theme.PALLETTE.sub["secondary"]};
+        background-color: ${({ theme }) => theme.PALLETTE.sub["secondary_light"]};
+    }
+`;
+
+
 
 export default SpS;
