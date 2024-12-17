@@ -59,8 +59,6 @@ const CommunityAllDt = (props) => {
         setVisibleInput(!visibleInput)
     };
     
-    
-
     // // 개별 댓글 작은 좋아요 상태 변경 함수
     // const onChangeLikeSmall = (index) => {
     //     setLikeSmaillState(prevStates => 
