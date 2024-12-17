@@ -155,6 +155,7 @@ S.Main1 = styled.main`
     flex: 1;
     width: 100%;
     padding-top: 100px;
+    overflow: hidden;
     //padding-bottom: 293px;
  
 
@@ -163,6 +164,7 @@ S.Main2 = styled.main`
 
     flex: 1;
     width: 100%;
+    overflow: hidden;
     //padding-bottom: 293px;
  
 
