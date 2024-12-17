@@ -3,7 +3,7 @@ import S from './style';
 import Rectangle from './images/Rectangle.png';
 import { useNavigate } from 'react-router-dom';
 import ItemContainer from './ItemContainer';
-const Meat = () => {
+const FastFoodNew = () => {
     const navigate = useNavigate();
     return (
         <S.TagItemWrapper>
@@ -39,4 +39,4 @@ const Meat = () => {
     );
 };
 
-export default Meat;
+export default FastFoodNew;
