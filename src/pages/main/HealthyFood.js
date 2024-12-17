@@ -1,9 +1,11 @@
 import React from 'react';
 import S from './style';
 import Rectangle from './images/Rectangle.png';
+import Star from './images/star.svg';
+import Like from './images/like.svg'
 import { useNavigate } from 'react-router-dom';
 import ItemContainer from './ItemContainer';
-const Meat = () => {
+const HealthyFood = () => {
     const navigate = useNavigate();
     return (
         <S.TagItemWrapper>
@@ -36,7 +38,8 @@ const Meat = () => {
            onNavigate={() => navigate("/details")}
         />
     </S.TagItemWrapper>
+
     );
 };
 
-export default Meat;
+export default HealthyFood;

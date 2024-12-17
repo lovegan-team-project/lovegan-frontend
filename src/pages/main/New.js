@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import S from './style';
 import VegeNew from './VegeNew';
+import MeatNew from './MeatNew';
+import VegeSideNew from './VegeSideNew';
+import SpiceNew from './SpiceNew';
+import SnackNew from './SnackNew';
+import EggNew from './EggNew';
+import FastFoodNew from './FastFoodNew';
+import DrinksNew from './DrinksNew';
+import HealthyFoodNew from './HealthyFoodNew';
 const New = () => {
     const [selectedCategory, setSelectedCategory] = useState("채소");
     const renderContent = () => {
@@ -8,21 +16,21 @@ const New = () => {
           case "채소":
             return <VegeNew />;
           case "고기대용":
-            return <div>고기 대용 상품 목록을 보여줍니다.</div>;
+            return <MeatNew />;
           case "채식 반찬":
-            return <div>채식 반찬 상품 목록을 보여줍니다.</div>;
+            return <VegeSideNew />;
           case "양념·가루":
-            return <div>양념·가루 상품 목록을 보여줍니다.</div>;
+            return <SpiceNew />;
           case "간식·과일·견과":
-            return <div>간식·과일·견과 상품 목록을 보여줍니다.</div>;
+            return <SnackNew />;
           case "쌀·잡곡·계란":
-            return <div>쌀·잡곡·계란 상품 목록을 보여줍니다.</div>;
+            return <EggNew />;
           case "간편식":
-            return <div>간편식 상품 목록을 보여줍니다.</div>;
+            return <FastFoodNew />;
           case "음료":
-            return <div>음료 상품 목록을 보여줍니다.</div>;
+            return <DrinksNew />;
           case "건강식품":
-            return <div>건강식품 상품 목록을 보여줍니다.</div>;
+            return <HealthyFoodNew />;
           default:
             return null;
         }

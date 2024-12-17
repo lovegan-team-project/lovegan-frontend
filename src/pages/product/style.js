@@ -86,6 +86,7 @@ S.MainWrapper = styled.div`
 S.SideMenuWrapper = styled.div`
     width: 260px;
     height: 1483px;
+    margin-bottom: 200px;
     & img {
         margin-bottom: 34px;
     }
@@ -123,17 +124,7 @@ S.MainFilterButton = styled.button`
     margin-bottom: 4px;
     
 `
-S.UnderFilterButton = styled.button`
 
-    padding: 0px;
-    width: 118px;
-    height: 18px;
-    text-align: left;
-    background-color: white;
-    outline: none;
-    border: none;
-    margin-top: 8px;
-`
 S.ProductWrapper = styled.div`
     width: 1100px;
     height: 1483px;
