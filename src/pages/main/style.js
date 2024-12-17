@@ -146,7 +146,6 @@ S.ItemContainer = styled.div`
     }
 
     & img.like {
-       z-index: 9999;
         position: relative;
         top: -54px;
         left: 280px;
