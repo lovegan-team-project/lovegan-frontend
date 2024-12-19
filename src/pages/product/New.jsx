@@ -1,12 +1,13 @@
 import React from 'react';
 import S from './style';
 import Star from '../main/images/star.svg';
-import Like from '../main/images/like.svg';
-import { Navigate, NavLink, useNavigate } from 'react-router-dom';
-const New = () => {
+import { useNavigate } from 'react-router-dom';
+const New = ({clickSort}) => {
     const navigate = useNavigate();
+    console.log(clickSort);
     return (
 
+                
                 <S.ProductMainContainer>
                     <S.ProductRowItemContainer>
                         <S.ProductItemContainer onClick={()=> navigate("/details")}>
@@ -87,8 +88,8 @@ const New = () => {
                             <S.ItemTagWrapper><S.Tag>tag</S.Tag></S.ItemTagWrapper>
                         </S.ProductItemContainer>
                     </S.ProductRowItemContainer>
-                    
                 </S.ProductMainContainer>
+                
            
     );
 };

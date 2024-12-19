@@ -2,7 +2,6 @@ import styled from "styled-components";
 const S = {}
 
 S.Wrapper = styled.div`
-    width: 100%;
     display: flex;
     flex-direction: column;
   
@@ -25,8 +24,6 @@ S.Header = styled.header`
     height : 100px;
     display: flex;
     /* justify-content: flex-start; */
-    z-index: 9999;
-    background-color: white;
     //border-bottom: 1px rgba(0, 0, 0, 0.3);
     //box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
     //box-shadow: h-shadow v-shadow blur spread color inset; */
@@ -171,8 +168,9 @@ S.Main2 = styled.main`
 `
 
 S.Footer = styled.footer`
-    color: #333333;
+
     width: 100%;
+    color: #333333;
     height: 293px;
     display: flex;
     flex-direction: column;

@@ -127,9 +127,10 @@ S.MainFilterButton = styled.button`
 
 S.ProductWrapper = styled.div`
     width: 1100px;
-    height: 1483px;
+    height: 100%;
     //border: 1px solid black;
     margin-left: 60px;
+    margin-bottom: 200px;
     
 
 `
@@ -142,7 +143,7 @@ S.ProductHeader = styled.div`
 
 `
 S.ProductNum = styled.div`
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: ${({theme}) => theme.FONT_SIZE["subtitle"]};
 
 `
@@ -167,8 +168,7 @@ S.ProductTagWrapper = styled.div`
     & .normal div {
         
         background-color : white !important;
-        color: black;import { handleActions } from 'redux-actions';
-import { Aos } from 'aos';
+        color: black
 
        
 
@@ -260,6 +260,7 @@ S.ProductMainContainer = styled.div`
     margin-top: 34px;
     width: 1100px;
     height: 1281px;
+    
 `
 S.ProductRowItemContainer = styled.div`
     display: flex;
