@@ -75,12 +75,6 @@ const router = createBrowserRouter([
                     {
                         path : "best",
                         element : <Best />,
-                        children : [
-                            {
-                                path : "like",
-                                element : <LikeSort />
-                            }
-                        ]
                     },
                     {
                         path : "sale",
