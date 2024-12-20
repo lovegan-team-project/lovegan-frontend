@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 const S = {};
 
+S.Form = styled.form`
+    width: 100%;
+    height: 100%;
+`
 S.Wrapper = styled.div`
     position: absolute;
     width: 380px;
@@ -193,5 +197,11 @@ S.Google = styled.button`
             height: 20px;
         }    
 `
-
+S.ConfirmMessage = styled.div`
+    position: relative;
+    margin-top: 5px;
+    font-size: ${({theme})=>theme.FONT_SIZE["small"]};
+    font-weight: ${({theme})=>theme.FONT_WEIGHT["regular"]};
+    color: ${({theme})=> theme.PALLETTE.sub["secondary"]};
+`
 export default S;
