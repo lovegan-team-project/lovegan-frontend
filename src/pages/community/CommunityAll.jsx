@@ -319,7 +319,7 @@ const CommunityAll = () => {
 
                 </S.FeedBoxAll>
             </S.mainWrapper>
-        // </S.CommunityContainer>
+         </S.CommunityContainer>
     );
 };
 

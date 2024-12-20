@@ -3,7 +3,6 @@ import styled from "styled-components";
 const S ={};
 
 S.MainContainer1 = styled.div`
-    
     border-bottom: solid 1px #CCCCCC;
 `
 S.MainContainer2 = styled.div`
@@ -147,10 +146,9 @@ S.ItemContainer = styled.div`
     }
 
     & img.like {
-       z-index: 9999;
         position: relative;
-        top: -55px;
-        left: 279px;
+        top: -54px;
+        left: 280px;
     }
     
 `
