@@ -7,14 +7,14 @@ import attention from './icons/attention.svg';
 import right from './icons/right.svg';
 import S from './style';
 import { useNavigate } from 'react-router-dom';
-import CheckboxButton from '../../../components/checkbox/CheckboxButton';
 import { useForm } from 'react-hook-form';
+
 
 
 const SignUp = () => {
 
     // react-hook-form
-    const { register, handleSubmit, getValues, formState: {errors}} = useForm({mode : "onchange"});
+    const { register, handleSubmit, getValues, formState: {errors, isSubmitted}, trigger} = useForm({mode : "onchange"});
 
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
@@ -24,15 +24,15 @@ const SignUp = () => {
 
     const navigate = useNavigate();
 
-    const signUpClick = () => {
-        
-    }
-
     const clickToLogin = () => {
         navigate('/login')
     }
     const clickToMain = () => {
         navigate('/')
+    }
+    const onInvalid = () => {
+        console.log("유효성 검사 실패");
+        trigger();
     }
 
     const [allChecked, setAllChecked] = useState(false);
@@ -58,17 +58,25 @@ const SignUp = () => {
         setIsChecked(updatedChecked); 
         setAllChecked(Object.values(updatedChecked).every((value) => value));
     };
+    const onSubmit = (data) => {
+        if (!isChecked.age || !isChecked.terms || !isChecked.privacy) {
+            console.log("필수 항목 동의")
+            window.alert("필수 항목을 동의해주세요");
+            return;
+        }
+        console.log("회원가입 데이터 : ", data)
+        navigate('/signIn');
+    }
+
+    const preventEnter = (e) => {
+        if(e.key === "Enter"){
+            e.preventDefault();
+        }
+    }
     
     return (
         <div>
-            <S.Form onSubmit={handleSubmit((data) => {
-                if (!isChecked.age || !isChecked.terms || !isChecked.privacy) {
-                    alert("필수 항목을 동의해주세요");
-                    return;
-                }
-                console.log("회원가입 데이터 : ", data)
-                navigate('/signIn');
-            })}>
+            <S.Form onSubmit={handleSubmit(onSubmit, onInvalid)} onKeyDown={preventEnter}>
                 <S.Wrapper>
                     <S.Logo src={logo} alt="로고" onClick={clickToMain}/>
                     <S.SignUp>회원가입</S.SignUp>
@@ -102,16 +110,25 @@ const SignUp = () => {
                             })}
                         />
                         @
-                        <S.EmailDropDown defaultValue="default">
-                            <option value="default" disabled hidden>선택해주세요</option>
+                        <S.EmailDropDown defaultValue="" id='emailDrop'
+                            {...register("emailDrop", {
+                                required : true,
+                                validate : (value) => value != ""
+                            })}
+                        >
+                            <option value="" disabled hidden>선택해주세요</option>
                             <option value="네이버">naver.com</option>
                             <option value="구글">google.com</option>
                             <option value="카카오">kakao.com</option>
                         </S.EmailDropDown>
-                        {errors?.email?.type === 'required' && (
-                            <S.ConfirmMessage>비밀번호를 입력해주세요.</S.ConfirmMessage>
-                        )}
+                        
                     </S.EmailContainer>
+                    {isSubmitted&&errors?.email?.type === 'required' && (
+                        <S.ConfirmMessage>이메일을 입력해주세요.</S.ConfirmMessage>
+                    )}
+                    {isSubmitted&&errors?.emailDrop?.type === 'required' && (
+                        <S.ConfirmMessage>이메일 형식을 입력해주세요.</S.ConfirmMessage>
+                    )}
                     <S.EmailButton>이메일 인증하기</S.EmailButton>
                     <S.EmailCertifyBox>
                         <div>이메일로 받은 인증코드를 입력해주세요.</div>
@@ -128,9 +145,22 @@ const SignUp = () => {
                     </S.EmailCertifyBox>
                     <S.Email>전화번호</S.Email>
                     <S.EmailContainer>
-                        <S.PhoneInput placeholder='전화번호'></S.PhoneInput>
-                        
+                        <S.PhoneInput placeholder='전화번호' id='phone'
+                            {...register("phone", {
+                                required : true,
+                                pattern : {
+                                    value : /^\d{10,11}$/
+                                }
+                            })}
+                        />
                     </S.EmailContainer>
+                    {isSubmitted&&errors?.phone?.type === 'required' && (
+                        <S.ConfirmMessage>전화번호를 입력해주세요.</S.ConfirmMessage>
+                            
+                    )}
+                    {isSubmitted&&errors?.phone?.type === 'pattern' && (
+                        <S.ConfirmMessage>올바를 전화번호 형식을 입력해주세요.</S.ConfirmMessage>
+                    )}
                     <S.EmailButton>전화번호 인증하기</S.EmailButton>
                     <S.EmailCertifyBox>
                         <div>문자로 받은 인증코드를 입력해주세요.</div>
@@ -155,10 +185,10 @@ const SignUp = () => {
                                 }
                               })}
                         />
-                        {errors?.password?.type === 'required' && (
+                        {isSubmitted&&errors?.password?.type === 'required' && (
                             <S.ConfirmMessage>비밀번호를 입력해주세요.</S.ConfirmMessage>
                         )}
-                        {errors?.password?.type === 'pattern' && (
+                        {isSubmitted&&errors?.password?.type === 'pattern' && (
                             <S.ConfirmMessage>소문자, 숫자, 특수문자 각 하나씩 포함한 8자리 이상이여야 합니다. *!@#만 사용가능</S.ConfirmMessage>
                         )}
                     </S.PasswordInputContainer>
@@ -177,47 +207,62 @@ const SignUp = () => {
                             }
                           })}
                     />
-                    {errors?.passwordConfirm && (
+                    {isSubmitted&&errors?.passwordConfirm && (
                         <S.ConfirmMessage>비밀번호를 확인해주세요.</S.ConfirmMessage>
                     )}
 
                     <S.Nickname>닉네임</S.Nickname>
                     <S.NicknameInputContainer>
                         다른 유저와 겹치지 않도록 입력해주세요. (2~20자)
-                        <S.NicknameInput placeholder='별명 (2~20자)'></S.NicknameInput>
+                        <S.NicknameInput placeholder='별명 (2~20자)' id='nickname'
+                            {...register("nickname", {
+                                required: true,
+                                minLength : 2,
+                                maxLength : 20
+                            })}
+                        />
+                        {isSubmitted && errors.nickname && errors?.nickname.type === 'required' && (
+                            <S.ConfirmMessage>닉네임을 입력해주세요.</S.ConfirmMessage>
+                        )}
+                        {isSubmitted && errors.nickname && errors?.nickname.type === 'minLength' && (
+                            <S.ConfirmMessage>닉네임은 최소 2자 이상이어야 합니다.</S.ConfirmMessage>
+                        )}
+                        {isSubmitted && errors.nickname && errors?.nickname.type === 'maxLength' && (
+                            <S.ConfirmMessage>닉네임은 최대 20자 이내여야 합니다.</S.ConfirmMessage>
+                        )}
                     </S.NicknameInputContainer>
 
                     <S.Agree>약관 동의</S.Agree>
                     <S.AgreeContainer>
                         <S.AllAgree>
                             <label>
-                                <input type="checkbox" checked={allChecked} onChange={handleAllChecked}/>전체동의
+                                <S.AgreeCheckbox type="checkbox" checked={allChecked} onChange={handleAllChecked}/>전체동의
                                 <span>선택항목에 대한 동의 포함</span>
                             </label>
                         </S.AllAgree>
                         <S.AgreeDivider></S.AgreeDivider>
                         <S.EachAgree>
                             <S.AgreeLabel>
-                                <input type="checkbox" checked={isChecked.age} onChange={()=>handleEachChecked('age')} required />만 14세 이상입니다
+                                <S.AgreeCheckbox type="checkbox" checked={isChecked.age} onChange={()=>handleEachChecked('age')} />만 14세 이상입니다
                                 <S.Required>(필수)</S.Required>
                             </S.AgreeLabel>
                             <S.AgreeLabel>
-                                <input type="checkbox" checked={isChecked.terms} onChange={()=>handleEachChecked('terms')} required/>이용약관
-                                <S.Required>(필수)</S.Required>
-                                <img src={right} />
-                            </S.AgreeLabel>
-                            <S.AgreeLabel>
-                                <input type="checkbox" checked={isChecked.privacy} onChange={()=>handleEachChecked('privacy')} required/>개인정보수집 및 이용동의
+                                <S.AgreeCheckbox type="checkbox" checked={isChecked.terms} onChange={()=>handleEachChecked('terms')} />이용약관
                                 <S.Required>(필수)</S.Required>
                                 <img src={right} />
                             </S.AgreeLabel>
                             <S.AgreeLabel>
-                                <input type="checkbox" checked={isChecked.marketing} onChange={()=>handleEachChecked('marketing')} />개인정보 마케팅 활용 동의
+                                <S.AgreeCheckbox type="checkbox" checked={isChecked.privacy} onChange={()=>handleEachChecked('privacy')} />개인정보수집 및 이용동의
+                                <S.Required>(필수)</S.Required>
+                                <img src={right} />
+                            </S.AgreeLabel>
+                            <S.AgreeLabel>
+                                <S.AgreeCheckbox type="checkbox" checked={isChecked.marketing} onChange={()=>handleEachChecked('marketing')} />개인정보 마케팅 활용 동의
                                 <S.Option>(선택)</S.Option>
                                 <img src={right} />
                             </S.AgreeLabel>
                             <S.AgreeLabel>
-                                <input type="checkbox" checked={isChecked.sms} onChange={()=>handleEachChecked('sms')} />이벤트, 쿠폰 및 SMS 등 수신
+                                <S.AgreeCheckbox type="checkbox" checked={isChecked.sms} onChange={()=>handleEachChecked('sms')} />이벤트, 쿠폰 및 SMS 등 수신
                                 <S.Option>(선택)</S.Option>
                             </S.AgreeLabel>
                             {/* <CheckboxButton variant={"white"} shape={"round"} boxSize={"size"} checked={"isChecked"} onChange={"handleCheckedBoxChange"} checkColor={"checkColor"} />
@@ -226,7 +271,7 @@ const SignUp = () => {
                             
                         </S.EachAgree>
                     </S.AgreeContainer>
-                    <S.SignUpButton type="submit" onClick={signUpClick}>회원가입하기</S.SignUpButton>
+                    <S.SignUpButton type="submit">회원가입하기</S.SignUpButton>
                     <S.ToLoginContainer>
                         <S.IsHaveId>이미 아이디가 있으신가요?</S.IsHaveId>
                         <S.ToLogin onClick={clickToLogin}>로그인하기</S.ToLogin>
