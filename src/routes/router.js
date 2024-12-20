@@ -37,6 +37,7 @@ import ChangePassword from "../pages/mypage/ChangePassword";
 import LikeSort from "../pages/product/sort/LikeSort";
 import VegeFilter from "../pages/product/filter/VegeFilter";
 import MainVegeFilter from "../pages/product/filter/main/MainVegeFilter";
+import CommunityFollowDt from "../pages/community/CommunityFollowDt";
 
 
 
@@ -102,7 +103,6 @@ const router = createBrowserRouter([
                 element : <Community />,
                 children : [
                     {
-                        // index : true,
                         path : "CommunityAll",
                         element : <CommunityAll />,
                     },
@@ -115,6 +115,10 @@ const router = createBrowserRouter([
             {
                 path : "/community/CommunityAllDt",
                 element : <CommunityAllDt />
+            },
+            {
+                path : "/community/CommunityFollowDt",
+                element : <CommunityFollowDt />
             },
             {
                 path : "/search", 

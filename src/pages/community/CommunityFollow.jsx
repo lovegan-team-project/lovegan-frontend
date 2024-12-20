@@ -17,7 +17,8 @@ const CommunityFollow  = () => {
 
     // 게시물 클릭시 디테일 페이지로 이동
     const toPostsOnClick = () => {
-        navigate("/community/CommunityAllDt")
+        // navigate("/community/CommunityFollowDt")
+        navigate("/community/CommunityFollowDt")
     }   
     const bookmarkClick = (event) => {
         event.stopPropagation();

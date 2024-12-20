@@ -1,14 +1,10 @@
-// 각 게시글의 댓글, 대댓글을 눌렀을 때 따로 열리게 만들기
-// 댓글/대댓글에 작은 좋아요, 댓글/대댓글 달기도
-// 따로 만들기
-
 import React, { useEffect, useState } from 'react';
 import cmUser1 from './image/cmUser1.svg';
 import S from './style';
 import CommentForm from './CommentForm';
 import CommentList from './CommentList';
 
-const Comment = () => {
+const Comment = ({ onAddComment }) => {
 
     // state를 관리하기 위한 useState 훅
     const [list, setList] = useState([]);
@@ -16,7 +12,7 @@ const Comment = () => {
     // componentDidMount 역할을 하는 useEffect
     useEffect(() => {
         setList([{
-            userImage: '',
+            // userImage: '',
             userid: '',
             content: '',
             date: new Date().toISOString(),
@@ -27,6 +23,9 @@ const Comment = () => {
     // 리스트에 아이템을 추가하는 함수
     const addList = obj => {
         setList(prevList => [...prevList, obj]);
+        if(onAddComment) {
+            onAddComment();
+        }
       };
 
     // 리스트를 업데이트하는 함수

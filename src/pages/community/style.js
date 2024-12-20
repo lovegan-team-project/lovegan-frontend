@@ -14,10 +14,22 @@ const slideln = keyframes`
     }
 `
 
-// 팔로우 버튼 클릭, 호버 색 변경
+// AllDt 팔로우 버튼 클릭, 호버 색 변경
 export const FollowButton = styled.button`
     background-color: ${(props) => props.color || '#03A63C'};
     color : ${(props) => props.text || '#fff'};
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.1s ease;
+
+    &:hover {
+        background-color: #039636;
+        color: #fff;
+    }
+`
+// FollowDt 팔로우 버튼 클릭, 호버 색 변경
+export const FollowButton_1 = styled.button`
+    background-color: ${(props) => props.color || '#fafafa'};
+    color : ${(props) => props.text || '#333'};
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.1s ease;
 
@@ -723,12 +735,23 @@ export const ReplyTexts = styled.div`
 S.CommentListStyle = styled.ul`
     width: 670px;
     height: 100%;
-    /* margin-left: 50px; */
-    /* background-color: #d9d9d9; */
 
     .comment-row {
         margin-bottom: 30px;
+
+        .comment-row-user{
+            display: flex;
+            margin-bottom: 10px;
+
+            .comment-row-user-between{
+                margin-left: 8px;
+            }
+        }
     }    
+    .comment-id {
+        font-size: ${({theme}) => theme.FONT_SIZE["subtitle"]};
+        margin-bottom: 10px;
+    }
 `
 
 S.dtInfo_1 = styled.div`
@@ -736,6 +759,11 @@ S.dtInfo_1 = styled.div`
     align-items: center;
     color: ${({theme}) => theme.PALLETTE.grey[8]};
     position: relative;
+
+    .comment-date {
+        font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+    }
+
 
     & span {
         margin: 0 8px 0 8px;

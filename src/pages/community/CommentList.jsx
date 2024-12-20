@@ -1,9 +1,7 @@
 import React from 'react';
 import S from './style';
-// import UserImg2 from './image/UserImg2.png';
+import UserImg2 from './image/UserImg2.png';
 import LikeBtMin from './LikeBtMin';
-import { formatDistanceToNow } from 'date-fns';
-import { ko } from 'date-fns/locale';
 
 const CommentList = ({list}) => {
 
@@ -32,13 +30,18 @@ const CommentList = ({list}) => {
         <S.CommentListStyle className="comment-list">
             {limitedList.map((item, index) => (
                 <div key={index} className="comment-row">
-                    {/* <img src={item.userImage || UserImg2} alt='' /> */}
+                    {/* item.content가 비어있는 경우 dtInfo_1이 렌더링 되지 않는 조건 */}
+                    {item.content.trim() && (
                     <div>
-                        <div className="comment-id">{item.userid}</div>
-                        <div className="comment-content">{item.content}</div>
+                        <div className='comment-row-user'>
+                            <img src={UserImg2} alt='' />
+                            <div className='comment-row-user-between'>
+                                <div className="comment-id">{item.userid}</div>
+                                <div className="comment-content">{item.content}</div>
+                            </div>
+                        </div>
                         <S.dtInfo_1>
                             <div className="comment-date">{timeAgo(new Date(item.date))}</div>
-                            {/* <p>1주</p> */}
                             <span>·</span>
                             <LikeBtMin />
                             <p>좋아요</p>
@@ -48,6 +51,7 @@ const CommentList = ({list}) => {
                             <p>신고</p>
                         </S.dtInfo_1>
                     </div>
+                    )}
                 </div>
             ))}
         </S.CommentListStyle>
