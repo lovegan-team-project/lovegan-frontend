@@ -6,14 +6,7 @@ import CommunityFollow from './CommunityFollow';
 
 
 const Community = () => {
-
-    // const [isSlide, setIsSlide] = useState(true);
-    // const navigate = useNavigate();
-    // const slideToTag = () => {
-    //     setIsSlide(!isSlide)
-    //     navigate("/community/CommunityFollow")
-    // }
-
+    
     const [activeComponent, setActiveComponent] = useState("ALL");
     const options = ['ALL', 'FOLLOW'];
     
