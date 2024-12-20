@@ -16,9 +16,10 @@ const Comment = () => {
     // componentDidMount 역할을 하는 useEffect
     useEffect(() => {
         setList([{
-            userid: '1',
-            content: '안녕하세요1',
-            date: '1주',
+            userImage: '',
+            userid: '',
+            content: '',
+            date: new Date().toISOString(),
             updateFlag: true
         }]);
     }, []); // 빈 배열을 두 번째 인자로 전달하면 컴포넌트가 처음 렌더링될 때 한 번만 실행

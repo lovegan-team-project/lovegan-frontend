@@ -7,13 +7,7 @@ const CommunityFollow  = () => {
     
     window.scrollTo(0,0);
 
-    // 토글 버튼 클릭시 글, 위치 변경
-    // const [isSlide, setIsSlide] = useState(true);
     const navigate = useNavigate();
-    // const slideToTag = () => {
-    //     setIsSlide(!isSlide)
-    //     navigate("/community")
-    // }
 
     // 태그버튼
     const [tagClick, setTagClick] = useState("like")
@@ -33,7 +27,7 @@ const CommunityFollow  = () => {
         <S.CommunityContainer>
             <S.mainWrapper>
                 <div className='top'>
-                    <S.totalNum><p>전체 13,429</p></S.totalNum>
+                    <S.totalNum><span>전체 13,429</span></S.totalNum>
                     <S.tagButton>
                         <button className={tagClick === "like" ? "click" : "unClick"} onClick={()=>setTagClick("like")}><p>좋아요순</p></button>
                         <button className={tagClick === "new" ? "click" : "unClick"} onClick={()=>setTagClick("new")}><p>최신순</p></button>

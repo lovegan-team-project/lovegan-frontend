@@ -13,14 +13,8 @@ const CommunityAll = () => {
 
     window.scrollTo(0,0);
 
-    // 토글 버튼 클릭시 글, 위치 변경
-    // const [isSlide, setIsSlide] = useState(true);
     const navigate = useNavigate();
-    // const slideToTag = () => {
-    //     setIsSlide(!isSlide)
-    //     navigate("/community/CommunityFollow")
-    // }
-    
+
     // 태그버튼
     const [tagClick, setTagClick] = useState("like")
     useEffect(()=>{
@@ -90,17 +84,8 @@ const CommunityAll = () => {
     ]
 
     return (
-        // data-aos="fade-in"
-        <S.CommunityContainer >
-            {/* <S.CommunityTitle>COMMUNITY</S.CommunityTitle> */}
-            {/* <S.CommunitySubTitle>지속 가능한 세상을 함께 만들어가는 공간</S.CommunitySubTitle> */}
-
-            {/* <S.CommunityToggle>
-                <div className='toggleAll' onClick={slideToTag}>ALL</div>
-                <div className='toggleFollow' onClick={slideToTag}>FOLLOW</div>
-                <span className={`button ${isSlide ? "allActive" : "followActive"}`}>{isSlide ? "ALL" : "FOLLOW"}</span>
-            </S.CommunityToggle> */}
-
+        
+        <S.CommunityContainer>
             <S.mainWrapper className='피드감싸는곳'>
                 <div className='top'>
                     <S.totalNum><p>전체 13,429</p></S.totalNum>                    
@@ -123,7 +108,6 @@ const CommunityAll = () => {
                             <S.PostUserName>유저 이름</S.PostUserName>
                             <div>·</div>
                             <S.FollowUser>
-                                {/* <p onClick={followColorChange} style={{color : isFollow}}>팔로우</p> */}
                                 <Follow likeData={likeData}/>
                             </S.FollowUser>
                             <S.UserIntro>한 줄 소개</S.UserIntro>
