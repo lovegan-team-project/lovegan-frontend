@@ -2,26 +2,33 @@ import styled from "styled-components";
 const S = {}
 
 S.Wrapper = styled.div`
-    
     display: flex;
     flex-direction: column;
   
 `
 S.Header = styled.header`
 
-    
-
     position: fixed;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100px;
+    display: flex;
+    z-index: 99999;
+    background-color: white;
+    box-shadow: 0px 6px 5px -2px gray;
+    justify-content: center;
 
+    /* position: fixed;
     width: 100%;
     height : 100px;
     display: flex;
     /* justify-content: flex-start; */
-    z-index: 9999;
-    background-color: white;
-    //border-bottom: 1px rgba(0, 0, 0, 0.3)
+    //border-bottom: 1px rgba(0, 0, 0, 0.3);
     //box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
-    //box-shadow: h-shadow v-shadow blur spread color inset;
+    //box-shadow: h-shadow v-shadow blur spread color inset; */
+
+   
     
    
    & img{
@@ -56,7 +63,7 @@ S.Login = styled.p`
     width: 44px;
     height: 18px;
     font-size: 14px;
-    margin: 41px 12px 41px 0px;
+    margin: 41px 20px 41px 30px;
     
    
 
@@ -67,11 +74,12 @@ S.NavContainer = styled.div`
     width : 614px;
     height : 20px;
     margin-top : 41px;
+    z-index: 9999;
     
 
     & a {
         text-decoration-line: none;
-        margin-right: 60px;
+        margin-right: 65px;
         color : #333333;
         background-color: white;
     }
@@ -99,7 +107,7 @@ S.Input = styled.input`
     height: 40px;
     border: 1px solid black;
     border-radius: 20px 20px;
-    margin: 30px 32px 30px 86px;
+    margin: 30px 45px 30px 85px;
     font-size: 14px;
    
     
@@ -117,12 +125,25 @@ S.Input = styled.input`
 S.InputButton = styled.button`
 
     position: relative;
-    width: 17px;
-    height: 17px;
-    margin : 12px 13px 11px 177px;
-    background: url("/images/main/search.svg") 0px 0px no-repeat;
-    left: 90px;
-    top: -70px;
+    width: 40px; 
+    height: 40px;
+    margin: 12px 13px 11px 177px;
+    background: none; 
+    border: none; 
+    cursor: pointer;
+
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+
+    & img.search {
+        width: 17px;
+        height: 17px;
+        position: relative; /* 부모 내 위치 조정 */
+        top: -82px;
+        left: 5px;
+        object-fit: contain; /* 이미지 비율 유지 */
+    }
    
 `
 
@@ -131,6 +152,7 @@ S.Main1 = styled.main`
     flex: 1;
     width: 100%;
     padding-top: 100px;
+    overflow: hidden;
     //padding-bottom: 293px;
  
 
@@ -139,14 +161,16 @@ S.Main2 = styled.main`
 
     flex: 1;
     width: 100%;
+    overflow: hidden;
     //padding-bottom: 293px;
  
 
 `
 
 S.Footer = styled.footer`
-    color: #333333;
+
     width: 100%;
+    color: #333333;
     height: 293px;
     display: flex;
     flex-direction: column;
