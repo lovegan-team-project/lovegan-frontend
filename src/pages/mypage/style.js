@@ -197,4 +197,10 @@ S.PasswordChangeButton = styled.button`
     cursor: pointer;
 `;
 
+S.SmallButton = styled.button`
+    border-radius: 10px;
+    border: 1px solid ${({theme})=>theme.PALLETTE.grey["8"]};
+    background-color: #fff;
+`;
+
 export default S;
