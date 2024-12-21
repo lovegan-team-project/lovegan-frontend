@@ -14,7 +14,7 @@ OrS.OrderHeader = styled.div`
     border-radius: 10px;
 
     & div:first-child {
-        width: 350px;
+        width: 340px;
     }
 
     & div:not(:first-child) {
@@ -35,11 +35,15 @@ OrS.OrderData = styled.div`
     border-bottom: 1px solid ${({ theme }) => theme.PALLETTE.grey["0"]};
 
     & div:first-child {
-        width: 360px;
+        width: 350px;
     }
 
     & div:not(:first-child) {
-        width: 150px;
+        flex: 2;
+    }
+
+    & div:last-child {
+        flex: 1;
     }
 
     & div.product-info {
@@ -47,7 +51,7 @@ OrS.OrderData = styled.div`
         align-items: center;
 
         & span {
-            font-size: ${({theme})=>theme.FONT_SIZE["h4"]};
+            font-size: ${({theme})=>theme.FONT_SIZE["title"]};
             font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
             width: 190px;
             display: inline-block;
@@ -71,9 +75,17 @@ OrS.OrderData = styled.div`
         ${flexRow}
     }
 
+    & p {
+        padding-left: 8px;
+    }
+
     & p.content {
         font-size: ${({theme})=>theme.FONT_SIZE["title"]};
         font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
+    }
+
+    & p.status {
+        padding-left: 16px;
     }
 
     & p.discount-price {
@@ -85,11 +97,12 @@ OrS.OrderData = styled.div`
     }
 
     & div.button-wrapper {
-
+        width: fit-content;
         & button {
             width: 110px;
             border-radius: 10px;
             padding: 10px 20px;
+            cursor: pointer;
         }
 
         & button.review {

@@ -8,6 +8,7 @@ const S = {};
 S.ContentTitle = styled.h3`
     font-size: ${({theme})=>theme.FONT_SIZE["h3"]};
     font-weight: ${({theme})=>theme.FONT_WEIGHT["bold"]};
+    color: ${({theme})=>theme.PALLETTE.brand["primary_black"]};
 `;
 
 S.Background = styled.div`
@@ -158,6 +159,48 @@ S.MenuListNavLink = styled(NavLink)`
     &:hover, &.active {
         background-color: ${({theme}) => theme.PALLETTE.myGrey["background"]}; // 원하는 색상으로 변경
     }
+`;
+
+S.PasswordTable = styled.table`
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 40px;
+
+    & td.title {
+        width: 30%;
+        height: 80px;
+
+        & span {
+            color: ${({theme})=>theme.PALLETTE.sub["warning"]};
+        }
+    }
+
+    & td input {
+        width: 100%;
+        border-radius: 8px;
+        border: 1px solid ${({theme})=>theme.PALLETTE.grey["2"]};
+    }
+
+    & td input:focus {
+        outline: none;
+    }
+`;
+
+S.PasswordChangeButton = styled.button`
+    width: 100px;
+    padding: 12px 8px;
+    font-size: ${({theme})=>theme.FONT_SIZE["title"]};
+    font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
+    background-color: ${({theme})=>theme.PALLETTE.brand["primary"]};
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+`;
+
+S.SmallButton = styled.button`
+    border-radius: 10px;
+    border: 1px solid ${({theme})=>theme.PALLETTE.grey["8"]};
+    background-color: #fff;
 `;
 
 export default S;
