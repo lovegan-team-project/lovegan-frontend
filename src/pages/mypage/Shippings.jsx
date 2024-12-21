@@ -15,7 +15,7 @@ const Shippings = () => {
             </SpS.shippingPlusWrapper>
             <SpS.ShippingHeader style={{ margin: '0px' }}>
                 <div></div>
-                <div>베송지명</div>
+                <div>배송지명</div>
                 <div>주소</div>
                 <div></div>
                 <div></div>
