@@ -8,6 +8,7 @@ const S = {};
 S.ContentTitle = styled.h3`
     font-size: ${({theme})=>theme.FONT_SIZE["h3"]};
     font-weight: ${({theme})=>theme.FONT_WEIGHT["bold"]};
+    color: ${({theme})=>theme.PALLETTE.brand["primary_black"]};
 `;
 
 S.Background = styled.div`

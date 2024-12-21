@@ -1,10 +1,11 @@
 import React from 'react';
+import S from './style.js';
 
 const AccountInfo = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <S.ContentTitle>회원정보 수정</S.ContentTitle>
+        </>
     );
 };
 
