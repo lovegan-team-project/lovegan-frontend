@@ -82,7 +82,6 @@ const Best = () => {
                 <S.ItemTagWrapper><S.Tag>tag</S.Tag></S.ItemTagWrapper>
             </S.ProductItemContainer>
         </S.ProductRowItemContainer>
-        
     </S.ProductMainContainer>
 );
 };

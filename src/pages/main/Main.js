@@ -55,7 +55,7 @@ const Main = () => {
     prevArrow: <PreArrow />,
   };
 
-  const style = { width: "100%", height: "717px" };
+  const style = { width: "100%", height: "717px"};
 
   // 각 카테고리별로 표시할 컴포넌트나 내용을 조건부로 렌더링
   const moveTOProduct = () => {
@@ -66,7 +66,7 @@ const Main = () => {
     <S.MainContainer1>
    
       <StyledSlider {...settings}>
-        <div style={style}>
+        <div style={style} >
           <img src={main01} alt="슬라이더1" />
           
         </div>

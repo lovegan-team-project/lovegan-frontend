@@ -3,13 +3,17 @@ import {ReactComponent as LogoBlack} from './images/logo-black.svg';
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import S from './style';
 import { useState } from "react";
+import Search from './images/search.svg'
 
 const Layout = () => {
 
     // 검색 창에서 돋보기 버튼을 눌렀을 때 search 페이지로 이동
     const navigate = useNavigate();
     const location = useLocation();
-    const pathsWithHeader = ["/", "/brand", "/product", "/diary", "/community", "/community/CommunityFollow","/community/CommunityAllDt", "/details", "/signIn", "/findId", "/findPW", "/resetPW","/customerService","/search"];
+    const pathsWithHeader = [
+        "/", "/brand", "/product", "/product/vege", "/product/new", "/product/new/vege", "/product/sale", "/product/best","/diary", "/community", 
+    "/community/CommunityFollow","/community/CommunityAllDt", "/details", "/signIn", "/findId", "/findPW", "/resetPW","/customerService",
+    "/search"];
     const [searchTerm, setSearchTerm] = useState();
     
     const showHeader = pathsWithHeader.includes(location.pathname);
@@ -47,7 +51,9 @@ const Layout = () => {
                             navigate(`/search?query=${searchTerm}`)
                         }
                     }}></S.Input>
-                    <S.InputButton onClick={()=>{handleSearch()}}></S.InputButton>
+                    <S.InputButton onClick={()=>{handleSearch()}}>
+                        <img className="search" src={Search}></img>
+                    </S.InputButton>
                     </form>
             
                     

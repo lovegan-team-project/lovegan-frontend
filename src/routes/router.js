@@ -34,6 +34,9 @@ import Inquiries from "../pages/mypage/Inquiries";
 import Shippings from "../pages/mypage/Shippings";
 import AccountInfo from "../pages/mypage/AccountInfo";
 import ChangePassword from "../pages/mypage/ChangePassword";
+import LikeSort from "../pages/product/sort/LikeSort";
+import VegeFilter from "../pages/product/filter/VegeFilter";
+import MainVegeFilter from "../pages/product/filter/main/MainVegeFilter";
 
 
 
@@ -56,12 +59,22 @@ const router = createBrowserRouter([
                 element : <Product />,
                 children : [
                     {
-                        path : "/product",
+                        path : "vege",
+                        element : <MainVegeFilter />
+                    },
+                    {
+                        path : "new",
                         element : <New />,
+                        children : [
+                            {
+                                path : "vege",
+                                element : <VegeFilter />
+                            },
+                        ]
                     },
                     {
                         path : "best",
-                        element : <Best />
+                        element : <Best />,
                     },
                     {
                         path : "sale",
@@ -89,19 +102,19 @@ const router = createBrowserRouter([
                 element : <Community />,
                 children : [
                     {
-                        index : true,
+                        // index : true,
+                        path : "CommunityAll",
                         element : <CommunityAll />,
                     },
                     {
                         path : "CommunityFollow",
                         element : <CommunityFollow />
                     },
-                    {
-                        path : "CommunityAllDt",
-                        element : <CommunityAllDt />
-                    }
-
                 ]
+            },
+            {
+                path : "/community/CommunityAllDt",
+                element : <CommunityAllDt />
             },
             {
                 path : "/search", 

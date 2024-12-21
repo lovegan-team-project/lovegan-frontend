@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import S from './style';
 import Vege from './Vege';
+import Meat from './Meat';
+import VegeSide from './VegeSide';
+import Spice from './Spice';
+import Snack from './Snack';
+import Egg from './Egg';
+import FastFood from './FastFood';
+import Drinks from './Drinks';
+import HealthyFood from './HealthyFood';
 const Best = () => {
     const [selectedCategory, setSelectedCategory] = useState("채소");
     const renderContent = () => {
@@ -8,21 +16,21 @@ const Best = () => {
           case "채소":
             return <Vege />;
           case "고기대용":
-            return <div>고기 대용 상품 목록을 보여줍니다.</div>;
+            return <Meat />;
           case "채식 반찬":
-            return <div>채식 반찬 상품 목록을 보여줍니다.</div>;
+            return <VegeSide />;
           case "양념·가루":
-            return <div>양념·가루 상품 목록을 보여줍니다.</div>;
+            return <Spice />;
           case "간식·과일·견과":
-            return <div>간식·과일·견과 상품 목록을 보여줍니다.</div>;
+            return <Snack />;
           case "쌀·잡곡·계란":
-            return <div>쌀·잡곡·계란 상품 목록을 보여줍니다.</div>;
+            return <Egg />;
           case "간편식":
-            return <div>간편식 상품 목록을 보여줍니다.</div>;
+            return <FastFood />;
           case "음료":
-            return <div>음료 상품 목록을 보여줍니다.</div>;
+            return <Drinks />;
           case "건강식품":
-            return <div>건강식품 상품 목록을 보여줍니다.</div>;
+            return <HealthyFood />;
           default:
             return null;
         }

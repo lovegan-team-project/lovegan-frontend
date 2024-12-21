@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Pagination  = () => {
-
+const LikeSortSale = () => {
     return (
         <div>
             
@@ -9,4 +8,4 @@ const Pagination  = () => {
     );
 };
 
-export default Pagination ;
+export default LikeSortSale;

@@ -3,7 +3,6 @@ import styled from "styled-components";
 const S ={};
 
 S.MainContainer1 = styled.div`
-    
     border-bottom: solid 1px #CCCCCC;
 `
 S.MainContainer2 = styled.div`
@@ -139,13 +138,18 @@ S.ItemContainer = styled.div`
     width: 340px;
     height: 399px;
     margin-right: 20px;
+    & div.mainPhotoWrapper {
+        width: 340px;
+        height: 240px;
+        position: relative;
 
-    /* & img.like {
-       position: fixed;
-       top: 78%;
-       left: 587px;
+    }
 
-    } */
+    & img.like {
+        position: relative;
+        top: -54px;
+        left: 280px;
+    }
     
 `
 S.ItemTitle = styled.div`

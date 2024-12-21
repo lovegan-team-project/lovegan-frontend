@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import theme from "../../global/theme";
 import { ReactComponent as like } from './image/like.svg';
 import { ReactComponent as scrap } from './image/scrap.svg';
 import { ReactComponent as scrapBlack } from './image/scrapBlack.svg';
@@ -106,22 +107,21 @@ export const ScrapButtonCmAll = styled(scrap)`
 const S = {};
 
 S.CommunityContainer = styled.div`
-
 `
 
 S.CommunityTitle = styled.div`
-    width: 175px;
+    width: 220px;
     height: 45px;
-    margin: 60px 873px 12px 820px;
+    margin: 60px 849px 12px 851px;
     text-align: center;
     font-size: ${({theme}) => theme.FONT_SIZE["h2"]};
     font-weight: bold;
 `
 
 S.CommunitySubTitle = styled.div`
-    margin: 0 670px 28px 675px;
-    width: 500px;
-    height: 45px;
+    margin: 0 758px 28px 759px;
+    width: 403px;
+    height: 30px;
     font-size: ${({theme}) => theme.FONT_SIZE["h4"]};
     text-align: center;
 `
@@ -131,72 +131,31 @@ S.CommunityToggle = styled.div`
     height: 55px;
     background-color: #E6E6E6;
     border-radius: 50px;
-    margin: 0 790px 40px 760px;
+    margin: 0 790px 40px 790px;
     position: relative;
     display: flex;
     align-items: center;
+`
+S.ToggleComponent = styled.span`
+    flex: 1;
+    text-align: center;
+    font-size: 16px;
+    color: ${({ isActive }) => (isActive ? theme.PALLETTE.brand["primary_black"] : theme.PALLETTE.grey["8"])}; 
+    z-index: 2;
+    cursor: pointer;
+`
 
-    & .toggleAll {
-        width: 160px;
-        height: 45px;
-        border-radius: 20px;
-        background-color: #E6E6E6;
-        text-align: center;
-        margin: 1px 0px 1px 5px;
-        font-size: 16px;
-        padding: 16px 57px;
-        color: #8D8D8D;
-    }
-
-    & .toggleFollow {
-        width: 160px;
-        height: 45px;
-        border-radius: 20px;
-        background-color: #E6E6E6;
-        text-align: center;
-        margin: 1px 0px 1px 5px;
-        font-size: 16px;
-        padding: 16px 57px;
-        color: #8D8D8D;
-    }
-
-    & .button {
-        position: absolute;
-        width : 160px;
-        height: 45px;
-        border-radius: 20px;
-        top: 5px;
-        left: 5px;
-        background-color: white;
-        font-size: 16px;
-
-        &.allActive{
-            border: 1px solid #333333;
-            padding: 12.5px 66px;
-            transform: translate(0px);
-            transition: 0.5s;
-        }
-        &.followActive{
-            border: 1px solid #333333;
-            padding: 12.5px 47.5px;
-            transform: translate(170px);
-            transition: 0.5s;
-        }
-
-        &.clickAllActive{
-            border: 1px solid #333333;
-            padding: 12.5px 47.5px;
-            transform: translate(170px);
-            transition: 0.5s;
-        }
-
-        &.clickFollowActive{
-            border: 1px solid #333333;
-            padding: 12.5px 66px;
-            transform: translate(0px);
-            transition: 0.5s;
-        }   
-    }
+S.ToggleButton = styled.div`
+    position: absolute;
+    left: ${({ position }) => position};
+    width : 160px;
+    height: 45px;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: left 0.5s ease;
+    z-index: 1;
 `
 
 S.mainWrapper = styled.div`
@@ -229,12 +188,14 @@ S.tagButton = styled.div`
         font-size: 14px;
         outline: none;
         font: ${({theme}) => theme.FONT_WEIGHT["bold"]};
+        cursor: pointer;
      }
      & button.unClick {
         padding: 0px;
         background-color: white;
         font-size: 14px;
         outline: none;
+        cursor: pointer;
 
         & p{
             font-size: 14px;
@@ -603,18 +564,6 @@ S.dtInfo = styled.div`
     }
 `
 
-S.dtInfo1 = styled.div`
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    color: ${({theme}) => theme.PALLETTE.grey[8]};
-    position: relative;
-
-    & span {
-        margin: 0 8px 0 8px;
-    }
-`
-
 S.commentNum = styled.div`
     display: flex;
     margin: 40px 0 20px 0;
@@ -644,9 +593,12 @@ S.typing = styled.div`
         border-radius: 5px;
     }
 
-    & button {
+    /* 댓글 스타일 추가 부분 */
+    .submitBt {
         position: absolute;
-        border: none;
+        top: 50%;
+        right: 5px;
+        transform: translateY(-50%);
         background: none;
         font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
         color: ${({theme}) => theme.PALLETTE.brand["primary"]};
@@ -674,98 +626,132 @@ S.RecommentBox = styled.div`
     }
 `
 
-S.InputComment = styled.div`
-    position: relative;
-    display: flex;
-    width: 670px;
-    margin-left: 50px;
-    margin-top: 20px;
-    padding: 20px 0 16px;
-    justify-content: flex-end;
-    align-items: center;
-    /* background-color: ${({theme}) => theme.PALLETTE.grey[0]}; */
+// S.InputComment = styled.div`
+//     position: relative;
+//     display: flex;
+//     width: 670px;
+//     margin-left: 50px;
+//     margin-top: 20px;
+//     padding: 20px 0 16px;
+//     justify-content: flex-end;
+//     align-items: center;
+//     /* background-color: ${({theme}) => theme.PALLETTE.grey[0]}; */
 
-    & img {
-        margin-right: 16px;
-    }
+//     & img {
+//         margin-right: 16px;
+//     }
     
-    & input {
-        width: 612px;
-        height: 42px;
-        border-style: solid;
-        border-width: 1px;
-        padding: 12px 50px 12px 16px;
-        font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
-        color: ${({theme}) => theme.PALLETTE.grey[8]};
-        border-radius: 5px;
-    }
+//     & input {
+//         width: 612px;
+//         height: 42px;
+//         border-style: solid;
+//         border-width: 1px;
+//         padding: 12px 50px 12px 16px;
+//         font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+//         color: ${({theme}) => theme.PALLETTE.grey[8]};
+//         border-radius: 5px;
+//     }
 
-    & button {
-        position: absolute;
-        border: none;
-        background: none;
-        font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
-        color: ${({theme}) => theme.PALLETTE.brand["primary"]};
-        cursor: pointer;
-    }
-`
+//     & button {
+//         position: absolute;
+//         border: none;
+//         background: none;
+//         font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+//         color: ${({theme}) => theme.PALLETTE.brand["primary"]};
+//         cursor: pointer;
+//     }
+// `
 
 export const ReplyTexts = styled.div`
     width: 550px;
 `
 
-S.Recomment1 = styled.div`
+// S.Recomment1 = styled.div`
+//     width: 670px;
+//     margin-top: 20px;
+//     margin-left: 50px;
+//     padding: 20px 16px;
+//     display: flex;
+//     background-color: ${({theme}) => theme.PALLETTE.grey[0]};
+
+//     & .userInfo {
+//         margin-left: 8px;
+//     }
+
+//     & .userInfoIn {
+//         display: flex;
+//     }
+
+//     & .writeComment {
+//         margin: 10px 4px 0 0;
+//         font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+//     }
+
+//     & img {
+//         height: fit-content;
+//     }
+
+//     & input {
+//         width: 612px;
+//         height: 42px;
+//         border-style: solid;
+//         border-width: 1px;
+//         padding: 12px 16px;
+//         font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+//         color: ${({theme}) => theme.PALLETTE.grey[8]};
+//         border-radius: 5px;
+//     }
+
+//     & button {
+//         position: absolute;
+//         border: none;
+//         background: none;
+//         font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+//         color: ${({theme}) => theme.PALLETTE.brand["primary"]};
+//         cursor: pointer;
+//     }
+// `
+
+// S.goolbang = styled.div`
+//     /* display: flex; */
+//     font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+//     color: ${({theme}) => theme.PALLETTE.brand["primary"]};
+//     margin: 10px 4px 0 0;
+//     float: left;
+// `
+
+S.CommentListStyle = styled.ul`
     width: 670px;
-    margin-top: 20px;
-    margin-left: 50px;
-    padding: 20px 16px;
-    display: flex;
-    background-color: ${({theme}) => theme.PALLETTE.grey[0]};
+    height: 100%;
+    /* margin-left: 50px; */
+    /* background-color: #d9d9d9; */
 
-    & .userInfo {
-        margin-left: 8px;
-    }
-
-    & .userInfoIn {
-        display: flex;
-    }
-
-    & .writeComment {
-        margin: 10px 4px 0 0;
-        font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
-    }
-
-    & img {
-        height: fit-content;
-    }
-
-    & input {
-        width: 612px;
-        height: 42px;
-        border-style: solid;
-        border-width: 1px;
-        padding: 12px 16px;
-        font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
-        color: ${({theme}) => theme.PALLETTE.grey[8]};
-        border-radius: 5px;
-    }
-
-    & button {
-        position: absolute;
-        border: none;
-        background: none;
-        font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
-        color: ${({theme}) => theme.PALLETTE.brand["primary"]};
-        cursor: pointer;
-    }
+    .comment-row {
+        margin-bottom: 30px;
+    }    
 `
 
-S.goolbang = styled.div`
-    /* display: flex; */
-    font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
-    color: ${({theme}) => theme.PALLETTE.brand["primary"]};
-    margin: 10px 4px 0 0;
-    float: left;
+S.dtInfo_1 = styled.div`
+    display: flex;
+    align-items: center;
+    color: ${({theme}) => theme.PALLETTE.grey[8]};
+    position: relative;
+
+    & span {
+        margin: 0 8px 0 8px;
+    }
+    
+    & img {
+        position: absolute;
+        width: 18px;
+        height: 18px;
+    }
+
+    & p {
+        /* cursor: pointer; */
+        display: block;
+        justify-content: end;
+    }
 `
 
 S.nextPage = styled.div`
@@ -794,6 +780,7 @@ S.nextPage = styled.div`
         height: 22px;
         text-align: center;
         border-radius: 50%;
+        cursor: pointer;
 
         & p{
             color: #fff;
@@ -806,11 +793,8 @@ S.nextPage = styled.div`
         padding: 0px;
         background-color: white;
         outline: none;   
+        cursor: pointer;
     }
-`
-
-S.Arrowbt = styled.button`
-    
 `
 
 export default S;
