@@ -40,7 +40,7 @@ const RegisterComplete = () => {
                 <S.BDiv>
                     <S.NButton className='modi' style={{float:"left"}}>수정</S.NButton>
                     <S.NButton className='del' style={{float:"left", marginLeft: "10px"}}>삭제</S.NButton>
-                    <Link to="/customerService"><S.NButton>목록</S.NButton></Link>
+                    <Link to="/customerService/quest"><S.NButton>목록</S.NButton></Link>
                 </S.BDiv>
             </S.NoticeWrapper>
         </div>

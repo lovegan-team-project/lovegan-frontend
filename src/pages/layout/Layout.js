@@ -12,7 +12,7 @@ const Layout = () => {
     const location = useLocation();
     const pathsWithHeader = [
         "/", "/brand", "/product", "/product/vege", "/product/new", "/product/new/vege", "/product/sale", "/product/best","/diary", "/community", 
-    "/community/CommunityFollow","/community/CommunityAllDt", "/details", "/signIn", "/findId", "/findPW", "/resetPW","/customerService/notice","/customerService/faq","/customerService/quest",
+    "/community/CommunityFollow","/community/CommunityAllDt", "/details", "/signIn", "/findId", "/findPW", "/resetPW","/customerService/notice","/customerService/faq","/customerService/quest","/customer/notice","/customer/quest/register","/customer/quest",
     "/search"];
     const [searchTerm, setSearchTerm] = useState();
     
