@@ -43,6 +43,7 @@ SpS.shippingPlusWrapper = styled.div`
     margin: 16px 0px;
 
     & img {
+        cursor: pointer;
         width: 22px;
         height: 22px;
     }
@@ -75,10 +76,12 @@ SpS.ShippingData = styled.div`
 
     & div:nth-child(5) {
         width: 60px;
-        & img { margin: 0 auto }
+        & img { margin: 0 auto; cursor: pointer; }
     }
 
     & div.default {
+        cursor: default;
+        width: 110px;
         border-radius: 20px;
         padding: 8px 10px;
         color: ${({ theme }) => theme.PALLETTE.sub["secondary"]};

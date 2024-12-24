@@ -7,7 +7,7 @@ import RestaurantLikes from './RestaurantLikes.jsx';
 
 
 const Likes = () => {
-    const [activeTab, setActiveTab] = useState('posts');
+    const [activeTab, setActiveTab] = useState('product');
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
