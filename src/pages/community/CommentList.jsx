@@ -92,7 +92,7 @@ const CommentList = ({ list,  addReply}) => {
                                             <img src={UserImg2} alt='' />
                                             <div className='comment-row-user-between'>
                                                 <div className="comment-id">{reply.userid && typeof reply.userid === 'string' ? reply.userid : '알 수 없음'}</div>
-                                                <div className="comment-content">{reply.content && typeof reply.content === 'string' ? reply.content : '내용 없음'}</div>
+                                                <div className="comment-content">{reply.content && typeof reply.content === 'string' ? reply.content : '내용'}</div>
                                             </div>
                                         </div>
                                         <S.dtInfo_1>
@@ -101,8 +101,8 @@ const CommentList = ({ list,  addReply}) => {
                                             <LikeBtMin />
                                             <p>좋아요</p>
                                             <span>·</span>
-                                            <p onClick={() => toggleReplyForm(reply.id)}>답글 달기</p>
-                                            <span>·</span>
+                                            {/* <p onClick={() => toggleReplyForm(reply.id)}>답글 달기</p> */}
+                                            {/* <span>·</span> */}
                                             <p>신고</p>
                                         </S.dtInfo_1>
                                     </div>

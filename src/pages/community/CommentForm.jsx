@@ -4,19 +4,6 @@ import UserImg2 from './image/UserImg2.png';
 
 // parentId=null, onReply
 const CommentForm = ( {addList, parentId=null, addReply} ) => {
-
-    // 유저 이미지 랜덤하게 보여주기
-    // const images = [
-    //     './image/cmUser1.svg',
-    //     './image/cmUser2.svg',
-    //     './image/UserImg2.png'
-    // ]
-    // 유저 이미지 랜덤하게 보여주기 위한 함수
-    // const getRandomImgae = () => {
-    //     const randomIndex = Math.floor(Math.random() * images.length);
-    //     return images[randomIndex];
-    // }
-
     const [value, setValue] = useState('');
     
     // const now = new Date();   
@@ -33,7 +20,7 @@ const CommentForm = ( {addList, parentId=null, addReply} ) => {
             const newComment = {
                 id: Date.now(),
                 userid: '유저 닉네임',
-                content: value,
+                content: value, // 입력한 댓글 내용
                 date: new Date().toISOString(),
                 updateFlag: true,
                 // 대댓글 저장 배열
@@ -48,44 +35,9 @@ const CommentForm = ( {addList, parentId=null, addReply} ) => {
 
             // console.log(`작성 시간: ${writeDate}`);
             setValue('');
-
-            // 날짜 반환
-            // const formmatedDate = writeDate.toLocaleTimeString('ko-KR');
-
-            // 현재 시간 기준으로 작성 날짜 반환(초 단위 차이 계산)
-            // const elpased = Math.trunc((now.getTime() - writeDate.getTime()) / 1000); 
-            // const timeAgo = (elapsed) => {
-            //     if (elapsed < 60) {
-            //         return `${elapsed}초 전`;
-            //     } else if (elapsed < 3600) {
-            //         const minutes = Math.trunc(elapsed / 60);
-            //         return `${minutes}분 전`;
-            //     } else if (elapsed < 86400) {
-            //         const hours = Math.trunc(elapsed / 3600);
-            //         return `${hours}시간 전`;
-            //     } else {
-            //         const days = Math.trunc(elapsed / 86400);
-            //         return `${days}일 전`;
-            //     }
-            // };
-
-            // addList({
-            //     // userImage : getRandomImgae(),
-            //     id : Date.now(),
-            //     userid : "유저 닉네임",
-            //     content : value,
-            //     date : writeDate,
-            //     // 대댓글 -> 부모 Id 포함
-            //     // parentId : parentId,
-            //     updateFlag : true
-            // });
-
-            // if(parentId) {
-            //     onReply(addList);
-            // } else {
-            //     addList(addList);
-            // }
-            
+            console.log('Parent ID:', parentId);
+            console.log('addReply Function:', addReply);
+            console.log('New Comment:', newComment);
         }
     }
     
