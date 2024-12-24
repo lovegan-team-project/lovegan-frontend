@@ -28,7 +28,7 @@ const Orders = () => {
                     <p className='discount-price'>13,900(원)</p>
                 </div>
                 <div><p className='content'>10개</p></div>
-                <div><p className='content'>배송중</p></div>
+                <div><p className='content status'>배송중</p></div>
                 <div className='button-wrapper'>
                     <button className='review'>후기쓰기</button>
                     <button className='cart'><img src={cart} alt="" />장바구니</button>
@@ -44,7 +44,7 @@ const Orders = () => {
                     <p className='discount-price'>5,990(원)</p>
                 </div>
                 <div><p className='content'>10개</p></div>
-                <div><p className='content'>배송중</p></div>
+                <div><p className='content status'>배송중</p></div>
                 <div className='button-wrapper'>
                     <button className='review'>후기쓰기</button>
                     <button className='cart'><img src={cart} alt="" />장바구니</button>
@@ -60,7 +60,7 @@ const Orders = () => {
                     <p className='discount-price'>13,900(원)</p>
                 </div>
                 <div><p className='content'>10개</p></div>
-                <div><p className='content'>배송중</p></div>
+                <div><p className='content status'>배송중</p></div>
                 <div className='button-wrapper'>
                     <button className='review'>후기쓰기</button>
                     <button className='cart'><img src={cart} alt="" />장바구니</button>
@@ -76,7 +76,7 @@ const Orders = () => {
                     <p className='discount-price'>13,900(원)</p>
                 </div>
                 <div><p className='content'>10개</p></div>
-                <div><p className='content'>배송중</p></div>
+                <div><p className='content status'>배송중</p></div>
                 <div className='button-wrapper'>
                     <button className='review'>후기쓰기</button>
                     <button className='cart'><img src={cart} alt="" />장바구니</button>
