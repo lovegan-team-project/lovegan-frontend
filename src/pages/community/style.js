@@ -592,6 +592,7 @@ S.typing = styled.div`
     align-items: center;
     justify-content: flex-end;
     position: relative;
+    margin-bottom: 10px;
     
     & input {
         font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
@@ -617,6 +618,8 @@ S.typing = styled.div`
         cursor: pointer;
     }
 `
+
+
 
 S.Recomment = styled.div`
     margin: 40px 0 40px 0;
@@ -735,7 +738,8 @@ export const ReplyTexts = styled.div`
 S.CommentListStyle = styled.ul`
     width: 670px;
     height: 100%;
-
+    margin-top: 40px;
+    
     .comment-row {
         margin-bottom: 30px;
 
@@ -743,13 +747,70 @@ S.CommentListStyle = styled.ul`
             display: flex;
             margin-bottom: 10px;
 
+            .userImg {
+                width: fit-content;
+                height: fit-content;
+            }
+
             .comment-row-user-between{
                 margin-left: 8px;
+                .comment-content {
+                    font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+                }
             }
         }
     }    
     .comment-id {
         font-size: ${({theme}) => theme.FONT_SIZE["subtitle"]};
+        margin-bottom: 10px;
+    }
+
+    .reply {
+        margin-bottom: 30px;
+    }
+
+    .reply-outline {
+        width: 620px;
+        margin-left: 50px;
+
+        .reply-form {
+            width: 620px;
+            .box {
+                
+            }
+            .int{
+                
+            }
+            .userpf{
+                margin-left: 50px;
+            }
+        }
+    }
+
+    .replies {
+        width: 100%;
+        margin-left: 50px;
+        margin-bottom: 30px;
+        padding: 20px 16px 10px 16px;
+        border-radius: 5px;
+        background-color: ${({theme}) => theme.PALLETTE.grey[0]};
+
+        .comment-row-reply-row{
+            /* margin-bottom: 10px; */
+        }
+
+        .comment-row-user1{
+            display: flex;
+            /* margin-top: 10px; */
+            margin-bottom: 10px;
+
+            .comment-row-user-between{
+                margin-left: 8px;
+            }
+        }
+    }
+
+    .dtInfo_1 {
         margin-bottom: 10px;
     }
 `
@@ -759,7 +820,9 @@ S.dtInfo_1 = styled.div`
     align-items: center;
     color: ${({theme}) => theme.PALLETTE.grey[8]};
     position: relative;
-
+    margin-bottom: 20px;
+    margin-left: 50px;
+ 
     .comment-date {
         font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
     }
@@ -776,7 +839,7 @@ S.dtInfo_1 = styled.div`
     }
 
     & p {
-        /* cursor: pointer; */
+        cursor: pointer;
         display: block;
         justify-content: end;
     }

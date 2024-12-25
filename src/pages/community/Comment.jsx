@@ -49,17 +49,10 @@ const Comment = ({ onAddComment }) => {
         );
     };
 
-    // 리스트를 업데이트(수정, 삭제 할 경우)하는 함수
-    // const updateList = updatedList => {
-    //     setList(updatedList);
-    // };
-
-
     return (
         <div>
             <CommentForm addList={addList}/>
             <CommentList list={list} addReply={addReply} />
-            {/* updateList={updateList} */}
         </div>
     );
 };

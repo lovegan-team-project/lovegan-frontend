@@ -9,7 +9,7 @@ const CommentList = ({ list,  addReply}) => {
     // 댓글 id별로 대댓글 작성 폼 표시
     const [replyVisible, setReplyVisible] = useState([]);
     // 댓글을 5개까지만 보여주기
-    const limitedList = list.slice(0,11);
+    const limitedList = list.slice(0,7);
 
     // 작성 시간 경과 계산하는 함수
     const timeAgo = (writeDate) => {
@@ -40,14 +40,13 @@ const CommentList = ({ list,  addReply}) => {
 
     return (
         <S.CommentListStyle className="comment-list">
-            {/* index */}
             {limitedList.map((item) => (
                 <div key={item.id} className="comment-row">
                     {/* item.content가 비어있는 경우 dtInfo_1이 렌더링 되지 않는 조건 */}
                     {item.content.trim() && (
                     <div>
                         <div className='comment-row-user'>
-                            <img src={UserImg2} alt='' />
+                            <img src={UserImg2} alt='' className='userImg' />
                             <div className='comment-row-user-between'>
                                 <div className="comment-id">{item.userid && typeof item.userid === 'string' ? item.userid : '알 수 없음'}</div>
                                 <div className="comment-content">{item.content && typeof item.content === 'string' ? item.content : '내용 없음'}</div>
@@ -65,37 +64,43 @@ const CommentList = ({ list,  addReply}) => {
                         </S.dtInfo_1>
 
                         {/* 대댓글 작성 폼 */}
-                        {replyVisible[item.id] && (
-                            <div className='reply-form'>
-                                <CommentForm 
-                                    addList={replyContent =>
-                                        addReply(item.id, {
-                                            id: Date.now(),
-                                            userid: '유저 닉네임1',
-                                            content: replyContent,
-                                            date: new Date().toISOString(),
-                                        })
-                                    }
-                                    placeholder="답글 입력"
-                                />
-                            </div>
-                        )}
+                        <div className='reply'>
+                            {replyVisible[item.id] && (
+                                <div className='reply-outline'>
+                                    <div className='reply-form'>
+                                        <CommentForm
+                                            addList={replyContent =>
+                                                addReply(item.id, {
+                                                    id: Date.now(),
+                                                    userid: '대댓글 유저',
+                                                    content: replyContent,
+                                                    date: new Date().toISOString(),
+                                                })
+                                            }
+                                            placeholder="대댓글 입력"
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
                         {/* 대댓글 리스트 */}
                         {item.replies && item.replies.length > 0 && (
                             <div className='replies'>
                                 {item.replies.map((reply) => (
                                     <div
                                         key={reply.id}
-                                        className='comment-row reply-row'
+                                        className='comment-row-reply-row'
                                     >
-                                        <div className='comment-row-user'>
+                                        <div className='comment-row-user1'>
                                             <img src={UserImg2} alt='' />
                                             <div className='comment-row-user-between'>
                                                 <div className="comment-id">{reply.userid && typeof reply.userid === 'string' ? reply.userid : '알 수 없음'}</div>
                                                 <div className="comment-content">{reply.content && typeof reply.content === 'string' ? reply.content : '내용'}</div>
+                                                {/* <div className="comment-content">{typeof reply.content === 'string' ? reply.content : '내용 없음'}</div> */}
                                             </div>
                                         </div>
-                                        <S.dtInfo_1>
+                                        <S.dtInfo_1 className='dtInfo_1'>
                                             <div className="comment-date">{timeAgo(new Date(item.date))}</div>
                                             <span>·</span>
                                             <LikeBtMin />
