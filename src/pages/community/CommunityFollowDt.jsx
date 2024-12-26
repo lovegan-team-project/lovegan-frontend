@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import S, { FollowButton_1, LikeButton, ScrapButton } from './style';
+import dtUser from './image/dtUser.png';
 import unsplash1 from './image/unsplash1.png'
 import unsplash2 from './image/unsplash2.png'
 import unsplash3 from './image/unsplash3.png'
@@ -89,7 +90,7 @@ const CommunityFollowDt = (props) => {
                 <p>59</p>
             </S.sideBar>
             <S.UserInfo>
-                <S.UserImage></S.UserImage>
+                <S.UserImage><img src={dtUser} alt='디테일 유저'/></S.UserImage>
                 <div>
                     <S.UserNickPost>유저 닉네임</S.UserNickPost>
                     <S.Introduce>유저 한 줄 소개</S.Introduce>

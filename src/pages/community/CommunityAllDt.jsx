@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import S, { FollowButton, LikeButton, ScrapButton } from './style';
-import unsplash1 from './image/unsplash1.png'
-import unsplash2 from './image/unsplash2.png'
-import unsplash3 from './image/unsplash3.png'
-import unsplash4 from './image/unsplash4.png'
+import dtUser from './image/dtUser.png';
+import unsplash1 from './image/unsplash1.png';
+import unsplash2 from './image/unsplash2.png';
+import unsplash3 from './image/unsplash3.png';
+import unsplash4 from './image/unsplash4.png';
 import left from './image/left.svg';
 import right from './image/right.svg';
 import { ReactComponent as like} from './image/like.svg';
@@ -90,7 +91,7 @@ const CommunityAllDt = (props) => {
                 <p>59</p>
             </S.sideBar>
             <S.UserInfo>
-                <S.UserImage></S.UserImage>
+                <S.UserImage><img src={dtUser} alt='디테일 유저'/></S.UserImage>
                 <div>
                     <S.UserNickPost>유저 닉네임</S.UserNickPost>
                     <S.Introduce>유저 한 줄 소개</S.Introduce>
