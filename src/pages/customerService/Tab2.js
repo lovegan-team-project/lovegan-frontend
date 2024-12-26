@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import S from './style';
 import { Link } from 'react-router-dom';
 import { divIcon } from 'leaflet';
+import Arrow from './Arrow';
 
 const Tab2 = () => {
 
@@ -106,6 +107,10 @@ const Tab2 = () => {
                             </tr>
                         </tbody>
                     </table>
+
+                    <S.A_Div>
+                        <Arrow></Arrow>
+                    </S.A_Div>
                 </S.T_wrapper>
             </S.Wrap>
     );
