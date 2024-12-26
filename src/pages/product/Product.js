@@ -3,8 +3,12 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import S from './style';
 import Star from '../main/images/star.svg';
+import Rectangle from '../main/images/Rectangle.png'
 import SideMenuImage from './images/Rectangle 284.svg'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import ItemContainer from '../main/ItemContainer';
+import ItemContainer2 from './ItemContainer2';
+
 
 const Product = () => {
 
@@ -18,21 +22,31 @@ const Product = () => {
         const urlMap = {
             채소: 'vege',
             고기대용: 'meat',
-            '채식 반찬': 'vegeSide',
+            '채식반찬': 'vegeSide',
+            '양념가루': 'spice',
+            '간식': 'snacks',
+            '계란': 'eggs',
+            '간편식': 'fastfood',
+            '음료': 'drinks',
+            '건강식품': 'healthfood',
+
         };
 
         const newPath = urlMap[filter] || '';
 
-        // 중복 URL 방지: 현재 경로에 필터 경로가 포함되어 있는지 확인
-        if (location.pathname.endsWith(newPath)) {
+        const basePaths = ['/product/new', '/product/best', '/product/sale', '/product'];
+        const currentBasePath = basePaths.find((base) => location.pathname.startsWith(base)) || '/product/new';
+    
+        // 중복 URL 방지: 현재 경로가 이미 필터 경로와 일치하는지 확인
+        if (location.pathname === `${currentBasePath}/${newPath}`) {
             console.log(`${filter} 필터가 이미 적용됨`);
             return;
         }
-
+    
         setSelectedFilter(filter);
-
+    
         // URL 변경
-        navigate(`${location.pathname}/${newPath}`);
+        navigate(`${currentBasePath}/${newPath}`);
     };
 
     
@@ -85,25 +99,50 @@ const Product = () => {
                         </div>
 
                         <div className='filterWrapper'>
-                            <S.MainFilterButton>채식 반찬</S.MainFilterButton>
+                            <S.MainFilterButton
+                                onClick={() => handleFilterClick('채식반찬')}
+                                className={selectedFilter === '채식반찬' ? 'active' : ''}
+                                
+                            >채식 반찬</S.MainFilterButton>
                         </div>
                     
                         <div className="filterWrapper">
-                            <S.MainFilterButton>양념·가루</S.MainFilterButton>
+                            <S.MainFilterButton
+                                onClick={() => handleFilterClick('양념가루')}
+                                className={selectedFilter === '양념가루' ? 'active' : ''}
+                            
+                            >양념·가루</S.MainFilterButton>
                         </div>
                         <div className="filterWrapper">
-                            <S.MainFilterButton>간식·과일·견과</S.MainFilterButton>
+                            <S.MainFilterButton
+                                onClick={() => handleFilterClick('간식')}
+                                className={selectedFilter === '간식' ? 'active' : ''}
+                            
+                            >간식·과일·견과</S.MainFilterButton>
                         </div>
                         <div className="filterWrapper">
-                            <S.MainFilterButton>쌀·잡곡·계란</S.MainFilterButton>
+                            <S.MainFilterButton
+                                onClick={() => handleFilterClick('계란')}
+                                className={selectedFilter === '계란' ? 'active' : ''}
+                            
+                            >쌀·잡곡·계란</S.MainFilterButton>
                         </div>
                         <div className="filterWrapper">
-                            <S.MainFilterButton>간편식</S.MainFilterButton>
+                            <S.MainFilterButton
+                                onClick={() => handleFilterClick('간편식')}
+                                className={selectedFilter === '간편식' ? 'active' : ''}
+                            >간편식</S.MainFilterButton>
                         </div>
                         <div className="filterWrapper">
-                            <S.MainFilterButton>음료</S.MainFilterButton>
+                            <S.MainFilterButton
+                                onClick={() => handleFilterClick('음료')}
+                                className={selectedFilter === '음료' ? 'active' : ''}
+                            >음료</S.MainFilterButton>
                         </div>
-                        <S.MainFilterButton>건강식품</S.MainFilterButton>
+                        <S.MainFilterButton
+                            onClick={() => handleFilterClick('건강식품')}
+                            className={selectedFilter === '건강식품' ? 'active' : ''}
+                        >건강식품</S.MainFilterButton>
                        
 
                     </S.SideFilterWrapper>
@@ -134,51 +173,31 @@ const Product = () => {
                     <Outlet />
                     <S.ProductMainContainer>
                     <S.ProductRowItemContainer>
-                        <S.ProductItemContainer onClick={()=> navigate("/details")}>
-                            <S.ItemImgWrapper></S.ItemImgWrapper>
-                            <S.ItemTitle>상품명</S.ItemTitle>
-                            <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
-                            <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
-                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
+                        <S.ProductItemContainer >
+                            <ItemContainer2 />
+                            {/* <S.ItemImgWrapper></S.ItemImgWrapper> */}
+                            <div onClick={()=> navigate("/details")}>
+                                <S.ItemTitle>상품명</S.ItemTitle>
+                                <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
+                                <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
+                                <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
+                            </div>
 
                             <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
                         </S.ProductItemContainer>
                         <S.ProductItemContainer>
-                            <S.ItemImgWrapper></S.ItemImgWrapper>
+                            <ItemContainer2 />
+                            {/* <S.ItemImgWrapper></S.ItemImgWrapper> */}
                             <S.ItemTitle>상품명</S.ItemTitle>
                             <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
                             <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
                             <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
                             <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
+                            
                         </S.ProductItemContainer>
                         <S.ProductItemContainer>
-                            <S.ItemImgWrapper></S.ItemImgWrapper>
-                            <S.ItemTitle>상품명</S.ItemTitle>
-                            <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
-                            <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
-                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
-                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
-                        </S.ProductItemContainer>
-                    </S.ProductRowItemContainer>
-                    <S.ProductRowItemContainer>
-                        <S.ProductItemContainer>
-                            <S.ItemImgWrapper></S.ItemImgWrapper>
-                            <S.ItemTitle>상품명</S.ItemTitle>
-                            <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
-                            <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
-                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
-                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
-                        </S.ProductItemContainer>
-                        <S.ProductItemContainer>
-                            <S.ItemImgWrapper></S.ItemImgWrapper>
-                            <S.ItemTitle>상품명</S.ItemTitle>
-                            <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
-                            <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
-                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
-                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
-                        </S.ProductItemContainer>
-                        <S.ProductItemContainer>
-                            <S.ItemImgWrapper></S.ItemImgWrapper>
+                            <ItemContainer2 />
+                            {/* <S.ItemImgWrapper></S.ItemImgWrapper> */}
                             <S.ItemTitle>상품명</S.ItemTitle>
                             <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
                             <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
@@ -188,7 +207,8 @@ const Product = () => {
                     </S.ProductRowItemContainer>
                     <S.ProductRowItemContainer>
                         <S.ProductItemContainer>
-                            <S.ItemImgWrapper></S.ItemImgWrapper>
+                            <ItemContainer2 />
+                            {/* <S.ItemImgWrapper></S.ItemImgWrapper> */}
                             <S.ItemTitle>상품명</S.ItemTitle>
                             <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
                             <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
@@ -196,7 +216,37 @@ const Product = () => {
                             <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
                         </S.ProductItemContainer>
                         <S.ProductItemContainer>
-                            <S.ItemImgWrapper></S.ItemImgWrapper>
+                            <ItemContainer2 />
+                            {/* <S.ItemImgWrapper></S.ItemImgWrapper> */}
+                            <S.ItemTitle>상품명</S.ItemTitle>
+                            <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
+                            <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
+                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
+                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
+                        </S.ProductItemContainer>
+                        <S.ProductItemContainer>
+                            <ItemContainer2 />
+                            {/* <S.ItemImgWrapper></S.ItemImgWrapper> */}
+                            <S.ItemTitle>상품명</S.ItemTitle>
+                            <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
+                            <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
+                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
+                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
+                        </S.ProductItemContainer>
+                    </S.ProductRowItemContainer>
+                    <S.ProductRowItemContainer>
+                        <S.ProductItemContainer>
+                            <ItemContainer2 />
+                            {/* <S.ItemImgWrapper></S.ItemImgWrapper> */}
+                            <S.ItemTitle>상품명</S.ItemTitle>
+                            <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
+                            <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
+                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
+                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
+                        </S.ProductItemContainer>
+                        <S.ProductItemContainer>
+                            <ItemContainer2 />
+                            {/* <S.ItemImgWrapper></S.ItemImgWrapper> */}
                             <S.ItemTitle>상품명</S.ItemTitle>
                             <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
                             <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
@@ -204,12 +254,13 @@ const Product = () => {
                             <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
                         </S.ProductItemContainer>
                         <S.ProductItemContainer>
-                            <S.ItemImgWrapper></S.ItemImgWrapper>
+                            <ItemContainer2 />
+                            {/* <S.ItemImgWrapper></S.ItemImgWrapper> */}
                             <S.ItemTitle>상품명</S.ItemTitle>
                             <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
                             <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
-                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
-                            <S.ItemTagWrapper><S.Tag>tag</S.Tag></S.ItemTagWrapper>
+                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수) </S.Review></S.ItemStar>
+                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>                        
                         </S.ProductItemContainer>
                     </S.ProductRowItemContainer>
                     

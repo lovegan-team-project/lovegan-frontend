@@ -5,6 +5,21 @@ const S={};
 S.ProductContainer = styled.div`
     
 `
+S.ProductPhotoWrapper = styled.div`
+    position: relative;
+    display: inline-block;
+
+    img {
+        display: block; /* 기본 이미지는 블록 형태로 표시 */
+    }
+
+    .like {
+        position: absolute;
+        top: 191px;
+        left: 285px;
+        cursor: pointer;
+    }
+`;
 S.ProductTitle = styled.div`
     width: 175px;
     height: 45px;

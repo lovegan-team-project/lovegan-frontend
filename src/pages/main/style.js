@@ -5,12 +5,128 @@ const S ={};
 S.MainContainer1 = styled.div`
     border-bottom: solid 1px #CCCCCC;
 `
+S.BannerImgWrapper = styled.div`
+    width: 1420px;
+    height: 650px;
+`
 S.MainContainer2 = styled.div`
-    width: 100%;
+    widows: 100%;
     height: 1007px;
     border-bottom: solid 1px #CCCCCC;
+    margin-left: 250px;
+`
+S.Main2HeaderWrapper = styled.div`
+    height: 300px;
+    display: flex;
+`
+S.RestaurantInfoWrapper = styled.div`
+    width: 800px;
+    height: 350px;
+`
+S.Main2Title = styled.div`
+    width: 290px;
+    height: 30px;
+    font-size: ${({theme})=> theme.FONT_SIZE["h4"]};
+    margin-top: 100px;
 
 `
+S.MainShopTitle = styled.div`
+    width: 265px;
+    height: 60px;
+    font-size: ${({theme})=> theme.FONT_SIZE["h1"]};
+    margin-top: 16px;
+    font-weight: 900;
+`
+S.MainShopIntro = styled.div`
+    width: 700px;
+    height: 18px;
+    margin: 8px 0px 30px 0px;
+`
+S.MainShopAddressWrapper = styled.div`
+    width: 300px;
+    height: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+    & img{
+        margin-right: 4px;
+    } 
+
+`
+S.ReviewWrapper = styled.div`
+    margin-top: 100px;
+    margin-left: 155px;
+
+`
+S.MainShopAddress = styled.div`
+    width: 270px;
+    height: 20px;
+`
+S.MainRestStar = styled.div`
+    width: 100px;
+    height: 45px;
+    font-size: ${({theme})=> theme.FONT_SIZE["h2"]};
+    font-weight: bold;
+    margin-bottom: 10px;
+
+`
+S.MainReview = styled.div`
+    width: 150px;
+    height: 45px;
+    font-size: ${({theme})=> theme.FONT_SIZE["h2"]};
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    
+`
+S.RestaurantImgWrapper = styled.div`
+    height: 500px;
+    margin-top: 49px;
+    display: flex;
+`
+S.RestaurantNumberWrapper = styled.div`
+    width: 750px;
+    height: 25px;
+    & img{
+        margin: 0 28px 0 28px;
+    }
+    display: flex;
+    align-items: center;
+    margin-top: 26px;
+    margin-left: 60px;
+`
+S.MainImg = styled.div`
+    width: 800px;
+    height: 500px;
+    margin-right: 41px;
+`
+S.SubImg = styled.div`
+    width: 480px;
+    height: 396px;
+    margin-right: 39px;
+    & img {
+        width: 480px;
+        height: 300px;
+    }
+`
+S.SubShopTitle = styled.div`
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: ${({theme})=> theme.FONT_SIZE["h4"]};
+`
+S.SubShopInfo = styled.div`
+    font-size: 14px;
+    width: 500px;
+    height: 36px;
+`
+S.Main3SubTitle = styled.div`
+    width: 560px;
+    height: 18px;
+    margin: 8px 0px 30px 0px;
+`
+
 S.MainContainer3 = styled.div`
     width: 100%;
     height: 727px;

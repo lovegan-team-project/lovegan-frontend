@@ -11,9 +11,14 @@ const Layout = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const pathsWithHeader = [
-        "/", "/brand", "/product", "/product/vege", "/product/new", "/product/new/vege", "/product/sale", "/product/best","/diary", "/community", 
-    "/community/CommunityFollow","/community/CommunityAllDt", "/details", "/signIn", "/findId", "/findPW", "/resetPW","/customerService",
-    "/search"];
+        "/", "/brand", "/product","/product/vege", "/product/new", "/product/new/vege", "/product/sale", "/product/best","/diary", "/community", 
+        "/community/CommunityFollow","/community/CommunityAllDt", "/details", "/signIn", "/findId", "/findPW", "/resetPW","/customerService",
+        "/search", "/product/new/drinks", "/product/new/eggs", "/product/new/fastfood", "/product/new/healthfood", "/product/new/meat", "/product/new/spice", "/product/new/snacks", "/product/new/vegeSide",
+        "/product/drinks", "/product/eggs", "/product/fastfood", "/product/healthfood", "/product/meat", "/product/spice", "/product/snacks", "/product/vegeSide",
+        "/mypage/activity/posts", "/mypage/activity/follow", "/mypage/activity/likes", "/mypage/activity/scrap", "/mypage/activity/couponbook",
+        "/mypage/shopping/orders", "/mypage/shopping/reviews", "/mypage/shopping/inquiries", "/mypage/settings/shippings", "/mypage/settings/accountInfo", "/mypage/settings/changePassword"
+    ];
+
     const [searchTerm, setSearchTerm] = useState();
     
     const showHeader = pathsWithHeader.includes(location.pathname);
@@ -80,7 +85,7 @@ const Layout = () => {
                 <S.Footer>
                     {/* <Link to={"/customerService"}>고객센터</Link> */}
                     <S.logoWrapper><LogoBlack /></S.logoWrapper>
-                    <S.TextBox1><strong>이용약관 ㅣ 개인정보처리방침 ㅣ <Link to={"/customerService"}>고객센터</Link></strong></S.TextBox1>
+                    <S.TextBox1><strong>이용약관 ㅣ 개인정보처리방침 ㅣ <Link to={"/customerService/notice"}>고객센터</Link></strong></S.TextBox1>
                     <S.TextBoxWrapper>
                         <S.TextBox2>법인명 : LOVEgan ㅣ 대표자 : 000 ㅣ 사업자 등록번호 : 000-00-00000  |  사업장 소재지 : 서울 강남구 테헤란로 146 </S.TextBox2>
                         <S.TextBox2>서울 사무소 : 서울 강남구 테헤란로 146 신한은행 건물 4층  |  통신판매등록번호 : 2024--0901 ㅣ 개인정보관리책임자 : 000</S.TextBox2>

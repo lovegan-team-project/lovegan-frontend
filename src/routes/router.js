@@ -34,10 +34,34 @@ import Inquiries from "../pages/mypage/Inquiries";
 import Shippings from "../pages/mypage/Shippings";
 import AccountInfo from "../pages/mypage/AccountInfo";
 import ChangePassword from "../pages/mypage/ChangePassword";
-import LikeSort from "../pages/product/sort/LikeSort";
 import VegeFilter from "../pages/product/filter/VegeFilter";
 import MainVegeFilter from "../pages/product/filter/main/MainVegeFilter";
+<<<<<<< HEAD
 import CommunityFollowDt from "../pages/community/CommunityFollowDt";
+=======
+import DrinksFilter from './../pages/product/filter/DrinksFilter';
+import EggFilter from './../pages/product/filter/EggFilter';
+import FastfoodFilter from './../pages/product/filter/FastfoodFilter';
+import HealthFoodFilter from './../pages/product/filter/HealthFoodFilter';
+import MeatFilter from './../pages/product/filter/MeatFilter';
+import SpiceFilter from './../pages/product/filter/SpiceFilter';
+import SnackFilter from './../pages/product/filter/SnackFilter';
+import VegeSideFilter from './../pages/product/filter/VegeSideFilter';
+import MainVegeSideFilter from "../pages/product/filter/main/MainVegeSideFilter";
+import MainSnackFilter from "../pages/product/filter/main/MainSnackFilter";
+import MainSpiceFilter from "../pages/product/filter/main/MainSpiceFilter";
+import MainMeatFilter from "../pages/product/filter/main/MainMeatFilter";
+import MainHealthFoodFilter from "../pages/product/filter/main/MainHealthFoodFilter";
+import MainFastfoodFilter from "../pages/product/filter/main/MainFastfoodFilter";
+import MainEggFilter from "../pages/product/filter/main/MainEggFilter";
+import MainDrinksFilter from './../pages/product/filter/main/MainDrinksFilter';
+import Tab1 from "../pages/customerService/Tab1";
+import Tab2 from "../pages/customerService/Tab2";
+import Tab3 from "../pages/customerService/Tab3";
+import Notice from "../pages/customerService/Notice";
+import Register from "../pages/customerService/Register";
+import RegisterComplete from "../pages/customerService/RegisterComplete";
+>>>>>>> 3f5f88f01f26d220814761b3526741b9963b4d57
 
 
 
@@ -64,12 +88,76 @@ const router = createBrowserRouter([
                         element : <MainVegeFilter />
                     },
                     {
+                        path : "drinks",
+                        element : <MainDrinksFilter />
+                    },
+                    {
+                        path : "eggs",
+                        element : <MainEggFilter />
+                    },
+                    {
+                        path : "fastfood",
+                        element : <MainFastfoodFilter />
+                    },
+                    {
+                        path : "healthfood",
+                        element : <MainHealthFoodFilter />
+                    },
+                    {
+                        path : "meat",
+                        element : <MainMeatFilter />
+                    },
+                    {
+                        path : "spice",
+                        element : <MainSpiceFilter />
+                    },
+                    {
+                        path : "snacks",
+                        element : <MainSnackFilter />
+                    },
+                    {
+                        path : "vegeSide",
+                        element : <MainVegeSideFilter />
+                    },
+                    {
                         path : "new",
                         element : <New />,
                         children : [
                             {
                                 path : "vege",
                                 element : <VegeFilter />
+                            },
+                            {
+                                path : "drinks",
+                                element : <DrinksFilter />
+                            },
+                            {
+                                path : "eggs",
+                                element : <EggFilter />
+                            },
+                            {
+                                path : "fastfood",
+                                element : <FastfoodFilter />
+                            },
+                            {
+                                path : "healthfood",
+                                element : <HealthFoodFilter />
+                            },
+                            {
+                                path : "meat",
+                                element : <MeatFilter />
+                            },
+                            {
+                                path : "spice",
+                                element : <SpiceFilter />
+                            },
+                            {
+                                path : "snacks",
+                                element : <SnackFilter />
+                            },
+                            {
+                                path : "vegeSide",
+                                element : <VegeSideFilter />
                             },
                         ]
                     },
@@ -129,10 +217,30 @@ const router = createBrowserRouter([
                 element : <CustomerService />,
                 children: [
                     {
-                        path: ":details",
-                        element: <CustomerService />,
+                        path: "notice",
+                        element: <Tab1 />,
+                    },
+                    {
+                        path: "faq",
+                        element: <Tab2 />,
+                    },
+                    {
+                        path: "quest",
+                        element: <Tab3 />,
                     }
                 ]
+            },
+            {
+                path: "/customer/notice",
+                element: <Notice />
+            },
+            {
+                path: "/customer/quest/register",
+                element: <Register />
+            },
+            {
+                path: "/customer/quest",
+                element: <RegisterComplete />
             },
             {
                 path : "/signIn", 

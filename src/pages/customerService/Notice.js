@@ -38,7 +38,7 @@ const Notice = () => {
                 </S.NTable>
 
                 <S.BDiv>
-                    <Link to="/customerService"><S.NButton>목록</S.NButton></Link>
+                    <Link to="/customerService/notice"><S.NButton>목록</S.NButton></Link>
                 </S.BDiv>
             </S.NoticeWrapper>
         </>
