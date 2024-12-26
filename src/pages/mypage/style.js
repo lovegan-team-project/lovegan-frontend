@@ -15,6 +15,7 @@ S.Background = styled.div`
     width: 100%;
     height: 100%;
     background-color: ${({theme})=>theme.PALLETTE.myGrey["background"]};
+    padding: 20px 0px 300px 0px;
 `;
 
 S.Container = styled.div`
