@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import S, { FollowButton, LikeButton, ScrapButton } from './style';
+import S, { FollowButton_1, LikeButton, ScrapButton } from './style';
 import dtUser from './image/dtUser.png';
-import unsplash1 from './image/unsplash1.png';
-import unsplash2 from './image/unsplash2.png';
-import unsplash3 from './image/unsplash3.png';
-import unsplash4 from './image/unsplash4.png';
+import unsplash1 from './image/unsplash1.png'
+import unsplash2 from './image/unsplash2.png'
+import unsplash3 from './image/unsplash3.png'
+import unsplash4 from './image/unsplash4.png'
 import left from './image/left.svg';
 import right from './image/right.svg';
 import { ReactComponent as like} from './image/like.svg';
@@ -12,11 +12,11 @@ import { ReactComponent as scrap} from './image/scrap.svg';
 import comment_one from './image/comment_one.svg';
 import Comment from './Comment';
 
-const CommunityAllDt = (props) => {
+const CommunityFollowDt = (props) => {
 
     // 팔로우 버튼 클릭, 호버 색 변경
-    const [colorChange, setColorChange] = useState('#03A63C');
-    const [textColor, setTextColor] = useState('#fff')    
+    const [colorChange, setColorChange] = useState('#fafafa');
+    const [textColor, setTextColor] = useState('#333')    
     // // like, scrap 버튼 클릭 상태
     const [likeColor, setLikeColor] = useState('#fff')
     const [likeStroke, setLikeStroke] = useState('#8D8D8D')
@@ -32,8 +32,8 @@ const CommunityAllDt = (props) => {
 
     // // 팔로우 버튼 색 변경 함수
     const onChangeColor = () => {
-        setColorChange(prevColor => (prevColor === '#03A63C' ? '#fafafa' : '#03A63C'))
-        setTextColor(prevText => (prevText === '#fff' ? '#333' : '#fff'))
+        setColorChange(prevColor => (prevColor === '#fafafa' ? '#03A63C' : '#fafafa'))
+        setTextColor(prevText => (prevText === '#333' ? '#fff' : '#333'))
     };
     
     // // like 버튼 색변경 함수
@@ -62,7 +62,6 @@ const CommunityAllDt = (props) => {
     };
     
 
-  
 
     // 태그버튼
     const [nextClick, setNextClick] = useState()
@@ -96,8 +95,9 @@ const CommunityAllDt = (props) => {
                     <S.UserNickPost>유저 닉네임</S.UserNickPost>
                     <S.Introduce>유저 한 줄 소개</S.Introduce>
                 </div>
-                <FollowButton
-                    onClick={onChangeColor} color={colorChange} text={textColor}>팔로우</FollowButton> 
+                <FollowButton_1
+                    onClick={onChangeColor} color={colorChange} text={textColor}>팔로우
+                </FollowButton_1> 
             </S.UserInfo>
             <hr/>
             <p className='write'>
@@ -150,4 +150,4 @@ const CommunityAllDt = (props) => {
     );
 };
 
-export default CommunityAllDt;
+export default CommunityFollowDt;

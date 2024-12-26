@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import S from './style';
+import Userimages from './Userimages';
 import like from './image/like.svg';
 // import scrap from './image/scrap.svg';
 import scrapBlack from './image/scrapBlack.svg';
@@ -103,7 +104,7 @@ const CommunityAll = () => {
                 <S.Feed1 className='게시물'>
                     <S.PostUser1 className='게시물1'>
                         <S.text>
-                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.PostUserImage1><img src={Userimages.postuser1} alt='게시물 사진 1'/></S.PostUserImage1>
                             <S.TextInfo>
                             <S.PostUserName>유저 이름</S.PostUserName>
                             <div>·</div>
@@ -113,7 +114,7 @@ const CommunityAll = () => {
                             <S.UserIntro>한 줄 소개</S.UserIntro>
                             </S.TextInfo>
                         </S.text>
-                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post1} alt='게시물 사진 1'/><S.Views>조회수 6,841</S.Views></S.PostImage>
                         <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
                         <S.FeedOption>
                             <LikeBt likeData={likeData}/>
@@ -126,7 +127,7 @@ const CommunityAll = () => {
                     </S.PostUser1>
                     <S.PostUser1 className='게시물2'>
                         <S.text>
-                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.PostUserImage1><img src={Userimages.postuser2} alt='게시물 사진 2'/></S.PostUserImage1>
                             <S.TextInfo>
                             <S.PostUserName>유저 이름</S.PostUserName>
                             <div>·</div>
@@ -136,7 +137,7 @@ const CommunityAll = () => {
                             <S.UserIntro>한 줄 소개</S.UserIntro>
                             </S.TextInfo>
                         </S.text>
-                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post2} alt='게시물 사진 2'/><S.Views>조회수 6,841</S.Views></S.PostImage>
                         <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
                         <S.FeedOption>
                             <LikeBt likeData={likeData}/>
@@ -149,7 +150,7 @@ const CommunityAll = () => {
                     </S.PostUser1>
                     <S.PostUser1 className='게시물3'>
                         <S.text>
-                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.PostUserImage1><img src={Userimages.postuser3} alt='게시물 사진 3'/></S.PostUserImage1>
                             <S.TextInfo>
                             <S.PostUserName>유저 이름</S.PostUserName>
                             <div>·</div>
@@ -159,7 +160,7 @@ const CommunityAll = () => {
                             <S.UserIntro>한 줄 소개</S.UserIntro>
                             </S.TextInfo>
                         </S.text>
-                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post3} alt='게시물 사진 3'/><S.Views>조회수 6,841</S.Views></S.PostImage>
                         <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
                         <S.FeedOption>
                             <LikeBt likeData={likeData}/>
@@ -175,7 +176,7 @@ const CommunityAll = () => {
                 <S.Feed1 className='게시물'>
                     <S.PostUser1 className='게시물1'>
                         <S.text>
-                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.PostUserImage1><img src={Userimages.postuser4} alt='게시물 사진 4'/></S.PostUserImage1>
                             <S.TextInfo>
                             <S.PostUserName>유저 이름</S.PostUserName>
                             <div>·</div>
@@ -185,7 +186,7 @@ const CommunityAll = () => {
                             <S.UserIntro>한 줄 소개</S.UserIntro>
                             </S.TextInfo>
                         </S.text>
-                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post4} alt='게시물 사진 4'/><S.Views>조회수 6,841</S.Views></S.PostImage>
                         <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
                         <S.FeedOption>
                             <LikeBt likeData={likeData}/>
@@ -198,7 +199,7 @@ const CommunityAll = () => {
                     </S.PostUser1>
                     <S.PostUser1 className='게시물2'>
                         <S.text>
-                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.PostUserImage1><img src={Userimages.postuser5} alt='게시물 사진 5'/></S.PostUserImage1>
                             <S.TextInfo>
                             <S.PostUserName>유저 이름</S.PostUserName>
                             <div>·</div>
@@ -208,7 +209,7 @@ const CommunityAll = () => {
                             <S.UserIntro>한 줄 소개</S.UserIntro>
                             </S.TextInfo>
                         </S.text>
-                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post5} alt='게시물 사진 5'/><S.Views>조회수 6,841</S.Views></S.PostImage>
                         <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
                         <S.FeedOption>
                             <LikeBt likeData={likeData}/>
@@ -221,7 +222,7 @@ const CommunityAll = () => {
                     </S.PostUser1>
                     <S.PostUser1 className='게시물3'>
                         <S.text>
-                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.PostUserImage1><img src={Userimages.postuser6} alt='게시물 사진 6'/></S.PostUserImage1>
                             <S.TextInfo>
                             <S.PostUserName>유저 이름</S.PostUserName>
                             <div>·</div>
@@ -231,7 +232,7 @@ const CommunityAll = () => {
                             <S.UserIntro>한 줄 소개</S.UserIntro>
                             </S.TextInfo>
                         </S.text>
-                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post6} alt='게시물 사진 6'/><S.Views>조회수 6,841</S.Views></S.PostImage>
                         <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
                         <S.FeedOption>
                             <LikeBt likeData={likeData}/>
@@ -247,7 +248,7 @@ const CommunityAll = () => {
                 <S.Feed1 className='게시물'>
                     <S.PostUser1 className='게시물1'>
                         <S.text>
-                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.PostUserImage1><img src={Userimages.postuser7} alt='게시물 사진 7'/></S.PostUserImage1>
                             <S.TextInfo>
                             <S.PostUserName>유저 이름</S.PostUserName>
                             <div>·</div>
@@ -257,7 +258,7 @@ const CommunityAll = () => {
                             <S.UserIntro>한 줄 소개</S.UserIntro>
                             </S.TextInfo>
                         </S.text>
-                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post7} alt='게시물 사진 7'/><S.Views>조회수 6,841</S.Views></S.PostImage>
                         <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
                         <S.FeedOption>
                             <LikeBt likeData={likeData}/>
@@ -270,7 +271,7 @@ const CommunityAll = () => {
                     </S.PostUser1>
                     <S.PostUser1 className='게시물2'>
                         <S.text>
-                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.PostUserImage1><img src={Userimages.postuser8} alt='게시물 사진 8'/></S.PostUserImage1>
                             <S.TextInfo>
                             <S.PostUserName>유저 이름</S.PostUserName>
                             <div>·</div>
@@ -280,7 +281,7 @@ const CommunityAll = () => {
                             <S.UserIntro>한 줄 소개</S.UserIntro>
                             </S.TextInfo>
                         </S.text>
-                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post8} alt='게시물 사진 8'/><S.Views>조회수 6,841</S.Views></S.PostImage>
                         <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
                         <S.FeedOption>
                             <LikeBt likeData={likeData}/>
@@ -293,7 +294,7 @@ const CommunityAll = () => {
                     </S.PostUser1>
                     <S.PostUser1 className='게시물3'>
                         <S.text>
-                            <S.PostUserImage1></S.PostUserImage1>
+                            <S.PostUserImage1><img src={Userimages.postuser9} alt='게시물 사진 9'/></S.PostUserImage1>
                             <S.TextInfo>
                             <S.PostUserName>유저 이름</S.PostUserName>
                             <div>·</div>
@@ -303,7 +304,7 @@ const CommunityAll = () => {
                             <S.UserIntro>한 줄 소개</S.UserIntro>
                             </S.TextInfo>
                         </S.text>
-                        <S.PostImage onClick={toPostsOnClick}><S.Views>조회수 6,841</S.Views></S.PostImage>
+                        <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post9} alt='게시물 사진 9'/><S.Views>조회수 6,841</S.Views></S.PostImage>
                         <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
                         <S.FeedOption>
                             <LikeBt likeData={likeData}/>

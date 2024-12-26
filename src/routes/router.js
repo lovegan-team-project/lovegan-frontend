@@ -36,6 +36,7 @@ import AccountInfo from "../pages/mypage/AccountInfo";
 import ChangePassword from "../pages/mypage/ChangePassword";
 import VegeFilter from "../pages/product/filter/VegeFilter";
 import MainVegeFilter from "../pages/product/filter/main/MainVegeFilter";
+import CommunityFollowDt from "../pages/community/CommunityFollowDt";
 import DrinksFilter from './../pages/product/filter/DrinksFilter';
 import EggFilter from './../pages/product/filter/EggFilter';
 import FastfoodFilter from './../pages/product/filter/FastfoodFilter';
@@ -187,7 +188,6 @@ const router = createBrowserRouter([
                 element : <Community />,
                 children : [
                     {
-                        // index : true,
                         path : "CommunityAll",
                         element : <CommunityAll />,
                     },
@@ -200,6 +200,10 @@ const router = createBrowserRouter([
             {
                 path : "/community/CommunityAllDt",
                 element : <CommunityAllDt />
+            },
+            {
+                path : "/community/CommunityFollowDt",
+                element : <CommunityFollowDt />
             },
             {
                 path : "/search", 
