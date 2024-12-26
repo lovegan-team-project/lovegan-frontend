@@ -51,7 +51,7 @@ import MainMeatFilter from "../pages/product/filter/main/MainMeatFilter";
 import MainHealthFoodFilter from "../pages/product/filter/main/MainHealthFoodFilter";
 import MainFastfoodFilter from "../pages/product/filter/main/MainFastfoodFilter";
 import MainEggFilter from "../pages/product/filter/main/MainEggFilter";
-import MainDrinksFilter from "../pages/product/filter/main/MainDrinksFilter";
+import MainDrinksFilter from './../pages/product/filter/main/MainDrinksFilter';
 
 
 
