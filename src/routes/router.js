@@ -52,6 +52,12 @@ import MainHealthFoodFilter from "../pages/product/filter/main/MainHealthFoodFil
 import MainFastfoodFilter from "../pages/product/filter/main/MainFastfoodFilter";
 import MainEggFilter from "../pages/product/filter/main/MainEggFilter";
 import MainDrinksFilter from './../pages/product/filter/main/MainDrinksFilter';
+import Tab1 from "../pages/customerService/Tab1";
+import Tab2 from "../pages/customerService/Tab2";
+import Tab3 from "../pages/customerService/Tab3";
+import Notice from "../pages/customerService/Notice";
+import Register from "../pages/customerService/Register";
+import RegisterComplete from "../pages/customerService/RegisterComplete";
 
 
 
@@ -204,10 +210,30 @@ const router = createBrowserRouter([
                 element : <CustomerService />,
                 children: [
                     {
-                        path: ":details",
-                        element: <CustomerService />,
+                        path: "notice",
+                        element: <Tab1 />,
+                    },
+                    {
+                        path: "faq",
+                        element: <Tab2 />,
+                    },
+                    {
+                        path: "quest",
+                        element: <Tab3 />,
                     }
                 ]
+            },
+            {
+                path: "/customer/notice",
+                element: <Notice />
+            },
+            {
+                path: "/customer/quest/register",
+                element: <Register />
+            },
+            {
+                path: "/customer/quest",
+                element: <RegisterComplete />
             },
             {
                 path : "/signIn", 
