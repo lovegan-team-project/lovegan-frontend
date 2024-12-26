@@ -1,6 +1,7 @@
 import React from 'react';
 import S from './style';
 import { Link } from 'react-router-dom';
+import Arrow from './Arrow';
 
 const Tab1 = () => {
     return (
@@ -24,96 +25,100 @@ const Tab1 = () => {
                         <tbody>
                             <tr >
                                 <td>1</td>
-                                <td><Link to="/customerService?details=notice">[안내] 고객님들께 안내드립니다.</Link></td>
+                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
                                 <td>LOVEgan</td>
                                 <td>2024.09.01</td>
                             </tr>
 
                             <tr >
                                 <td>1</td>
-                                <td><Link to="/customerService">[안내] 고객님들께 안내드립니다.</Link></td>
+                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
                                 <td>LOVEgan</td>
                                 <td>2024.09.01</td>
                             </tr>
 
                             <tr >
                                 <td>1</td>
-                                <td><Link to="/customerService">[안내] 고객님들께 안내드립니다.</Link></td>
+                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
                                 <td>LOVEgan</td>
                                 <td>2024.09.01</td>
                             </tr>
 
                             <tr >
                                 <td>1</td>
-                                <td><Link to="/customerService">[안내] 고객님들께 안내드립니다.</Link></td>
+                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
                                 <td>LOVEgan</td>
                                 <td>2024.09.01</td>
                             </tr>
 
                             <tr >
                                 <td>1</td>
-                                <td><Link to="/customerService">[안내] 고객님들께 안내드립니다.</Link></td>
+                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
                                 <td>LOVEgan</td>
                                 <td>2024.09.01</td>
                             </tr>
 
                             <tr >
                                 <td>1</td>
-                                <td><Link to="/customerService">[안내] 고객님들께 안내드립니다.</Link></td>
+                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
                                 <td>LOVEgan</td>
                                 <td>2024.09.01</td>
                             </tr>
 
                             <tr >
                                 <td>1</td>
-                                <td><Link to="/customerService">[안내] 고객님들께 안내드립니다.</Link></td>
+                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
                                 <td>LOVEgan</td>
                                 <td>2024.09.01</td>
                             </tr>
 
                             <tr >
                                 <td>1</td>
-                                <td><Link to="/customerService">[안내] 고객님들께 안내드립니다.</Link></td>
+                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
                                 <td>LOVEgan</td>
                                 <td>2024.09.01</td>
                             </tr>
 
                             <tr >
                                 <td>1</td>
-                                <td><Link to="/customerService">[안내] 고객님들께 안내드립니다.</Link></td>
+                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
                                 <td>LOVEgan</td>
                                 <td>2024.09.01</td>
                             </tr>
 
                             <tr >
                                 <td>1</td>
-                                <td><Link to="/customerService">[안내] 고객님들께 안내드립니다.</Link></td>
+                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
                                 <td>LOVEgan</td>
                                 <td>2024.09.01</td>
                             </tr>
 
                             <tr >
                                 <td>1</td>
-                                <td><Link to="/customerService">[안내] 고객님들께 안내드립니다.</Link></td>
+                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
                                 <td>LOVEgan</td>
                                 <td>2024.09.01</td>
                             </tr>
 
                             <tr >
                                 <td>1</td>
-                                <td><Link to="/customerService">[안내] 고객님들께 안내드립니다.</Link></td>
+                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
                                 <td>LOVEgan</td>
                                 <td>2024.09.01</td>
                             </tr>
 
                             <tr >
                                 <td>1</td>
-                                <td><Link to="/customerService">[안내] 고객님들께 안내드립니다.</Link></td>
+                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
                                 <td>LOVEgan</td>
                                 <td>2024.09.01</td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <S.A_Div>
+                        <Arrow></Arrow>
+                    </S.A_Div>
                 </S.T_wrapper>
             </S.Wrap>
     );
