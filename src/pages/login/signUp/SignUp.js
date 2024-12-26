@@ -58,25 +58,41 @@ const SignUp = () => {
         setIsChecked(updatedChecked); 
         setAllChecked(Object.values(updatedChecked).every((value) => value));
     };
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         if (!isChecked.age || !isChecked.terms || !isChecked.privacy) {
             console.log("필수 항목 동의")
             window.alert("필수 항목을 동의해주세요");
             return;
         }
-        console.log("회원가입 데이터 : ", data)
-        navigate('/signIn');
-    }
-
-    const preventEnter = (e) => {
-        if(e.key === "Enter"){
-            e.preventDefault();
-        }
+        await fetch("http://localhost:8000/user/register", {
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body : JSON.stringify({
+                email : data.email + data.emailDrop,
+                password : data.password,
+                phone : data.phone,
+                nickname : data.nickname
+            })
+        })
+        .then((res) => res.json())
+        .then((res) => {
+            console.log(res)
+            if(res.registerSuccess){
+                alert(res.message)
+                navigate('/signIn');
+            }
+            else{
+                alert(res.message)
+            }
+        })
+        
     }
     
     return (
         <div>
-            <S.Form onSubmit={handleSubmit(onSubmit, onInvalid)} onKeyDown={preventEnter}>
+            <S.Form onSubmit={handleSubmit(onSubmit, onInvalid)} >
                 <S.Wrapper>
                     <S.Logo src={logo} alt="로고" onClick={clickToMain}/>
                     <S.SignUp>회원가입</S.SignUp>
@@ -117,9 +133,9 @@ const SignUp = () => {
                             })}
                         >
                             <option value="" disabled hidden>선택해주세요</option>
-                            <option value="네이버">naver.com</option>
-                            <option value="구글">google.com</option>
-                            <option value="카카오">kakao.com</option>
+                            <option value="@naver.com">naver.com</option>
+                            <option value="@google.com">gmail.com</option>
+                            <option value="@kakao.com">kakao.com</option>
                         </S.EmailDropDown>
                         
                     </S.EmailContainer>
