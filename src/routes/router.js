@@ -36,9 +36,7 @@ import AccountInfo from "../pages/mypage/AccountInfo";
 import ChangePassword from "../pages/mypage/ChangePassword";
 import VegeFilter from "../pages/product/filter/VegeFilter";
 import MainVegeFilter from "../pages/product/filter/main/MainVegeFilter";
-<<<<<<< HEAD
 import CommunityFollowDt from "../pages/community/CommunityFollowDt";
-=======
 import DrinksFilter from './../pages/product/filter/DrinksFilter';
 import EggFilter from './../pages/product/filter/EggFilter';
 import FastfoodFilter from './../pages/product/filter/FastfoodFilter';
@@ -61,7 +59,6 @@ import Tab3 from "../pages/customerService/Tab3";
 import Notice from "../pages/customerService/Notice";
 import Register from "../pages/customerService/Register";
 import RegisterComplete from "../pages/customerService/RegisterComplete";
->>>>>>> 3f5f88f01f26d220814761b3526741b9963b4d57
 
 
 
