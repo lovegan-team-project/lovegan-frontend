@@ -77,6 +77,16 @@ PS.Content = styled.div`
         font-size: ${({theme})=>theme.FONT_SIZE["title"]};
         font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
     }
+
+    .scrap-btn-wrapper {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        right: 0;
+        bottom: 30px;
+    }
+
+
 `;
 
 export default PS;

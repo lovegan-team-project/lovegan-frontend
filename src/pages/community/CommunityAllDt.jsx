@@ -11,6 +11,7 @@ import { ReactComponent as like} from './image/like.svg';
 import { ReactComponent as scrap} from './image/scrap.svg';
 import comment_one from './image/comment_one.svg';
 import LikeBtMin from './LikeBtMin';
+import Comment from './Comment';
 // import Comment from './Comment';
 
 const CommunityAllDt = (props) => {
@@ -59,6 +60,7 @@ const CommunityAllDt = (props) => {
         setVisibleInput(!visibleInput)
     };
     
+
     // // 개별 댓글 작은 좋아요 상태 변경 함수
     // const onChangeLikeSmall = (index) => {
     //     setLikeSmaillState(prevStates => 
@@ -135,7 +137,7 @@ const CommunityAllDt = (props) => {
                     <S.UserNickPost>유저 닉네임</S.UserNickPost>
                     <S.Introduce>유저 한 줄 소개</S.Introduce>
                 </div>
-                <FollowButton 
+                <FollowButton
                     onClick={onChangeColor} color={colorChange} text={textColor}>팔로우</FollowButton> 
             </S.UserInfo>
             <hr/>
@@ -171,34 +173,37 @@ const CommunityAllDt = (props) => {
                 댓글
                 <div>59</div>
             </S.commentNum>           
-                <S.typing>
+                {/* <S.typing>
                     <img src={UserImg2} alt='유저프로필' />
                     <input type="text" value={inputVal1} onChange={(e) => inputChange2(e)} placeholder='칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)'></input>
                     <button className='textChange' onClick={textChange}>입력</button>
-                </S.typing>
-        <S.Recomment>
-            {visibleInput &&
-                <S.RecommentBox className='commentBox'>
-                <img src={UserImg2} alt='cmUser'></img>
-                        <div className='userBox'>
-                            <div>유저 닉네임</div>
-                            <p className='detail'>{changeVal}</p>
+                </S.typing> */}
 
-                            <S.dtInfo>
-                                <p>1주</p>
-                                <span>·</span>
-                                <LikeBtMin />
-                                <p>좋아요</p>
-                                <span>·</span>
-                                {/* 답글 달기 클릭 -> input 박스 보이게 해야함 */}
-                                <p>답글 달기</p>
-                                <span>·</span>
-                                <p>신고</p>
-                            </S.dtInfo>
+            <S.Recomment>
 
-                        </div>
-                    </S.RecommentBox>
-                    } 
+            {/* 새로운 댓글 로직 컴포넌트트 */}
+            <Comment/>
+        
+            {/* {visibleInput && */}
+                {/* <S.RecommentBox className='commentBox'> */}
+                 {/* <img src={UserImg2} alt='cmUser'></img> */}
+                         {/* <div className='userBox'> */}
+                             {/* <div>유저 닉네임</div> */}
+                             {/* <p className='detail'>{changeVal}</p> */}
+                             {/* <S.dtInfo> */}
+                                 {/* <p>1주</p> */}
+                                 {/* <span>·</span> */}
+                                 {/* <LikeBtMin /> */}
+                                 {/* <p>좋아요</p> */}
+                                 {/* <span>·</span> */}
+                                 {/* 답글 달기 클릭 -> input 박스 보이게 해야함 */}
+                                 {/* <p>답글 달기</p> */}
+                                 {/* <span>·</span> */}
+                                 {/* <p>신고</p> */}
+                             {/* </S.dtInfo> */}
+                         {/* </div> */}
+                     {/* </S.RecommentBox> */}
+                    {/* }  */}
             </S.Recomment>
             
             <S.nextPage>
