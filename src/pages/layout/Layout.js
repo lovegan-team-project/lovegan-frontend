@@ -11,9 +11,12 @@ const Layout = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const pathsWithHeader = [
-        "/", "/brand", "/product", "/product/vege", "/product/new", "/product/new/vege", "/product/sale", "/product/best","/diary", "/community", 
+        "/", "/brand", "/product","/product/vege", "/product/new", "/product/new/vege", "/product/sale", "/product/best","/diary", "/community", 
     "/community/CommunityFollow","/community/CommunityAllDt", "/details", "/signIn", "/findId", "/findPW", "/resetPW","/customerService",
-    "/search"];
+    "/search", "/product/new/drinks", "/product/new/eggs", "/product/new/fastfood", "/product/new/healthfood", "/product/new/meat", "/product/new/spice", "/product/new/snacks", "/product/new/vegeSide",
+    "/product/drinks", "/product/eggs", "/product/fastfood", "/product/healthfood", "/product/meat", "/product/spice", "/product/snacks", "/product/vegeSide",
+
+];
     const [searchTerm, setSearchTerm] = useState();
     
     const showHeader = pathsWithHeader.includes(location.pathname);

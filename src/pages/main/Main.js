@@ -12,6 +12,12 @@ import main07 from './images/main07.svg';
 import communityPic01 from './images/community01.png'
 import communityPic02 from './images/community02.png'
 import communityPic03 from './images/community03.png'
+import MapIcon from './images/mapIcon.svg'
+import Restaurant from './images/Restaurant.png'
+import RestaurantSmall from './images/RestaurantSmall.png'
+import RestaurantSmall2 from './images/RestaurantSmall2.png'
+import HeaderLine from './images/Main2HeaderLine.png'
+import Line from './images/Line.png'
 import user from './images/userPic.png'
 import styled from "styled-components";
 import NextArrow from './NextArrow';
@@ -55,7 +61,6 @@ const Main = () => {
     prevArrow: <PreArrow />,
   };
 
-  const style = { width: "100%", height: "717px"};
 
   // 각 카테고리별로 표시할 컴포넌트나 내용을 조건부로 렌더링
   const moveTOProduct = () => {
@@ -66,28 +71,27 @@ const Main = () => {
     <S.MainContainer1>
    
       <StyledSlider {...settings}>
-        <div style={style} >
+        <S.BannerImgWrapper>
           <img src={main01} alt="슬라이더1" />
-          
-        </div>
-        <div style={style}>
+        </S.BannerImgWrapper>
+        <S.BannerImgWrapper>
           <img src={main02} alt="슬라이더2" />
-        </div>
-        <div style={style}>
+        </S.BannerImgWrapper>
+        <S.BannerImgWrapper>
           <img src={main03} alt="슬라이더3" />
-        </div>
-        <div style={style}>
+        </S.BannerImgWrapper>
+        <S.BannerImgWrapper>
           <img src={main04} alt="슬라이더4" />
-        </div>
-        <div style={style}>
+        </S.BannerImgWrapper>
+        <S.BannerImgWrapper>
           <img src={main05} alt="슬라이더5" />
-        </div>
-        <div style={style}>
+        </S.BannerImgWrapper>
+        <S.BannerImgWrapper>
           <img src={main06} alt="슬라이더6" />
-        </div>
-        <div style={style}>
+        </S.BannerImgWrapper>
+        <S.BannerImgWrapper>
           <img src={main07} alt="슬라이더7" />
-        </div>
+        </S.BannerImgWrapper>
       </StyledSlider>
       <S.ProductWrapper>
         <Best />
@@ -98,13 +102,48 @@ const Main = () => {
 
     </S.MainContainer1>
     <S.MainContainer2>
-
-
+        <S.Main2HeaderWrapper>
+          <S.RestaurantInfoWrapper>
+            <S.Main2Title>오직 비건만을 위한 식당 🥗</S.Main2Title>
+            <S.MainShopTitle>슬런치팩토리</S.MainShopTitle>
+            <S.MainShopIntro>간단히 비건 음식 먹으며 책 읽거나 작업하기 좋은 곳. 좋은 음악과 좋은 사람이 많은 비건들의 성지.</S.MainShopIntro>
+            <S.MainShopAddressWrapper><img src={MapIcon}></img><S.MainShopAddress>서울특별시 마포구 성미산로 161-16</S.MainShopAddress></S.MainShopAddressWrapper>
+          </S.RestaurantInfoWrapper>
+          <S.ReviewWrapper>
+            <S.MainRestStar>4.85</S.MainRestStar>
+            <div>평균 별점</div>
+            <img src={HeaderLine}></img>
+            <S.MainReview>1,528</S.MainReview>
+            <div>리뷰수</div>
+            <img src={HeaderLine}></img>
+          </S.ReviewWrapper>
+        </S.Main2HeaderWrapper>
+        <S.RestaurantImgWrapper>
+          <S.MainImg><img src={Restaurant} onClick={()=> {navigate("/restaurant")}}></img></S.MainImg>
+          <S.SubImg>
+            <img src={RestaurantSmall} onClick={()=> {navigate("/restaurant")}}></img>
+            <S.SubShopTitle>가게명</S.SubShopTitle>
+            <S.SubShopInfo>간단히 비건 음식 먹으며 책 읽거나 작업하기 좋은 곳. 좋은 음악과 좋은 사람이 많은
+            비건들의 성지. </S.SubShopInfo>
+          </S.SubImg>
+          {/* <S.SubImg>
+            <img src={RestaurantSmall2}></img>
+            <S.SubShopTitle>가게명</S.SubShopTitle>
+            <S.SubShopInfo>간단히 비건 음식 먹으며 책 읽거나 작업하기 좋은 곳. 좋은 음악과 좋은 사람이 많은
+            비건들의 성지. </S.SubShopInfo>
+        
+          </S.SubImg> */}
+        
+        </S.RestaurantImgWrapper>
+      
+      <S.RestaurantNumberWrapper>1<img src={Line}></img>8</S.RestaurantNumberWrapper>
     </S.MainContainer2>
+
+
     <S.MainContainer3>
       <S.Main3Title>유저들의 비건 이야기🌷</S.Main3Title>
       <S.Main3SubTitle>어디서도 구하기 힘든 꿀팁 구경하러가기</S.Main3SubTitle>
-    <S.ContentWrapper>
+      <S.ContentWrapper>
       <S.ContentContainer onClick={()=> {navigate("/community")}}>
         <img src={communityPic01}></img>
         <S.ContentTitle>게시물 제목</S.ContentTitle>
