@@ -168,45 +168,85 @@ S.Main2 = styled.main`
 `
 
 S.Footer = styled.footer`
-
+    /* position: relative; */
     width: 100%;
     color: #333333;
     height: 293px;
     display: flex;
     flex-direction: column;
-    background-color: #F2F2F2
+    border-top: 1px solid #d9d9d9;
+    min-width: 100vw;
     
-
 `
 S.logoWrapper = styled.div`
-
+    margin: 40px 0px;
     width: 121px;
     height: 45px;
-    margin: 38px 1557px 0px 242px;
 `
 S.TextBoxWrapper = styled.div`
-    width : 613px;
-    height : 84px;
+    margin: 20px 0px 30px 0px;
+    color: #333333;
+    font-size: 16px;
+`
+
+S.ContactWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 70px;
 
 `
-S.TextBox1 = styled.p`
-    
-    width: 256px;
-    height: 18px;
-    font-size: 14px;
-    margin : 42.92px 1414px 15px 250px;
+
+S.Contact = styled.div`
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+
+    & div.title {
+        padding-bottom: 8px;
+        color: #8d8d8d;
+    }
+
+    & div.content {
+        color: #333333;
+    }
+`
+
+S.MainContent = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+
+S.TopContent = styled.p`
+    cursor: pointer;
+    color: #333333;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 16px 0px;
     & a {
         color: #333333;
     }
 
 `
 S.TextBox2 = styled.div`
-
-    width: 613px;
-    height: 15px;
-    font-size: 12px;
-    margin : 8px 1057px 0px 250px;
+    padding-top: 8px;
 `
 
+S.Container = styled.div`
+    width: 1420px;
+    margin: 0 auto;
+
+    & div.bottom {
+        border-top: 1px solid #d9d9d9;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-size: 14px;
+        color: #8d8d8d;
+    }
+`
 
 export default S;
