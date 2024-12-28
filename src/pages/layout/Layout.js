@@ -82,15 +82,31 @@ const Layout = () => {
             
           
                 <S.Footer>
-                    {/* <Link to={"/customerService"}>고객센터</Link> */}
-                    <S.logoWrapper><LogoBlack /></S.logoWrapper>
-                    <S.TextBox1><strong>이용약관 ㅣ 개인정보처리방침 ㅣ <Link to={"/customerService"}>고객센터</Link></strong></S.TextBox1>
-                    <S.TextBoxWrapper>
-                        <S.TextBox2>법인명 : LOVEgan ㅣ 대표자 : 000 ㅣ 사업자 등록번호 : 000-00-00000  |  사업장 소재지 : 서울 강남구 테헤란로 146 </S.TextBox2>
-                        <S.TextBox2>서울 사무소 : 서울 강남구 테헤란로 146 신한은행 건물 4층  |  통신판매등록번호 : 2024--0901 ㅣ 개인정보관리책임자 : 000</S.TextBox2>
-                        <S.TextBox2>이메일 : customer@lovegan.co.kr ㅣ 팩스 : 02-538-0021</S.TextBox2>
-                        <S.TextBox2>COPYRIGHT ⓒ LOVEgan. ALL RIGHTS RESERVED.</S.TextBox2>
-                    </S.TextBoxWrapper>
+                    <S.Container>
+                        {/* <Link to={"/customerService"}>고객센터</Link> */}
+                        <S.logoWrapper><LogoBlack /></S.logoWrapper>
+                        <S.TopContent>이용약관 ㅣ 개인정보처리방침 ㅣ <Link to={"/customerService"}>고객센터</Link></S.TopContent>
+                        <S.MainContent>
+                            <S.TextBoxWrapper>
+                                <S.TextBox2>법인명 : LOVEgan ㅣ 대표자 : 000 ㅣ 사업자 등록번호 : 000-00-00000</S.TextBox2>
+                                <S.TextBox2>사업장 소재지 : 서울 강남구 테헤란로 146 | 서울 사무소 : 서울 강남구 테헤란로 146 신한은행 건물 4층</S.TextBox2>
+                            </S.TextBoxWrapper>
+                            <S.ContactWrapper>
+                                <S.Contact>
+                                    <div className='title'>Email</div>
+                                    <div className='content'>customer@lovegan.co.kr</div>
+                                </S.Contact>
+                                <S.Contact>
+                                    <div className='title'>Fax</div>
+                                    <div className='content'>02-538-0021</div>
+                                </S.Contact>
+                            </S.ContactWrapper>
+                        </S.MainContent>
+
+                        <div className='bottom'>
+                            COPYRIGHT ⓒ LOVEgan. ALL RIGHTS RESERVED.
+                        </div>
+                    </S.Container>
                 </S.Footer>
             
             
