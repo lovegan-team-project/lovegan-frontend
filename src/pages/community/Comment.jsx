@@ -19,14 +19,14 @@ const Comment = ({ onAddComment }) => {
             // 대댓글 저장 배열
             replies : []
             },
-            {
-            userid: 'user2',
-            content: '',
-            date: new Date().toISOString(),
-            updateFlag: true,
-            // 대댓글 저장 배열
-            replies : []
-            },
+            // {
+            // userid: 'user2',
+            // content: '',
+            // date: new Date().toISOString(),
+            // updateFlag: true,
+            // // 대댓글 저장 배열
+            // replies : []
+            // },
         ]);
     }, []); // 빈 배열을 두 번째 인자로 전달하면 컴포넌트가 처음 렌더링될 때 한 번만 실행
 

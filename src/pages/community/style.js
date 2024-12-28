@@ -619,7 +619,45 @@ S.typing = styled.div`
     }
 `
 
+S.replyTyping = styled.div`
+    /* display: flex;
+    align-items: center;
+    justify-content: flex-end; */
+    position: relative;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    width: 670px;
+    
+    .reply-div {
 
+        .reply-form {
+            
+        }
+
+        .reply-input {
+            font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+            width: 612px;
+            height: 42px;
+            border-style: solid;
+            border-width: 1px;
+            margin-left: 16px;
+            padding: 12px 50px 12px 16px;
+            color: ${({theme}) => theme.PALLETTE.grey[8]};
+            border-radius: 5px;
+        }
+    
+        .reply-submit {
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            transform: translateY(-50%);
+            background: none;
+            font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+            color: ${({theme}) => theme.PALLETTE.brand["primary"]};
+            cursor: pointer;
+        }
+    }
+`
 
 S.Recomment = styled.div`
     margin: 40px 0 40px 0;
