@@ -21,6 +21,7 @@ S.Wrapper = styled.div`
             font-weight: bold;
             color: ${({theme})=> theme.PALLETTE.brand["primary_black"]};
             margin-bottom: 42px;
+            width: 200px;
         }
     }
 `
@@ -28,27 +29,48 @@ S.TabButtonContainer = styled.li`
     & button.active{
         color: ${({theme})=> theme.PALLETTE.brand["primary"]};
     }
-`;
 
-S.TabButton = styled.button`
-    width: 197px;
-    height: 55px;
-    line-height: 50px;
-    text-align: left;
-    color: ${({theme})=> theme.PALLETTE.grey["7"]};
-    background: none;
-    font-size: ${({theme})=> theme.FONT_SIZE["subtitle"]};
-    font-weight: bold;
-    border: 1px solid ${({theme})=> theme.PALLETTE.grey["7"]};
-    border-radius: 0%;
-    border-left: none;
-    border-right: none;
-    cursor: pointer;
+    & .navlink{
+        width: 200px;
+        height: 55px;
+        display: block;
+        line-height: 50px;
+        text-align: left;
+        color: ${({theme})=> theme.PALLETTE.grey["7"]};
+        background: none;
+        font-size: ${({theme})=> theme.FONT_SIZE["subtitle"]};
+        font-weight: bold;
+        border: 1px solid ${({theme})=> theme.PALLETTE.grey["7"]};
+        border-radius: 0%;
+        border-left: none;
+        border-right: none;
+        cursor: pointer;
+    }
 
-    & :active{
-        height: 900px;
+    & .active{
+        color: ${({theme})=> theme.PALLETTE.brand["primary"]};
     }
 `;
+
+// S.TabButton = styled.button`
+//     width: 197px;
+//     height: 55px;
+//     line-height: 50px;
+//     text-align: left;
+//     color: ${({theme})=> theme.PALLETTE.grey["7"]};
+//     background: none;
+//     font-size: ${({theme})=> theme.FONT_SIZE["subtitle"]};
+//     font-weight: bold;
+//     border: 1px solid ${({theme})=> theme.PALLETTE.grey["7"]};
+//     border-radius: 0%;
+//     border-left: none;
+//     border-right: none;
+//     cursor: pointer;
+
+//     & :active{
+//         height: 900px;
+//     }
+// `;
 
 S.Wrap = styled.div`
     width:857px;

@@ -18,6 +18,7 @@ const Layout = () => {
         "/mypage/activity/posts", "/mypage/activity/follow", "/mypage/activity/likes", "/mypage/activity/scrap", "/mypage/activity/couponbook",
         "/mypage/shopping/orders", "/mypage/shopping/reviews", "/mypage/shopping/inquiries", "/mypage/settings/shippings", "/mypage/settings/accountInfo", "/mypage/settings/changePassword"
     ];
+
     const [searchTerm, setSearchTerm] = useState();
     
     const showHeader = pathsWithHeader.includes(location.pathname);

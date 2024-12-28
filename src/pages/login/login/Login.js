@@ -4,8 +4,10 @@ import kakao from './icons/kakao.svg';
 import naver from './icons/naver.svg';
 import google from './icons/google.svg';
 import S from './style';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, setUserStatus } from '../../../modules/user';
 
 const Login = () => {
     const { register, handleSubmit, getValues, formState: {errors, isSubmitted}, trigger} = useForm({mode : "onchange"});
@@ -15,9 +17,34 @@ const Login = () => {
     const clickToSignUp = () => {
         navigate('/signUp')
     }
-    const onSubmit = (data) => {
-        console.log("로그인 데이터 : ", data)
-        navigate('/')
+    const onSubmit = async (data) => {
+        await fetch("http://localhost:8000/user/login", {
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body : JSON.stringify({
+                email : data.id,
+                password : data.pw
+            })
+        })
+        .then((res) => res.json())
+        .then((res) => {
+            if(res.loginSuccess){
+                // alert(res.message)
+                let {user, loginSuccess, message} = res; 
+                dispatch(setUser(user))
+                dispatch(setUserStatus(true))
+                console.log(res);
+            }
+            else{
+                let {loginSuccess, message} = res;
+                console.log(res)
+                alert(message)
+            }
+        })
+        .catch(console.error)
+        
     }
     const clickToMain = () => {
         navigate('/')
@@ -28,19 +55,28 @@ const Login = () => {
     const clickToFindPW = () => {
         navigate('/findPW')
     }
-    const preventEnter = (e) => {
-        if(e.key === "Enter"){
-            e.preventDefault();
-        }
-    }
     const onInvalid = () => {
         console.log("유효성 검사 실패");
         trigger();
     }
 
+    // 로그인 이후 로직
+    const dispatch = useDispatch();
+    const isLogin = useSelector((state) => state.user.isLogin);
+    const currentUser = useSelector((state) => state.user.currentUser);
+
+    if(isLogin){
+        return (
+            <>
+                <Navigate to={"/"} replace={true}/>
+            </>
+            
+        )
+    }
+
     return (
         <div>
-            <S.Form onSubmit={handleSubmit(onSubmit, onInvalid)} onKeyDown={preventEnter}>
+            <S.Form onSubmit={handleSubmit(onSubmit, onInvalid)} >
                 <S.Wrapper>
                     <S.Logo src={logo} alt="로고" onClick={clickToMain}/>
                     
@@ -54,7 +90,7 @@ const Login = () => {
                         <S.ConfirmMessage>아이디를 입력해주세요.</S.ConfirmMessage>
                         )}
 
-                        <S.Password placeholder='비밀번호를 입력해주세요' id='pw' 
+                        <S.Password placeholder='비밀번호를 입력해주세요' id='pw' type='password'
                             {...register("pw", {
                                 required : true,
                             })}

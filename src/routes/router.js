@@ -36,6 +36,7 @@ import AccountInfo from "../pages/mypage/AccountInfo";
 import ChangePassword from "../pages/mypage/ChangePassword";
 import VegeFilter from "../pages/product/filter/VegeFilter";
 import MainVegeFilter from "../pages/product/filter/main/MainVegeFilter";
+import CommunityFollowDt from "../pages/community/CommunityFollowDt";
 import DrinksFilter from './../pages/product/filter/DrinksFilter';
 import EggFilter from './../pages/product/filter/EggFilter';
 import FastfoodFilter from './../pages/product/filter/FastfoodFilter';
@@ -52,6 +53,12 @@ import MainHealthFoodFilter from "../pages/product/filter/main/MainHealthFoodFil
 import MainFastfoodFilter from "../pages/product/filter/main/MainFastfoodFilter";
 import MainEggFilter from "../pages/product/filter/main/MainEggFilter";
 import MainDrinksFilter from './../pages/product/filter/main/MainDrinksFilter';
+import Tab1 from "../pages/customerService/Tab1";
+import Tab2 from "../pages/customerService/Tab2";
+import Tab3 from "../pages/customerService/Tab3";
+import Notice from "../pages/customerService/Notice";
+import Register from "../pages/customerService/Register";
+import RegisterComplete from "../pages/customerService/RegisterComplete";
 
 
 
@@ -181,7 +188,6 @@ const router = createBrowserRouter([
                 element : <Community />,
                 children : [
                     {
-                        // index : true,
                         path : "CommunityAll",
                         element : <CommunityAll />,
                     },
@@ -196,6 +202,10 @@ const router = createBrowserRouter([
                 element : <CommunityAllDt />
             },
             {
+                path : "/community/CommunityFollowDt",
+                element : <CommunityFollowDt />
+            },
+            {
                 path : "/search", 
                 element : <Search />
             },
@@ -204,10 +214,30 @@ const router = createBrowserRouter([
                 element : <CustomerService />,
                 children: [
                     {
-                        path: ":details",
-                        element: <CustomerService />,
+                        path: "notice",
+                        element: <Tab1 />,
+                    },
+                    {
+                        path: "faq",
+                        element: <Tab2 />,
+                    },
+                    {
+                        path: "quest",
+                        element: <Tab3 />,
                     }
                 ]
+            },
+            {
+                path: "/customer/notice",
+                element: <Notice />
+            },
+            {
+                path: "/customer/quest/register",
+                element: <Register />
+            },
+            {
+                path: "/customer/quest",
+                element: <RegisterComplete />
             },
             {
                 path : "/signIn", 
