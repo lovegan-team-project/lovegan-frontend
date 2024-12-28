@@ -65,8 +65,6 @@ S.Login = styled.p`
     font-size: 14px;
     margin: 41px 20px 41px 30px;
     
-   
-
 `
 S.NavContainer = styled.div`
     display : flex;

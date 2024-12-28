@@ -69,7 +69,9 @@ const Layout = () => {
 
                 {showHeader && 
                     <S.Main1>
-                        <Outlet/>
+                        <S.Container>
+                            <Outlet/>
+                        </S.Container>
                     </S.Main1>
                 }
 
