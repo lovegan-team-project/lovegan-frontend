@@ -110,18 +110,17 @@ S.CommunityContainer = styled.div`
 `
 
 S.CommunityTitle = styled.div`
-    width: 220px;
-    height: 45px;
-    margin: 60px 849px 12px 851px;
+    /* margin: 60px 849px 12px 851px; */
+    margin-top: 60px;
+    margin-bottom: 12px;
     text-align: center;
     font-size: ${({theme}) => theme.FONT_SIZE["h2"]};
     font-weight: bold;
 `
 
 S.CommunitySubTitle = styled.div`
-    margin: 0 758px 28px 759px;
-    width: 403px;
-    height: 30px;
+    /* margin: 0 758px 28px 759px; */
+    margin-bottom: 28px;
     font-size: ${({theme}) => theme.FONT_SIZE["h4"]};
     text-align: center;
 `
@@ -129,9 +128,10 @@ S.CommunitySubTitle = styled.div`
 S.CommunityToggle = styled.div`
     width: 340px;
     height: 55px;
+    margin: 0 auto 60px;
     background-color: #E6E6E6;
     border-radius: 50px;
-    margin: 0 790px 40px 790px;
+    /* margin: 0 790px 40px 790px; */
     position: relative;
     display: flex;
     align-items: center;
@@ -160,7 +160,7 @@ S.ToggleButton = styled.div`
 
 S.mainWrapper = styled.div`
     width: 1320px;
-    margin: 0 300px;
+    margin: 0 auto;
 
     & .top {
         display: flex;
