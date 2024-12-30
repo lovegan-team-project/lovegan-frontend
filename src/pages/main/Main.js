@@ -29,9 +29,11 @@ import S from "./style";
 import { useNavigate } from "react-router-dom";
 
 const StyledSlider = styled(Slider)`
-    width: 1420px;
+    width: 100%;
     height: 650px;
-    margin: 65px 250px 65px 250px;
+    margin-top: 65px;
+    border-radius: 20px;
+    overflow: hidden;
    
     .slick-dots {
         bottom: 10px; /* dots 위치 조정 */

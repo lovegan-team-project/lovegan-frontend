@@ -13,7 +13,7 @@ S.MainContainer2 = styled.div`
     widows: 100%;
     height: 1007px;
     border-bottom: solid 1px #CCCCCC;
-    margin-left: 250px;
+    /* margin-left: 250px; */
 `
 S.Main2HeaderWrapper = styled.div`
     height: 300px;
@@ -130,7 +130,7 @@ S.Main3SubTitle = styled.div`
 S.MainContainer3 = styled.div`
     width: 100%;
     height: 727px;
-    margin: 0 250px;
+    /* margin: 0 250px; */
 `
 S.Main3Title = styled.div`
     width: 250px;
@@ -202,7 +202,7 @@ S.ImgContainer = styled.div`
 S.ProductWrapper = styled.div`
     width: 1420px;
     height: 1240px;
-    margin: 65px 250px 0 250px;
+    margin: 65px 0px 0px 0px;
     
 `
 S.ProductButton = styled.button`
