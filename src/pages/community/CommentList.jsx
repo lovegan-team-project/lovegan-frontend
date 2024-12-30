@@ -4,7 +4,7 @@ import UserImg2 from './image/UserImg2.png';
 import LikeBtMin from './LikeBtMin';
 
 // addReply
-const CommentList = ({ list,  addReply}) => {
+const CommentList = ({ list,  addReply }) => {
     // 댓글 id별로 대댓글 작성 폼 표시
     const [replyVisible, setReplyVisible] = useState([]);
     const [isOpen, setIsOpen] = useState(false);

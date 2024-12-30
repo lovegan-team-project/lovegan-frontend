@@ -864,7 +864,12 @@ S.CommentListStyle = styled.ul`
             margin-bottom: 10px;
 
             .comment-row-user-between{
+                display: flex;
                 margin-left: 8px;
+
+                .comment-content {
+                    display: flex;
+                }
             }
         }
     }
