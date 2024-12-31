@@ -827,12 +827,7 @@ S.CommentListStyle = styled.ul`
 
         .reply-form {
             width: 620px;
-            .box {
-                
-            }
-            .int{
-                
-            }
+
             .userpf{
                 margin-left: 50px;
             }
