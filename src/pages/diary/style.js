@@ -4,7 +4,7 @@ const S = {};
 
 S.DiaryWrapper = styled.div`
     width: 1401px;
-    margin: 70px 270px;
+    margin: 70px 0px 100px;
     display: flex;
 `
 S.Calendar = styled.div`
