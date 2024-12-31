@@ -8,6 +8,8 @@ import right from './icons/right.svg';
 import S from './style';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { setSignUpUser } from '../../../modules/user';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -21,7 +23,7 @@ const SignUp = () => {
     const resendCode = () => {
 
     }
-
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const clickToLogin = () => {
@@ -80,8 +82,13 @@ const SignUp = () => {
         .then((res) => {
             console.log(res)
             if(res.registerSuccess){
+                let {registerSuccess, message} = res;
+                dispatch(setSignUpUser({
+                    nickname : data.nickname
+                }))
                 alert(res.message)
                 navigate('/signIn');
+                console.log(res)
             }
             else{
                 alert(res.message)
