@@ -101,6 +101,15 @@ AS.InputContainer = styled.div`
         }
     }
 
+    & button.verify {
+        cursor: pointer;
+            background-color: transparent;
+            font-size: ${({theme})=>theme.FONT_SIZE["subtitle"]};
+            font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
+            color: ${({theme})=>theme.PALLETTE.brand["primary"]};
+            padding: 0;
+    }
+
     & input.lock {
         width: 100%;
         border-radius: 5px;
@@ -115,6 +124,10 @@ AS.InputContainer = styled.div`
         border: 1px solid ${({theme})=>theme.PALLETTE.grey["8"]};
         background-color: #fff;
         color: ${({theme})=>theme.PALLETTE.brand["primary_black"]};
+    }
+
+    & input:focus {
+        outline: none;
     }
 `;
 

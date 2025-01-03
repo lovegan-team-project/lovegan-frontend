@@ -79,6 +79,7 @@ VS.ReviewContainer = styled.div`
     flex-direction: column;
     padding: 20px;
     color: ${({ theme }) => theme.PALLETTE.brand["primary_black"]};
+    border-bottom: 1px solid ${({ theme }) => theme.PALLETTE.grey["0"]};
 `;
 
 VS.ReviewHeader = styled.div`
