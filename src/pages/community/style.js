@@ -441,7 +441,8 @@ S.FeedFilter = styled.p`
 
 S.PostWrapper = styled.div`
     width: 720px;
-    margin: 0 600px 122px 600px;
+    margin: 0 auto;
+    margin-bottom: 137px;
     color: ${({theme}) => theme.PALLETTE.brand["primary_black"]};
     position: relative;
 
