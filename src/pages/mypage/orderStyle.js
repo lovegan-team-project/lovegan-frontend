@@ -14,7 +14,7 @@ OrS.OrderHeader = styled.div`
     border-radius: 10px;
 
     & div:first-child {
-        width: 340px;
+        width: 350px;
     }
 
     & div:not(:first-child) {
@@ -53,7 +53,7 @@ OrS.OrderData = styled.div`
         & span {
             font-size: ${({theme})=>theme.FONT_SIZE["title"]};
             font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
-            width: 190px;
+            width: 228px;
             display: inline-block;
             padding: 6px 0px;
             white-space: nowrap;
@@ -62,12 +62,17 @@ OrS.OrderData = styled.div`
         }
 
         & div.product-img-wrapper {
-            width: 140px;
-            height: 140px;
+            width: 100px;
+            height: 100px;
             border-radius: 10px;
             overflow: hidden;
-            object-fit: cover;
             margin-right: 20px;
+
+            & img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
         }
     }
 
@@ -98,17 +103,25 @@ OrS.OrderData = styled.div`
 
     & div.button-wrapper {
         width: fit-content;
+        display: flex;
+        gap: 8px;
+        flex-direction: column; 
+        
         & button {
+            height: 35px;
             width: 110px;
             border-radius: 10px;
-            padding: 10px 20px;
+            padding: 8px 20px;
             cursor: pointer;
+        }
+
+        & button:hover {
+            opacity: 0.8;
         }
 
         & button.review {
             color: #fff;
             background-color: ${({ theme }) => theme.PALLETTE.brand["primary"]};
-            margin-bottom: 8px;
         }
 
         & button.cart {
@@ -120,6 +133,47 @@ OrS.OrderData = styled.div`
             & img {
                 margin-right: 2px;
             }
+        }
+
+        & button.modify {
+            width: 95px;
+            border-radius: 10px;
+            border: 1px solid ${({ theme }) => theme.PALLETTE.brand["primary"]};
+            color: ${({ theme }) => theme.PALLETTE.brand["primary"]};
+            background-color: #fff;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        & button.cancle {
+            width: 95px;
+            border-radius: 10px;
+            border: 1px solid ${({ theme }) => theme.PALLETTE.grey["3"]};
+            color: ${({ theme }) => theme.PALLETTE.brand["primary_black"]};
+            background-color: #fff;
+            padding: 8px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        & button.lock {
+            width: 95px;
+            border-radius: 10px;
+            border: none;
+            color: ${({ theme }) => theme.PALLETTE.grey["8"]};
+            background-color: ${({ theme }) => theme.PALLETTE.myGrey["disable"]};
+            padding: 8px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: default;
+        }
+
+        & button.lock:hover{
+            opacity: 1;
         }
     }
 `;

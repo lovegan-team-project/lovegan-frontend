@@ -30,6 +30,9 @@ const Layout = () => {
         }
     };
 
+    const isMypage = location.pathname.startsWith('/mypage');
+
+
     return (
         <>
         <S.Wrapper>
@@ -74,7 +77,7 @@ const Layout = () => {
                     </S.HeaderContainer>
                 </S.Header>}
 
-                <S.Main>
+                <S.Main isMypage={isMypage}>
                     <S.Container>
                         <Outlet />
                     </S.Container>
