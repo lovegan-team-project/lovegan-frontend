@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import cmUser1 from './image/cmUser1.svg';
-// import S from './style';
 import CommentForm from './CommentForm';
 import CommentList from './CommentList';
 
@@ -16,16 +14,7 @@ const Comment = ({ onAddComment }) => {
             content: '',
             date: new Date().toISOString(),
             updateFlag: true,
-            // 대댓글 저장 배열
-            replies : []
-            },
-            {
-            userid: 'user2',
-            content: '',
-            date: new Date().toISOString(),
-            updateFlag: true,
-            // 대댓글 저장 배열
-            replies : []
+            replies : [] // 대댓글 저장 배열
             },
         ]);
     }, []); // 빈 배열을 두 번째 인자로 전달하면 컴포넌트가 처음 렌더링될 때 한 번만 실행
@@ -47,13 +36,11 @@ const Comment = ({ onAddComment }) => {
                 : comment
             )
         );
+
+        if(onAddComment){
+            onAddComment();
+        }
     };
-
-    // 리스트를 업데이트(수정, 삭제 할 경우)하는 함수
-    // const updateList = updatedList => {
-    //     setList(updatedList);
-    // };
-
 
     return (
         <div>
