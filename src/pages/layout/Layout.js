@@ -1,6 +1,6 @@
 import React from 'react';
 import {ReactComponent as LogoBlack} from './images/logo-black.svg';
-import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import S from './style';
 import { useState } from "react";
 import Search from './images/search.svg'
@@ -17,12 +17,27 @@ const Layout = () => {
         "/product/drinks", "/product/eggs", "/product/fastfood", "/product/healthfood", "/product/meat", "/product/spice", "/product/snacks", "/product/vegeSide",
         "/mypage/activity/posts", "/mypage/activity/follow", "/mypage/activity/likes", "/mypage/activity/scrap", "/mypage/activity/couponbook",
         "/mypage/shopping/orders", "/mypage/shopping/reviews", "/mypage/shopping/inquiries", "/mypage/settings/shippings", "/mypage/settings/accountInfo", "/mypage/settings/changePassword",
-        "/customerService/notice","/customerService/faq","/customerService/quest","/customer/notice","/customer/quest","/customer/quest/register"
+        "/customerService/notice","/customerService/faq","/customerService/quest","/customer/notice/:id","/customer/quest","/customer/quest/register"
     ];
 
     const [searchTerm, setSearchTerm] = useState();
     
-    const showHeader = pathsWithHeader.includes(location.pathname);
+    // const showHeader = pathsWithHeader.includes(location.pathname);
+
+    const params = useParams();
+    
+    const showHeader = () => {
+        const { id } = params; // id가 URL에 있으면 id를 추출
+      
+        // /customer/notice/:id 형식일 때
+        if (location.pathname.includes("/customer/notice/") && id) {
+          return true;
+        }
+      
+        // 기타 경로
+        return pathsWithHeader.includes(location.pathname);
+      };
+
     
     const handleSearch = () => {
         if (searchTerm) {
