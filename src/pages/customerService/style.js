@@ -135,6 +135,10 @@ S.T_wrapper = styled.div`
             border-right: none;
             height: 54px;
             line-height: 54px;
+
+            & a{
+                color: #333333;
+            }
         }
     }
 `

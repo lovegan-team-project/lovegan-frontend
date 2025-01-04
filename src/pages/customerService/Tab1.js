@@ -16,7 +16,10 @@ const Tab1 = () => {
                 }
                 const datas = await response.json();
                 console.log(datas)
-                setNotice(datas);
+
+                // 시간 흐름 역순으로
+                const sortedData = datas.sort((a, b) => new Date(b.date) - new Date(a.date));
+                setNotice(sortedData);
             }
             catch(error){
                 console.error("API 호출 오류:",error);
