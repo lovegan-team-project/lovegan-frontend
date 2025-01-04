@@ -228,7 +228,7 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path: "/customer/notice",
+                path: "/customer/notice/:id",
                 element: <Notice />
             },
             {
