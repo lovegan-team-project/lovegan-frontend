@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import S from './style';
 import { Link } from 'react-router-dom';
 import Arrow from './Arrow';
 
 const Tab1 = () => {
+    const [notice,setNotice]= useState([]);
+
+    useEffect(()=>{
+        const getNotice = async() => {
+            try{
+                const response = await fetch("http://localhost:8000/customer/notice");
+                console.log(response)
+                if(!response.ok){
+                    throw new Error("네트워크 응답이 실패했습니다.");
+                }
+                const datas = await response.json();
+                console.log(datas)
+                setNotice(datas);
+            }
+            catch(error){
+                console.error("API 호출 오류:",error);
+            }
+        }
+        getNotice();
+    },[])
+    
+
     return (
             <S.Wrap>
                 <S.Div>
@@ -23,96 +45,15 @@ const Tab1 = () => {
                         </thead>
 
                         <tbody>
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/notice">[안내] 고객님들께 안내드립니다.</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
+                            {notice.map((item)=>(
+                                <tr key={item.no}>
+                                    <td>{item.no}</td>
+                                    <td><Link to={`/customer/notice/${item.no}`}>{item.title}</Link></td>
+                                    <td>{item.writer}</td>
+                                    <td>{item.date}</td>
+                                </tr>
+                            ))}
+                            
                         </tbody>
                     </table>
 
