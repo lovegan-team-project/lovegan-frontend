@@ -5,6 +5,9 @@ import Arrow from './Arrow';
 
 const Tab1 = () => {
     const [notice,setNotice]= useState([]); // 데이터를 배열에 저장
+    const [page,setPage] = useState(1); // 페이지
+    const limit = 13; // 한페이지에 보여질 목록
+    const offset = (page-1)*limit; //시작점과 끝점을 구하는 offset
 
     useEffect(()=>{
         // 데이터 받아오는 로직
@@ -28,6 +31,13 @@ const Tab1 = () => {
         }
         getNotice();
     },[])
+
+    const postData = (notice) => {
+        if(notice){
+            let result = notice.slice(offset,offset+limit);
+            return result;
+        }
+    }
     
 
     return (
@@ -49,7 +59,7 @@ const Tab1 = () => {
                         </thead>
 
                         <tbody>
-                            {notice.map((item)=>(
+                            {postData(notice).map((item)=>(
                                 <tr key={item.no}>
                                     <td>{item.no}</td>
                                     <td><Link to={`/customerService/notice/${item.no}`}>{item.title}</Link></td>
@@ -62,7 +72,7 @@ const Tab1 = () => {
                     </table>
 
                     <S.A_Div>
-                        <Arrow></Arrow>
+                        <Arrow limit={limit} page={page} totalPosts={notice.length} setPage={setPage}></Arrow>
                     </S.A_Div>
                 </S.T_wrapper>
             </S.Wrap>

@@ -197,12 +197,9 @@ S.nextPage = styled.div`
         height: 22px;
         text-align: center;
         border-radius: 50%;
-
-        & p{
-            color: #fff;
+        color: #fff;
             width: 22px;
             height: 22px;
-        }
     }
 
     & button.unClick {
