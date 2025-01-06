@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import S from './style';
-import { NavLink, Outlet, useSearchParams } from 'react-router-dom';
-import Register from './Register';
-import Notice from './Notice';
-import RegisterComplete from './RegisterComplete';
-import Arrow from './Arrow';
+import { NavLink, Outlet, useLocation, useParams} from 'react-router-dom';
 
 const CustomerService = () => {
+    const location = useLocation();
+
+    const pathsWithHeader= ["/customerService","/customerService/notice","/customerService/faq","/customerService/quest"];
+
+    const params = useParams();
+
+    const showHeader = () => {
+        const { id } = params; // id가 URL에 있으면 id를 추출
+      
+        // 기타 경로
+        return pathsWithHeader.includes(location.pathname);
+      };
+    
 
     // 화면 랜더링시 맨위로 이동
     window.scrollTo(0,0);
@@ -15,6 +24,7 @@ const CustomerService = () => {
         <>
             <S.Container>
                 <S.Wrapper>
+                {showHeader() &&
                     <div className='tabMenu'>
                         <h1>고객센터</h1>
                         <ul>
@@ -29,6 +39,7 @@ const CustomerService = () => {
                         </S.TabButtonContainer>
                         </ul>
                     </div>
+                    }
 
                     <div className='Content'>
                         <Outlet></Outlet>
