@@ -17,7 +17,7 @@ const Layout = () => {
         "/product/drinks", "/product/eggs", "/product/fastfood", "/product/healthfood", "/product/meat", "/product/spice", "/product/snacks", "/product/vegeSide",
         "/mypage/activity/posts", "/mypage/activity/follow", "/mypage/activity/likes", "/mypage/activity/scrap", "/mypage/activity/couponbook",
         "/mypage/shopping/orders", "/mypage/shopping/reviews", "/mypage/shopping/inquiries", "/mypage/settings/shippings", "/mypage/settings/accountInfo", "/mypage/settings/changePassword",
-        "/customerService/notice","/customerService/faq","/customerService/quest","/customer/notice/:id","/customer/quest","/customer/quest/register"
+        "/customerService/notice","/customerService/faq","/customerService/quest","/customerService/quest/register"
     ];
 
     const [searchTerm, setSearchTerm] = useState();
@@ -29,8 +29,8 @@ const Layout = () => {
     const showHeader = () => {
         const { id } = params; // id가 URL에 있으면 id를 추출
       
-        // /customer/notice/:id 형식일 때
-        if (location.pathname.includes("/customer/notice/") && id) {
+        // /customerService/notice/:id 형식일 때
+        if (location.pathname.includes("/customerService/notice/","/customerService/quest/") && id) {
           return true;
         }
       

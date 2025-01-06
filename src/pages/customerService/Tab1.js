@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom';
 import Arrow from './Arrow';
 
 const Tab1 = () => {
-    const [notice,setNotice]= useState([]);
+    const [notice,setNotice]= useState([]); // 데이터를 배열에 저장
 
     useEffect(()=>{
+        // 데이터 받아오는 로직
         const getNotice = async() => {
             try{
                 const response = await fetch("http://localhost:8000/customer/notice");
-                console.log(response)
+                console.log(response);
                 if(!response.ok){
                     throw new Error("네트워크 응답이 실패했습니다.");
                 }
@@ -51,7 +52,7 @@ const Tab1 = () => {
                             {notice.map((item)=>(
                                 <tr key={item.no}>
                                     <td>{item.no}</td>
-                                    <td><Link to={`/customer/notice/${item.no}`}>{item.title}</Link></td>
+                                    <td><Link to={`/customerService/notice/${item.no}`}>{item.title}</Link></td>
                                     <td>{item.writer}</td>
                                     <td>{item.date}</td>
                                 </tr>

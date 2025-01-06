@@ -12,7 +12,7 @@ S.Container = styled.div`
 S.Wrapper = styled.div`
     width: 857px;
     display: flex;
-    gap: 80px;
+    gap: 123px;
 
     & .tabMenu{
 
@@ -178,6 +178,7 @@ S.nextPage = styled.div`
         font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
         width: 22px;
         height: 22px;
+        line-height: 1.5;
 
         &:hover {
             color: #03A63C;
