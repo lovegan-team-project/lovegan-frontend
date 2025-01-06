@@ -12,7 +12,7 @@ S.Container = styled.div`
 S.Wrapper = styled.div`
     width: 857px;
     display: flex;
-    gap: 80px;
+    gap: 123px;
 
     & .tabMenu{
 
@@ -135,6 +135,10 @@ S.T_wrapper = styled.div`
             border-right: none;
             height: 54px;
             line-height: 54px;
+
+            & a{
+                color: #333333;
+            }
         }
     }
 `
@@ -174,6 +178,7 @@ S.nextPage = styled.div`
         font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
         width: 22px;
         height: 22px;
+        line-height: 1.5;
 
         &:hover {
             color: #03A63C;
@@ -192,12 +197,9 @@ S.nextPage = styled.div`
         height: 22px;
         text-align: center;
         border-radius: 50%;
-
-        & p{
-            color: #fff;
+        color: #fff;
             width: 22px;
             height: 22px;
-        }
     }
 
     & button.unClick {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {ReactComponent as LogoBlack} from './images/logo-black.svg';
-import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import S from './style';
 import { useState } from "react";
 import Search from './images/search.svg'
@@ -16,12 +16,28 @@ const Layout = () => {
         "/search", "/product/new/drinks", "/product/new/eggs", "/product/new/fastfood", "/product/new/healthfood", "/product/new/meat", "/product/new/spice", "/product/new/snacks", "/product/new/vegeSide",
         "/product/drinks", "/product/eggs", "/product/fastfood", "/product/healthfood", "/product/meat", "/product/spice", "/product/snacks", "/product/vegeSide",
         "/mypage/activity/posts", "/mypage/activity/follow", "/mypage/activity/likes", "/mypage/activity/scrap", "/mypage/activity/couponbook",
-        "/mypage/shopping/orders", "/mypage/shopping/reviews", "/mypage/shopping/inquiries", "/mypage/settings/shippings", "/mypage/settings/accountInfo", "/mypage/settings/changePassword"
+        "/mypage/shopping/orders", "/mypage/shopping/reviews", "/mypage/shopping/inquiries", "/mypage/settings/shippings", "/mypage/settings/accountInfo", "/mypage/settings/changePassword",
+        "/customerService/notice","/customerService/faq","/customerService/quest","/customerService/quest/register"
     ];
 
     const [searchTerm, setSearchTerm] = useState();
     
-    const showHeader = pathsWithHeader.includes(location.pathname);
+    // const showHeader = pathsWithHeader.includes(location.pathname);
+
+    const params = useParams();
+    
+    const showHeader = () => {
+        const { id } = params; // id가 URL에 있으면 id를 추출
+      
+        // /customerService/notice/:id 형식일 때
+        if (location.pathname.includes("/customerService/notice/","/customerService/quest/") && id) {
+          return true;
+        }
+      
+        // 기타 경로
+        return pathsWithHeader.includes(location.pathname);
+      };
+
     
     const handleSearch = () => {
         if (searchTerm) {
@@ -103,7 +119,7 @@ const Layout = () => {
                     <S.Container>
                         {/* <Link to={"/customerService"}>고객센터</Link> */}
                         <S.logoWrapper><LogoBlack /></S.logoWrapper>
-                        <S.TopContent>이용약관 ㅣ 개인정보처리방침 ㅣ <Link to={"/customerService"}>고객센터</Link></S.TopContent>
+                        <S.TopContent>이용약관 ㅣ 개인정보처리방침 ㅣ <Link to={"/customerService/notice"}>고객센터</Link></S.TopContent>
                         <S.MainContent>
                             <S.TextBoxWrapper>
                                 <S.TextBox2>법인명 : LOVEgan ㅣ 대표자 : 000 ㅣ 사업자 등록번호 : 000-00-00000</S.TextBox2>

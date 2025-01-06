@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import S from './style';
 import { Link } from 'react-router-dom';
-import { divIcon } from 'leaflet';
 import Arrow from './Arrow';
 
 const Tab2 = () => {

@@ -18,7 +18,7 @@ const Tab3 = () => {
                 <S.Div>
                     <S.H2>1:1 문의</S.H2>
                     <S.P>고객님의 문의사항을 남겨주세요.</S.P>
-                    <Link to="/customer/quest/register"><S.C_Button className={clickColor === "color" ? "active" : "" } onClick={()=>{setClickColor("color")}}>글 작성</S.C_Button></Link>
+                    <Link to="/customerService/quest/register"><S.C_Button className={clickColor === "color" ? "active" : "" } onClick={()=>{setClickColor("color")}}>글 작성</S.C_Button></Link>
                     
                 </S.Div>
 
