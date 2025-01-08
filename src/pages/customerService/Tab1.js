@@ -32,8 +32,10 @@ const Tab1 = () => {
         getNotice();
     },[])
 
+    // 페이지 분류 함수
     const postData = (notice) => {
         if(notice){
+            // 페이지에 해당하는 개수 slice함
             let result = notice.slice(offset,offset+limit);
             return result;
         }
@@ -59,6 +61,7 @@ const Tab1 = () => {
                         </thead>
 
                         <tbody>
+                            {/* 가져온 데이터를 페이지 분류함수로 분류해주고, map으로 반복문 */}
                             {postData(notice).map((item)=>(
                                 <tr key={item.no}>
                                     <td>{item.no}</td>
@@ -72,6 +75,7 @@ const Tab1 = () => {
                     </table>
 
                     <S.A_Div>
+                        {/* 페이지네이션에 매개변수 넘겨줌,limit:한페이지당 글수, page:현재 페이지, totalPosts: 전체 포스터개수, setPage:page상태변화 */}
                         <Arrow limit={limit} page={page} totalPosts={notice.length} setPage={setPage}></Arrow>
                     </S.A_Div>
                 </S.T_wrapper>

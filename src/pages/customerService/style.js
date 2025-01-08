@@ -99,12 +99,8 @@ S.T_wrapper = styled.div`
     margin-top:38px;
     border-left:none;
     border-right:none;
+    
 
-    & .answer{
-        margin-top: 10px;
-        color: #555;
-        font-size: 0.9em;
-    }
 
     & table{
         width: 100%;
@@ -142,6 +138,27 @@ S.T_wrapper = styled.div`
         }
     }
 `
+
+S.faqDiv = styled.div`
+    .answer {
+        padding-top: 10px;
+        color: #555;
+        font-size: 0.9em;
+
+        /* 초기 상태: 숨김 처리 */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    &.active .answer {
+        /* 활성화 상태: 콘텐츠 표시 */
+        max-height: 200px; /* 충분히 큰 값으로 설정 */
+        opacity: 1;
+    }
+`
+
 // /* Arrow style */
 S.A_Div = styled.div`
     width: 300px;
@@ -149,7 +166,7 @@ S.A_Div = styled.div`
     /* border: 1px solid #333; */
     margin: 0 auto;
     text-align: center;
-    padding-top: 67px;
+    padding-top: 20px;
 
 `
 
