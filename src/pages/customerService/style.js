@@ -251,6 +251,10 @@ S.NoticeWrapper = styled.div`
     padding-bottom: 240px;
     text-align: center;
 
+    &.noticeForm{
+        padding-bottom: 1500px;
+    }
+
     & h1{
         font-size: 24px;
         font-weight: bold;
