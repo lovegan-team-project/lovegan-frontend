@@ -137,7 +137,7 @@ S.SignupButton = styled.button`
 `
 
 S.Main = styled.main`
-
+    background-color: ${({ isMypage }) => (isMypage ? '#F7F8FA' : 'transparent')};
 `;
 
 S.Main1 = styled.main`

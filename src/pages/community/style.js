@@ -28,7 +28,7 @@ export const FollowButton = styled.button`
 `
 // FollowDt 팔로우 버튼 클릭, 호버 색 변경
 export const FollowButton_1 = styled.button`
-    background-color: ${(props) => props.color || '#fafafa'};
+    background-color: ${(props) => props.color || '#E6E6E6'};
     color : ${(props) => props.text || '#333'};
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.1s ease;
@@ -441,7 +441,8 @@ S.FeedFilter = styled.p`
 
 S.PostWrapper = styled.div`
     width: 720px;
-    margin: 0 600px 122px 600px;
+    margin: 0 auto;
+    margin-bottom: 137px;
     color: ${({theme}) => theme.PALLETTE.brand["primary_black"]};
     position: relative;
 
@@ -827,12 +828,7 @@ S.CommentListStyle = styled.ul`
 
         .reply-form {
             width: 620px;
-            .box {
-                
-            }
-            .int{
-                
-            }
+
             .userpf{
                 margin-left: 50px;
             }

@@ -162,6 +162,7 @@ FS.FollowData = styled.div`
         }
 
         & button.follow-back-btn {
+            cursor: pointer;
             border-radius: 6px;
             padding: 8px 16px;
             background-color: ${({ theme }) => theme.PALLETTE.brand["primary"]};
@@ -176,6 +177,7 @@ FS.FollowData = styled.div`
         }
 
         & button.following-btn {
+            cursor: pointer;
             width: 98px;
             border-radius: 6px;
             padding: 8px 16px;
@@ -189,6 +191,10 @@ FS.FollowData = styled.div`
                 padding-top: 2px;
             }
 
+        }
+
+        & button:hover {
+            opacity: 0.8;
         }
     }
 

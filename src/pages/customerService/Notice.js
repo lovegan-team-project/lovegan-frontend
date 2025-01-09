@@ -1,8 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import S from './style';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const Notice = () => {
+    const [notice,setNotice] = useState({});
+    const {id} = useParams();
+
+    useEffect(()=>{
+        const getNotice = async() => {
+            try {
+                const response = await fetch('http://localhost:8000/customer/notice');
+                if (!response.ok) {
+                    throw new Error('네트워크 응답이 실패했습니다.');
+                }
+                const data = await response.json();
+                // 데이터를 가져온 후, 해당 id에 맞는 공지사항을 찾아서 상태에 저장
+                const selectedNotice = data.find((item) => item.no === parseInt(id));
+                setNotice(selectedNotice);
+            } catch (error) {
+                console.error('API 호출 오류:', error);
+            }
+        };
+        getNotice();
+    },[id])
+
     return (
         <>
             <S.NoticeWrapper>
@@ -11,29 +32,34 @@ const Notice = () => {
 
                 <S.NTable>
                     <S.NTbody>
+                        {notice && (
+                        <>
                         <S.NTr>
                             <S.NTd>번호</S.NTd>
-                            <S.NTd>13</S.NTd>
+                            <S.NTd>{notice.no}</S.NTd>
                         </S.NTr>
 
                         <S.NTr>
                             <S.NTd>제목</S.NTd>
-                            <S.NTd>[안내] 고객님들께 안내드립니다.</S.NTd>
+                            <S.NTd>{notice.title}</S.NTd>
                         </S.NTr>
 
                         <S.NTr>
                             <S.NTd>작성자</S.NTd>
-                            <S.NTd>Lovegan</S.NTd>
+                            <S.NTd>{notice.writer}</S.NTd>
                         </S.NTr>
 
                         <S.NTr>
                             <S.NTd>작성일</S.NTd>
-                            <S.NTd>2024.08.01</S.NTd>
+                            <S.NTd>{notice.date}</S.NTd>
                         </S.NTr>
 
                         <S.NTr>
-                            <S.NTd colSpan={"2"}>내용내용내용</S.NTd>
+                            <S.NTd colSpan={"2"}>{notice.contents}</S.NTd>
                         </S.NTr>
+                        </>)
+                        }
+                        
                     </S.NTbody>
                 </S.NTable>
 
