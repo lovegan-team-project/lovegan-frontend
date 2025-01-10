@@ -5,6 +5,42 @@ import BasicButton from '../../components/button/BasicButton';
 import Arrow from './Arrow';
 
 const Tab3 = () => {
+    const [quest,setQuest] = useState([]);
+    const [page,setPage] = useState(1);
+    const limit = 13;
+    const offset = (page-1)*limit;
+
+    useEffect(()=> {
+        const getQuest = async()=> {
+            try{
+                const response = await fetch("http://localhost:8000/customer/quest");
+                console.log(response)
+                if(!response){
+                    throw new Error("네트워크 응답이 실패하였습니다.")
+                }
+
+                const datas = await response.json();
+                console.log(datas)
+                
+                const sortedData = datas.sort((a,b)=> b.no - a.no);
+                setQuest(sortedData);
+            }
+            catch(error){
+                console.error("Api호출 오류",error);
+            }
+        }
+
+        getQuest()
+    },[])
+
+    const postData = (quest) => {
+        if(quest){
+            // 페이지에 해당하는 개수 slice함
+            let result = quest.slice(offset,offset+limit);
+            return result;
+        }
+    }
+
 
     // onClick시 버튼 색 변경
     const [clickColor,setClickColor] = useState("color");
@@ -34,101 +70,20 @@ const Tab3 = () => {
                         </thead>
 
                         <tbody>
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/quest">배송문의</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/quest">배송문의</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/quest">배송문의</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/quest">배송문의</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/quest">배송문의</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/quest">배송문의</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/quest">배송문의</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/quest">배송문의</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/quest">배송문의</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/quest">배송문의</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/quest">배송문의</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/quest">배송문의</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
-
-                            <tr >
-                                <td>1</td>
-                                <td><Link to="/customer/quest">배송문의</Link></td>
-                                <td>LOVEgan</td>
-                                <td>2024.09.01</td>
-                            </tr>
+                            {postData(quest).map((item)=>(
+                                <tr key={item.no}>
+                                    <td>{item.no}</td>
+                                    <td><Link to={`/customerService/quest/${item.no}`}>{item.title}</Link></td>
+                                    <td>{item.writer}</td>
+                                    <td>{item.date}</td>
+                                </tr>
+                            ))}
+                            
                         </tbody>
                     </table>
 
                     <S.A_Div>
-                        <Arrow></Arrow>
+                        <Arrow limit={limit} page={page} totalPosts={quest.length} setPage={setPage}></Arrow>
                     </S.A_Div>
                 </S.T_wrapper>
 

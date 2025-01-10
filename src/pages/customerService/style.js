@@ -251,6 +251,10 @@ S.NoticeWrapper = styled.div`
     padding-bottom: 240px;
     text-align: center;
 
+    &.noticeForm{
+        padding-bottom: 1500px;
+    }
+
     & h1{
         font-size: 24px;
         font-weight: bold;
@@ -297,6 +301,7 @@ S.NTr = styled.tr`
         background-color: #E6F6E8;
         font-weight: bold;
     }
+
 `
 
 S.NTd = styled.td`
@@ -304,6 +309,15 @@ S.NTd = styled.td`
     border-right: none;
     border-left: none;
     padding-left: 28px;
+
+    /* &.update_contents{
+        width: 100%;
+        height: 550px;
+        margin-top: 20px;
+        margin-left: -10px;
+        padding: 10px;
+        border: none;
+    } */
     
 `
 S.BDiv = styled.div`
