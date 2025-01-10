@@ -24,7 +24,8 @@ const Register = () => {
                 <form className='noticeForm' onSubmit={handleSubmit(async(data)=>{
                         const latestNo = data.length > 0 ? Math.max(...data.map(item => item.no)) : 0;
                         const newNo = latestNo + 1;
-                        await fetch("http://localhost:8000/customer/form",{
+                        if(window.confirm("등록하시겠습니까?")){
+                            await fetch("http://localhost:8000/customer/form",{
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
@@ -37,15 +38,15 @@ const Register = () => {
                         })
                         .then((res)=>res.json())
                         .then((res)=>{
-                            if(window.confirm("등록하시겠습니까?")){
-                                if(res.registerSuccess){
+                            if(res.registerSuccess){
                                     navigate("/customerService/quest")
                                 }
                                 else{
                                     alert("등록에 실패하였습니다.")
                                 }
-                            }
                         })
+                        }
+                        
 
                     })}>
                     <S.NButton style={{marginLeft:"1292px"}}>등록하기</S.NButton>
@@ -78,7 +79,7 @@ const Register = () => {
                             </S.NTr>
 
                             <S.NTr>
-                                <S.NTd colSpan={"2"}><textarea name='contents' style={{width: "100%",height:"550px",marginTop:"20px",marginLeft:"-10px",padding: "10px",border:"none"}}placeholder="내용을 작성해주세요." 
+                                <S.NTd colSpan={"2"}><textarea name='contents' style={{width: "100%",height:"550px",marginTop:"20px",marginLeft:"-10px",padding: "10px",border:"none"}}placeholder="내용을 작성해주세요."
                                 {...register("contents",{
                                     required: true,
                                     pattern:{
