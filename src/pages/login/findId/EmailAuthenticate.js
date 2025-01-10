@@ -8,7 +8,7 @@ const EmailAuthenticate = () => {
         navigate('/resetPW')
     }
     return (
-        <div>
+        <S.Wrapper>
             <S.FindId>비밀번호 재설정</S.FindId>
             <S.PhoneAuthenticate>이메일 인증</S.PhoneAuthenticate>
             <S.Divider></S.Divider>
@@ -26,7 +26,7 @@ const EmailAuthenticate = () => {
             </S.ContentWrapper>
             
             <S.FindIdBtn onClick={clickToResetPW}>비밀번호 재설정</S.FindIdBtn>
-        </div>
+        </S.Wrapper>
     );
 };
 
