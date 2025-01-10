@@ -16,7 +16,7 @@ const Layout = () => {
         "/search", "/product/new/drinks", "/product/new/eggs", "/product/new/fastfood", "/product/new/healthfood", "/product/new/meat", "/product/new/spice", "/product/new/snacks", "/product/new/vegeSide",
         "/product/drinks", "/product/eggs", "/product/fastfood", "/product/healthfood", "/product/meat", "/product/spice", "/product/snacks", "/product/vegeSide",
         "/mypage/activity/posts", "/mypage/activity/follow", "/mypage/activity/likes", "/mypage/activity/scrap", "/mypage/activity/couponbook",
-        "/mypage/shopping/orders", "/mypage/shopping/reviews", "/mypage/shopping/inquiries", "/mypage/settings/shippings", "/mypage/settings/accountInfo", "/mypage/settings/changePassword"
+        "/mypage/shopping/orders", "/mypage/shopping/reviews", "/mypage/shopping/inquiries", "/mypage/settings/shippings", "/mypage/settings/accountInfo", "/mypage/settings/changePassword", "/restaurant"
     ];
 
     const [searchTerm, setSearchTerm] = useState();
@@ -31,6 +31,7 @@ const Layout = () => {
     };
 
     const isMypage = location.pathname.startsWith('/mypage');
+    const isRestaurantPage = location.pathname.startsWith('/restaurant');
 
 
     return (
@@ -78,7 +79,7 @@ const Layout = () => {
                 </S.Header>}
 
                 <S.Main isMypage={isMypage}>
-                    <S.Container>
+                    <S.Container style={{ width: isRestaurantPage ? '100%' : '1420px' }}>
                         <Outlet />
                     </S.Container>
                 </S.Main>

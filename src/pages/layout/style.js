@@ -140,6 +140,9 @@ S.Main = styled.main`
     background-color: ${({ isMypage }) => (isMypage ? '#F7F8FA' : 'transparent')};
 `;
 
+S.Main.shouldForwardProp = (prop) => prop !== 'isMypage';
+
+
 S.Main1 = styled.main`
     /* flex: 1;
     width: 100%; */
