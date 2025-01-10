@@ -59,6 +59,7 @@ import Tab3 from "../pages/customerService/Tab3";
 import Notice from "../pages/customerService/Notice";
 import Register from "../pages/customerService/Register";
 import RegisterComplete from "../pages/customerService/RegisterComplete";
+import Cart from "../pages/cart/Cart";
 
 
 
@@ -316,10 +317,14 @@ const router = createBrowserRouter([
         element : <Login />
     },
     {
+        path : "/cart",
+        element : <Cart />
+    },
+    {
         path : "*",
         element : <PageNotFound />
     },
-    
+
 
 ])
 

@@ -16,7 +16,7 @@ const Layout = () => {
         "/search", "/product/new/drinks", "/product/new/eggs", "/product/new/fastfood", "/product/new/healthfood", "/product/new/meat", "/product/new/spice", "/product/new/snacks", "/product/new/vegeSide",
         "/product/drinks", "/product/eggs", "/product/fastfood", "/product/healthfood", "/product/meat", "/product/spice", "/product/snacks", "/product/vegeSide",
         "/mypage/activity/posts", "/mypage/activity/follow", "/mypage/activity/likes", "/mypage/activity/scrap", "/mypage/activity/couponbook",
-        "/mypage/shopping/orders", "/mypage/shopping/reviews", "/mypage/shopping/inquiries", "/mypage/settings/shippings", "/mypage/settings/accountInfo", "/mypage/settings/changePassword", "/restaurant"
+        "/mypage/shopping/orders", "/mypage/shopping/reviews", "/mypage/shopping/inquiries", "/mypage/settings/shippings", "/mypage/settings/accountInfo", "/mypage/settings/changePassword"
     ];
 
     const [searchTerm, setSearchTerm] = useState();
@@ -79,7 +79,7 @@ const Layout = () => {
                 </S.Header>}
 
                 <S.Main isMypage={isMypage}>
-                    <S.Container style={{ width: isRestaurantPage ? '100%' : '1420px' }}>
+                    <S.Container style={{ width: isRestaurantPage ? '100vw' : '1420px' }}>
                         <Outlet />
                     </S.Container>
                 </S.Main>
