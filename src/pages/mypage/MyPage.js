@@ -1,10 +1,10 @@
 import React from 'react';
 import S from './style.js'
-import { Outlet, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import user_default from './images/user_default.svg';
 import scrap from './icons/menu-scrap.svg';
 import like from './icons/menu-like.svg';
-import coupon from './icons/coupon.svg';
+import cart from './icons/big_cart.svg';
 import document from './icons/document.svg';
 import all_aplication from './icons/all_aplication.svg';
 import buy from './icons/buy.svg';
@@ -48,19 +48,25 @@ const MyPage = () => {
                     <S.MenuSection>
                         <div className='wrapper'>
                             <S.IconWrapper>
-                                <img src={scrap} alt=''/>
-                                <span className='top-title'>스크랩</span>
-                                <span className='top-content'>0</span>
+                                <NavLink to="/mypage/activity/scrap">
+                                    <img src={scrap} alt=''/>
+                                    <span className='top-title'>스크랩</span>
+                                    <span className='top-content'>0</span>
+                                </NavLink>
                             </S.IconWrapper>
                             <S.IconWrapper>
-                                <img src={like} alt=''/>
-                                <span className='top-title'>좋아요</span>
-                                <span className='top-content'>0</span>
+                                <NavLink to="/mypage/activity/likes">
+                                    <img src={like} alt=''/>
+                                    <span className='top-title'>좋아요</span>
+                                    <span className='top-content'>0</span>
+                                </NavLink>
                             </S.IconWrapper>
                             <S.IconWrapper>
-                                <img src={coupon} alt=''/>
-                                <span className='top-title'>쿠폰</span>
-                                <span className='top-content'>0</span>
+                                <NavLink to="/cart">
+                                    <img src={cart} alt=''/>
+                                    <span className='top-title'>장바구니</span>
+                                    <span className='top-content'>0</span>
+                                </NavLink>
                             </S.IconWrapper>
                         </div>
                     </S.MenuSection>
@@ -71,7 +77,7 @@ const MyPage = () => {
                             <S.MenuListNavLink to="/mypage/activity/follow"><img src={three_bar} alt="" /><span className='menu-content'>팔로워/팔로잉</span></S.MenuListNavLink>
                             <S.MenuListNavLink to="/mypage/activity/likes"><img src={like} alt="" /><span className='menu-content'>좋아요</span></S.MenuListNavLink>
                             <S.MenuListNavLink to="/mypage/activity/scrap"><img src={scrap} alt="" /><span className='menu-content'>스크랩</span></S.MenuListNavLink>
-                            <S.MenuListNavLink to="/mypage/activity/couponbook"><img src={coupon} alt="" /><span className='menu-content'>쿠폰북</span></S.MenuListNavLink>
+                            {/* <S.MenuListNavLink to="/mypage/activity/couponbook"><img src={coupon} alt="" /><span className='menu-content'>쿠폰북</span></S.MenuListNavLink> */}
                         </S.MenuListWrapper>
                         <S.MenuListWrapper>
                             <p className='menu-title'>Shopping</p>
