@@ -4,6 +4,7 @@ import { Link, NavLink, Outlet, useLocation, useNavigate, useParams } from 'reac
 import S from './style';
 import { useState } from "react";
 import Search from './images/search.svg'
+import { useDispatch, useSelector } from 'react-redux';
 
 const Layout = () => {
 
@@ -48,6 +49,8 @@ const Layout = () => {
 
     const isMypage = location.pathname.startsWith('/mypage');
 
+    const dispatch = useDispatch();
+    const isLogin = useSelector((state) => state.user.isLogin);
 
     return (
         <>
@@ -82,7 +85,7 @@ const Layout = () => {
                                 </S.InputButton>
                                 </form>
                             </S.InputWrapper>
-                            
+                           
                             <S.ButtonWrapper>
                                 <S.Login><Link to={"/login"}>로그인</Link></S.Login>
                                 <S.SignupButton>

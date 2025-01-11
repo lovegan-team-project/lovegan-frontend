@@ -5,8 +5,14 @@ import GlobalStyle from './global/global';
 import { ThemeProvider } from 'styled-components';
 import theme from './global/theme';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, setUserStatus } from './modules/user';
 
 function App() {
+
+  const dispatch = useDispatch();
+  const isLogin = useSelector((state)=>state.user.isLogin);
+  const currentUser = useSelector((state)=>state.user.currentUser);
 
   useEffect(()=>{
     if(localStorage.getItem("token")){
@@ -26,8 +32,12 @@ function App() {
 
       isAuthenticate()
       .then((res) => {
-        console.log(res)
+          let {message, user} = res;
+          console.log(message)
+          dispatch(setUser(user));
+          dispatch(setUserStatus(true));
       })
+      .catch(console.error)
     }
   }, [])
   

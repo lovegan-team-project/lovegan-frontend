@@ -141,7 +141,7 @@ const SignUp = () => {
                         >
                             <option value="" disabled hidden>선택해주세요</option>
                             <option value="@naver.com">naver.com</option>
-                            <option value="@google.com">gmail.com</option>
+                            <option value="@gmail.com">gmail.com</option>
                             <option value="@kakao.com">kakao.com</option>
                         </S.EmailDropDown>
                         
