@@ -81,7 +81,7 @@ const CommentList = ({ list,  addReply }) => {
                                             if (replyContent) {
                                                 addReply(item.id, {
                                                     id: Date.now(),
-                                                    userid: '유저 닉네임1',
+                                                    userid: '닉네임1',
                                                     content: replyContent,
                                                     date: new Date().toISOString(),
                                                 });
