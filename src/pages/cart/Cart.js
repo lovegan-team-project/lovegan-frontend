@@ -1,8 +1,11 @@
 import React from 'react';
-import S from './style';
 
 const Cart = () => {
-
+    return (
+        <div>
+            안녕
+        </div>
+    );
 };
 
 export default Cart;

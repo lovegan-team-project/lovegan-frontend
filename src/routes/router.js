@@ -185,6 +185,10 @@ const router = createBrowserRouter([
                 element : <Diary />
             },
             {
+                path : "/cart",
+                element : <Cart />
+            },
+            {
                 path : "/community",
                 element : <Community />,
                 children : [
@@ -315,10 +319,6 @@ const router = createBrowserRouter([
     {
         path : "/login", 
         element : <Login />
-    },
-    {
-        path : "/cart",
-        element : <Cart />
     },
     {
         path : "*",
