@@ -27,8 +27,21 @@ const CommunityAll = () => {
         navigate("/community/CommunityAllDt")
     }   
 
-    const [posts, setPosts] = useState([]);
+    
+    // const fetchPost = async () => {
+        //     const response = await fetch("http://localhost:8000/community/getPost");
+        //     const datas = await response.json();
+        //     setPosts(datas);
+        // }
+        
+        // useEffect(() => {
+            //     fetchPost()
+            // }, [])
+            
+            // console.log(posts)
 
+    const [posts, setPosts] = useState([]);
+            
     useEffect(() => {
         const fetchPost = async () => {
             try {
@@ -46,6 +59,8 @@ const CommunityAll = () => {
         }
         fetchPost();
     },[])
+
+    console.log(posts); 
     
     const likeData = [
         {

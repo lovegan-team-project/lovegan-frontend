@@ -9,7 +9,7 @@ const Comment = ({ onAddComment }) => {
     useEffect(() => {
         const fetchComment = async () => {
             try {
-                const response = await fetch("http://localhost:8000/comment/getPost");
+                const response = await fetch("http://localhost:8000/comment/");
                 if (!response.ok) {
                     throw new Error('Failed to fetch comments');
                 }
