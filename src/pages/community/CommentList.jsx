@@ -123,7 +123,7 @@ const CommentList = ({ list,  addReply }) => {
                                             </div>
                                         </div>
                                         <S.dtInfo_1>
-                                            <div className="comment-date">{timeAgo(new Date(item.date))}</div>
+                                            <div className="comment-date">{timeAgo(new Date(reply.date))}</div>
                                             <span>·</span>
                                             <LikeBtMin />
                                             <p>좋아요</p>
