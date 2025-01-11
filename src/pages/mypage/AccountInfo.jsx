@@ -3,6 +3,7 @@ import S from './style.js';
 import AS from './accountStyle.js';
 import user from './images/user_default.svg';
 import PhoneVerification from './PhoneVerification.jsx';
+import { useSelector } from 'react-redux';
 
 const EditableInput = ({ 
     title, 
@@ -16,6 +17,14 @@ const EditableInput = ({
     const [inputValue, setInputValue] = useState(value);
     const [isEditing, setIsEditing] = useState(editable);
 
+    // value가 바뀔 때 inputValue 동기화
+    useEffect(() => {
+        setInputValue(value);
+        // console.log("useEffect 동기화됨: " + value);
+    }, [value]); 
+
+    // console.log("전달됨: " + inputValue);
+    
     const handleSave = () => {
         setIsEditing(false);
         if (onSave) onSave(inputValue);
@@ -45,7 +54,11 @@ const EditableInput = ({
     );
 };
 
+
 const AccountInfo = () => {
+    const currentUser = useSelector((state) => state.user.currentUser);
+    // console.log(currentUser);
+
     const handleNicknameSave = (newNickname) => {
         console.log('Saved Nickname:', newNickname);
     };
@@ -74,21 +87,21 @@ const AccountInfo = () => {
                     <AS.Notice>* 저장하지 않으면 수정사항이 반영되지 않습니다.</AS.Notice>
                     <EditableInput
                         title="닉네임"
-                        value="조용한라이프"
+                        value={currentUser.nickname}
                         onSave={handleNicknameSave}
                     />
                     <EditableInput
                         title="한 줄 소개"
-                        value="여행과 책을 좋아하는 개발자"
+                        value={currentUser.intro}
                         onSave={handleIntroSave}
                     />
                     <EditableInput
                         title="이메일"
-                        value="cyaein@gmail.com"
+                        value={currentUser.email}
                         hideButtons={true}
                         notice="* 이메일을 변경하시려면 고객센터로 문의해 주세요."
                     />
-                    <PhoneVerification initialPhone="01093400031" />
+                    <PhoneVerification initialPhone={currentUser.phone} />
                 </AS.InfoContainer>
             </AS.ProfileContainer>
         </>

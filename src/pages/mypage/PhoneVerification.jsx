@@ -3,12 +3,18 @@ import S from './style.js';
 import AS from './accountStyle.js';
 
 const PhoneVerification = ({ initialPhone }) => {
+    // console.log(initialPhone);
     const [phone, setPhone] = useState(initialPhone);
+    // console.log(phone);
     const [isEditing, setIsEditing] = useState(false);
     const [isVerifying, setIsVerifying] = useState(false);
     const [verificationCode, setVerificationCode] = useState('');
     const [timer, setTimer] = useState(180); // 3분 타이머
     const [expired, setExpired] = useState(false);
+
+    useEffect(() => {
+        // console.log("phone 상태 변경됨:", phone); // 상태가 업데이트된 후에 출력
+    }, [phone]); // phone 상태가 변경될 때마다 호출
 
     useEffect(() => {
         let interval;
