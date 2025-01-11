@@ -5,6 +5,10 @@ import S from './style';
 import { useState } from "react";
 import Search from './images/search.svg'
 import { useDispatch, useSelector } from 'react-redux';
+import cart from './images/header-cart.svg';
+import like from './images/header-like.svg';
+import userProfile from './images/header-user.svg';
+import { setUser, setUserStatus } from '../../modules/user';
 
 const Layout = () => {
 
@@ -22,6 +26,7 @@ const Layout = () => {
     ];
 
     const [searchTerm, setSearchTerm] = useState();
+    const [profileClick, setProfileClick] = useState(false);
     
     // const showHeader = pathsWithHeader.includes(location.pathname);
 
@@ -53,6 +58,29 @@ const Layout = () => {
 
     const dispatch = useDispatch();
     const isLogin = useSelector((state) => state.user.isLogin);
+
+    const clickToLike = () => {
+        navigate("/mypage/activity/likes");
+    }
+    const clickToCart = () => {
+        navigate("/cart");
+    }
+    const dropdownProfile = () => {
+        setProfileClick(!profileClick);
+    }
+    const clickToMypage = () => {
+        navigate("/mypage")
+        setProfileClick(!profileClick);
+    } 
+    const logout = () => {
+        dispatch(setUser(null))
+        dispatch(setUserStatus(false))
+        // localStorage.removeItem("accessToken")
+        localStorage.removeItem("token")
+        console.log(isLogin)
+        setProfileClick(!profileClick);
+        navigate("/")
+    }
 
     return (
         <>
@@ -88,17 +116,33 @@ const Layout = () => {
                                 </form>
                             </S.InputWrapper>
                            
+                           { isLogin ? 
+                           <S.ButtonWrapper>
+                                <img className='like' src={like} onClick={clickToLike}></img>
+                                <img className='cart' src={cart} onClick={clickToCart}></img>
+                                <img className='user' src={userProfile} onClick={dropdownProfile}></img>
+                           </S.ButtonWrapper>
+                           : 
                             <S.ButtonWrapper>
                                 <S.Login><Link to={"/login"}>로그인</Link></S.Login>
                                 <S.SignupButton>
                                     <NavLink to={"/signUp"}>회원가입</NavLink>
-                                </S.SignupButton>
+                                </S.SignupButton> 
                             </S.ButtonWrapper>
+                            }
                         </S.ButtonWrapper>
+                        { profileClick && (
+                            <S.ProfileDropdown>
+                                <S.DropdownBox onClick={clickToMypage}>마이페이지</S.DropdownBox>
+                                <S.DropdownBox onClick={logout}>로그아웃</S.DropdownBox>
+                            </S.ProfileDropdown>
+                        )}
+                        
                     </S.HeaderContainer>
+                    
                 </S.Header>
                 }
-
+                
                 <S.Main isMypage={isMypage} isCartPage={isCartPage}>
                     <S.Container style={{ width: isRestaurantPage ? '100vw' : '1420px' }}>
                         <Outlet />
