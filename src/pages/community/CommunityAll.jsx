@@ -54,7 +54,7 @@ const CommunityAll = () => {
                 const data = await response.json();
                 setPosts(data);
             } catch (error) {
-                console.error('Error fetching post: ', error);
+                console.error('Error fetching: ', error);
             }
         }
         fetchPost();
