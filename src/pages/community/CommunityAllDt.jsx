@@ -32,7 +32,7 @@ const CommunityAllDt = (props) => {
 
     // // 팔로우 버튼 색 변경 함수
     const onChangeColor = () => {
-        setColorChange(prevColor => (prevColor === '#03A63C' ? '#fafafa' : '#03A63C'))
+        setColorChange(prevColor => (prevColor === '#03A63C' ? '#E6E6E6' : '#03A63C'))
         setTextColor(prevText => (prevText === '#fff' ? '#333' : '#fff'))
     };
     
@@ -97,7 +97,10 @@ const CommunityAllDt = (props) => {
                     <S.Introduce>유저 한 줄 소개</S.Introduce>
                 </div>
                 <FollowButton
-                    onClick={onChangeColor} color={colorChange} text={textColor}>팔로우</FollowButton> 
+                    onClick={onChangeColor} color={colorChange} text={textColor}
+                >
+                    팔로우
+                </FollowButton> 
             </S.UserInfo>
             <hr/>
             <p className='write'>

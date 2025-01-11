@@ -5,7 +5,7 @@ const FindId = () => {
 
     
     return (
-        <div>
+        <S.Wrapper>
             <S.FindId>아이디 찾기</S.FindId>
             <S.PhoneAuthenticate>휴대폰 인증</S.PhoneAuthenticate>
             <S.Divider></S.Divider>
@@ -23,7 +23,7 @@ const FindId = () => {
             </S.ContentWrapper>
             
             <S.FindIdBtn>아이디 찾기</S.FindIdBtn>
-        </div>
+        </S.Wrapper>
     );
 };
 

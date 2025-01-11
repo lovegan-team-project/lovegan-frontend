@@ -387,8 +387,11 @@ S.ProductDetailContainer = styled.div`
 
     width: 1420px;
     height: 1162px;
-    margin: 0 250px;
+    //margin: 0 250px;
+    
 `
+
+
 S.DetailMainWrapper = styled.div`
     display: flex;
 
@@ -527,6 +530,7 @@ S.ProductOptionDetail = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+   
     & select{
         width: 640px;
         height: 42px;
@@ -536,6 +540,108 @@ S.ProductOptionDetail = styled.div`
         padding-left: 18px;
     }
 
+`
+S.ProductOptionDetail2 = styled.div`
+    width: 380px;
+    height: 72px;
+    align-items: center;
+    margin: 20px 0px 0px 20px;
+    
+    & div{
+        color: ${({theme})=> theme.PALLETTE.grey["8"]};
+        margin-bottom: 12px;
+    }
+   
+    & select{
+        width: 380px;
+        height: 42px;
+        border-color: ${({theme})=> theme.PALLETTE.grey["8"] };
+        border-radius: 5px;
+        font-size: 14px;
+        padding-left: 18px;
+    }
+
+`
+S.MiniOption = styled.div`
+    width: 380px;
+    height: 120px;
+    margin-left: 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 20px 0px 0px 20px;
+    background-color: ${({theme})=> theme.PALLETTE.grey["0"]};
+    & div{
+        display: flex;
+        align-items: center;
+        
+    }
+`
+S.MiniProductName = styled.p`
+width: 300px;
+    font-size: 14px;
+    color: #333333;
+
+`
+S.XButton = styled.button`
+    width: 15px;
+    height: 15px;
+    & img{
+        width: 15px;
+        height: 15px;
+    }
+`
+S.MiniButtonPriceWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    width: 330px;
+    height: 30px;
+    margin-top: 32px;
+    justify-content: space-between;
+`
+S.AmountWrapper = styled.div`
+    width: 100px;
+    height: 30px;
+    background-color: white;
+    border: 1px solid ${({theme})=> theme.PALLETTE.grey["2"]};
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & span{
+        font-size: 14px;
+    }
+    & button{
+        background-color: white;
+    }
+`
+S.MiniPrice = styled.div`
+    font-size: 24px;
+`
+S.ProductPicContainer = styled.div`
+    width: 785px;
+    
+
+`
+S.PayOptionBox = styled.div`
+    width : 420px;
+    height: 100%;
+    border: 1px solid ${({theme})=> theme.PALLETTE.grey["2"] };;
+    margin-left: 217px;
+
+`
+S.TotalPayWrapper = styled.div`
+    width: 420px;
+    height: 151px;
+    border-top: 1px solid ${({theme})=> theme.PALLETTE.grey["2"] };
+    position: relative;
+    top: 666px;
+    
+
+`
+S.MiniButtonWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
 `
 S.OptionTitle = styled.div`
     width: 55px;
@@ -562,7 +668,66 @@ S.OrderPriceWrapper = styled.div`
     height: 45px;
     display: flex;
     margin-top: 30px;
+    margin-bottom: 30px;
     justify-content: space-between;
+`
+S.OrderPriceWrapper2 = styled.div`
+    width: 380px;
+    height: 45px;
+    display: flex;
+    margin: 30px 20px 12px 20px;
+    justify-content: space-between;
+    align-items: center;
+`
+S.ProductDetailCartButton = styled.button`
+    width: 350px;
+    height: 64px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    color: ${({theme})=> theme.PALLETTE.brand["primary"] };
+    border: 1px solid ${({theme})=> theme.PALLETTE.brand["primary"] };
+    font-size: 20px;
+    margin-right: 20px;
+`
+S.ProductDetailBuyButton = styled.button`
+    width: 350px;
+    height: 64px;
+    border-radius: 10px;
+    background-color: ${({theme})=> theme.PALLETTE.brand["primary"] };
+    color: #FFFFFF;
+    border: 1px solid ${({theme})=> theme.PALLETTE.brand["primary"] };
+    font-size: 20px;
+`
+S.LikeDiv = styled.div`
+    width: 64px;
+    height: 64px;
+    border: 1px solid ${({theme})=> theme.PALLETTE.grey["2"] };
+    border-radius: 10px;
+    margin-right: 8px;
+    & img{
+        position: relative;
+        top : 16px;
+        left: 11px;
+    }
+`
+S.ProductDetailCartButton2 = styled.button`
+    width: 150px;
+    height: 64px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    color: ${({theme})=> theme.PALLETTE.brand["primary"] };
+    border: 1px solid ${({theme})=> theme.PALLETTE.brand["primary"] };
+    font-size: 20px;
+    margin-right: 8px;
+`
+S.ProductDetailBuyButton2 = styled.button`
+    width: 150px;
+    height: 64px;
+    border-radius: 10px;
+    background-color: ${({theme})=> theme.PALLETTE.brand["primary"] };
+    color: #FFFFFF;
+    border: 1px solid ${({theme})=> theme.PALLETTE.brand["primary"] };
+    font-size: 20px;
 `
 S.OrderTotalPrice = styled.div`
     width: 150px;
@@ -596,13 +761,78 @@ S.OriginalPrice = styled.span`
 `
 S.ProductDetailBar = styled.div`
     width: 100%;
+    margin: 0px;
     height: 60px;
-    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    background-color: #F2F2F2;
+`
+S.BarProductInfo = styled.span`
+    width: 200px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333333;
+    
+`
+S.BarReivew = styled.span`
+    width: 200px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333333;
+    & span{
+        
+        margin-left: 4px;
+        color: #8D8D8D;
+    }
+
+`
+S.BarQnA = styled.span`
+    width: 200px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333333;
+    & span{
+        margin-left: 4px;
+        color: #8D8D8D;
+        font-size: 16px;
+    }
+
+`
+S.BarDeliveryAndRefund = styled.span`
+    width: 200px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333333;
+
+`
+S.BarSimilarProduct = styled.span`
+    width: 200px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333333;
+
 `
 S.ProductOptionCheckContainer = styled.div`
     width: 100%;
     height: 2106px;
-    border: 1px solid black;
+    display: flex;
+`
+S.ProductPicWrapper = styled.div`
+    margin-top: 47px;
+    width: 640px;
+    height: 640px;
+    margin-left: 143px;
+
 `
 S.TagContainer = styled.div`
     margin: 51px 0px 36px 0px;
