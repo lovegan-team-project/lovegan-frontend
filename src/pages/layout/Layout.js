@@ -53,7 +53,7 @@ const Layout = () => {
     return (
         <>
         <S.Wrapper>
-            {showHeader && 
+                {showHeader && !isRestaurantPage &&
                 <S.Header>
                     <S.HeaderContainer>
                         {/* 메인로고 환경변수 {} */}
@@ -92,7 +92,8 @@ const Layout = () => {
                             </S.ButtonWrapper>
                         </S.ButtonWrapper>
                     </S.HeaderContainer>
-                </S.Header>}
+                </S.Header>
+                }
 
                 <S.Main isMypage={isMypage}>
                     <S.Container style={{ width: isRestaurantPage ? '100vw' : '1420px' }}>
