@@ -235,8 +235,9 @@ S.C_Button = styled.button`
     color: ${({theme})=> theme.PALLETTE.brand["primary"]};
     font-size: 14px;
     margin-left: 405px;
-    & .active{
+    &:hover{
         background-color: ${({theme})=> theme.PALLETTE.brand["primary"]} ;
+        color: #fff;
     }
     cursor: pointer;
 
@@ -302,6 +303,10 @@ S.NTr = styled.tr`
         font-weight: bold;
     }
 
+    & .confirmMessage{
+        color: #F25050;
+        font-size: 12px;
+    }
 `
 
 S.NTd = styled.td`
@@ -334,17 +339,40 @@ S.BDiv = styled.div`
         border: 1px solid ${({theme})=> theme.PALLETTE.brand["primary"]};
         background-color: #fff;
     }
+
+    & .modi:hover{
+        background-color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+        color: #fff;
+    }
+
+    & .del{
+        color: #F27830;
+        border: 1px solid #F27830;
+    }
+
+    & .del:hover{
+        background-color: #F27830;
+        color: #fff; 
+    }
 `
 
 S.NButton = styled.button`
     width: 126px;
     height: 38px;
-    background-color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+    color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+    background-color: #fff;
+    border: 1px solid ${({theme})=> theme.PALLETTE.brand["primary"]};
     border-radius: 10px;
     font-size: 14px;
-    color: #fff;
     margin-top: 54px;
     cursor: pointer;
+
+    &:hover{
+        background-color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+        color: #fff;
+    }
 `
+
+
 
 export default S;

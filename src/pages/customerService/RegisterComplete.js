@@ -17,7 +17,7 @@ const RegisterComplete = () => {
         setIsEdit(!isEdit);
     }
 
-    const [quest,setQuest] = useState({}) ;
+    const [quest,setQuest] = useState({});
     const {id} = useParams();
     const [value,onchangeValue,setValue] = useInput({ title: '', contents: '' });
 

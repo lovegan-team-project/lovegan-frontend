@@ -65,10 +65,10 @@ const Register = () => {
                                 })}
                                 />
                                 {errors?.title?.type === 'required' && (
-                                    <p>제목을 입력해주세요.</p>
+                                    <p className='confirmMessage'>제목을 입력해주세요.</p>
                                 )}
                                 {errors?.title?.type === 'pattern' && (
-                                    <p>제목을 10글자 이상 입력해주세요.</p>
+                                    <p className='confirmMessage'>제목을 10글자 이상 입력해주세요.</p>
                                 )}
                                 </S.NTd>
                             </S.NTr>
@@ -88,10 +88,10 @@ const Register = () => {
                                 })}
                                 />
                                 {errors?.contents?.type === 'required' && (
-                                    <p>내용을 입력해주세요.</p>
+                                    <p className='confirmMessage'>내용을 입력해주세요.</p>
                                 )}
                                 {errors?.contents?.type === 'pattern' && (
-                                    <p>내용을 10글자 이상 입력해주세요.</p>
+                                    <p className='confirmMessage'>내용을 10글자 이상 입력해주세요.</p>
                                 )}
                                 </S.NTd>
                             </S.NTr>
