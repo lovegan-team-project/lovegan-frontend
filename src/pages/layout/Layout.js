@@ -47,6 +47,7 @@ const Layout = () => {
     };
 
     const isMypage = location.pathname.startsWith('/mypage');
+    const isCartPage = location.pathname.startsWith('/cart');
     const isRestaurantPage = location.pathname.startsWith('/restaurant');
 
 
@@ -95,7 +96,7 @@ const Layout = () => {
                 </S.Header>
                 }
 
-                <S.Main isMypage={isMypage}>
+                <S.Main isMypage={isMypage} isCartPage={isCartPage}>
                     <S.Container style={{ width: isRestaurantPage ? '100vw' : '1420px' }}>
                         <Outlet />
                     </S.Container>

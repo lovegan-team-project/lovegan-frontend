@@ -137,10 +137,11 @@ S.SignupButton = styled.button`
 `
 
 S.Main = styled.main`
-    background-color: ${({ isMypage }) => (isMypage ? '#F7F8FA' : 'transparent')};
+    background-color: ${({ isMypage, isCartPage }) => ((isMypage || isCartPage) ? '#F7F8FA' : 'transparent')};
 `;
 
 S.Main.shouldForwardProp = (prop) => prop !== 'isMypage';
+S.Main.shouldForwardProp = (prop) => prop !== 'isCartPage';
 
 
 S.Main1 = styled.main`
