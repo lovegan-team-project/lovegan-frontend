@@ -67,7 +67,23 @@ S.ButtonWrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-`;
+   
+    & img {
+        width: 29px;
+        height: 29px;
+        margin-left: 20px;
+        cursor: pointer;
+       
+    }
+    & img:hover {
+        opacity: 0.8;
+    }
+    & img.like{
+        margin-left: 18px;
+    }
+
+`
+
 
 S.Input = styled.input`
     width: 212px;
@@ -255,6 +271,31 @@ S.Contact = styled.div`
         color: #333333;
     }
 `
-
-
+S.ProfileDropdown = styled.div`
+    position: absolute ;
+    width: 120px;
+    height: 70px;
+    background-color: white;
+    border-radius: 5px;
+    margin-left: 1300px;
+    top: 74px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    padding: 5px;
+`
+S.DropdownBox = styled.div`
+    display: flex;
+    width: 110px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: ${({theme})=>theme.FONT_SIZE["paragraph"]};
+    font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
+    &:hover{
+        background-color: ${({theme})=> theme.PALLETTE.myGrey["background"]};;
+    }
+`
 export default S;
