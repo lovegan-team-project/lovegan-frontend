@@ -61,14 +61,14 @@ const CommunityFollowDt = (props) => {
         setVisibleInput(!visibleInput)
     };
     
-
-
     // 태그버튼
     const [nextClick, setNextClick] = useState()
     useEffect(()=>{
         setNextClick()
     }, [setNextClick])
 
+    window.scrollTo(0, 0);
+    
     return (
         <S.PostWrapper>
             <S.HeadLine>

@@ -218,8 +218,15 @@ S.tagButton = styled.div`
 
 S.FeedBoxAll = styled.div`
     width: 1320px; 
-    height: 1563px;
-    display: inline-block;
+    /* height: 1563px; */
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3열로 구성 */
+    /* 각 게시물 간격 */
+    /* gap: 30px; */
+    column-gap: 30px;
+    row-gap: 0px;
+    padding: 0px; /* 컨테이너 내부 여백 */
 `
 
 S.FeedBoxFollow = styled.div`
@@ -276,9 +283,12 @@ S.PostTitle = styled.div`
 
 S.PostTitleCenter = styled.div`
     font-size: ${({theme}) => theme.FONT_SIZE["title"]};
-    /* display: flex; */
-    display: ${flexCenter};
-    margin: 12px 162px 10px 161px;
+    display: flex;
+    justify-content: center;
+    width: 420px;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
 `
 
 S.PostTitleLeft = styled.div`
@@ -297,7 +307,7 @@ S.PostUser = styled.div`
 `
 
 S.PostUser1 = styled.div`
-    width: 1320px;
+    /* width: 1320px; */
     height: 449px;
     margin-bottom: 60px;
     /* margin-top: 60px; */
