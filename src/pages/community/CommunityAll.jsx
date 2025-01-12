@@ -27,19 +27,6 @@ const CommunityAll = () => {
         navigate("/community/CommunityAllDt")
     }   
 
-    
-    // const fetchPost = async () => {
-        //     const response = await fetch("http://localhost:8000/community/getPost");
-        //     const datas = await response.json();
-        //     setPosts(datas);
-        // }
-        
-        // useEffect(() => {
-            //     fetchPost()
-            // }, [])
-            
-            // console.log(posts)
-
     const [posts, setPosts] = useState([]);
             
     useEffect(() => {
@@ -134,12 +121,12 @@ const CommunityAll = () => {
                     </S.tagButton>
                 </div>
 
-                <S.FeedBoxAll className='전체 박스'>
-            {posts.map((post)=>
-                <S.Feed1 className='게시물'>
+            <S.FeedBoxAll className='전체 박스'>
+            {posts.map((post, index)=>
+                <S.Feed1 className='게시물' key={post._id}>
                     <S.PostUser1 className='게시물1'>
                     <S.text>
-                        <S.PostUserImage1><img src={Userimages.postuser1} alt='게시물 사진 1'/></S.PostUserImage1>
+                        <S.PostUserImage1><img src={Userimages[`postuser${index + 1}`]} alt={`게시물 유저 사진 ${index + 1}`}/></S.PostUserImage1>
                         <S.TextInfo>
                         <S.PostUserName>유저 이름</S.PostUserName>
                         <div>·</div>
@@ -149,213 +136,19 @@ const CommunityAll = () => {
                         <S.UserIntro>한 줄 소개</S.UserIntro>
                         </S.TextInfo>
                     </S.text>
-                    <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post1} alt='게시물 사진 1'/><S.Views>조회수 6,841</S.Views></S.PostImage>
-                    <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
-                    <S.FeedOption>
+                    <S.PostImage onClick={toPostsOnClick} key={post._id}><img src={Userimages[`post${index + 1}`]} alt={`게시물 사진 ${index + 1}`}/><S.Views>조회수 {post.viewCount}</S.Views></S.PostImage>
+                    <S.PostTitleCenter onClick={toPostsOnClick} key={post._id}><div>{post.title}</div></S.PostTitleCenter>
+                    <S.FeedOption key={post._id}>
                         <LikeBt likeData={likeData}/>
-                        <div>136</div>
+                        <div>{post.likeCount}</div>
                         <ScrapBlack likeData={likeData} />
-                        <div>427</div>
+                        <div>{post.scrapCount}</div>
                         <img src={comment_one} alt='commentBt'></img>
                         <div>63</div>
                     </S.FeedOption>
-                </S.PostUser1>
+                    </S.PostUser1>
                 </S.Feed1>
             )}
-                {/* <S.PostUser1 className='게시물2'>
-                    <S.text>
-                        <S.PostUserImage1><img src={Userimages.postuser2} alt='게시물 사진 2'/></S.PostUserImage1>
-                        <S.TextInfo>
-                        <S.PostUserName>유저 이름</S.PostUserName>
-                        <div>·</div>
-                        <S.FollowUser>
-                            <Follow likeData={likeData}/>
-                        </S.FollowUser>
-                        <S.UserIntro>한 줄 소개</S.UserIntro>
-                        </S.TextInfo>
-                    </S.text>
-                    <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post2} alt='게시물 사진 2'/><S.Views>조회수 6,841</S.Views></S.PostImage>
-                    <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
-                    <S.FeedOption>
-                        <LikeBt likeData={likeData}/>
-                        <div>136</div>
-                        <ScrapBlack likeData={likeData}/>
-                        <div>427</div>
-                        <img src={comment_one} alt='commentBt'></img>
-                        <div>63</div>
-                    </S.FeedOption>
-                </S.PostUser1>
-                <S.PostUser1 className='게시물3'>
-                    <S.text>
-                        <S.PostUserImage1><img src={Userimages.postuser3} alt='게시물 사진 3'/></S.PostUserImage1>
-                        <S.TextInfo>
-                        <S.PostUserName>유저 이름</S.PostUserName>
-                        <div>·</div>
-                        <S.FollowUser>
-                            <Follow likeData={likeData}/>
-                        </S.FollowUser>                            
-                        <S.UserIntro>한 줄 소개</S.UserIntro>
-                        </S.TextInfo>
-                    </S.text>
-                    <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post3} alt='게시물 사진 3'/><S.Views>조회수 6,841</S.Views></S.PostImage>
-                    <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
-                    <S.FeedOption>
-                        <LikeBt likeData={likeData}/>
-                        <div>136</div>
-                        <ScrapBlack likeData={likeData}/>
-                        <div>427</div>
-                        <img src={comment_one} alt='commentBt'></img>
-                        <div>63</div>
-                    </S.FeedOption>
-                </S.PostUser1>
-                    
-
-                </S.Feed1>
-                <S.Feed1 className='게시물'>
-                    <S.PostUser1 className='게시물1'>
-                        <S.text>
-                            <S.PostUserImage1><img src={Userimages.postuser4} alt='게시물 사진 4'/></S.PostUserImage1>
-                            <S.TextInfo>
-                            <S.PostUserName>유저 이름</S.PostUserName>
-                            <div>·</div>
-                            <S.FollowUser>
-                                <Follow likeData={likeData}/>
-                            </S.FollowUser>                            
-                            <S.UserIntro>한 줄 소개</S.UserIntro>
-                            </S.TextInfo>
-                        </S.text>
-                        <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post4} alt='게시물 사진 4'/><S.Views>조회수 6,841</S.Views></S.PostImage>
-                        <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
-                        <S.FeedOption>
-                            <LikeBt likeData={likeData}/>
-                            <div>136</div>
-                            <ScrapBlack likeData={likeData}/>
-                            <div>427</div>
-                            <img src={comment_one} alt='commentBt'></img>
-                            <div>63</div>
-                        </S.FeedOption>
-                    </S.PostUser1>
-                    <S.PostUser1 className='게시물2'>
-                        <S.text>
-                            <S.PostUserImage1><img src={Userimages.postuser5} alt='게시물 사진 5'/></S.PostUserImage1>
-                            <S.TextInfo>
-                            <S.PostUserName>유저 이름</S.PostUserName>
-                            <div>·</div>
-                            <S.FollowUser>
-                                <Follow likeData={likeData}/>
-                            </S.FollowUser>                            
-                            <S.UserIntro>한 줄 소개</S.UserIntro>
-                            </S.TextInfo>
-                        </S.text>
-                        <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post5} alt='게시물 사진 5'/><S.Views>조회수 6,841</S.Views></S.PostImage>
-                        <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
-                        <S.FeedOption>
-                            <LikeBt likeData={likeData}/>
-                            <div>136</div>
-                            <ScrapBlack likeData={likeData}/>
-                            <div>427</div>
-                            <img src={comment_one} alt='commentBt'></img>
-                            <div>63</div>
-                        </S.FeedOption>
-                    </S.PostUser1>
-                    <S.PostUser1 className='게시물3'>
-                        <S.text>
-                            <S.PostUserImage1><img src={Userimages.postuser6} alt='게시물 사진 6'/></S.PostUserImage1>
-                            <S.TextInfo>
-                            <S.PostUserName>유저 이름</S.PostUserName>
-                            <div>·</div>
-                            <S.FollowUser>
-                                <Follow likeData={likeData}/>
-                            </S.FollowUser>                            
-                            <S.UserIntro>한 줄 소개</S.UserIntro>
-                            </S.TextInfo>
-                        </S.text>
-                        <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post6} alt='게시물 사진 6'/><S.Views>조회수 6,841</S.Views></S.PostImage>
-                        <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
-                        <S.FeedOption>
-                            <LikeBt likeData={likeData}/>
-                            <div>136</div>
-                            <ScrapBlack likeData={likeData}/>
-                            <div>427</div>
-                            <img src={comment_one} alt='commentBt'></img>
-                            <div>63</div>
-                        </S.FeedOption>
-                    </S.PostUser1>
-
-                </S.Feed1>
-                <S.Feed1 className='게시물'>
-                    <S.PostUser1 className='게시물1'>
-                        <S.text>
-                            <S.PostUserImage1><img src={Userimages.postuser7} alt='게시물 사진 7'/></S.PostUserImage1>
-                            <S.TextInfo>
-                            <S.PostUserName>유저 이름</S.PostUserName>
-                            <div>·</div>
-                            <S.FollowUser>
-                                <Follow likeData={likeData}/>
-                            </S.FollowUser>                            
-                            <S.UserIntro>한 줄 소개</S.UserIntro>
-                            </S.TextInfo>
-                        </S.text>
-                        <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post7} alt='게시물 사진 7'/><S.Views>조회수 6,841</S.Views></S.PostImage>
-                        <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
-                        <S.FeedOption>
-                            <LikeBt likeData={likeData}/>
-                            <div>136</div>
-                            <ScrapBlack likeData={likeData}/>
-                            <div>427</div>
-                            <img src={comment_one} alt='commentBt'></img>
-                            <div>63</div>
-                        </S.FeedOption>
-                    </S.PostUser1>
-                    <S.PostUser1 className='게시물2'>
-                        <S.text>
-                            <S.PostUserImage1><img src={Userimages.postuser8} alt='게시물 사진 8'/></S.PostUserImage1>
-                            <S.TextInfo>
-                            <S.PostUserName>유저 이름</S.PostUserName>
-                            <div>·</div>
-                            <S.FollowUser>
-                                <Follow likeData={likeData}/>
-                            </S.FollowUser>                            
-                            <S.UserIntro>한 줄 소개</S.UserIntro>
-                            </S.TextInfo>
-                        </S.text>
-                        <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post8} alt='게시물 사진 8'/><S.Views>조회수 6,841</S.Views></S.PostImage>
-                        <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
-                        <S.FeedOption>
-                            <LikeBt likeData={likeData}/>
-                            <div>136</div>
-                            <ScrapBlack likeData={likeData}/>
-                            <div>427</div>
-                            <img src={comment_one} alt='commentBt'></img>
-                            <div>63</div>
-                        </S.FeedOption>
-                    </S.PostUser1>
-                    <S.PostUser1 className='게시물3'>
-                        <S.text>
-                            <S.PostUserImage1><img src={Userimages.postuser9} alt='게시물 사진 9'/></S.PostUserImage1>
-                            <S.TextInfo>
-                            <S.PostUserName>유저 이름</S.PostUserName>
-                            <div>·</div>
-                            <S.FollowUser>
-                                <Follow likeData={likeData}/>
-                            </S.FollowUser>                            
-                            <S.UserIntro>한 줄 소개</S.UserIntro>
-                            </S.TextInfo>
-                        </S.text>
-                        <S.PostImage onClick={toPostsOnClick}><img src={Userimages.post9} alt='게시물 사진 9'/><S.Views>조회수 6,841</S.Views></S.PostImage>
-                        <S.PostTitleCenter onClick={toPostsOnClick}>게시물 제목</S.PostTitleCenter>
-                        <S.FeedOption>
-                            <LikeBt likeData={likeData}/>
-                            <div>136</div>
-                            <ScrapBlack likeData={likeData}/>
-                            <div>427</div>
-                            <img src={comment_one} alt='commentBt'></img>
-                            <div>63</div>
-                        </S.FeedOption>
-                    </S.PostUser1>
-
-                    </S.Feed1> */}
-
                 </S.FeedBoxAll>
             </S.mainWrapper>
          </S.CommunityContainer>
