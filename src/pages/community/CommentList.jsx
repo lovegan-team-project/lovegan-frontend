@@ -81,7 +81,7 @@ const CommentList = ({ list,  addReply }) => {
                                             if (replyContent) {
                                                 addReply(item.id, {
                                                     id: Date.now(),
-                                                    userid: '유저 닉네임1',
+                                                    userid: '닉네임1',
                                                     content: replyContent,
                                                     date: new Date().toISOString(),
                                                 });
@@ -123,7 +123,7 @@ const CommentList = ({ list,  addReply }) => {
                                             </div>
                                         </div>
                                         <S.dtInfo_1>
-                                            <div className="comment-date">{timeAgo(new Date(item.date))}</div>
+                                            <div className="comment-date">{timeAgo(new Date(reply.date))}</div>
                                             <span>·</span>
                                             <LikeBtMin />
                                             <p>좋아요</p>
