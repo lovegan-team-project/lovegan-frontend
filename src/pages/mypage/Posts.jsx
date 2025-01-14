@@ -15,7 +15,7 @@ const Posts = () => {
     const [isMyPostsUpdate, setIsMyPostsUpdate] = useState(false);
 
     const getMyPosts = async () => {
-        const response = await fetch("http://localhost:8000/getMyPosts")
+        const response = await fetch("http://localhost:8000/post/getMyPosts")
         const datas = await response.json();
         setMyPosts(datas);
     }
