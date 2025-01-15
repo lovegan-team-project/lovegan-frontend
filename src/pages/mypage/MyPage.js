@@ -1,6 +1,6 @@
 import React from 'react';
 import S from './style.js'
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate, useSearchParams } from 'react-router-dom';
 import user_default from './images/user_default.svg';
 import scrap from './icons/menu-scrap.svg';
 import like from './icons/menu-like.svg';
@@ -13,11 +13,20 @@ import lock from './icons/lock.svg';
 import product from './icons/product.svg';
 import three_bar from './icons/three_bar.svg';
 import user from './icons/user.svg';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const MyPage = () => {
 
+    const [ searchParams ] = useSearchParams();
+    const previousUrl = useSelector((state) => state.user.previousUrl);
+    const currentUser = useSelector((state) => state.user.currentUser);
+    const isLogin = useSelector((state) => state.user.isLogin);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
+    // console.log(currentUser);
+    // console.log(isLogin);
 
     const handleSettingsClick = () => {
         navigate('/mypage/settings/accountInfo');
@@ -31,8 +40,8 @@ const MyPage = () => {
                     <S.ProfileInfoWrapper>
                         <img src={user_default} alt=''/>
                         <div>
-                            <h4>유저 닉네임</h4>
-                            <p>유저 한 줄 소개</p>
+                            <h4>{currentUser.nickname}</h4>
+                            <p>{currentUser.intro}</p>
                         </div>
                     </S.ProfileInfoWrapper>
                     <S.FollowInfoWrapper>
