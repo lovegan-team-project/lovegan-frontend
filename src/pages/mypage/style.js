@@ -216,4 +216,11 @@ S.SmallButton = styled.button`
     background-color: #fff;
 `;
 
+S.WarningText = styled.p`
+    font-size: 12px;
+    color: ${({theme})=>theme.PALLETTE.sub["warning"]};
+    margin-top: 8px;
+`;
+
+
 export default S;
