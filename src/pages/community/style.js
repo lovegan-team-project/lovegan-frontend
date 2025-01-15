@@ -231,8 +231,15 @@ S.FeedBoxAll = styled.div`
 
 S.FeedBoxFollow = styled.div`
     width: 1320px; 
-    height: 1467px;
-    display: inline-block;
+    /* height: 1563px; */
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3열로 구성 */
+    /* 각 게시물 간격 */
+    /* gap: 30px; */
+    column-gap: 30px;
+    row-gap: 0px;
+    padding: 0px; /* 컨테이너 내부 여백 */
 `
 
 S.Feed1 = styled.div`
@@ -245,7 +252,7 @@ S.Feed1 = styled.div`
 S.Feed2 = styled.div`
     width: 420px;
     height: 394px;
-    margin: 0 0 60px 0;
+    margin: 0 0 120px 0;
     display: flex;
 `
 
@@ -419,7 +426,7 @@ S.Introduce = styled.div`
 S.FeedTags = styled.div`
     display: flex;
     align-items: center;
-    width: 305px;
+    /* width: 305px; */
     height: 18px;
     background-color: #fff;
 `

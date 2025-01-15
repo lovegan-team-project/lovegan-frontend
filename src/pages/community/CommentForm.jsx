@@ -34,7 +34,6 @@ const CommentForm = ( {addList, parentId, addReply} ) => {
                 addList(newComment);
             }
 
-            // console.log(`작성 시간: ${writeDate}`);
             setValue('');
             console.log('Parent ID:', parentId);
             console.log('addReply Function:', addReply);

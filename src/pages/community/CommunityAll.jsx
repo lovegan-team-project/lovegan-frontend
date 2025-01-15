@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import S from './style';
 import Userimages from './Userimages';
 import like from './image/like.svg';
-// import scrap from './image/scrap.svg';
 import scrapBlack from './image/scrapBlack.svg';
 import comment_one from './image/comment_one.svg';
 import { useNavigate } from 'react-router-dom';
@@ -28,7 +27,7 @@ const CommunityAll = () => {
     }   
 
     const [posts, setPosts] = useState([]);
-            
+
     useEffect(() => {
         const fetchPost = async () => {
             try {
@@ -107,11 +106,10 @@ const CommunityAll = () => {
     ]
 
     return (
-        
         <S.CommunityContainer>
             <S.mainWrapper className='피드감싸는곳'>
                 <div className='top'>
-                    <S.totalNum><p>전체 13,429</p></S.totalNum>                    
+                    <S.totalNum><p>전체 13,429</p></S.totalNum>
                     <S.tagButton>
                         <button className={tagClick === "like" ? "click" : "unClick"} onClick={()=>setTagClick("like")}><p>좋아요순</p></button>
                         <button className={tagClick === "new" ? "click" : "unClick"} onClick={()=>setTagClick("new")}><p>최신순</p></button>
@@ -126,7 +124,7 @@ const CommunityAll = () => {
                 <S.Feed1 className='게시물' key={post._id}>
                     <S.PostUser1 className='게시물1'>
                     <S.text>
-                        <S.PostUserImage1><img src={Userimages[`postuser${index + 1}`]} alt={`게시물 유저 사진 ${index + 1}`}/></S.PostUserImage1>
+                        <S.PostUserImage1><img src={Userimages[`postuser${index + 1}`]} alt={Userimages[`postuser${index + 1}`]}/></S.PostUserImage1>
                         <S.TextInfo>
                         <S.PostUserName>유저 이름</S.PostUserName>
                         <div>·</div>

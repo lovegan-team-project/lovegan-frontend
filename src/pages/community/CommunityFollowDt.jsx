@@ -66,8 +66,6 @@ const CommunityFollowDt = (props) => {
     useEffect(()=>{
         setNextClick()
     }, [setNextClick])
-
-    window.scrollTo(0, 0);
     
     return (
         <S.PostWrapper>

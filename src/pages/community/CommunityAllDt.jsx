@@ -67,8 +67,6 @@ const CommunityAllDt = (props) => {
         setNextClick()
     }, [setNextClick])
 
-    window.scrollTo(0, 0);
-
     return (
         <S.PostWrapper>
             <S.HeadLine>
