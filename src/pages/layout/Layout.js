@@ -69,7 +69,7 @@ const Layout = () => {
         setProfileClick(!profileClick);
     }
     const clickToMypage = () => {
-        navigate("/mypage")
+        navigate("/mypage/activity/posts")
         setProfileClick(!profileClick);
     } 
     const logout = () => {

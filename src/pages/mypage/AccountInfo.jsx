@@ -57,7 +57,7 @@ const EditableInput = ({
 
 const AccountInfo = () => {
     const currentUser = useSelector((state) => state.user.currentUser);
-    // console.log(currentUser);
+    // console.log(currentUser.phone);
 
     const handleNicknameSave = (newNickname) => {
         console.log('Saved Nickname:', newNickname);
@@ -101,7 +101,7 @@ const AccountInfo = () => {
                         hideButtons={true}
                         notice="* 이메일을 변경하시려면 고객센터로 문의해 주세요."
                     />
-                    <PhoneVerification initialPhone={currentUser.phone} />
+                    <PhoneVerification initialPhone={currentUser.phone} email={currentUser.email}/>
                 </AS.InfoContainer>
             </AS.ProfileContainer>
         </>

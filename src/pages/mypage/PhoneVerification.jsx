@@ -2,20 +2,25 @@ import React, { useState, useEffect } from 'react';
 import S from './style.js';
 import AS from './accountStyle.js';
 
-const PhoneVerification = ({ initialPhone }) => {
-    // console.log(initialPhone);
-    const [phone, setPhone] = useState(initialPhone);
-    // console.log(phone);
+const PhoneVerification = ({ initialPhone, email }) => {
+    console.log("initialPhone: "+initialPhone);
+    console.log("email: " + email);
+    const [phone, setPhone] = useState('');
     const [isEditing, setIsEditing] = useState(false);
     const [isVerifying, setIsVerifying] = useState(false);
     const [verificationCode, setVerificationCode] = useState('');
     const [timer, setTimer] = useState(180); // 3분 타이머
     const [expired, setExpired] = useState(false);
-
+    
     useEffect(() => {
-        // console.log("phone 상태 변경됨:", phone); // 상태가 업데이트된 후에 출력
-    }, [phone]); // phone 상태가 변경될 때마다 호출
-
+        console.log("Updated phone: " + phone);
+        if (initialPhone) {
+            setPhone(initialPhone);
+            console.log("Phone initialized: " + initialPhone);
+        }
+    }, [initialPhone]); // phone이 변경될 때마다 로그 출력
+    
+    console.log("phone: "+phone); 
     useEffect(() => {
         let interval;
         if (isVerifying && timer > 0) {
@@ -32,29 +37,69 @@ const PhoneVerification = ({ initialPhone }) => {
         setIsVerifying(false);
     };
 
-    const handleVerifyPhone = () => {
+    const handleVerifyPhone = async () => {
         setIsEditing(true);
         setIsVerifying(true);
         setExpired(false);
         setVerificationCode('');
         setTimer(180);
-        alert('인증번호가 전송되었습니다.');
+        try {
+            const response = await fetch('http://localhost:8000/user/send-verification', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ phoneNumber: phone }),
+            });
+    
+            const data = await response.json();
+            if (response.ok) {
+                alert('인증번호가 전송되었습니다.');
+            } else {
+                alert(`오류: ${data.message}`);
+            }
+        } catch (error) {
+            console.error('Error sending verification code:', error);
+            alert('인증번호 전송에 실패했습니다.');
+        }
     };
 
-    const handleSendVerificationAgain = () => {
+    const handleSendVerificationAgain = async () => {
         setTimer(180);
         setExpired(false);
-        alert('인증번호가 재전송되었습니다.');
+       
     };
 
-    const handleCompleteVerification = () => {
+    const handleCompleteVerification = async () => {
         if (expired) {
             alert('인증 시간이 만료되었습니다. 인증번호를 다시 요청해 주세요.');
             return;
         }
-        alert('인증이 완료되었습니다.');
-        setIsEditing(false);
-        setIsVerifying(false);
+        try {
+            const response = await fetch('http://localhost:8000/user/verify-code', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    phoneNumber: phone,
+                    code: verificationCode
+                }),
+            });
+    
+            const data = await response.json();
+            if (response.ok) {
+                alert('인증이 완료되었습니다.');
+                setIsEditing(false);
+                setIsVerifying(false);
+            } else {
+                alert(`오류: ${data.message}`);
+            }
+        } catch (error) {
+            console.error('Error verifying code:', error);
+            alert('서버 오류로 인증에 실패했습니다.');
+    }
     };
 
     const formatTimer = () => {
