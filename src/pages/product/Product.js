@@ -194,7 +194,7 @@ const Product = () => {
                                 <S.ItemTitle>{product.title}</S.ItemTitle>
                                 <S.ItemExplain>{product.description}</S.ItemExplain>
                                 <S.ItemPrice>
-                                    <S.Discount>{product.discount}%</S.Discount>{(product.price * (1 - product.discount / 100)).toLocaleString()}
+                                    <S.Discount>{product.discount}%</S.Discount>{(product.price * (1 - product.discount / 100)).toLocaleString()}(원)
                                     <S.OriginPrice>{`${product.price.toLocaleString()}원`}</S.OriginPrice>
                                 </S.ItemPrice>
                                 <S.ItemStar>
