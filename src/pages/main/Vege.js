@@ -31,7 +31,7 @@ const Vege = () => {
                 title={product.title}
                 description={product.description}
                 price={`${product.price.toLocaleString()}원`}
-                image={Img}
+                image={Img} //이미지 스키마 추가 해야함
                 onNavigate={() => navigate("/details")}
             />
             ))}
