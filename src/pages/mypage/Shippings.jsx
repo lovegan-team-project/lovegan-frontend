@@ -72,15 +72,15 @@ const Shippings = () => {
         setDefaultShipping((prev) => !prev);
     };
 
-    const getShippingList = async () => {
-        console.log(currentUser.email);
+    const getShippingList = async (email) => {
         try {
+            console.log("getShippingList: " + email);
             const response = await fetch(`http://localhost:8000/shipping/list`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email: currentUser.email }), // 이메일을 body에 포함
+                body: JSON.stringify({ email: email }), // 이메일을 body에 포함
             });
 
             // 응답 상태가 성공적인 경우에만 JSON 파싱
@@ -95,13 +95,18 @@ const Shippings = () => {
             }
         } catch (error) {
             console.error("Error fetching shipping list:", error);
-            alert("배송지 목록을 불러오는 데 오류가 발생했습니다.");
+            alert(`배송지 목록을 불러오는 데 오류가 발생했습니다. (${error.message})`);
         }
     };
 
     useEffect(() => {
-        getShippingList();
-    }, [isShippingListUpdate]);
+        if (currentUser && currentUser.email) {
+            console.log(currentUser.email);
+            getShippingList(currentUser.email);
+        } else {
+            console.log('No current user data available');
+        }
+    }, [currentUser, isShippingListUpdate]);  // currentUser가 변경될 때마다 실행되도록 의존성 추가
 
     const onSubmit = async () => {
         const data = {
@@ -123,12 +128,14 @@ const Shippings = () => {
         })
             .then((res) => res.json())
             .then((res) => {
-                console.log(res)
+                console.log(res);
                 if(res.registerSuccess){
-                    alert(res.message)
+                    alert(res.message);
+                    handleCloseModal();
+                    getShippingList(currentUser.email);
                 }
                 else{
-                    alert(res.message)
+                    alert(res.message);
                 }
             })
             .catch((error) => {
