@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import S from './style';
 import UserImg2 from './image/UserImg2.png';
 import LikeBtMin from './LikeBtMin';
+import { useSelector } from 'react-redux';
 
 // addReply
 const CommentList = ({ list,  addReply }) => {
     // 댓글 id별로 대댓글 작성 폼 표시
-    const [replyVisible, setReplyVisible] = useState([]);
+    const [replyVisible, setReplyVisible] = useState({});
     const [isOpen, setIsOpen] = useState(false);
     // const [replies, setReplies] = useState()
+
+    const currentUser = useSelector((state) => state.user.currentUser);
 
     // 댓글을 5개까지만 보여주기
     const limitedList = list.slice(0,11);
@@ -19,10 +22,10 @@ const CommentList = ({ list,  addReply }) => {
             ...prev,
             [commentId]: !prev[commentId],
         }));
-        setIsOpen((prev) => ({
-            ...prev,
-            [commentId]: true, // 클릭하면 항상 입력창이 열리도록 설정
-        }));
+        // setIsOpen((prev) => ({
+        //     ...prev,
+        //     [commentId]: true, // 클릭하면 항상 입력창이 열리도록 설정
+        // }));
     };
 
     // 작성 시간 경과 계산하는 함수
@@ -46,27 +49,27 @@ const CommentList = ({ list,  addReply }) => {
 
     return (
         <S.CommentListStyle className="comment-list">
-            {limitedList.map((comment) => (
-                <div key={comment.id} className="comment-row">
-                    {comment.content.trim() && (
-                    <div className='comment-inRow'>
-                        <div className='comment-row-user'>
-                            <img src={UserImg2} alt='' className='comment-row-img'/>
-                            <div className='comment-row-user-between'>
-                                <div className="comment-id">{comment.userid && typeof comment.userid === 'string' ? comment.userid : '알 수 없음'}</div>
-                                <div className="comment-content">{comment.content && typeof comment.content === 'string' ? comment.content : '내용 없음'}</div>
+                {limitedList.map((comment) => (
+                    <div key={comment._id} className="comment-row">
+                        {comment.content.trim() && (
+                        <div className='comment-inRow'>
+                            <div className='comment-row-user'>
+                                <img src={UserImg2} alt='' className='comment-row-img'/>
+                                <div className='comment-row-user-between'>
+                                    <div className="comment-id">{comment.author}</div>
+                                    <div className="comment-content">{comment.content}</div>
+                                </div>
                             </div>
-                        </div>
-                        <S.dtInfo_1>
-                            <div className="comment-date">{timeAgo(new Date(comment.date))}</div>
-                            <span>·</span>
-                            <LikeBtMin />
-                            <p>좋아요</p>
-                            <span>·</span>
-                            <p className='replyClick' onClick={() => toggleReplyForm(comment.id)}>답글 달기</p>
-                            <span>·</span>
-                            <p>신고</p>
-                        </S.dtInfo_1>
+                            <S.dtInfo_1>
+                                <div className="comment-date">{timeAgo(new Date(comment.date))}</div>
+                                <span>·</span>
+                                <LikeBtMin />
+                                <p>좋아요</p>
+                                <span>·</span>
+                                <p className='replyClick' onClick={() => toggleReplyForm(comment.id)}>답글 달기</p>
+                                <span>·</span>
+                                <p>신고</p>
+                            </S.dtInfo_1>
 
                         {/* 대댓글 작성 폼 */}
                         {replyVisible[comment.id] && (
@@ -107,8 +110,8 @@ const CommentList = ({ list,  addReply }) => {
                             </S.replyTyping>
                         )}
                         
-                        {/* 대댓글 리스트
-                        {comment.replies && comment.replies.length > 0 && (
+                        {/* 대댓글 리스트 */}
+                        {/* {comment.replies && comment.replies.length > 0 && (
                             <div className='replies'>
                                 {comment.replies.map((reply) => (
                                     <div
@@ -127,7 +130,7 @@ const CommentList = ({ list,  addReply }) => {
                                             <span>·</span>
                                             <LikeBtMin />
                                             <p>좋아요</p>
-                                            <span>·</span>
+                                            <span>·</span>  
                                             <p>신고</p>
                                         </S.dtInfo_1>
                                     </div>
@@ -136,7 +139,7 @@ const CommentList = ({ list,  addReply }) => {
                         )} */}
                     </div>
                     )}
-                </div>
+                </div>  
             ))}
         </S.CommentListStyle>
     );

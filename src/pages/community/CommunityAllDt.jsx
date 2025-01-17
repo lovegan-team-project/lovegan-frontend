@@ -11,6 +11,7 @@ import { ReactComponent as like} from './image/like.svg';
 import { ReactComponent as scrap} from './image/scrap.svg';
 import comment_one from './image/comment_one.svg';
 import Comment from './Comment';
+import { useSelector } from 'react-redux';
 
 const CommunityAllDt = (props) => {
 
@@ -66,7 +67,7 @@ const CommunityAllDt = (props) => {
     useEffect(()=>{
         setNextClick()
     }, [setNextClick])
-
+    
     return (
         <S.PostWrapper>
             <S.HeadLine>

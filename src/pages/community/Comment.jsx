@@ -20,6 +20,10 @@ const Comment = ({ onAddComment }) => {
 
                 setList(data);
 
+                if(onAddComment){
+                    onAddComment();
+                }
+
                 // console.log(data)
             } catch (error) {
                 console.error('댓글 불러오는 중 오류 발생', error);
@@ -32,10 +36,10 @@ const Comment = ({ onAddComment }) => {
     // console.log(list)
 
     // 리스트에 댓글을 추가하는 함수
-    const addList = async (obj) => {
+    const addList = async () => {
         try {
             const response = await fetch("http://localhost:8000/community/addComment")
-            //     , {
+            // , {
             //     method : "POST",
             //     headers : { "Content-Type" : "application/json"},
             //     body : JSON.stringify(obj), // 서버로 새 데이터 전달
@@ -47,9 +51,9 @@ const Comment = ({ onAddComment }) => {
 
             const saveComment = await response.json(); // 서버에 저장된 댓글 반환
             setList((prevList) => [...prevList, saveComment]); // 상태에 추가
-            // if(onAddComment){
-            //     onAddComment();
-            // }
+            if(onAddComment){
+                onAddComment();
+            }
         } catch (error) {
             console.error('댓글 추가하는 중 오류 발생', error);
         }
@@ -89,8 +93,8 @@ const Comment = ({ onAddComment }) => {
     return (
         <div>
             <CommentForm addList={addList}/>
-            <CommentList list={list} />
-            {/* addReply={addReply} */}
+            <CommentList list={list} addReply={addReply}/>
+            
             {/* updateList={updateList} */}
         </div>
     );
