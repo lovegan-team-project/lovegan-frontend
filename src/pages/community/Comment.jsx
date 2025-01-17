@@ -10,12 +10,17 @@ const Comment = ({ onAddComment }) => {
         const fetchComment = async () => {
             try {
                 const response = await fetch("http://localhost:8000/community/getComment")
-                console.log(response)
-
+                // console.log(response)
                 const data = await response.json();
+
+                if(!Array.isArray(data)) {
+                    console.error("서버에서 반환된 데이터가 배열이 아님:", data)
+                    return;
+                }
+
                 setList(data);
 
-                console.log(data)
+                // console.log(data)
             } catch (error) {
                 console.error('댓글 불러오는 중 오류 발생', error);
             }
@@ -29,11 +34,12 @@ const Comment = ({ onAddComment }) => {
     // 리스트에 댓글을 추가하는 함수
     const addList = async (obj) => {
         try {
-            const response = await fetch("http://localhost:8000/community/addComment", {
-                method : "POST",
-                headers : { "Content-Type" : "application/json"},
-                body : JSON.stringify(obj), // 서버로 새 데이터 전달
-            });
+            const response = await fetch("http://localhost:8000/community/addComment")
+            //     , {
+            //     method : "POST",
+            //     headers : { "Content-Type" : "application/json"},
+            //     body : JSON.stringify(obj), // 서버로 새 데이터 전달
+            // });
 
             if(!response.ok){
                 throw new Error('댓글 저장 실패')
