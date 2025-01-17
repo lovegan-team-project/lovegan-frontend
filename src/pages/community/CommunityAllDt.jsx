@@ -135,7 +135,8 @@ const CommunityAllDt = (props) => {
             </S.commentNum>           
             <S.Recomment>
             {/* 새로운 댓글 로직 컴포넌트트 */}
-            <Comment onAddComment = {() => setCommentCount(prev => prev + 1)} />
+            <Comment onAddComment = {() => setCommentCount
+                (prev => prev + 1)} />
             </S.Recomment>
             
             <S.nextPage>
