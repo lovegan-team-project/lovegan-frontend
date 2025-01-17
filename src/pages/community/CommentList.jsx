@@ -8,6 +8,7 @@ const CommentList = ({ list,  addReply }) => {
     // 댓글 id별로 대댓글 작성 폼 표시
     const [replyVisible, setReplyVisible] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
+    // const [replies, setReplies] = useState()
 
     // 댓글을 5개까지만 보여주기
     const limitedList = list.slice(0,11);
@@ -106,7 +107,7 @@ const CommentList = ({ list,  addReply }) => {
                             </S.replyTyping>
                         )}
                         
-                        {/* 대댓글 리스트 */}
+                        {/* 대댓글 리스트
                         {comment.replies && comment.replies.length > 0 && (
                             <div className='replies'>
                                 {comment.replies.map((reply) => (
@@ -132,7 +133,7 @@ const CommentList = ({ list,  addReply }) => {
                                     </div>
                                 ))}
                             </div>
-                        )}
+                        )} */}
                     </div>
                     )}
                 </div>

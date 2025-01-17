@@ -56,32 +56,33 @@ const Comment = ({ onAddComment }) => {
       };
 
     // 대댓글 추가 함수
-    // const addReply = async (parentId, reply) => {
-    //     try {
-    //         const response = await fetch("http://localhost:8000/community/getComment", {
-    //             method : "POST",
-    //             headers : { "Content-Type" : "application/json"},
-    //             body : JSON.stringify({parentId, reply}),
-    //         });
+    const addReply = async (parentId, reply) => {
+        try {
+            const response = await fetch("http://localhost:8000/community/addReply")
+            // , {
+            //     method : "POST",
+            //     headers : { "Content-Type" : "application/json"},
+            //     body : JSON.stringify({parentId, reply}),
+            // });
 
-    //         if(!response.ok){
-    //             throw new Error('대댓글 저장 실패');
-    //         }
-    //         console.log(response)
+            if(!response.ok){
+                throw new Error('대댓글 저장 실패');
+            }
+            console.log(response)
 
-    //         const updatedParent = await response.json();
-    //         setList((prevList) =>
-    //             prevList.map((comment) => 
-    //                 comment.id === parentId ? updatedParent : comment
-    //         ));
+            const updatedParent = await response.json();
+            setList((prevList) =>
+                prevList.map((comment) => 
+                    comment.id === parentId ? updatedParent : comment
+            ));
 
-    //         // if(onAddComment){
-    //         //     onAddComment();
-    //         // }
-    //     } catch (error) {
-    //         console.log('대댓글 추가하는 중 오류 발생', error)
-    //     }
-    // };
+            // if(onAddComment){
+            //     onAddComment();
+            // }
+        } catch (error) {
+            console.log('대댓글 추가하는 중 오류 발생', error)
+        }
+    };
 
     
 
