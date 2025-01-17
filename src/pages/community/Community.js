@@ -27,7 +27,7 @@ const Community = () => {
                 <S.CommunityToggle>
                     <S.ToggleButton
                         className='버튼'
-                        isActive={activeComponent} 
+                        isActive={activeComponent}
                         position={getButtonPosition(activeComponent)}
                     />
                     {options.map(option => (

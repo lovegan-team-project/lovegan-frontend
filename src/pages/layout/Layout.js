@@ -1,9 +1,14 @@
 import React from 'react';
 import {ReactComponent as LogoBlack} from './images/logo-black.svg';
-import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import S from './style';
 import { useState } from "react";
 import Search from './images/search.svg'
+import { useDispatch, useSelector } from 'react-redux';
+import cart from './images/header-cart.svg';
+import like from './images/header-like.svg';
+import userProfile from './images/header-user.svg';
+import { setUser, setUserStatus } from '../../modules/user';
 
 const Layout = () => {
 
@@ -16,12 +21,29 @@ const Layout = () => {
         "/search", "/product/new/drinks", "/product/new/eggs", "/product/new/fastfood", "/product/new/healthfood", "/product/new/meat", "/product/new/spice", "/product/new/snacks", "/product/new/vegeSide",
         "/product/drinks", "/product/eggs", "/product/fastfood", "/product/healthfood", "/product/meat", "/product/spice", "/product/snacks", "/product/vegeSide",
         "/mypage/activity/posts", "/mypage/activity/follow", "/mypage/activity/likes", "/mypage/activity/scrap", "/mypage/activity/couponbook",
-        "/mypage/shopping/orders", "/mypage/shopping/reviews", "/mypage/shopping/inquiries", "/mypage/settings/shippings", "/mypage/settings/accountInfo", "/mypage/settings/changePassword"
+        "/mypage/shopping/orders", "/mypage/shopping/reviews", "/mypage/shopping/inquiries", "/mypage/settings/shippings", "/mypage/settings/accountInfo", "/mypage/settings/changePassword",
+        "/customerService/notice","/customerService/faq","/customerService/quest","/customerService/quest/register"
     ];
 
     const [searchTerm, setSearchTerm] = useState();
+    const [profileClick, setProfileClick] = useState(false);
     
-    const showHeader = pathsWithHeader.includes(location.pathname);
+    // const showHeader = pathsWithHeader.includes(location.pathname);
+
+    const params = useParams();
+    
+    const showHeader = () => {
+        const { id } = params; // id가 URL에 있으면 id를 추출
+      
+        // /customerService/notice/:id 형식일 때
+        if (location.pathname.includes("/customerService/notice/","/customerService/quest/") && id) {
+          return true;
+        }
+      
+        // 기타 경로
+        return pathsWithHeader.includes(location.pathname);
+      };
+
     
     const handleSearch = () => {
         if (searchTerm) {
@@ -31,12 +53,39 @@ const Layout = () => {
     };
 
     const isMypage = location.pathname.startsWith('/mypage');
+    const isCartPage = location.pathname.startsWith('/cart');
+    const isRestaurantPage = location.pathname.startsWith('/restaurant');
 
+    const dispatch = useDispatch();
+    const isLogin = useSelector((state) => state.user.isLogin);
+
+    const clickToLike = () => {
+        navigate("/mypage/activity/likes");
+    }
+    const clickToCart = () => {
+        navigate("/cart");
+    }
+    const dropdownProfile = () => {
+        setProfileClick(!profileClick);
+    }
+    const clickToMypage = () => {
+        navigate("/mypage")
+        setProfileClick(!profileClick);
+    } 
+    const logout = () => {
+        dispatch(setUser(null))
+        dispatch(setUserStatus(false))
+        // localStorage.removeItem("accessToken")
+        localStorage.removeItem("token")
+        console.log(isLogin)
+        setProfileClick(!profileClick);
+        navigate("/")
+    }
 
     return (
         <>
         <S.Wrapper>
-            {showHeader && 
+                {showHeader && !isRestaurantPage &&
                 <S.Header>
                     <S.HeaderContainer>
                         {/* 메인로고 환경변수 {} */}
@@ -66,19 +115,36 @@ const Layout = () => {
                                 </S.InputButton>
                                 </form>
                             </S.InputWrapper>
-                            
+                           
+                           { isLogin ? 
+                           <S.ButtonWrapper>
+                                <img className='like' src={like} onClick={clickToLike}></img>
+                                <img className='cart' src={cart} onClick={clickToCart}></img>
+                                <img className='user' src={userProfile} onClick={dropdownProfile}></img>
+                           </S.ButtonWrapper>
+                           : 
                             <S.ButtonWrapper>
                                 <S.Login><Link to={"/login"}>로그인</Link></S.Login>
                                 <S.SignupButton>
                                     <NavLink to={"/signUp"}>회원가입</NavLink>
-                                </S.SignupButton>
+                                </S.SignupButton> 
                             </S.ButtonWrapper>
+                            }
                         </S.ButtonWrapper>
+                        { profileClick && (
+                            <S.ProfileDropdown>
+                                <S.DropdownBox onClick={clickToMypage}>마이페이지</S.DropdownBox>
+                                <S.DropdownBox onClick={logout}>로그아웃</S.DropdownBox>
+                            </S.ProfileDropdown>
+                        )}
+                        
                     </S.HeaderContainer>
-                </S.Header>}
-
-                <S.Main isMypage={isMypage}>
-                    <S.Container>
+                    
+                </S.Header>
+                }
+                
+                <S.Main isMypage={isMypage} isCartPage={isCartPage}>
+                    <S.Container style={{ width: isRestaurantPage ? '100vw' : '1420px' }}>
                         <Outlet />
                     </S.Container>
                 </S.Main>
@@ -103,7 +169,7 @@ const Layout = () => {
                     <S.Container>
                         {/* <Link to={"/customerService"}>고객센터</Link> */}
                         <S.logoWrapper><LogoBlack /></S.logoWrapper>
-                        <S.TopContent>이용약관 ㅣ 개인정보처리방침 ㅣ <Link to={"/customerService"}>고객센터</Link></S.TopContent>
+                        <S.TopContent>이용약관 ㅣ 개인정보처리방침 ㅣ <Link to={"/customerService/notice"}>고객센터</Link></S.TopContent>
                         <S.MainContent>
                             <S.TextBoxWrapper>
                                 <S.TextBox2>법인명 : LOVEgan ㅣ 대표자 : 000 ㅣ 사업자 등록번호 : 000-00-00000</S.TextBox2>

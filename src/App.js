@@ -4,8 +4,42 @@ import router from './routes/router';
 import GlobalStyle from './global/global';
 import { ThemeProvider } from 'styled-components';
 import theme from './global/theme';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, setUserStatus } from './modules/user';
 
 function App() {
+
+  const dispatch = useDispatch();
+  const isLogin = useSelector((state)=>state.user.isLogin);
+  const currentUser = useSelector((state)=>state.user.currentUser);
+
+  useEffect(()=>{
+    if(localStorage.getItem("token")){
+      const isAuthenticate = async () => {
+        const response = await fetch("http://localhost:8000/auth/jwt", {
+          method : "POST",
+          headers : {
+            'Authorization' : `Bearer ${localStorage.getItem("token")}`
+          }
+        })
+
+        if(!response.ok) return;
+
+        const getAuthenticate = await response.json();
+        return getAuthenticate;
+      }
+
+      isAuthenticate()
+      .then((res) => {
+          let {message, user} = res;
+          console.log(message)
+          dispatch(setUser(user));
+          dispatch(setUserStatus(true));
+      })
+      .catch(console.error)
+    }
+  }, [])
   
   return (
     <>

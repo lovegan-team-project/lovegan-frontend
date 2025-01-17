@@ -124,6 +124,18 @@ S.IconWrapper = styled.div`
         font-size: ${({theme})=>theme.FONT_SIZE["sub-title"]};
         font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
     }
+
+    & a {
+        color: ${({theme})=>theme.PALLETTE.brand["primary_black"]};
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+
+    & a:hover {
+        opacity: 0.8;
+    }
 `;
 
 S.MenuListWrapper = styled.div`
@@ -203,5 +215,12 @@ S.SmallButton = styled.button`
     border: 1px solid ${({theme})=>theme.PALLETTE.grey["8"]};
     background-color: #fff;
 `;
+
+S.WarningText = styled.p`
+    font-size: 12px;
+    color: ${({theme})=>theme.PALLETTE.sub["warning"]};
+    margin-top: 8px;
+`;
+
 
 export default S;

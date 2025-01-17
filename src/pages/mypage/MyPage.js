@@ -1,10 +1,10 @@
 import React from 'react';
 import S from './style.js'
-import { Outlet, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate, useSearchParams } from 'react-router-dom';
 import user_default from './images/user_default.svg';
 import scrap from './icons/menu-scrap.svg';
 import like from './icons/menu-like.svg';
-import coupon from './icons/coupon.svg';
+import cart from './icons/big_cart.svg';
 import document from './icons/document.svg';
 import all_aplication from './icons/all_aplication.svg';
 import buy from './icons/buy.svg';
@@ -13,11 +13,20 @@ import lock from './icons/lock.svg';
 import product from './icons/product.svg';
 import three_bar from './icons/three_bar.svg';
 import user from './icons/user.svg';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const MyPage = () => {
 
+    const [ searchParams ] = useSearchParams();
+    const previousUrl = useSelector((state) => state.user.previousUrl);
+    const currentUser = useSelector((state) => state.user.currentUser);
+    const isLogin = useSelector((state) => state.user.isLogin);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
+    // console.log(currentUser);
+    // console.log(isLogin);
 
     const handleSettingsClick = () => {
         navigate('/mypage/settings/accountInfo');
@@ -31,8 +40,8 @@ const MyPage = () => {
                     <S.ProfileInfoWrapper>
                         <img src={user_default} alt=''/>
                         <div>
-                            <h4>유저 닉네임</h4>
-                            <p>유저 한 줄 소개</p>
+                            <h4>{currentUser.nickname}</h4>
+                            <p>{currentUser.intro}</p>
                         </div>
                     </S.ProfileInfoWrapper>
                     <S.FollowInfoWrapper>
@@ -48,19 +57,25 @@ const MyPage = () => {
                     <S.MenuSection>
                         <div className='wrapper'>
                             <S.IconWrapper>
-                                <img src={scrap} alt=''/>
-                                <span className='top-title'>스크랩</span>
-                                <span className='top-content'>0</span>
+                                <NavLink to="/mypage/activity/scrap">
+                                    <img src={scrap} alt=''/>
+                                    <span className='top-title'>스크랩</span>
+                                    <span className='top-content'>0</span>
+                                </NavLink>
                             </S.IconWrapper>
                             <S.IconWrapper>
-                                <img src={like} alt=''/>
-                                <span className='top-title'>좋아요</span>
-                                <span className='top-content'>0</span>
+                                <NavLink to="/mypage/activity/likes">
+                                    <img src={like} alt=''/>
+                                    <span className='top-title'>좋아요</span>
+                                    <span className='top-content'>0</span>
+                                </NavLink>
                             </S.IconWrapper>
                             <S.IconWrapper>
-                                <img src={coupon} alt=''/>
-                                <span className='top-title'>쿠폰</span>
-                                <span className='top-content'>0</span>
+                                <NavLink to="/cart">
+                                    <img src={cart} alt=''/>
+                                    <span className='top-title'>장바구니</span>
+                                    <span className='top-content'>0</span>
+                                </NavLink>
                             </S.IconWrapper>
                         </div>
                     </S.MenuSection>
@@ -71,7 +86,7 @@ const MyPage = () => {
                             <S.MenuListNavLink to="/mypage/activity/follow"><img src={three_bar} alt="" /><span className='menu-content'>팔로워/팔로잉</span></S.MenuListNavLink>
                             <S.MenuListNavLink to="/mypage/activity/likes"><img src={like} alt="" /><span className='menu-content'>좋아요</span></S.MenuListNavLink>
                             <S.MenuListNavLink to="/mypage/activity/scrap"><img src={scrap} alt="" /><span className='menu-content'>스크랩</span></S.MenuListNavLink>
-                            <S.MenuListNavLink to="/mypage/activity/couponbook"><img src={coupon} alt="" /><span className='menu-content'>쿠폰북</span></S.MenuListNavLink>
+                            {/* <S.MenuListNavLink to="/mypage/activity/couponbook"><img src={coupon} alt="" /><span className='menu-content'>쿠폰북</span></S.MenuListNavLink> */}
                         </S.MenuListWrapper>
                         <S.MenuListWrapper>
                             <p className='menu-title'>Shopping</p>

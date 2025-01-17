@@ -18,7 +18,7 @@ const Login = () => {
         navigate('/signUp')
     }
     const onSubmit = async (data) => {
-        await fetch("http://localhost:8000/user/login", {
+        await fetch("http://localhost:8000/auth/local", {
             method : "POST",
             headers : {
                 "Content-Type" : "application/json"
@@ -32,9 +32,10 @@ const Login = () => {
         .then((res) => {
             if(res.loginSuccess){
                 // alert(res.message)
-                let {user, loginSuccess, message} = res; 
+                let {user, accessToken, loginSuccess, message} = res; 
                 dispatch(setUser(user))
                 dispatch(setUserStatus(true))
+                localStorage.setItem("token", accessToken)
                 console.log(res);
             }
             else{

@@ -59,6 +59,7 @@ import Tab3 from "../pages/customerService/Tab3";
 import Notice from "../pages/customerService/Notice";
 import Register from "../pages/customerService/Register";
 import RegisterComplete from "../pages/customerService/RegisterComplete";
+import Cart from "../pages/cart/Cart";
 
 
 
@@ -184,6 +185,10 @@ const router = createBrowserRouter([
                 element : <Diary />
             },
             {
+                path : "/cart",
+                element : <Cart />
+            },
+            {
                 path : "/community",
                 element : <Community />,
                 children : [
@@ -218,26 +223,26 @@ const router = createBrowserRouter([
                         element: <Tab1 />,
                     },
                     {
+                        path: "notice/:id",
+                        element: <Notice />,
+                    },
+                    {
                         path: "faq",
                         element: <Tab2 />,
                     },
                     {
                         path: "quest",
                         element: <Tab3 />,
-                    }
+                    },
+                    {
+                        path: "quest/:id",
+                        element: <RegisterComplete />,
+                    },
+                    {
+                        path: "quest/register",
+                        element: <Register />,
+                    },
                 ]
-            },
-            {
-                path: "/customer/notice",
-                element: <Notice />
-            },
-            {
-                path: "/customer/quest/register",
-                element: <Register />
-            },
-            {
-                path: "/customer/quest",
-                element: <RegisterComplete />
             },
             {
                 path : "/signIn", 
@@ -319,7 +324,7 @@ const router = createBrowserRouter([
         path : "*",
         element : <PageNotFound />
     },
-    
+
 
 ])
 

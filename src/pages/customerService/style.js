@@ -12,7 +12,7 @@ S.Container = styled.div`
 S.Wrapper = styled.div`
     width: 857px;
     display: flex;
-    gap: 80px;
+    gap: 123px;
 
     & .tabMenu{
 
@@ -99,12 +99,8 @@ S.T_wrapper = styled.div`
     margin-top:38px;
     border-left:none;
     border-right:none;
+    
 
-    & .answer{
-        margin-top: 10px;
-        color: #555;
-        font-size: 0.9em;
-    }
 
     & table{
         width: 100%;
@@ -135,9 +131,34 @@ S.T_wrapper = styled.div`
             border-right: none;
             height: 54px;
             line-height: 54px;
+
+            & a{
+                color: #333333;
+            }
         }
     }
 `
+
+S.faqDiv = styled.div`
+    .answer {
+        padding-top: 10px;
+        color: #555;
+        font-size: 0.9em;
+
+        /* 초기 상태: 숨김 처리 */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    &.active .answer {
+        /* 활성화 상태: 콘텐츠 표시 */
+        max-height: 200px; /* 충분히 큰 값으로 설정 */
+        opacity: 1;
+    }
+`
+
 // /* Arrow style */
 S.A_Div = styled.div`
     width: 300px;
@@ -145,7 +166,7 @@ S.A_Div = styled.div`
     /* border: 1px solid #333; */
     margin: 0 auto;
     text-align: center;
-    padding-top: 67px;
+    padding-top: 20px;
 
 `
 
@@ -174,6 +195,7 @@ S.nextPage = styled.div`
         font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
         width: 22px;
         height: 22px;
+        line-height: 1.5;
 
         &:hover {
             color: #03A63C;
@@ -192,12 +214,9 @@ S.nextPage = styled.div`
         height: 22px;
         text-align: center;
         border-radius: 50%;
-
-        & p{
-            color: #fff;
+        color: #fff;
             width: 22px;
             height: 22px;
-        }
     }
 
     & button.unClick {
@@ -216,8 +235,9 @@ S.C_Button = styled.button`
     color: ${({theme})=> theme.PALLETTE.brand["primary"]};
     font-size: 14px;
     margin-left: 405px;
-    & .active{
+    &:hover{
         background-color: ${({theme})=> theme.PALLETTE.brand["primary"]} ;
+        color: #fff;
     }
     cursor: pointer;
 
@@ -231,6 +251,10 @@ S.NoticeWrapper = styled.div`
     padding-top: 80px;
     padding-bottom: 240px;
     text-align: center;
+
+    &.noticeForm{
+        padding-bottom: 1500px;
+    }
 
     & h1{
         font-size: 24px;
@@ -278,6 +302,11 @@ S.NTr = styled.tr`
         background-color: #E6F6E8;
         font-weight: bold;
     }
+
+    & .confirmMessage{
+        color: #F25050;
+        font-size: 12px;
+    }
 `
 
 S.NTd = styled.td`
@@ -285,6 +314,15 @@ S.NTd = styled.td`
     border-right: none;
     border-left: none;
     padding-left: 28px;
+
+    /* &.update_contents{
+        width: 100%;
+        height: 550px;
+        margin-top: 20px;
+        margin-left: -10px;
+        padding: 10px;
+        border: none;
+    } */
     
 `
 S.BDiv = styled.div`
@@ -301,17 +339,40 @@ S.BDiv = styled.div`
         border: 1px solid ${({theme})=> theme.PALLETTE.brand["primary"]};
         background-color: #fff;
     }
+
+    & .modi:hover{
+        background-color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+        color: #fff;
+    }
+
+    & .del{
+        color: #F27830;
+        border: 1px solid #F27830;
+    }
+
+    & .del:hover{
+        background-color: #F27830;
+        color: #fff; 
+    }
 `
 
 S.NButton = styled.button`
     width: 126px;
     height: 38px;
-    background-color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+    color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+    background-color: #fff;
+    border: 1px solid ${({theme})=> theme.PALLETTE.brand["primary"]};
     border-radius: 10px;
     font-size: 14px;
-    color: #fff;
     margin-top: 54px;
     cursor: pointer;
+
+    &:hover{
+        background-color: ${({theme})=> theme.PALLETTE.brand["primary"]};
+        color: #fff;
+    }
 `
+
+
 
 export default S;
