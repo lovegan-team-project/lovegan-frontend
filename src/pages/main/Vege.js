@@ -1,46 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import S from './style';
 import { useNavigate } from 'react-router-dom';
-import Rectangle from './images/Rectangle.png'
+import Img from './images/Rectangle.png'
 import Product01 from './images/product01.svg'
 import Product02 from './images/product02.svg'
 import Product03 from './images/product03.svg'
 import Product04 from './images/product04.svg'
-import ItemContainer from './ItemContainer';
+import ItemContainer from './ItemContainer.js';
 
 const Vege = () => {
     const navigate = useNavigate();
 
+    const [products, setProducts] = useState([]);
+
+    const getProduct = async () => {
+        const response = await fetch('http://localhost:8000/product/get')
+        const datas = await response.json();
+        setProducts(datas)
+    }
+
+    useEffect(()=>{
+        getProduct()
+    },[])
+
     return (
         <S.TagItemWrapper>
-            <ItemContainer
-                title="아보카도"
-                description="유기농 아보카도 3+1 개입"
-                price="8,700원"
-                image={Product01}
+            {products.slice(0,4).map((product)=>(
+                <ItemContainer
+                key={product._id}
+                title={product.title}
+                description={product.description}
+                price={`${product.price.toLocaleString()}원`}
+                image={Img} //이미지 스키마 추가 해야함
                 onNavigate={() => navigate("/details")}
             />
-            <ItemContainer
-                title="방울토마토"
-                description="유기농 방울토마토 500g"
-                price="7,990원"
-                image={Product02}
-                onNavigate={() => navigate("/details")}
-            />
-            <ItemContainer
-                title="마늘"
-                description="유기농 마늘 4개입"
-                price="9,990원"
-                image={Product03}
-                onNavigate={() => navigate("/details")}
-            />
-            <ItemContainer
-                title="브로콜리"
-                description="유기농 브로콜리 500g"
-                price="12,990원"
-                image={Product04}
-                onNavigate={() => navigate("/details")}
-            />
+            ))}
         </S.TagItemWrapper>
     );
 };
