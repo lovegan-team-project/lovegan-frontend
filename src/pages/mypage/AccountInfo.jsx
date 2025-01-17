@@ -13,9 +13,12 @@ const EditableInput = ({
     hideButtons = false, 
     notice, 
     buttonLabel = { edit: "수정", save: "저장" },
+    apiUrl
 }) => {
     const [inputValue, setInputValue] = useState(value);
     const [isEditing, setIsEditing] = useState(editable);
+
+    const currentUser = useSelector((state) => state.user.currentUser);
 
     // value가 바뀔 때 inputValue 동기화
     useEffect(() => {
@@ -25,9 +28,32 @@ const EditableInput = ({
 
     // console.log("전달됨: " + inputValue);
     
-    const handleSave = () => {
+    const handleSave = async () => {
         setIsEditing(false);
-        if (onSave) onSave(inputValue);
+        if (onSave) {
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: currentUser.email,
+                        value: inputValue
+                    })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    alert(data.message || '변경사항이 저장되었습니다.');
+                    onSave(inputValue);
+                } else {
+                    alert('수정에 실패했습니다.');
+                }
+            } catch (error) {
+                console.Console('error saving', error);
+                alert('서버 오류로 저장하지 못했습니다.');
+            }
+        }
     };
 
     return (
@@ -89,11 +115,13 @@ const AccountInfo = () => {
                         title="닉네임"
                         value={currentUser.nickname}
                         onSave={handleNicknameSave}
+                        apiUrl="http://localhost:8000/user/change-nickname"
                     />
                     <EditableInput
                         title="한 줄 소개"
                         value={currentUser.intro}
                         onSave={handleIntroSave}
+                        apiUrl="http://localhost:8000/user/change-intro"
                     />
                     <EditableInput
                         title="이메일"
