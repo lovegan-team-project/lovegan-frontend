@@ -3,10 +3,17 @@ import S from './style';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import useInput from '../../hooks/useInput';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const Register = () => {
     const { register, handleSubmit, getValues, formState: { isSubmitted, isSubmitting, errors}} = useForm({mode : "onchange"});
+
+    const previousUrl = useSelector((state) => state.user.previousUrl);
+    const currentUser = useSelector((state) => state.user.currentUser);
+    const isLogin = useSelector((state) => state.user.isLogin);
+
+    const dispatch = useDispatch();
 
     const [value,onChangeValue,setValue] = useInput();
 
@@ -15,6 +22,8 @@ const Register = () => {
     const contentsRegex = /^.{10,}$/;
 
     const navigate = useNavigate();
+    
+    console.log(currentUser);
 
     return (
         <>
@@ -33,7 +42,8 @@ const Register = () => {
                             body: JSON.stringify({
                                 no: newNo,
                                 title: data.title,
-                                contents: data.contents
+                                writer: currentUser.nickname,
+                                contents: data.contents,
                             })
                         })
                         .then((res)=>res.json())
@@ -75,7 +85,7 @@ const Register = () => {
 
                             <S.NTr>
                                 <S.NTd>작성자</S.NTd>
-                                <S.NTd>비건사랑</S.NTd>
+                                <S.NTd>{currentUser.nickname}</S.NTd>
                             </S.NTr>
 
                             <S.NTr>
