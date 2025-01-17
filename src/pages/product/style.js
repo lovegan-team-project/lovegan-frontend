@@ -275,10 +275,10 @@ S.ProductSortWrapper = styled.div`
 
 S.ProductMainContainer = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     margin-top: 34px;
     width: 1100px;
-    height: 1281px;
+    height: 100%;
     
 `
 S.ProductRowItemContainer = styled.div`
@@ -288,9 +288,20 @@ S.ProductRowItemContainer = styled.div`
     margin-bottom: 42px;
 `
 S.ProductItemContainer = styled.div`
+
     margin-right: 40px;
-    width: 100%;
+    width: 340px;
     height: 399px;
+
+`
+S.ItemContainerWrapper = styled.div`
+    width: 340px;
+    height: 399px;
+    margin-right: 40px;
+    margin-bottom: 42px;
+     &:nth-child(3n) {
+        margin-right: 0;
+    }
 
 `
 S.ItemImgWrapper = styled.div`
@@ -298,6 +309,10 @@ S.ItemImgWrapper = styled.div`
     height: 240px;
     border-radius: 10px;
     background-color: #E6E6E6;
+
+`
+S.ItemClickDiv = styled.div`
+    width: 340px;
 
 `
 S.ItemTitle = styled.div`
