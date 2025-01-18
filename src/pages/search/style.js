@@ -2,6 +2,20 @@ import styled from "styled-components";
 
 const S ={};
 
+S.noWrapper = styled.div`
+    width: 1420px;
+    height: 500px;
+    padding: 100px 0;
+    margin: 0 auto;
+
+    & >h4{
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 40px;
+        color: #333;
+    }
+`
+
 S.Wrapper = styled.div`
     width: 1420px;
     height: 2700px;
