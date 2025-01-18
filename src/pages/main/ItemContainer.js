@@ -5,7 +5,7 @@ import LikeClick from './images/LikeClick.svg'
 import { useNavigate } from 'react-router-dom';
 import Star from './images/star.svg';
 
-const ItemContainer = ({ title, description, price, image, onNavigate }) => {
+const ItemContainer = ({ title, description, price,star, image,review, onNavigate }) => {
     const [like, setLike] = useState(false);
 
     const toggleLike = () => setLike(!like);
@@ -25,7 +25,7 @@ const ItemContainer = ({ title, description, price, image, onNavigate }) => {
                 <S.ItemExplain>{description}</S.ItemExplain>
                 <S.ItemPrice>{price}</S.ItemPrice>
                 <S.ItemStar>
-                    <img src={Star} alt="star" />4.9<S.Review>(+999)</S.Review>
+                    <img src={Star} alt="star" />{star}<S.Review>({review})</S.Review>
                 </S.ItemStar>
             </div>
         </S.ItemContainer>
