@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import S from './style';
 import UserImg2 from './image/UserImg2.png';
-import { useSelector } from 'react-redux';
 
 // parentId=null, onReply
 const CommentForm = ( {addList, parentId, addReply} ) => {
     const [value, setValue] = useState('');
-    const currentUser = useSelector((state) => state.user.currentUser);
     
     // const now = new Date();   
 
@@ -18,12 +16,12 @@ const CommentForm = ( {addList, parentId, addReply} ) => {
         e.preventDefault();
         if(value.trim()) {
             const newComment = {
-                post: "1",
-                author: currentUser.nickname,
+                post: "유저",
+                author: '유저 닉네임',
                 content: value, // 입력한 댓글 내용
-                date: new Date().toISOString(),
                 // 대댓글 저장 배열
                 replies: [],
+                createAt: new Date().toISOString(),
             };
 
             if(parentId) {

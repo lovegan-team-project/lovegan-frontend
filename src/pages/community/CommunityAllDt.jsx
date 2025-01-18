@@ -26,10 +26,13 @@ const CommunityAllDt = (props) => {
     const [scrapStroke, setScrapStroke] = useState('#8D8D8D')
 
     // // 각 댓글별 좋아요 버튼 클릭 상태 (배열로 관리)
-    const [likeMinStates, setLikeMinStates] = useState('#fff');
+    // const [likeMinStates, setLikeMinStates] = useState('#fff');
 
     // 댓글 수 초기값 설정
-    const [commentCount, setCommentCount] = useState(0);
+    const [commentCount, setCommentCount] = useState([]);
+    const updateCommentCount = () => {
+        setCommentCount((prevCount) => prevCount + 1);
+    };
 
     // // 팔로우 버튼 색 변경 함수
     const onChangeColor = () => {
@@ -135,8 +138,7 @@ const CommunityAllDt = (props) => {
             </S.commentNum>           
             <S.Recomment>
             {/* 새로운 댓글 로직 컴포넌트트 */}
-            <Comment onAddComment = {() => setCommentCount
-                (prev => prev + 1)} />
+            <Comment onAddComment = {updateCommentCount}/>
             </S.Recomment>
             
             <S.nextPage>

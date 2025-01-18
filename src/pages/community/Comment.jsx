@@ -21,7 +21,7 @@ const Comment = ({ onAddComment }) => {
                 setList(data);
 
                 if(onAddComment){
-                    onAddComment();
+                    onAddComment(data.length);
                 }
 
                 // console.log(data)

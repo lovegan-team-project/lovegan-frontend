@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 // addReply
 const CommentList = ({ list,  addReply }) => {
     // 댓글 id별로 대댓글 작성 폼 표시
-    const [replyVisible, setReplyVisible] = useState({});
+    const [replyVisible, setReplyVisible] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     // const [replies, setReplies] = useState()
 
@@ -18,6 +18,7 @@ const CommentList = ({ list,  addReply }) => {
 
     // 대댓글 폼 토글 함수
     const toggleReplyForm = (commentId) => {
+        console.log(commentId)
         setReplyVisible((prev) => ({
             ...prev,
             [commentId]: !prev[commentId],
@@ -61,12 +62,12 @@ const CommentList = ({ list,  addReply }) => {
                                 </div>
                             </div>
                             <S.dtInfo_1>
-                                <div className="comment-date">{timeAgo(new Date(comment.date))}</div>
+                                <div className="comment-date">{timeAgo(new Date(comment.createAt))}</div>
                                 <span>·</span>
                                 <LikeBtMin />
                                 <p>좋아요</p>
                                 <span>·</span>
-                                <p className='replyClick' onClick={() => toggleReplyForm(comment.id)}>답글 달기</p>
+                                <p className='replyClick' onClick={() => toggleReplyForm(comment._id)}>답글 달기</p>
                                 <span>·</span>
                                 <p>신고</p>
                             </S.dtInfo_1>
@@ -83,10 +84,10 @@ const CommentList = ({ list,  addReply }) => {
                                             const replyContent = e.target.elements.replyInput.value.trim();
                                             if (replyContent) {
                                                 addReply(comment.id, {
-                                                    id: Date.now(),
+                                                    // id: Date.now(),
                                                     userid: '닉네임1',
                                                     content: replyContent,
-                                                    date: new Date().toISOString(),
+                                                    date: comment.createAt
                                                 });
                                                 e.target.reset(); // 입력 필드 초기화
                                                 setReplyVisible((prev) => ({
