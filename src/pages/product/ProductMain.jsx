@@ -4,12 +4,12 @@ import Star from '../main/images/star.svg';
 import ItemContainer2 from './ItemContainer2.js';
 import { useNavigate } from 'react-router-dom';
 
-const New = () => {
+const ProductMain = () => {
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
         
         const getProduct = async () => {
-            const response = await fetch(`http://localhost:8000/product/get?tag=NEW`)
+            const response = await fetch(`http://localhost:8000/product/get`)
             const datas = await response.json();
             setProducts(datas);
            
@@ -49,4 +49,4 @@ const New = () => {
     );
 };
 
-export default New;
+export default ProductMain;

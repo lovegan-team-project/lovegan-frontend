@@ -60,6 +60,7 @@ import Notice from "../pages/customerService/Notice";
 import Register from "../pages/customerService/Register";
 import RegisterComplete from "../pages/customerService/RegisterComplete";
 import Cart from "../pages/cart/Cart";
+import ProductMain from "../pages/product/ProductMain";
 
 
 
@@ -81,6 +82,11 @@ const router = createBrowserRouter([
                 path : "/product",
                 element : <Product />,
                 children : [
+                    {   
+                        index : true,
+                        element : <ProductMain />
+
+                    },
                     {
                         path : "vege",
                         element : <MainVegeFilter />
