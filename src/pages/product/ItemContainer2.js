@@ -12,16 +12,16 @@ const ItemContainer2 = () => {
     const toggleLike = () => setLike(!like);
 
     return (
-        <>
-            <S.ProductPhotoWrapper>
-                <img src={Image} onClick={() => navigate("/details")}/>
-                <img onClick={toggleLike}
-                    className="like"
-                    src={like ? LikeClick : Like}
-                    alt="하트"
-                />
-            </S.ProductPhotoWrapper>
-        </>
+    <>
+        <S.ProductPhotoWrapper>
+            <img src={Image} onClick={() => navigate("/details")} />
+            <img onClick={toggleLike}
+                className="like"
+                src={like ? LikeClick : Like}
+                alt="하트"
+            />
+        </S.ProductPhotoWrapper>        
+    </>
     );
 };
 export default ItemContainer2;
