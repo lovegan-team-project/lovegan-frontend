@@ -17,7 +17,7 @@ const Product = () => {
     const [products, setProducts] = useState([]);
     
     const getProduct = async () => {
-        const response = await fetch('http://localhost:8000/product/get')
+        const response = await fetch('http://localhost:8000/product/post')
         const datas = await response.json();
         setProducts(datas)
     }

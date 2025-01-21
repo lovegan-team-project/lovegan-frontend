@@ -2,10 +2,6 @@ import React, { useEffect, useState } from 'react';
 import S from './style';
 import { useNavigate } from 'react-router-dom';
 import Img from './images/Rectangle.png'
-import Product01 from './images/product01.svg'
-import Product02 from './images/product02.svg'
-import Product03 from './images/product03.svg'
-import Product04 from './images/product04.svg'
 import ItemContainer from './ItemContainer.js';
 
 const Vege = () => {
@@ -14,7 +10,7 @@ const Vege = () => {
     const [products, setProducts] = useState([]);
 
     const getProduct = async () => {
-        const response = await fetch('http://localhost:8000/product/get')
+        const response = await fetch(`http://localhost:8000/product/get?categories=채소&tag=BEST`)
         const datas = await response.json();
         setProducts(datas)
     }
@@ -25,7 +21,10 @@ const Vege = () => {
 
     return (
         <S.TagItemWrapper>
-            {products.slice(0,4).map((product)=>(
+            {products
+            .sort(() => Math.random() - 0.5) 
+            .slice(0, 4)  
+            .map((product)=>(
                 <ItemContainer
                 key={product._id}
                 title={product.title}
