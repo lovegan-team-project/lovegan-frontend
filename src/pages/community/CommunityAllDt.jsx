@@ -29,11 +29,11 @@ const CommunityAllDt = (props) => {
     // const [likeMinStates, setLikeMinStates] = useState('#fff');
 
     // 댓글 수 초기값 설정
-    const [commentCount, setCommentCount] = useState([]);
-    const updateCommentCount = () => {
-        setCommentCount((prevCount) => prevCount + 1);
-    };
-
+    const [commentCount, setCommentCount] = useState(0);
+    const handleCommentCountChange = (newCount) => {
+        setCommentCount(newCount); 
+    }
+    
     // // 팔로우 버튼 색 변경 함수
     const onChangeColor = () => {
         setColorChange(prevColor => (prevColor === '#03A63C' ? '#E6E6E6' : '#03A63C'))
@@ -132,13 +132,13 @@ const CommunityAllDt = (props) => {
                 <p>조회수 713</p>
                 <div>신고하기</div>
             </S.dtInfo>
-            <S.commentNum>
+            <S.commentNum >
                 댓글
                 <div>{commentCount}</div>
             </S.commentNum>           
             <S.Recomment>
             {/* 새로운 댓글 로직 컴포넌트트 */}
-            <Comment onAddComment = {updateCommentCount}/>
+            <Comment onCommentCountChange = {handleCommentCountChange}/>
             </S.Recomment>
             
             <S.nextPage>

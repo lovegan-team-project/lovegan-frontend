@@ -14,7 +14,7 @@ const CommentList = ({ list,  addReply }) => {
     const currentUser = useSelector((state) => state.user.currentUser);
 
     // 댓글을 5개까지만 보여주기
-    const limitedList = list.slice(0,11);
+    const limitedList = list.slice(0,10);
 
     // 대댓글 폼 토글 함수
     const toggleReplyForm = (commentId) => {
