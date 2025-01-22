@@ -8,20 +8,20 @@ import Image from '../main/images/Rectangle.png';
 
 const ItemContainer2 = () => {
     const [like, setLike] = useState(false);
-
+    const navigate = useNavigate()
     const toggleLike = () => setLike(!like);
 
     return (
-        <>
-            <S.ProductPhotoWrapper onClick={toggleLike}>
-                <img src={Image} />
-                <img
-                    className="like"
-                    src={like ? LikeClick : Like}
-                    alt="하트"
-                />
-            </S.ProductPhotoWrapper>
-        </>
+    <>
+        <S.ProductPhotoWrapper>
+            <img src={Image} onClick={() => navigate("/details")} />
+            <img onClick={toggleLike}
+                className="like"
+                src={like ? LikeClick : Like}
+                alt="하트"
+            />
+        </S.ProductPhotoWrapper>        
+    </>
     );
 };
 export default ItemContainer2;

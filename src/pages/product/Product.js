@@ -17,7 +17,7 @@ const Product = () => {
     const [products, setProducts] = useState([]);
     
     const getProduct = async () => {
-        const response = await fetch('http://localhost:8000/product/get')
+        const response = await fetch('http://localhost:8000/product/post')
         const datas = await response.json();
         setProducts(datas)
     }
@@ -184,7 +184,8 @@ const Product = () => {
                         </S.FilterWrapper>
                     </S.ProductHeader>
                     <Outlet />
-                    <S.ProductMainContainer>
+                    
+                    {/* <S.ProductMainContainer>
                     
                         {products.map((product) => (
                             <S.ItemContainerWrapper>
@@ -194,7 +195,7 @@ const Product = () => {
                                 <S.ItemTitle>{product.title}</S.ItemTitle>
                                 <S.ItemExplain>{product.description}</S.ItemExplain>
                                 <S.ItemPrice>
-                                    <S.Discount>{product.discount}%</S.Discount>{(product.price * (1 - product.discount / 100)).toLocaleString()}(원)
+                                    <S.Discount>{product.discount}%</S.Discount>{(product.price * (1 - product.discount / 100)).toLocaleString()}원
                                     <S.OriginPrice>{`${product.price.toLocaleString()}원`}</S.OriginPrice>
                                 </S.ItemPrice>
                                 <S.ItemStar>
@@ -208,91 +209,7 @@ const Product = () => {
                             </S.ItemContainerWrapper>
                         ))}
                     
-                        
-                    {/*   
-                    <S.ProductRowItemContainer>
-                        <S.ProductItemContainer >
-                            <ItemContainer2 />
-                            <div onClick={()=> navigate("/details")}>
-                                <S.ItemTitle>상품명</S.ItemTitle>
-                                <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
-                                <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
-                                <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
-                            </div>
-                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
-                        </S.ProductItemContainer>
-                        <S.ProductItemContainer>
-                            <ItemContainer2 />
-                            <S.ItemTitle>상품명</S.ItemTitle>
-                            <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
-                            <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
-                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
-                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
-                        </S.ProductItemContainer>
-                        <S.ProductItemContainer>
-                            <ItemContainer2 />
-                            <S.ItemTitle>상품명</S.ItemTitle>
-                            <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
-                            <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
-                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
-                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
-                        </S.ProductItemContainer>
-                    </S.ProductRowItemContainer>
-                    <S.ProductRowItemContainer>
-                        <S.ProductItemContainer>
-                            <ItemContainer2 />
-                            <S.ItemTitle>상품명</S.ItemTitle>
-                            <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
-                            <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
-                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
-                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
-                        </S.ProductItemContainer>
-                        <S.ProductItemContainer>
-                            <ItemContainer2 /> 
-                            <S.ItemTitle>상품명</S.ItemTitle>
-                            <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
-                            <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
-                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
-                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
-                        </S.ProductItemContainer>
-                        <S.ProductItemContainer>
-                            <ItemContainer2 />
-                            <S.ItemTitle>상품명</S.ItemTitle>
-                            <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
-                            <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
-                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
-                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
-                        </S.ProductItemContainer>
-                    </S.ProductRowItemContainer>
-                    <S.ProductRowItemContainer>
-                        <S.ProductItemContainer>
-                            <ItemContainer2 />
-                            <S.ItemTitle>상품명</S.ItemTitle>
-                            <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
-                            <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
-                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수)</S.Review></S.ItemStar>
-                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
-                        </S.ProductItemContainer>
-                        <S.ProductItemContainer>
-                            <ItemContainer2 />
-                            <S.ItemTitle>상품명</S.ItemTitle>
-                            <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
-                            <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
-                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수) </S.Review></S.ItemStar>
-                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>
-                        </S.ProductItemContainer>
-                        <S.ProductItemContainer>
-                            <ItemContainer2 />
-                            <S.ItemTitle>상품명</S.ItemTitle>
-                            <S.ItemExplain>상품 한 줄 설명</S.ItemExplain>
-                            <S.ItemPrice><S.Discount>00%</S.Discount>할인가(원)<S.OriginPrice>정상가(원)</S.OriginPrice></S.ItemPrice>
-                            <S.ItemStar><img src={Star} alt='star'></img>별점 평균<S.Review>(리뷰 개수) </S.Review></S.ItemStar>
-                            <S.ItemTagWrapper><S.Tag>NEW</S.Tag></S.ItemTagWrapper>                        
-                        </S.ProductItemContainer>
-                    </S.ProductRowItemContainer>
-                    */}
-                    
-                </S.ProductMainContainer>
+                </S.ProductMainContainer> */}
         
                 </S.ProductWrapper>
                

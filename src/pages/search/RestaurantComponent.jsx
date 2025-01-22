@@ -3,16 +3,18 @@ import star from './img/star.svg';
 import S from './style';
 
 
-const RestaurantComponent = () => {
+const RestaurantComponent = ({restaurantData}) => {
     return (
+        (restaurantData.length > 0 && (restaurantData.slice(0,3).map(item => (
         <S.RestaurantWrap>
             <div></div>
             <div>
-                <p>식당명</p>
-                <div><img src={star} alt="star" />&nbsp;<span>4.8</span><span>(122)</span></div>
+                <p>{item.name}</p>
+                <div><img src={star} alt="star" />&nbsp;<span>{item.rating}</span><span>({item.review_count})</span></div>
             </div>
-            <p>간단히 비건 음식 먹으며 책 읽거나 작업하기..</p>
+            <p>{item.restaurant_description}</p>
         </S.RestaurantWrap>
+        ))) )
     );
 };
 

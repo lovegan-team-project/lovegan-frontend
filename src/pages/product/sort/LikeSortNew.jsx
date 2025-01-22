@@ -1,11 +1,6 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
 const LikeSortNew = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+    
 };
 
 export default LikeSortNew;
