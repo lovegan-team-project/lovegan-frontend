@@ -18,13 +18,34 @@ const CommunityFollow  = () => {
 
     // 게시물 클릭시 디테일 페이지로 이동
     const toPostsOnClick = () => {
-        // navigate("/community/CommunityFollowDt")
         navigate("/community/CommunityFollowDt")
     }   
     const bookmarkClick = (event) => {
         event.stopPropagation();
     }
 
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        const fetchPost = async () => {
+            try {
+                const response = await fetch("http://localhost:8000/community/getPost")
+                console.log(response)
+                // .then((res) => res.json())
+                if(!response.ok) {
+                    throw new Error('게시물 fetch 실패');
+                }
+                const data = await response.json();
+                setPosts(data);
+            } catch (error) {
+                console.error('Error fetching: ', error);
+            }
+        }
+        fetchPost();
+    },[])
+
+    console.log(posts);
+    
     return (
         <S.CommunityContainer>
             <S.mainWrapper>
@@ -40,259 +61,38 @@ const CommunityFollow  = () => {
                 </div>
 
                 <S.FeedBoxFollow className='전체 박스'>
-                        
-                        <S.Feed2 className='게시물'>
+                    {posts.map((post, index)=>
+                        <S.Feed2 className='게시물' key={post._id}>
                             <S.PostUser1 className='게시물1'>
                             <S.PostImage onClick={toPostsOnClick}>
-                                <img src={Userimages.post10} alt='팔로우 게시물 이미지10'/>
+                                <img src={Userimages[`post${index + 4}`]} alt={`게시물 사진 ${index + 1}`}/>
                                 <S.type onClick={bookmarkClick}>
                                     <ScrapBt />
                                 </S.type>
                             </S.PostImage>
-                            <S.PostTitleLeft onClick={toPostsOnClick}>게시물 제목</S.PostTitleLeft>
+                            <S.PostTitleLeft onClick={toPostsOnClick}>{post.title}</S.PostTitleLeft>
                             <S.text2>
                                 <S.TextInfo>
                                     <S.Profile className='profileImage'>
-                                        <img src={Userimages.postuser10} alt='팔로우 유저 이미지10'/>
+                                        <img src={Userimages[`postuser${index + 1}`]} alt={Userimages[`postuser${index + 1}`]}/>
                                     </S.Profile>
 
                                     <S.PostUserName2 className='profileUserName'>유저 이름</S.PostUserName2>
                                 </S.TextInfo>
                             </S.text2>
-                                <S.FeedTags className='postTags'>
-                                    <S.FeedFilter>스크랩24</S.FeedFilter>
+                                <S.FeedTags className='postTags' key={post._id}>
+                                    <S.FeedFilter>스크랩 {post.scrapCount}</S.FeedFilter>
                                     <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>좋아요80</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>댓글604</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>조회수713</S.FeedFilter>
-                                </S.FeedTags>
-                            </S.PostUser1>
-                            <S.PostUser1 className='게시물1'>
-                            <S.PostImage onClick={toPostsOnClick}>
-                                <img src={Userimages.post11} alt='팔로우 게시물11'/>
-                            <S.type onClick={bookmarkClick}>
-                                <ScrapBt />
-                            </S.type>
-                            </S.PostImage>
-                            <S.PostTitleLeft onClick={toPostsOnClick}>게시물 제목</S.PostTitleLeft>
-                            <S.text2>
-                                <S.TextInfo>
-                                    <S.Profile className='profileImage'>
-                                        <img src={Userimages.postuser11} alt='팔로우 게시물 유저11'/>
-                                    </S.Profile>
-                                    <S.PostUserName2>유저 이름</S.PostUserName2>
-                                </S.TextInfo>
-                            </S.text2>
-                                <S.FeedTags className='postTags'>
-                                    <S.FeedFilter>스크랩24</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>좋아요80</S.FeedFilter>
+                                    <S.FeedFilter>좋아요 {post.likeCount}</S.FeedFilter>
                                     <S.FeedFilter>·</S.FeedFilter>
                                     <S.FeedFilter>댓글604</S.FeedFilter>
                                     <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>조회수713</S.FeedFilter>
-                                </S.FeedTags>
-                            </S.PostUser1>
-                            <S.PostUser1 className='게시물1'>
-                            <S.PostImage onClick={toPostsOnClick}>
-                                <img src={Userimages.post12} alt='팔로우 게시물12'/>
-                            <S.type onClick={bookmarkClick}>
-                                <ScrapBt />
-                            </S.type>
-                            </S.PostImage>
-                            <S.PostTitleLeft onClick={toPostsOnClick}>게시물 제목</S.PostTitleLeft>
-                            <S.text2>
-                                <S.TextInfo>
-                                    <S.Profile className='profileImage'>
-                                    <img src={Userimages.postuser12} alt='팔로우 게시물 유저12'/>
-                                    </S.Profile>
-
-                                    <S.PostUserName2>유저 이름</S.PostUserName2>
-                                </S.TextInfo>
-                            </S.text2>
-                                <S.FeedTags className='postTags'>
-                                    <S.FeedFilter>스크랩24</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>좋아요80</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>댓글604</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>조회수713</S.FeedFilter>
+                                    <S.FeedFilter>조회수 {post.viewCount}</S.FeedFilter>
                                 </S.FeedTags>
                             </S.PostUser1>
                         </S.Feed2>
-                        <S.Feed2 className='게시물'>
-                            <S.PostUser1 className='게시물1'>
-                            <S.PostImage onClick={toPostsOnClick}>
-                                <img src={Userimages.post13} alt='팔로우 게시물13'/>
-                                <S.type onClick={bookmarkClick}>
-                                    <ScrapBt />
-                                </S.type>
-                            </S.PostImage>
-                            <S.PostTitleLeft onClick={toPostsOnClick}>게시물 제목</S.PostTitleLeft>
-                            <S.text2>
-                                <S.TextInfo>
-                                    <S.Profile className='profileImage'>
-                                        <img src={Userimages.postuser13} alt='팔로우 게시물 유저13'/>
-                                    </S.Profile>
-
-                                    <S.PostUserName2 className='profileUserName'>유저 이름</S.PostUserName2>
-                                </S.TextInfo>
-                            </S.text2>
-                                <S.FeedTags className='postTags'>
-                                    <S.FeedFilter>스크랩24</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>좋아요80</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>댓글604</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>조회수713</S.FeedFilter>
-                                </S.FeedTags>
-                            </S.PostUser1>
-                            <S.PostUser1 className='게시물1'>
-                            <S.PostImage onClick={toPostsOnClick}>
-                                <img src={Userimages.post14} alt='팔로우 게시물14'/>
-                                <S.type onClick={bookmarkClick}>
-                                    <ScrapBt />
-                                </S.type>
-                            </S.PostImage>
-                            <S.PostTitleLeft onClick={toPostsOnClick}>게시물 제목</S.PostTitleLeft>
-                            <S.text2>
-                                <S.TextInfo>
-                                    <S.Profile className='profileImage'>
-                                        <img src={Userimages.postuser14} alt='팔로우 게시물 유저14'/>
-                                    </S.Profile>
-
-                                    <S.PostUserName2>유저 이름</S.PostUserName2>
-                                </S.TextInfo>
-                            </S.text2>
-                                <S.FeedTags className='postTags'>
-                                    <S.FeedFilter>스크랩24</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>좋아요80</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>댓글604</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>조회수713</S.FeedFilter>
-                                </S.FeedTags>
-                            </S.PostUser1>
-                            <S.PostUser1 className='게시물1'>
-                            <S.PostImage onClick={toPostsOnClick}>
-                                <img src={Userimages.post15} alt='팔로우 게시물 유저15'/>
-                                <S.type onClick={bookmarkClick}>
-                                    <ScrapBt />
-                                </S.type>
-                            </S.PostImage>
-                            <S.PostTitleLeft onClick={toPostsOnClick}>게시물 제목</S.PostTitleLeft>
-                            <S.text2>
-                                <S.TextInfo>
-                                    <S.Profile className='profileImage'>
-                                        <img src={Userimages.postuser15} alt='팔로우 게시물 유저15'/>
-                                    </S.Profile>
-
-                                    <S.PostUserName2>유저 이름</S.PostUserName2>
-                                </S.TextInfo>
-                            </S.text2>
-                                <S.FeedTags className='postTags'>
-                                    <S.FeedFilter>스크랩24</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>좋아요80</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>댓글604</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>조회수713</S.FeedFilter>
-                                </S.FeedTags>
-                            </S.PostUser1>
-                        </S.Feed2>
-                        <S.Feed2 className='게시물'>
-                            <S.PostUser1 className='게시물1'>
-                            <S.PostImage onClick={toPostsOnClick}>
-                                <img src={Userimages.post16} alt='팔로우 게시물16'/>
-                                <S.type onClick={bookmarkClick}>
-                                    <ScrapBt />
-                                </S.type>
-                            </S.PostImage>
-                            <S.PostTitleLeft onClick={toPostsOnClick}>게시물 제목</S.PostTitleLeft>
-                            <S.text2>
-                                <S.TextInfo>
-                                    <S.Profile className='profileImage'>
-                                        <img src={Userimages.postuser16} alt='팔로우 게시물 유저16'/>
-                                    </S.Profile>
-
-                                    <S.PostUserName2 className='profileUserName'>유저 이름</S.PostUserName2>
-                                </S.TextInfo>
-                            </S.text2>
-                                <S.FeedTags className='postTags'>
-                                    <S.FeedFilter>스크랩24</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>좋아요80</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>댓글604</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>조회수713</S.FeedFilter>
-                                </S.FeedTags>
-                            </S.PostUser1>
-                            <S.PostUser1 className='게시물1'>
-                            <S.PostImage onClick={toPostsOnClick}>
-                                <img src={Userimages.post17} alt='팔로우 게시물17'/>
-                                <S.type onClick={bookmarkClick}>
-                                    <ScrapBt />
-                                </S.type>
-                            </S.PostImage>
-                            <S.PostTitleLeft onClick={toPostsOnClick}>게시물 제목</S.PostTitleLeft>
-                            <S.text2>
-                                <S.TextInfo>
-                                    <S.Profile className='profileImage'>
-                                        <img src={Userimages.postuser17} alt='팔로우 게시물 유저17'/>
-                                    </S.Profile>
-
-                                    <S.PostUserName2>유저 이름</S.PostUserName2>
-                                </S.TextInfo>
-                            </S.text2>
-                                <S.FeedTags className='postTags'>
-                                    <S.FeedFilter>스크랩24</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>좋아요80</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>댓글604</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>조회수713</S.FeedFilter>
-                                </S.FeedTags>
-                            </S.PostUser1>
-                            <S.PostUser1 className='게시물1'>
-                            <S.PostImage onClick={toPostsOnClick}>
-                                <img src={Userimages.post18} alt='팔로우 게시물18'/>
-                                <S.type onClick={bookmarkClick}>
-                                    <ScrapBt />
-                                </S.type>
-                            </S.PostImage>
-                            <S.PostTitleLeft onClick={toPostsOnClick}>게시물 제목</S.PostTitleLeft>
-                            <S.text2>
-                                <S.TextInfo>
-                                    <S.Profile className='profileImage'>
-                                        <img src={Userimages.postuser18} alt='팔로우 게시물 유저18'/>
-                                    </S.Profile>
-
-                                    <S.PostUserName2>유저 이름</S.PostUserName2>
-                                </S.TextInfo>
-                            </S.text2>
-                                <S.FeedTags className='postTags'>
-                                    <S.FeedFilter>스크랩24</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>좋아요80</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>댓글604</S.FeedFilter>
-                                    <S.FeedFilter>·</S.FeedFilter>
-                                    <S.FeedFilter>조회수713</S.FeedFilter>
-                                </S.FeedTags>
-                            </S.PostUser1>
-                        </S.Feed2>
-
-
+                    )}
                 </S.FeedBoxFollow>
-
             </S.mainWrapper>
         </S.CommunityContainer>
     );

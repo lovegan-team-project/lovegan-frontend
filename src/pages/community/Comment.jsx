@@ -2,116 +2,103 @@ import React, { useEffect, useState } from 'react';
 import CommentForm from './CommentForm';
 import CommentList from './CommentList';
 
-const Comment = ({ onAddComment }) => {
+const Comment = ({ onCommentCountChange }) => {
 
     const [list, setList] = useState([]);
-    // componentDidMount 역할을 하는 useEffect
-    useEffect(() => {
-        setList([
-            {
-            userid: 'user1',
-            content: '',
-            date: new Date().toISOString(),
-            updateFlag: true,
-            replies : [] // 대댓글 저장 배열
-            },
-        ]);
-    }, []); // 빈 배열을 두 번째 인자로 전달하면 컴포넌트가 처음 렌더링될 때 한 번만 실행
+    const [commentCount, setCommentCount] = useState(0); 
 
-    // 리스트에 아이템(댓글)을 추가하는 함수
-    const addList = (obj) => {
-        setList(prevList => [...prevList, obj]);
-        if(onAddComment) {
-            onAddComment();
+    useEffect(() => {
+        const fetchComment = async () => {
+            try {
+                const response = await fetch("http://localhost:8000/community/getComment")
+                // console.log(response)
+                const data = await response.json();
+
+                if(!Array.isArray(data.comments)) {
+                    console.error("서버에서 반환된 데이터가 배열이 아님:", data)
+                    return;
+                }
+
+                setList(data.comments);
+                setCommentCount(data.commentCount);
+
+                if(onCommentCountChange) {
+                    onCommentCountChange(data.commentCount);
+                }
+
+                // console.log(data)
+            } catch (error) {
+                console.error('댓글 불러오는 중 오류 발생', error);
+            }
+        }
+        
+        fetchComment();
+    }, [onCommentCountChange]); // 빈 배열을 두 번째 인자로 전달하면 컴포넌트가 처음 렌더링될 때 한 번만 실행
+
+    // console.log(list)
+
+    // 리스트에 댓글을 추가하는 함수
+    const addList = async (obj) => {
+        try {
+            const response = await fetch("http://localhost:8000/community/addComment", {
+                method : "POST",
+                headers : { "Content-Type" : "application/json"},
+                body : JSON.stringify(obj), // 서버로 새 데이터 전달
+            });
+
+            console.log(obj);
+
+            if(!response.ok){
+                throw new Error('댓글 저장 실패')
+            }
+
+            const saveComment = await response.json(); // 서버에 저장된 댓글 반환
+            setList((prevList) => [...prevList, saveComment]); // 상태에 추가
+            // setCommentCount((prevCount) => prevCount + 1); // 댓글 개수 갱신
+
+            // if(onCommentCountChange) {
+            //     onCommentCountChange(commentCount + 1);
+            // }
+            
+        } catch (error) {
+            console.error('댓글 추가하는 중 오류 발생', error);
         }
       };
 
     // 대댓글 추가 함수
-    const addReply = (parentId, reply) => {
-        setList(prevList =>
-            prevList.map(comment => 
-                comment.id === parentId 
-                ? {...comment, replies : [...comment.replies, reply]} 
-                : comment
-            )
-        );
-
-        if(onAddComment){
-            onAddComment();
-        }
-    };
-
-    // useEffect(() => {
-    //     const fetchComment = async () => {
-    //         try {
-    //             const response = await fetch("http://localhost:8000/comment/");
-    //             if (!response.ok) {
-    //                 throw new Error('Failed to fetch comments');
-    //             }
-    //             const data = await response.json();
-    //             setList(data.content); // 댓글 목록을 상태에 저장
-    //         } catch (error) {
-    //             console.error('comment 연결 실패:', error);
-    //         }
-    //     };
-    //     fetchComment();
-    // }, []); // 빈 배열을 두 번째 인자로 전달하면 컴포넌트가 처음 렌더링될 때 한 번만 실행
-
-    // // 리스트에 아이템(댓글)을 추가하는 함수
-    // const addList = async (newComment) => {
-        
-    //     try {
-    //         const response = await fetch("http://localhost:8000/comment", {
-    //             method : 'POST',
-    //             headers : {
-    //                 'Content-Type' : 'application/json',
-    //             },
-    //             body : JSON.stringify(newComment)
-    //         });
-    //         if (!response.ok) {
-    //             throw new Error('comment fetch 연결 실패');
-    //         }
-    //         const addedComment = await response.json();
-    //         setList(prevList => [...prevList, addedComment.comment]); // 새로운 댓글을 목록에 추가
-    //         if (onAddComment) onAddComment();
-    //     } catch (error) {
-    //         console.error('Failed to add comment:', error);
-    //     }
-    //   };
-        
-
-    // 대댓글 추가 함수
     // const addReply = async (parentId, reply) => {
     //     try {
-    //         const response = await fetch(`${"http://localhost:8000/community/comment"}/${parentId}/replies`, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify(reply),
+    //         const response = await fetch("http://localhost:8000/community/getComment", {
+    //             method : "POST",
+    //             headers : { "Content-Type" : "application/json"},
+    //             body : JSON.stringify({parentId, reply}),
     //         });
-    //         if (!response.ok) {
-    //             throw new Error('Failed to add reply');
-    //         }
 
-    //         const updatedComment = await response.json();
-    //         setList(prevList =>
-    //             prevList.map(comment =>
-    //                 comment.id === parentId
-    //                     ? { ...comment, replies: [...comment.replies, updatedComment.reply] }
-    //                     : comment
-    //             )
-    //         );
-    //         if (onAddComment) onAddComment();
+    //         if(!response.ok){
+    //             throw new Error('대댓글 저장 실패');
+    //         }
+    //         console.log(response)
+
+    //         const updatedParent = await response.json();
+    //         setList((prevList) =>
+    //             prevList.map((comment) => 
+    //                 comment.id === parentId ? updatedParent : comment
+    //         ));
+
+    //         // if(onAddComment){
+    //         //     onAddComment();
+    //         // }
     //     } catch (error) {
-    //         console.error('Failed to add reply:', error);
+    //         console.log('대댓글 추가하는 중 오류 발생', error)
     //     }
     // };
+
+    
 
     return (
         <div>
             <CommentForm addList={addList}/>
-            <CommentList list={list}  />
+            <CommentList list={list} />
             {/* addReply={addReply} */}
             {/* updateList={updateList} */}
         </div>
