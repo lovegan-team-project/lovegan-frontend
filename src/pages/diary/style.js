@@ -129,10 +129,14 @@ S.FoodBox = styled.div`
     display: flex;
     border: solid 1px ${({theme})=>theme.PALLETTE.grey["0"]};
     border-radius: 10px;
-    border-left: solid 10px ${({theme})=>theme.PALLETTE.grey["0"]};
+    border-left: solid 10px ${({isFilled, theme}) => 
+    isFilled
+    ? theme.PALLETTE.brand["primary_light"]
+    : theme.PALLETTE.grey["0"]};;
     flex-direction: column;
     margin: 0 0 10px 12px;
 `
+
 S.FoodInfo = styled.div`
     width: 100%;
     height: 90px;
@@ -177,9 +181,15 @@ S.Kcal = styled.div`
     align-items: center;
     justify-content: end;
     font-size: ${({theme})=>theme.FONT_SIZE["paragraph"]};
-    font-weight: ${({theme})=>theme.FONT_WEIGHT["bold"]};
+    font-weight: ${({isFilled, theme}) => 
+        isFilled
+        ? theme.FONT_WEIGHT["bold"]
+        : theme.FONT_WEIGHT["regular"]};
     margin: 11px 14px;
-    color: ${({theme})=>theme.PALLETTE.brand["primary"]};
+    color: ${({isFilled, theme}) => 
+        isFilled
+        ? theme.PALLETTE.brand["primary"]
+        : theme.PALLETTE.brand["primary_black"]};
 `
 
 S.ModalBox = styled.div`
@@ -232,6 +242,10 @@ S.FoodTime = styled.div`
     font-size: ${({theme})=>theme.FONT_SIZE["paragraph"]};
     padding: 2px;
 `
+S.ModalWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+`
 S.ModalBody = styled.div`
     display: flex;
     padding: 20px;
@@ -240,13 +254,22 @@ S.ModalBody = styled.div`
     flex-direction: column;
 `
 S.BodyTitle = styled.div`
+    width: 100%;
     font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
     font-size: ${({theme})=>theme.FONT_SIZE["paragraph"]};
     color: ${({theme})=>theme.PALLETTE.brand["primary_black"]};
+`
+S.TitleWrapper = styled.div`
+    width: 100%;
     display: flex;
+    margin-bottom: 4px;
 `
 S.FoodCount = styled.div`
-    color: ${({theme})=>theme.PALLETTE.grey["8"]};
+    color: ${({isFilled, theme}) => 
+        isFilled
+        ? theme.PALLETTE.brand["primary"]
+        : theme.PALLETTE.grey["8"]};
+    
 `
 S.ModalFooter = styled.div`
     display: flex;
@@ -382,5 +405,70 @@ S.ConfirmButton = styled.button`
     font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
     font-size: ${({theme})=>theme.FONT_SIZE["small"]};
 `
-
+S.Form = styled.form`
+    width: 100%;
+    height: 100%;
+`
+S.ListWrapper = styled.div`
+    display: flex;
+    width: 360px;
+    height: 47px;
+    border-bottom: 1px solid ${({theme})=>theme.PALLETTE.grey["1"]};
+    padding-top: 21px;
+    justify-content: space-between;
+    & img {
+        width: 15px;
+        height: 15px;
+    }
+`
+S.ListTextWrapper = styled.div`
+    width: 326px;
+    display: flex;
+    justify-content: space-between;
+`
+S.FoodList = styled.li`
+    font-size: ${({theme})=>theme.FONT_SIZE["paragraph"]};
+    font-weight: ${({theme})=>theme.FONT_WEIGHT["regular"]};
+    width: 100%;
+`
+S.FoodKcal = styled.p`
+    font-size: ${({theme})=>theme.FONT_SIZE["title"]};
+    font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
+`
+S.TagWrapper = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content : center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 45px;
+    margin-bottom: 27px;
+`
+S.FoodTag = styled.div`
+    /* visibility: ${({isFilled}) => isFilled ? 'visible' : 'hidden'}; */
+    width: 50px;
+    height: 26px;
+    background-color: ${({theme})=>theme.PALLETTE.brand["primary_light"]};
+    border: 1px solid ${({theme})=>theme.PALLETTE.brand["primary"]};
+    box-sizing: border-box;
+    border-radius: 50px;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    color: ${({theme})=>theme.PALLETTE.brand["primary"]};
+    font-size: ${({theme})=>theme.FONT_SIZE["paragraph"]};
+    font-weight: ${({theme})=>theme.FONT_WEIGHT["regular"]};
+    &.morning {  
+    }
+    &.lunch {
+    }
+    &.dinner {
+    }
+    &.snack {
+        background-color: ${({theme})=>theme.PALLETTE.sub["secondary_light"]};
+        border: 1px solid ${({theme})=>theme.PALLETTE.sub["secondary"]};
+        color: ${({theme})=>theme.PALLETTE.sub["secondary"]};
+    }
+`
 export default S;
