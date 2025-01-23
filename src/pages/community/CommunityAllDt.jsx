@@ -11,6 +11,7 @@ import { ReactComponent as like} from './image/like.svg';
 import { ReactComponent as scrap} from './image/scrap.svg';
 import comment_one from './image/comment_one.svg';
 import Comment from './Comment';
+import { useSelector } from 'react-redux';
 
 const CommunityAllDt = (props) => {
 
@@ -25,11 +26,14 @@ const CommunityAllDt = (props) => {
     const [scrapStroke, setScrapStroke] = useState('#8D8D8D')
 
     // // 각 댓글별 좋아요 버튼 클릭 상태 (배열로 관리)
-    const [likeMinStates, setLikeMinStates] = useState('#fff');
+    // const [likeMinStates, setLikeMinStates] = useState('#fff');
 
     // 댓글 수 초기값 설정
     const [commentCount, setCommentCount] = useState(0);
-
+    const handleCommentCountChange = (newCount) => {
+        setCommentCount(newCount); 
+    }
+    
     // // 팔로우 버튼 색 변경 함수
     const onChangeColor = () => {
         setColorChange(prevColor => (prevColor === '#03A63C' ? '#E6E6E6' : '#03A63C'))
@@ -66,9 +70,7 @@ const CommunityAllDt = (props) => {
     useEffect(()=>{
         setNextClick()
     }, [setNextClick])
-
-    window.scrollTo(0, 0);
-
+    
     return (
         <S.PostWrapper>
             <S.HeadLine>
@@ -130,13 +132,13 @@ const CommunityAllDt = (props) => {
                 <p>조회수 713</p>
                 <div>신고하기</div>
             </S.dtInfo>
-            <S.commentNum>
+            <S.commentNum >
                 댓글
                 <div>{commentCount}</div>
             </S.commentNum>           
             <S.Recomment>
             {/* 새로운 댓글 로직 컴포넌트트 */}
-            <Comment onAddComment = {() => setCommentCount(prev => prev + 1)} />
+            <Comment onCommentCountChange = {handleCommentCountChange}/>
             </S.Recomment>
             
             <S.nextPage>

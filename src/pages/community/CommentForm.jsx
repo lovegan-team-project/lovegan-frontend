@@ -3,7 +3,7 @@ import S from './style';
 import UserImg2 from './image/UserImg2.png';
 
 // parentId=null, onReply
-const CommentForm = ( {addList, parentId, addReply} ) => {
+const CommentForm = ( {addList, author, addReply} ) => {
     const [value, setValue] = useState('');
     
     // const now = new Date();   
@@ -14,29 +14,26 @@ const CommentForm = ( {addList, parentId, addReply} ) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         if(value.trim()) {
-            // 현재 작성 시간을 동적으로 생성
-            // const writeDate = new Date();
             const newComment = {
-                // id: Date.now(),
-                id: "유저",
-                userid: '유저 닉네임',
+                // author: author,
                 content: value, // 입력한 댓글 내용
-                date: new Date().toISOString(),
-                // updateFlag: true,
                 // 대댓글 저장 배열
-                replies: [],
+                // replies: [],
+                // createAt: new Date().toISOString(),
             };
 
-            if(parentId) {
-                addReply(parentId, newComment);
-            } else {
-                addList(newComment);
-            }
-
-            // console.log(`작성 시간: ${writeDate}`);
+            // if(parentId) {
+            //     addReply(parentId, newComment);
+            // } else {
+            //     addList(newComment);
+            // }
+            
+            addList(newComment)
             setValue('');
-            console.log('Parent ID:', parentId);
+
+            console.log('Parent ID:', author);
             console.log('addReply Function:', addReply);
             console.log('New Comment:', newComment);
         }
@@ -48,14 +45,15 @@ const CommentForm = ( {addList, parentId, addReply} ) => {
             <form onSubmit={handleSubmit}>
                 <span className='box'>
                     <input 
-                        type="text"
                         className='int'
-                        placeholder={
-                            parentId 
-                            ? '대댓글 입력' 
-                            : '칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)'}
-                        onChange={handleChange}
+                        type="text"
                         value={value}
+                        onChange={handleChange}
+                        placeholder={
+                            // parentId 
+                            // ? '대댓글 입력' 
+                            // : 
+                        '칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)'}
                     />
                 </span>
                 <button type="submit" className='submitBt' disabled={!value.trim()}>
