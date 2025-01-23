@@ -15,18 +15,23 @@ const Product = () => {
     window.scrollTo(0,0);
 
     const [products, setProducts] = useState([]);
+    const [clickSort, setClickSort] = useState("like");
+
     
     const getProduct = async () => {
-        const response = await fetch('http://localhost:8000/product/post')
+        const response = await fetch(`http://localhost:8000/product/get`)
         const datas = await response.json();
-        setProducts(datas)
-    }
+        setProducts(datas);
+               
     
+    }
+            
+            
     useEffect(()=>{
         getProduct()
     },[])
     
-    
+
     const [selectedFilter, setSelectedFilter] = useState(null);
     const navigate = useNavigate();
     const location = useLocation(); // 현재 URL 가져오기
@@ -68,7 +73,7 @@ const Product = () => {
     // 현재 경로 정보 가져오는 훅
 
     // onClick시 정렬 color 변경
-    const [clickSort, setClickSort] = useState("like");
+    
 
     useEffect(()=>{
         setClickSort("like")
@@ -87,11 +92,12 @@ const Product = () => {
             <S.ProductSubTitle>자연을 품은, 모두를 위한 비건 라이프스타일의 시작입니다.</S.ProductSubTitle>
             <S.ToggleContainer>
                 
-                <div className="toggleButtonFood" onClick={() => {setIsOn(!isOn)}}>FOOD</div>
-                <div className="toggleButtonFood" onClick={() => {setIsOn(!isOn)}}>OTHER</div>
+                <div className="toggleButtonFood" onClick={() => {setIsOn(!isOn); navigate("/product")}}>FOOD</div>
+                <div className="toggleButtonFood" onClick={() => {setIsOn(!isOn); navigate("/other")}}>OTHER</div>
                 <span className={`button ${isOn ? "foodActive" : "otherActive"}`}>{isOn ? "FOOD" : "OTHER"}</span>
                 
             </S.ToggleContainer>
+           
             <S.MainWrapper>
                 <S.SideMenuWrapper>
                     <img src={SideMenuImage} alt='사이드메뉴바 이미지'></img>
@@ -161,15 +167,32 @@ const Product = () => {
                     </S.SideFilterWrapper>
                 </S.SideMenuWrapper>
                 <S.ProductWrapper>
-                    <S.ProductHeader>
-                        <S.ProductNum>총 500건</S.ProductNum>
+                    {/* <S.ProductHeader>
+                        <S.ProductNum>총 {products.length}건</S.ProductNum>
                         <S.FilterWrapper>
                             <S.ProductTagWrapper>
-                                {/* <S.NewButton onClick={(e)=>{setMenu(e.target.id)}}><p id='New'>NEW</p></S.NewButton>
-                                <S.BestButton><p>BEST</p></S.BestButton>
-                                <S.SaleButton><p>SALE</p></S.SaleButton> */}
-                                {/* <NavLink to="new"><S.NewButton onClick={(e)=>{setMenu(e.target.id)}}><p id='New'>NEW</p></S.NewButton></NavLink> */}
-                                {/* <NavLink to="/product" className={ ({isActive}) => isActive && location.pathname === "/product" ? 'active' : 'normal'}></NavLink> */}
+                                <NavLink to="/product/new" className={ ({isActive}) => isActive ? 'active' : 'normal'}><S.NewButton>NEW</S.NewButton></NavLink>
+                                <NavLink to="/product/best" className={ ({isActive}) => isActive ? 'active' : 'normal'}><S.BestButton>BEST</S.BestButton></NavLink>
+                                <NavLink to="/product/sale" className={ ({isActive}) => isActive ? 'active' : 'normal'}><S.SaleButton>SALE</S.SaleButton></NavLink>
+                            </S.ProductTagWrapper>
+                            <S.ProductSortWrapper>
+                                <button className={clickSort === "like" ? "active" : "normal"} onClick={()=>{setClickSort("like")}}><p>좋아요순</p></button>
+                                <button className={clickSort === "review" ? "active" : "normal"} onClick={()=>{setClickSort("review")}}><p>리뷰순</p></button>
+                                <button className={clickSort === "amount" ? "active" : "normal"} onClick={()=>{setClickSort("amount")}}><p>판매량순</p></button>
+                                <button className={clickSort === "lowCost" ? "active" : "normal"} onClick={()=>{setClickSort("lowCost")}}><p>낮은가격순</p></button>
+                                <button className={clickSort === "highCost" ? "active" : "normal"} onClick={()=>{setClickSort("highCost")}}><p>높은가격순</p></button>
+                            </S.ProductSortWrapper>
+                        </S.FilterWrapper>
+                    </S.ProductHeader> */}
+                    <Outlet/>
+                    
+                </S.ProductWrapper>
+
+                {/* <S.ProductWrapper>
+                    <S.ProductHeader>
+                        <S.ProductNum>총 {products.length}건</S.ProductNum>
+                        <S.FilterWrapper>
+                            <S.ProductTagWrapper>
                                 <NavLink to="/product/new" className={ ({isActive}) => isActive ? 'active' : 'normal'}><S.NewButton>NEW</S.NewButton></NavLink>
                                 <NavLink to="/product/best" className={ ({isActive}) => isActive ? 'active' : 'normal'}><S.BestButton>BEST</S.BestButton></NavLink>
                                 <NavLink to="/product/sale" className={ ({isActive}) => isActive ? 'active' : 'normal'}><S.SaleButton>SALE</S.SaleButton></NavLink>
@@ -183,35 +206,9 @@ const Product = () => {
                             </S.ProductSortWrapper>
                         </S.FilterWrapper>
                     </S.ProductHeader>
-                    <Outlet />
+                    <Outlet/>
                     
-                    {/* <S.ProductMainContainer>
-                    
-                        {products.map((product) => (
-                            <S.ItemContainerWrapper>
-                                <React.Fragment key={product._id}>
-                                <ItemContainer2 />
-                                <S.ItemClickDiv onClick={() => navigate("/details")}>
-                                <S.ItemTitle>{product.title}</S.ItemTitle>
-                                <S.ItemExplain>{product.description}</S.ItemExplain>
-                                <S.ItemPrice>
-                                    <S.Discount>{product.discount}%</S.Discount>{(product.price * (1 - product.discount / 100)).toLocaleString()}원
-                                    <S.OriginPrice>{`${product.price.toLocaleString()}원`}</S.OriginPrice>
-                                </S.ItemPrice>
-                                <S.ItemStar>
-                                    <img src={Star} alt="star" />
-                                    {product.star}
-                                    <S.Review>({product.review})</S.Review>
-                                    </S.ItemStar>
-                                    <S.ItemTagWrapper><S.Tag>{product.tag}</S.Tag></S.ItemTagWrapper>
-                                </S.ItemClickDiv>
-                                </React.Fragment>
-                            </S.ItemContainerWrapper>
-                        ))}
-                    
-                </S.ProductMainContainer> */}
-        
-                </S.ProductWrapper>
+                </S.ProductWrapper> */}
                
             </S.MainWrapper>
             

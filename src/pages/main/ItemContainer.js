@@ -13,7 +13,7 @@ const ItemContainer = ({ title, description, price,star, image,review, onNavigat
     return (
         <S.ItemContainer>
             <div className="mainPhotoWrapper">
-                <img onClick={onNavigate} src={image} alt={title} />
+                <img src={image} alt={title} />
                 <img onClick={toggleLike} 
                     className="like"
                     src={like ? LikeClick : Like}

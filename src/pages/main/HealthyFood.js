@@ -29,7 +29,7 @@ const HealthyFood = () => {
                 star={product.star}
                 review={product.review}
                 image={Img} //이미지 스키마 추가 해야함
-                onNavigate={() => navigate("/details")}
+                onNavigate={() => navigate(`/details?id=${product._id}`)}
             />
             ))}
         </S.TagItemWrapper>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import S from './style';
 import Narrow from './images/icon.png'
 import MainPic from './images/productdetailMain.png'
@@ -9,10 +9,30 @@ import X from './images/X.png'
 import Like from './images/icon (6).png'
 import LikeClick from '../main/images/LikeClick.svg'
 import ProductDetailPic from './images/ProductDetailPic.png'
+import { useLocation } from 'react-router-dom';
+
+
 const ProductDetails = () => {
     
-    // window.scrollTo(0,0);
+    window.scrollTo(0,0);
     const [like, setLike] = useState(false);
+    const [products, setProducts] = useState([]);
+    
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const productId = queryParams.get("id");
+
+    const getProduct = async () => {
+        const response = await fetch(`http://localhost:8000/product/post?id=${productId}`)
+        const datas = await response.json();
+        setProducts(datas);
+    
+    }
+
+    useEffect(()=>{
+        getProduct()
+    },[])
+    
     
     const toggleLike = () => setLike(!like);
     return (
@@ -38,10 +58,10 @@ const ProductDetails = () => {
                     
                     </S.ImgWrapper>
                     <S.DetailContainer>
-                        <S.ProductDetailTitle>[상품명] 상품명</S.ProductDetailTitle>
-                        <S.ProductExplain>상품 한 줄 설명</S.ProductExplain>
-                        <S.ProductStarWrapper><img src={Star}></img><span className='ReviewScore'>4.0</span>점(<span className='ReviewAmount'>152</span>)</S.ProductStarWrapper>
-                        <S.ProductPriceWrapper><S.DiscountRate>50%</S.DiscountRate><S.DiscountPrice>32,900원</S.DiscountPrice><S.OriginalPrice>65,800원</S.OriginalPrice></S.ProductPriceWrapper>
+                        <S.ProductDetailTitle>{products.title}</S.ProductDetailTitle>
+                        <S.ProductExplain>{products.description}</S.ProductExplain>
+                        <S.ProductStarWrapper><img src={Star}></img><span className='ReviewScore'></span>{products.star}점(<span className='ReviewAmount'>{products.review}</span>)</S.ProductStarWrapper>
+                        <S.ProductPriceWrapper><S.DiscountRate>{products.discount}%</S.DiscountRate><S.DiscountPrice>{(products.price * (1 - products.discount / 100)).toLocaleString()}원</S.DiscountPrice><S.OriginalPrice>{products.price}원</S.OriginalPrice></S.ProductPriceWrapper>
                         <S.OrderDetailContainer>
                             <S.ProductDeliveryDetail>
                                 <S.DeliveryTitle>배송</S.DeliveryTitle>
@@ -63,18 +83,18 @@ const ProductDetails = () => {
                                 <S.ProductOptionDetail>
                                     <S.OptionTitle>옵션 선택</S.OptionTitle>
                                     <select>
-                                        <option>상품 A</option>
-                                        <option>상품 B</option>
-                                        <option>상품 C</option>
+                                        <option>{products.description}</option>
+                                        {/* <option>{products.description}</option>
+                                        <option>{products.description}</option> */}
                                     </select>
                                 </S.ProductOptionDetail>
                                 <S.OptionResultBox>
-                                    <S.OptionProductName>상품 A</S.OptionProductName>
+                                    <S.OptionProductName>{products.description}</S.OptionProductName>
                                 </S.OptionResultBox>
                         </S.OrderDetailContainer>
                         <S.OrderPriceWrapper>
                             <div>주문금액</div>
-                            <S.OrderTotalPrice>65,800원</S.OrderTotalPrice>
+                            <S.OrderTotalPrice>{(products.price * (1 - products.discount / 100)).toLocaleString()}원</S.OrderTotalPrice>
                             
                         </S.OrderPriceWrapper>
                         <S.ProductDetailCartButton>장바구니</S.ProductDetailCartButton>
@@ -86,7 +106,7 @@ const ProductDetails = () => {
                 
             <S.ProductDetailBar>
             <S.BarProductInfo>상품정보</S.BarProductInfo>
-            <S.BarReivew>리뷰<span>152</span></S.BarReivew>
+            <S.BarReivew>리뷰<span>{products.review}</span></S.BarReivew>
             <S.BarQnA>문의<span>23</span></S.BarQnA>
             <S.BarDeliveryAndRefund>배송/환불</S.BarDeliveryAndRefund>
             <S.BarSimilarProduct>비슷한 상품</S.BarSimilarProduct>
@@ -102,22 +122,22 @@ const ProductDetails = () => {
                 <S.ProductOptionDetail2>
                     <div>옵션 선택</div> 
                     <select>
-                        <option>상품 A</option>
-                        <option>상품 B</option>
-                        <option>상품 C</option>
+                        <option>{products.description}</option>
+                        {/* <option>{products.description}</option>
+                        <option>{products.description}</option> */}
                     </select>
                 </S.ProductOptionDetail2>
                 <S.MiniOption>
-                    <div><S.MiniProductName>상품 A</S.MiniProductName><S.XButton><img src={X}alt="x" /></S.XButton></div>
+                    <div><S.MiniProductName>{products.description}</S.MiniProductName><S.XButton><img src={X}alt="x" /></S.XButton></div>
                     <S.MiniButtonPriceWrapper>
                         <S.AmountWrapper><button>-</button><span>1</span><button>+</button></S.AmountWrapper>
-                        <S.MiniPrice>65,800원</S.MiniPrice>
+                        <S.MiniPrice>{(products.price * (1 - products.discount / 100)).toLocaleString()}원</S.MiniPrice>
                     </S.MiniButtonPriceWrapper>
                 </S.MiniOption>
                 <S.TotalPayWrapper>
                     <S.OrderPriceWrapper2>
                         <div>주문금액</div>
-                        <S.OrderTotalPrice>65,800원</S.OrderTotalPrice>
+                        <S.OrderTotalPrice>{(products.price * (1 - products.discount / 100)).toLocaleString()}원</S.OrderTotalPrice>
 
                     </S.OrderPriceWrapper2>
                     <S.MiniButtonWrapper>

@@ -674,7 +674,7 @@ S.OptionResultBox = styled.div`
     padding: 20px 0 0 24px;
 `
 S.OptionProductName = styled.p`
-    width: 80px;
+    width: 100%;
     height: 18px;
     font-size: 14px;
 `

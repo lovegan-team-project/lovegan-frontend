@@ -61,6 +61,32 @@ import Register from "../pages/customerService/Register";
 import RegisterComplete from "../pages/customerService/RegisterComplete";
 import Cart from "../pages/cart/Cart";
 import ProductMain from "../pages/product/ProductMain";
+import NewMain from "../pages/product/NewMain";
+import BestVegeFilter from './../pages/product/filter/Best/BestVegeFilter';
+import BestDrinksFilter from './../pages/product/filter/Best/BestDrinksFilter';
+import BestEggFilter from './../pages/product/filter/Best/BestEggFilter';
+import BestHealthFoodFilter from './../pages/product/filter/Best/BestHealthFoodFilter';
+import BestMeatFilter from './../pages/product/filter/Best/BestMeatFilter';
+import BestSpiceFilter from './../pages/product/filter/Best/BestSpiceFilter';
+import BestSnackFilter from './../pages/product/filter/Best/BestSnackFilter';
+import BestVegeSideFilter from './../pages/product/filter/Best/BestVegeSideFilter';
+import BestFastFoodFilter from "../pages/product/filter/Best/BestFastFoodFilter";
+import SaleVegeFilter from './../pages/product/filter/Sale/SaleVegeFilter';
+import SaleDrinksFilter from './../pages/product/filter/Sale/SaleDrinksFilter';
+import SaleEggFilter from './../pages/product/filter/Sale/SaleEggFilter';
+import SaleFastfoodFilter from './../pages/product/filter/Sale/SaleFastfoodFilter';
+import SaleHealthFoodFilter from './../pages/product/filter/Sale/SaleHealthFoodFilter';
+import SaleMeatFilter from './../pages/product/filter/Sale/SaleMeatFilter';
+import SaleSpiceFilter from './../pages/product/filter/Sale/SaleSpiceFilter';
+import SaleSnackFilter from './../pages/product/filter/Sale/SaleSnackFilter';
+import SaleVegeSideFilter from './../pages/product/filter/Sale/SaleVegeSideFilter';
+import OtherMain from "../pages/product/OtherMain";
+import OtherNewMain from "../pages/product/OtherNewMain";
+import OtherBest from "../pages/product/OtherBest";
+import OtherSale from "../pages/product/OtherSale";
+import Other from "../pages/product/Other";
+import OtherDetails from "../pages/product/OtherDetails";
+
 
 
 
@@ -101,7 +127,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path : "fastfood",
-                        element : <MainFastfoodFilter />
+                        element : <MainHealthFoodFilter/>
                     },
                     {
                         path : "healthfood",
@@ -125,8 +151,13 @@ const router = createBrowserRouter([
                     },
                     {
                         path : "new",
-                        element : <New />,
+                        // element : <New />,
                         children : [
+                            {
+                                index : true,
+                                element : <NewMain />
+
+                            },
                             {
                                 path : "vege",
                                 element : <VegeFilter />
@@ -167,19 +198,153 @@ const router = createBrowserRouter([
                     },
                     {
                         path : "best",
-                        element : <Best />,
+                        children : [
+                            {
+                                index : true,
+                                element : <Best />,
+                        
+                            },
+                            {
+                                path : "vege",
+                                element : <BestVegeFilter />
+                            },
+                            {
+                                path : "drinks",
+                                element : <BestDrinksFilter />
+                            },
+                            {
+                                path : "eggs",
+                                element : <BestEggFilter />
+                            },
+                            {
+                                path : "fastfood",
+                                element : <BestFastFoodFilter />
+                            },
+                            {
+                                path : "healthfood",
+                                element : <BestHealthFoodFilter />
+                            },
+                            {
+                                path : "meat",
+                                element : <BestMeatFilter />
+                            },
+                            {
+                                path : "spice",
+                                element : <BestSpiceFilter />
+                            },
+                            {
+                                path : "snacks",
+                                element : <BestSnackFilter />
+                            },
+                            {
+                                path : "vegeSide",
+                                element : <BestVegeSideFilter />
+                            },
+                        ]
                     },
                     {
                         path : "sale",
-                        element : <Sale />
+                        children : [
+                            {
+                                index : true,
+                                element : <Sale />
+                        
+                            },
+                            {
+                                path : "vege",
+                                element : <SaleVegeFilter />
+                            },
+                            {
+                                path : "drinks",
+                                element : <SaleDrinksFilter />
+                            },
+                            {
+                                path : "eggs",
+                                element : <SaleEggFilter />
+                            },
+                            {
+                                path : "fastfood",
+                                element : <SaleFastfoodFilter />
+                            },
+                            {
+                                path : "healthfood",
+                                element : <SaleHealthFoodFilter />
+                            },
+                            {
+                                path : "meat",
+                                element : <SaleMeatFilter />
+                            },
+                            {
+                                path : "spice",
+                                element : <SaleSpiceFilter />
+                            },
+                            {
+                                path : "snacks",
+                                element : <SaleSnackFilter />
+                            },
+                            {
+                                path : "vegeSide",
+                                element : <SaleVegeSideFilter />
+                            },
+                        ]
                     },
                    
                 ]
                 
             },
             {
+                path : "/other",
+                element : <Product />,
+                children : [
+                    {
+                        index : true,
+                        element : <OtherMain />
+
+                    },
+                    {
+                        path : "new",
+                        children : [
+                            {
+                                index : true,
+                                element : <OtherNewMain />
+                            }
+                        ]
+                       
+
+                    },
+                    {
+                        path : "best",
+                        children : [
+                            {
+                                index : true,
+                                element : <OtherBest />
+                            }
+                        ]
+                       
+
+                    },
+                    {
+                        path : "sale",
+                        children : [
+                            {
+                                index : true,
+                                element : <OtherSale />
+                            }
+                        ]
+                    },
+
+                ]
+            },
+            {
                 path : "/details",
                 element : <ProductDetails />
+                
+
+            },
+            {
+                path : "/otherDetails",
+                element : <OtherDetails />
+                
 
             },
             {
