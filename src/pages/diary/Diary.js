@@ -8,7 +8,7 @@ import modalfork from './icons/modalfork.svg'
 import close from './icons/close.svg'
 import left_button from './icons/left_button.svg'
 import right_button from './icons/right_button.svg'
-import greyclose from './icons/close-grey.svg'
+import greyclose from './icons/close-grey.svg';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -18,7 +18,7 @@ const Diary = () => {
     const [days, setDays] = useState([]);
     const [selectedDate, setSelectedDate] = useState({
         day : currentDate.getDate(),
-        month : currentDate.getMonth()+1,
+        month : currentDate.getMonth(),
         year : currentDate.getFullYear(),
     });
     const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
@@ -40,94 +40,19 @@ const Diary = () => {
         아침 : false,
         점심 : false,
         저녁 : false,
-        간식 : false,
+        간식 : false
     })
     const [isClickPlus, setIsClickPlus] = useState(false);
-    const [foodInfo, setFoodInfo] = useState([]);
-
+    const [foodList, setFoodList] = useState([]);
     const { register, handleSubmit, getValues, formState: { isSubmitted, isSubmitting, errors}} = useForm({mode : "onchange"});
-
     const dispatch = useDispatch();
     const currentUser = useSelector((state) => state.user.currentUser);
 
-    useEffect(() => {
-        renderCalendar();
-    }, [currentDate]);
-    useEffect(()=>{
-        console.log("음식정보 업데이트댐")
-        console.log("현재 foodInfo 상태:", foodInfo);
-    }, [foodInfo])
-    useEffect(()=>{
-        console.log("select",selectedDate)
-        showFoodInfo();
-    },[selectedDate])
-
-    const showFoodInfo = async () => {
-        console.log("가져오는중~")
-        if(!currentUser){
-            alert("로그인해주세요")
-        }
-        try{
-            const response = await fetch(`http://localhost:8000/diary/foodInfo?id=${currentUser._id}&year=${selectedDate.year}&month=${selectedDate.month}&day=${selectedDate.day}`, {
-                method : "GET",
-                headers : {
-                    "Content-Type" : "application/json",
-                }  
-            })
-            const data = await response.json();
-            setFoodInfo(data);
-            console.log("foodInfo",data)
-            const kcal = { 아침 : 0, 점심 : 0, 저녁 : 0, 간식 : 0};
-            const foodCount = { 아침 : 0, 점심 : 0, 저녁 : 0, 간식 : 0};
-            const isFoodFilled = {아침 : false, 점심 : false, 저녁 : false, 간식 : false};
-            data.forEach((food) => {
-                if(kcal[food.time] !== undefined){
-                    kcal[food.time] += food.kcal;
-                }
-                if(foodCount[food.time] !== undefined){
-                    foodCount[food.time] += 1;
-                    isFoodFilled[food.time] = true;
-                }
-            })
-            setKcal(kcal);
-            setFoodCount(foodCount);
-            setIsFoodFilled(isFoodFilled);
-            console.log("데이터:", data);
-            data.forEach((item) => console.log("item.date 구조:", item.date));
-        }
-        catch(error){
-            console.error("데이터가져오기오류",error)
-        }
-    }
-    const deleteFood = async (foodId, foodTime, kcalValue) => {
-        try {
-            const response = await fetch(`http://localhost:8000/diary/deleteFood?id=${foodId}`, {
-                method: "DELETE",
-            });
-            if (response.ok) {
-                const updatedFoodInfo = foodInfo.filter((food) => food._id !== foodId);
-                setFoodInfo(updatedFoodInfo);
-    
-                setKcal((prev) => ({
-                    ...prev,
-                    [foodTime]: prev[foodTime] - kcalValue,
-                }));
-    
-                setFoodCount((prev) => ({
-                    ...prev,
-                    [foodTime]: prev[foodTime] - 1,
-                }));
-    
-                setIsFoodFilled((prev) => ({
-                    ...prev,
-                    [foodTime]: updatedFoodInfo.some((food) => food.time === foodTime),
-                }));
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
+    const [dateStatus, setDateStatus] = useState({
+        day : 0,
+        month : 0,
+        year : 0
+    })
 
     const renderCalendar = () => {
         const year = currentDate.getFullYear(); 
@@ -172,16 +97,16 @@ const Diary = () => {
         const newDate = new Date(currentDate);
         newDate.setMonth(currentDate.getMonth() + step);
         setCurrentDate(newDate)
+
     };
     
     const clickDate = (day) => {
        
         setSelectedDate({
             day : day,
-            month : currentDate.getMonth() + 1,
+            month : currentDate.getMonth(),
             year : currentDate.getFullYear()
         }); 
-       
     }
 
     const openModal = (time) => {
@@ -203,6 +128,89 @@ const Diary = () => {
         setIsInputModalOpen(false);
     }
 
+    const showFood = async() => {
+        if(days.length === 0) return;
+        const response = await fetch(`http://localhost:8000/diary/foodInfo?id=${currentUser._id}&year=${selectedDate.year}&month=${selectedDate.month}&day=${selectedDate.day}`, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json"
+            }
+        })
+        
+        const foods = await response.json();
+        console.log("음식 리스트 :", foods);
+        setFoodList(foods);
+        console.log(foodList);
+        console.log(selectedDate);
+
+        const kcal = { 아침 : 0, 점심 : 0, 저녁 : 0, 간식 : 0};
+        const foodCount = { 아침 : 0, 점심 : 0, 저녁 : 0, 간식 : 0};
+        const isFoodFilled = {아침 : false, 점심 : false, 저녁 : false, 간식 : false};
+
+        const updatedDays = days.map((day) => {
+            const foodStatus = {
+                morning: false,
+                lunch: false,
+                dinner: false,
+                dessert: false,
+            };
+
+            // foods 배열과 현재 day를 비교
+            foods.forEach((food) => {
+                if (
+                    food.date.day === day.day &&
+                    food.date.month === selectedDate.month + 1 && 
+                    food.date.year === selectedDate.year
+                ) {
+                    if (food.time === "아침") foodStatus.morning = true;
+                    if (food.time === "점심") foodStatus.lunch = true;
+                    if (food.time === "저녁") foodStatus.dinner = true;
+                    if (food.time === "간식") foodStatus.dessert = true;
+                }
+            });
+
+            return {
+                ...day,
+                foodStatus,
+            };
+        });
+
+        console.log("업데이트된 days:", updatedDays);
+        setDays(updatedDays);
+
+        foods.forEach((food) => {
+            console.log("food : ", food)
+            if(selectedDate.day == food.date.day){
+                if(kcal[food.time] !== undefined){
+                    kcal[food.time] += food.kcal;
+                }
+                if(foodCount[food.time] !== undefined){
+                    foodCount[food.time] += 1;
+                    isFoodFilled[food.time] = true;
+                }
+            }
+        
+
+        })
+        setKcal(kcal);
+        setFoodCount(foodCount);
+        setIsFoodFilled(isFoodFilled);
+    }
+
+    // useEffect(()=>{
+    //     renderCalendar();
+    //     showFood();
+    // }, [])
+    useEffect(() => {
+        renderCalendar();
+    }, [currentDate]);
+
+    useEffect(()=>{
+        if(days.length > 0){
+            showFood();
+        }
+    }, [selectedDate]);
+
     return (
         <S.DiaryWrapper>
             <S.Calendar>
@@ -217,12 +225,39 @@ const Diary = () => {
                 <S.CalendarDays>
                     {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map((day, index) => (
                         <S.DayNames key={index}>{day}</S.DayNames>
-                    ))}
+                  
+                  ))}
                     {days.map((day, index) => (
-                        <S.Day key={index} onClick={() => clickDate(day.day)} isCurrentMonth = {day.isCurrentMonth}>
+                        <S.Day key={index} onClick={day.isCurrentMonth ? () => clickDate(day.day) : undefined} isCurrentMonth = {day.isCurrentMonth}>
                             <S.DayCircle isSelected={selectedDate.day === day.day && selectedDate.month === currentDate.getMonth() && selectedDate.year === currentDate.getFullYear()} isCurrentMonth={day.isCurrentMonth} isToday={day.isToday}>
                                 {day.day}
                             </S.DayCircle>
+                            <S.FoodStickerWrapper>
+                                <S.Sticker
+                                    className="morning"
+                                    isFoodFilled={day.foodStatus?.morning}
+                                >
+                                    {day.foodStatus?.morning ? "아침" : ""}
+                                </S.Sticker>
+                                <S.Sticker
+                                    className="lunch"
+                                    isFoodFilled={day.foodStatus?.lunch}
+                                >
+                                    {day.foodStatus?.lunch ? "점심" : ""}
+                                </S.Sticker>
+                                <S.Sticker
+                                    className="dinner"
+                                    isFoodFilled={day.foodStatus?.dinner}
+                                >
+                                    {day.foodStatus?.dinner ? "저녁" : ""}
+                                </S.Sticker>
+                                <S.Sticker
+                                    className="dessert"
+                                    isFoodFilled={day.foodStatus?.dessert}
+                                >
+                                    {day.foodStatus?.dessert ? "간식" : ""}
+                                </S.Sticker>
+                            </S.FoodStickerWrapper>
                         </S.Day>
                         
                     ))}
@@ -233,12 +268,11 @@ const Diary = () => {
                     <S.Diary>DIARY</S.Diary>
                     <S.SelectedDate>
                         {selectedDate
-                            ? `${selectedDate.year}년 ${selectedDate.month }월 ${selectedDate.day}일`
-                            : `${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월 ${currentDate.getDate()}일`
-                        }
+                            ? `${selectedDate.year}년 ${selectedDate.month + 1}월 ${selectedDate.day}일`
+                            : `${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월 ${currentDate.getDate()}일`}
                     </S.SelectedDate>
                     {/* 아침 */}
-                    <S.FoodBox isFilled={isFoodFilled["아침"]}>
+                    <S.FoodBox isFoodFilled = {isFoodFilled["아침"]}>
                         <S.FoodInfo>
                             <S.FoodIconCircle>
                                 <S.FoodIcon>
@@ -252,10 +286,12 @@ const Diary = () => {
                             <img src={plus} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('아침')} />
                         </S.FoodInfo>
                         <S.Line></S.Line>
-                        <S.Kcal isFilled={isFoodFilled["아침"]}>{isFoodFilled["아침"] ? `${kcal["아침"]}Kcal` :"단식했어요"}</S.Kcal>
+                        <S.Kcal isFoodFilled = {isFoodFilled["아침"]}>
+                            {isFoodFilled["아침"] ? `${kcal["아침"]}Kcal` : "단식했어요"}
+                        </S.Kcal>
                     </S.FoodBox>
                     {/* 점심 */}
-                    <S.FoodBox isFilled={isFoodFilled["점심"]}>
+                    <S.FoodBox isFoodFilled = {isFoodFilled["점심"]}>
                         <S.FoodInfo>
                             <S.FoodIconCircle>
                                 <S.FoodIcon>
@@ -269,10 +305,12 @@ const Diary = () => {
                             <img src={plus} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('점심')} />
                         </S.FoodInfo>
                         <S.Line></S.Line>
-                        <S.Kcal isFilled={isFoodFilled["점심"]}>{isFoodFilled["점심"] ? `${kcal["점심"]}Kcal` :"단식했어요"}</S.Kcal>
+                        <S.Kcal isFoodFilled = {isFoodFilled["점심"]}>
+                            {isFoodFilled["점심"] ? `${kcal["점심"]}Kcal` : "단식했어요"}
+                        </S.Kcal>
                     </S.FoodBox>
                     {/* 저녁 */}
-                    <S.FoodBox isFilled={isFoodFilled["저녁"]}>
+                    <S.FoodBox isFoodFilled = {isFoodFilled["저녁"]}>
                         <S.FoodInfo>
                             <S.FoodIconCircle>
                                 <S.FoodIcon>
@@ -286,10 +324,12 @@ const Diary = () => {
                             <img src={plus} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('저녁')} />
                         </S.FoodInfo>
                         <S.Line></S.Line>
-                        <S.Kcal isFilled={isFoodFilled["저녁"]}>{isFoodFilled["저녁"] ? `${kcal["저녁"]}Kcal` :"단식했어요"}</S.Kcal>
+                        <S.Kcal isFoodFilled = {isFoodFilled["저녁"]}>
+                            {isFoodFilled["저녁"] ? `${kcal["저녁"]}Kcal` : "단식했어요"}
+                        </S.Kcal>
                     </S.FoodBox>
                     {/* 간식 */}
-                    <S.FoodBox isFilled={isFoodFilled["간식"]}>
+                    <S.FoodBox isFoodFilled = {isFoodFilled["간식"]}>
                         <S.FoodInfo>
                             <S.FoodIconCircle>
                                 <S.FoodIcon>
@@ -303,7 +343,9 @@ const Diary = () => {
                             <img src={plus} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('간식')} />
                         </S.FoodInfo>
                         <S.Line></S.Line>
-                        <S.Kcal isFilled={isFoodFilled["간식"]}>{isFoodFilled["간식"] ? `${kcal["간식"]}Kcal` :"단식했어요"}</S.Kcal>
+                        <S.Kcal isFoodFilled = {isFoodFilled["간식"]}>
+                            {isFoodFilled["간식"] ? `${kcal["간식"]}Kcal` : "단식했어요"}
+                        </S.Kcal>
                     </S.FoodBox>
                 </S.DiaryFoodBox>
             </div>
@@ -323,41 +365,21 @@ const Diary = () => {
                     
                     <S.ModalBody>
                         <S.BodyTitle>
-                            <S.TitleWrapper>
-                                {foodTime} 메뉴&nbsp; 
-                                <S.FoodCount isFilled = {isFoodFilled[foodTime]}> {foodCount[foodTime]}</S.FoodCount> 
-                            </S.TitleWrapper>
-                            <ul>
-                                {foodInfo.length > 0 ? (
-                                    foodInfo
-                                    .filter((info) => {
-                                        console.log("filter 실행됨", info);
-                                        const isDateMatch =
-                                        Number(info.date.year) === Number(selectedDate.year) &&
-                                        Number(info.date.month) === Number(selectedDate.month) &&
-                                        Number(info.date.day) === Number(selectedDate.day);
-                                        const isTimeMatch = info.time === foodTime;
-                                        return isDateMatch && isTimeMatch;
-                                    })
-                                    .map((info, index) => (
-                                        <S.ListWrapper key={info._id || index}>
-                                        <S.ListTextWrapper>
-                                            <S.FoodList>{info.foodName}</S.FoodList>
-                                            <S.FoodKcal>{info.kcal}kcal</S.FoodKcal>
-                                        </S.ListTextWrapper>
-                                        <img
-                                            src={greyclose}
-                                            alt="삭제"
-                                            onClick={() => deleteFood(info._id, foodTime, info.kcal)}
-                                        />
-                                        </S.ListWrapper>
-                                    ))
-                                ) : (
-                                    <div>데이터가 없습니다</div>
-                                )}
-                                </ul>
+                            {foodTime} 메뉴&nbsp; <S.FoodCount isFoodFilled={isFoodFilled[foodTime]}> {foodCount[foodTime]}</S.FoodCount> 
                         </S.BodyTitle>
-                        
+                        <S.FoodList>
+                            <ul>
+                                {foodList.filter((food) => food.time === foodTime && food.date.day == selectedDate.day).map((food, index)=>(
+                                    <S.ListWrapper>
+                                        <S.ListTextWrapper>
+                                            <S.FoodList key={index}>{food.foodName}</S.FoodList>
+                                            <S.FoodKcal>{food.kcal}kcal</S.FoodKcal>
+                                        </S.ListTextWrapper>
+                                        <img src={greyclose} alt='' onClick={closeInfoModal} />
+                                    </S.ListWrapper>
+                                ))} 
+                            </ul>
+                        </S.FoodList>
                     </S.ModalBody>
                     
                     <S.ModalFooter>
@@ -369,15 +391,16 @@ const Diary = () => {
 
             { isInputModalOpen && (
                 <S.Form onSubmit = {handleSubmit(async(data) => {
-                    console.log(data)
+                    console.log("data : ", data);
+                    console.log(data.foodInput)
                     if(!currentUser){
-                        alert("로그인해주세요")
+                        alert("로그인 해주세요")
                     }
                     try{
                         const response = await fetch("http://localhost:8000/diary/foodInput", {
                             method : "POST",
                             headers : {
-                                "Content-Type" : "application/json",
+                                "Content-Type" : "application/json"
                             },
                             body : JSON.stringify({
                                 time : foodTime,
@@ -389,33 +412,26 @@ const Diary = () => {
                                 id : currentUser._id,
                                 date : {
                                     year : selectedDate.year,
-                                    month : selectedDate.month,
+                                    month : selectedDate.month + 1,
                                     day : selectedDate.day
                                 }
                             })
                             
                         })
+
                         const food = await response.json();
+                        console.log("음식 : ", food)
                         if(response.ok){
-                            console.log("음식추가 : ", food)
-                            showFoodInfo();
-                            setIsInputModalOpen(false);
+                            showFood();
                             setIsInfoModalOpen(true);
-                            setKcal((prev) => ({
-                                ...prev,
-                                [foodTime] : prev[foodTime] + food.kcal
-                            }))
+                            setIsInputModalOpen(false);
                         }
-                        
-                        
                     }
                     catch(error){
                         console.error(error)
                     }
-                    // .catch((error) => console.error)
                 })}>
-                    <S.ModalWrapper>
-                        <S.ModalBox>
+                    <S.ModalBox>
                         <S.ModalHeader>
                             <S.ModalHeaderInfo>
                                 <S.ForkImage src={modalfork} alt="식사 아이콘" />
@@ -426,54 +442,48 @@ const Diary = () => {
                             </S.ModalHeaderInfo>
                             <img src={close} alt='' onClick={closeInputModal} />
                         </S.ModalHeader>
-                    
+                        
                         <S.ModalBody>
                             <S.FoodName>
                                 음식이름&nbsp;<div> (필수)</div>
                             </S.FoodName>
-                            <S.FoodInput placeholder='음식 이름(최대 20자)' id='foodInput'
-                                {...register("foodInput", {
-                                    required : true,
-                                    maxLength : 20
-                                })}
-                            />
+                            <S.FoodInput placeholder='음식 이름(최대 20자)' id='foodName' {
+                                ...register("foodInput", {required : true})
+                            }></S.FoodInput>
                             <S.NutritionInfo>
                                 영양정보&nbsp;<div>(선택)</div>
                             </S.NutritionInfo>
                             <S.NutritionInput>
                                 <S.NutritionContainer>
                                     칼로리
-                                    <S.Input id='kcal' type='text' placeholder='0 kcal' {...register("kcal")} />
+                                    <S.Input id='kcal' type='text' placeholder='0 kcal' { ...register("kcal")}></S.Input>
                                 </S.NutritionContainer>
                                 <S.NutritionContainer>
                                     탄수화물
-                                    <S.Input id='carbs' type='text' placeholder='0 g' {...register("carbs")} />
+                                    <S.Input id='carbs' type='text' placeholder='0 g' { ...register("carbs")}></S.Input>
                                 </S.NutritionContainer>
                                 <S.NutritionContainer>
                                     단백질
-                                    <S.Input id='protein' type='text' placeholder='0 g' {...register("protein")} />
+                                    <S.Input id='protein' type='text' placeholder='0 g' { ...register("protein")}></S.Input>
                                 </S.NutritionContainer>
                                 <S.NutritionContainer>
                                     지방
-                                    <S.Input id='fat' type='text' placeholder='0 g' {...register("fat")} />
+                                    <S.Input id='fat' type='text' placeholder='0 g' { ...register("fat")}></S.Input>
                                 </S.NutritionContainer>
                             </S.NutritionInput>
                             <S.Notice>＊ 입력하지 않은 영양정보는 0으로 자동 입력돼요</S.Notice>
                         </S.ModalBody>
-                    
+                        
                         <S.ModalFooter>
                             <S.HelpButton>도움이 필요해요!</S.HelpButton>
                             <S.CloseModalButton>
                                 <S.CancleButton onClick={closeInputModal}>취소</S.CancleButton>
                                 <S.ConfirmButton type='submit'>확인</S.ConfirmButton>
                             </S.CloseModalButton>
-                        
+                            
                         </S.ModalFooter>
-                        </S.ModalBox>
-                    </S.ModalWrapper>
+                    </S.ModalBox>
                 </S.Form>
-                
-                
             )}
         </S.DiaryWrapper>
 
