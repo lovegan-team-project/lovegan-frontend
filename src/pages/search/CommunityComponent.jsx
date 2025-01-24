@@ -3,6 +3,7 @@ import S from './style';
 
 const CommunityComponent = ({communityData}) => {
     return (
+        
         (communityData.length > 0 && (communityData.slice(0,3).map(item => (
         <S.CommunityWrap>
             <div></div>
