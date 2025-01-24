@@ -14,7 +14,7 @@ const ItemContainer2 = () => {
     return (
     <>
         <S.ProductPhotoWrapper>
-            <img src={Image} onClick={() => navigate("/details")} />
+            <img src={Image} />
             <img onClick={toggleLike}
                 className="like"
                 src={like ? LikeClick : Like}
