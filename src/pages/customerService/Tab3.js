@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import S from './style';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import BasicButton from '../../components/button/BasicButton';
 import Arrow from './Arrow';
+import { useSelector } from 'react-redux';
 
 const Tab3 = () => {
     const [quest,setQuest] = useState([]);
     const [page,setPage] = useState(1);
     const limit = 13;
     const offset = (page-1)*limit;
+
+    const previousUrl = useSelector((state) => state.user.previousUrl);
+    const currentUser = useSelector((state) => state.user.currentUser);
+    const isLogin = useSelector((state) => state.user.isLogin);
+
+    const navigate = useNavigate();
 
     useEffect(()=> {
         const getQuest = async()=> {
@@ -35,8 +42,9 @@ const Tab3 = () => {
 
     const postData = (quest) => {
         if(quest){
+            
             // 페이지에 해당하는 개수 slice함
-            let result = quest.slice(offset,offset+limit);
+            const result = quest.slice(offset,offset+limit);
             return result;
         }
     }
@@ -54,7 +62,17 @@ const Tab3 = () => {
                 <S.Div>
                     <S.H2>1:1 문의</S.H2>
                     <S.P>고객님의 문의사항을 남겨주세요.</S.P>
-                    <Link to="/customerService/quest/register"><S.C_Button className={clickColor === "color" ? "active" : ""} onClick={()=>{setClickColor("color")}}>글 작성</S.C_Button></Link>
+                    <Link to={isLogin ? "/customerService/quest/register" : "#"}
+                    onClick={(e)=>{
+                        if(!isLogin){
+                            e.preventDefault();
+                            alert("로그인이 필요합니다.");
+                            navigate("/login")
+                        }else{
+                            setClickColor("color");
+                        }
+                    }}
+                    ><S.C_Button className={clickColor === "color" ? "active" : ""}>글 작성</S.C_Button></Link>
                     
                 </S.Div>
 
