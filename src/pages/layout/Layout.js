@@ -81,6 +81,7 @@ const Layout = () => {
         setProfileClick(!profileClick);
         navigate("/")
     }
+    
 
     return (
         <>

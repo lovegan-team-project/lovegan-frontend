@@ -16,7 +16,6 @@ const RegisterComplete = () => {
   // 제목과 내용 관리(useInput 훅폼)
   // 변수를 변경해서 사용할 수 있음
   // value,onChangeValue,setValue라는 반환값을 구조 분해 할당을 통해 title,onChangeValue,setTitle로 가져올 수 있음
-  // 각각 가져와서 상태변수 값이랑, 이벤트함수에 넣어줘야함
   const [title, onChangeTitle, setTitle] = useInput("");
   const [contents, onChangeContents, setContents] = useInput("");
 
