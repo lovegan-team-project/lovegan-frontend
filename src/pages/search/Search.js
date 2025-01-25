@@ -21,7 +21,7 @@ const Search = () => {
 
     // 가져온 데이터 기본값
     const [foodData,setFoodData] = useState([]);
-    // const [otherData,setOtherData] = useState([]);
+    const [otherData,setOtherData] = useState([]);
     const [communityData,setCommunityData] = useState([]);
     const [restaurantData,setRestaurantData] = useState([]);
 
@@ -53,18 +53,19 @@ const Search = () => {
     },[searchQuery]); 
 
     // other데이터 가져오기 로직
-    // useEffect(()=>{
-    //     const getOther = () => {
-    //         try{
+    useEffect(()=>{
+        const getOther = async () => {
+            try{
+                const response = await fetch("http://localhost:8000/other/get")
+                console.log(response);
+            }
+            catch(error){
+                console.error("error",error)
+            }
+        }
+        getOther();
 
-    //         }
-    //         catch(error){
-    //             console.error("error",error)
-    //         }
-    //     }
-    //     getOther();
-
-    // },[searchQuery]);
+    },[searchQuery]);
 
     // community 데이터 가져오기 로직
     useEffect(()=>{
