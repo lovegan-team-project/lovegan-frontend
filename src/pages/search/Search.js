@@ -116,7 +116,7 @@ const Search = () => {
 
 
     return (
-        (foodData.length && otherData.length && communityData.length && restaurantData.length === 0 ?
+        (foodData.length + otherData.length + communityData.length + restaurantData.length == 0 ?
         (<S.noWrapper className='noSearch'>
             <h4>'{searchQuery}'에 대한 검색 결과가 없습니다.</h4>
         </S.noWrapper>)
