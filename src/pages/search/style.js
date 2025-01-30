@@ -73,6 +73,18 @@ S.FoodWrap = styled.div`
         height: 240px;
         background-color: #f2f1f1;
         border-radius: 10px;
+        position: relative;
+
+        img {
+            display: block; /* 기본 이미지는 블록 형태로 표시 */
+        }
+
+        .like {
+            position: absolute;
+            top: 191px;
+            left: 285px;
+            cursor: pointer;
+        }
     }
 
     & h2{
@@ -107,6 +119,18 @@ S.OtherWrap = styled.div`
         height: 240px;
         background-color: #f2f1f1;
         border-radius: 10px;
+        position: relative;
+
+        img {
+            display: block; /* 기본 이미지는 블록 형태로 표시 */
+        }
+
+        .like {
+            position: absolute;
+            top: 191px;
+            left: 285px;
+            cursor: pointer;
+        }
     }
 
     & h2{
@@ -141,6 +165,18 @@ S.CommunityWrap = styled.div`
         height: 300px;
         background-color: #f2f1f1;
         border-radius: 10px;
+        position: relative;
+
+        img {
+            display: block; /* 기본 이미지는 블록 형태로 표시 */
+        }
+
+        .scrap {
+            position: absolute;
+            top: 244px;
+            left: 403px;
+            cursor: pointer;
+        }
     }
 
     & h2{
@@ -161,6 +197,22 @@ S.CommunityWrap = styled.div`
 `
 
 S.RestaurantWrap = styled.div`
+
+& div{
+        position: relative;
+
+        img {
+            display: block; /* 기본 이미지는 블록 형태로 표시 */
+        }
+
+        .scrap {
+            position: absolute;
+            top: 244px;
+            left: 403px;
+            cursor: pointer;
+        }
+    }
+
     & div:first-child{
         width: 460px;
         height: 300px;

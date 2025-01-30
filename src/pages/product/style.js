@@ -47,6 +47,7 @@ S.ToggleContainer = styled.div`
     position: relative;
     display: flex;
     text-align: center;
+    cursor: pointer;
 
    & .toggleButtonFood{
 
