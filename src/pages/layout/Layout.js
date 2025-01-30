@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {ReactComponent as LogoBlack} from './images/logo-black.svg';
 import { Link, NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import S from './style';
@@ -11,6 +11,8 @@ import userProfile from './images/header-user.svg';
 import { setUser, setUserStatus } from '../../modules/user';
 
 const Layout = () => {
+
+    const inputRef = useRef("");
 
     // 검색 창에서 돋보기 버튼을 눌렀을 때 search 페이지로 이동
     const navigate = useNavigate();
@@ -49,6 +51,8 @@ const Layout = () => {
         if (searchTerm) {
             // search에 query가 searchTerm인곳으로 navigate
             navigate(`/search?query=${searchTerm}`);
+
+            inputRef.current.blur();
         }
     };
 
@@ -104,7 +108,7 @@ const Layout = () => {
                                 e.preventDefault(); // 폼 기본 동작 방지
                                     handleSearch(); // 검색 실행
                                 }}>
-                                    <S.Input type='text' placeholder='  검색어를 입력하세요' onChange={(e)=>setSearchTerm(e.target.value)} onKeyDown={(e)=>{
+                                    <S.Input ref={inputRef} type='text' placeholder='  검색어를 입력하세요' onChange={(e)=>setSearchTerm(e.target.value)} onKeyDown={(e)=>{
                                     // input에서 엔터키 눌렀을 때 search 페이지로 이동
                                     // query로 input에 있는 searchTerm을 전달
                                     if(e.key==="Enter"){

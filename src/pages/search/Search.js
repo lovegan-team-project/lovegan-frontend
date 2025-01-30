@@ -21,7 +21,7 @@ const Search = () => {
 
     // 가져온 데이터 기본값
     const [foodData,setFoodData] = useState([]);
-    // const [otherData,setOtherData] = useState([]);
+    const [otherData,setOtherData] = useState([]);
     const [communityData,setCommunityData] = useState([]);
     const [restaurantData,setRestaurantData] = useState([]);
 
@@ -38,6 +38,7 @@ const Search = () => {
                 const response = await fetch("http://localhost:8000/product/get")
                 // console.log(response);
                 const data = await response.json();
+                // console.log(data);
                 
                 const filteredData = data.filter((item) => item.title.includes(searchQuery));
 
@@ -53,18 +54,26 @@ const Search = () => {
     },[searchQuery]); 
 
     // other데이터 가져오기 로직
-    // useEffect(()=>{
-    //     const getOther = () => {
-    //         try{
+    useEffect(()=>{
+        const getOther = async () => {
+            try{
+                const response = await fetch("http://localhost:8000/other/get")
+                // console.log(response);
 
-    //         }
-    //         catch(error){
-    //             console.error("error",error)
-    //         }
-    //     }
-    //     getOther();
+                const data = await response.json();
+                // console.log(data);
 
-    // },[searchQuery]);
+                const filteredData = data.filter((item)=> item.title.includes(searchQuery));
+
+                setOtherData(filteredData);
+            }
+            catch(error){
+                console.error("error",error)
+            }
+        }
+        getOther();
+
+    },[searchQuery]);
 
     // community 데이터 가져오기 로직
     useEffect(()=>{
@@ -91,9 +100,9 @@ const Search = () => {
         const getRestaurant = async() => {
             try{
                 const response = await fetch("http://localhost:8000/restaurant/get");
-                console.log(response);
+                // console.log(response);
                 const data = await response.json();
-                console.log(data);
+                // console.log(data);
                 const filteredData = data.filter((item) => item.name.includes(searchQuery));
                 setRestaurantData(filteredData);
             }
@@ -107,7 +116,7 @@ const Search = () => {
 
 
     return (
-        (foodData.length && /* otherData.length &&  */communityData.length && restaurantData.length === 0 ?
+        (foodData.length + otherData.length + communityData.length + restaurantData.length == 0 ?
         (<S.noWrapper className='noSearch'>
             <h4>'{searchQuery}'에 대한 검색 결과가 없습니다.</h4>
         </S.noWrapper>)
@@ -130,11 +139,11 @@ const Search = () => {
                 {/* other 검색결과 */}
                 <div className="other"></div>
                     <S.Title>
-                        <h5>OTHER <span>{/* {otherData.length} */}</span></h5>
-                        <Link to="/product">더보기</Link>
+                        <h5>OTHER <span>{otherData.length}</span></h5>
+                        {otherData.length > 3 && (<Link to="/product">더보기</Link>)}
                     </S.Title>
                     <div style={{display:"flex", gap: "19px"}}>
-                        <OtherComponent /* otherData={otherData}  *//>
+                        <OtherComponent otherData={otherData}/>
                     </div>
                 <hr className='line' />
     
