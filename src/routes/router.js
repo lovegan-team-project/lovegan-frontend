@@ -374,7 +374,7 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path : "/community/CommunityAllDt",
+                path : "/community/CommunityAllDt/:id",
                 element : <CommunityAllDt />
             },
             {

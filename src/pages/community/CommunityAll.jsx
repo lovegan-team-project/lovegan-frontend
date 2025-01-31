@@ -4,10 +4,11 @@ import Userimages from './Userimages';
 import like from './image/like.svg';
 import scrapBlack from './image/scrapBlack.svg';
 import comment_one from './image/comment_one.svg';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import LikeBt from './LikeBt';
 import Follow from './Follow';
 import ScrapBlack from './ScrapBlack';
+import { useSelector } from 'react-redux';
 
 const CommunityAll = () => {
 
@@ -22,9 +23,11 @@ const CommunityAll = () => {
     }, [setTagClick])
 
     // 글로 페이지 이동
-    const toPostsOnClick = () => {
-        navigate("/community/CommunityAllDt")
-    }   
+    // const toPostsOnClick = () => {
+    //     navigate("/community/CommunityAllDt")
+    // }   
+
+    const currentUser = useSelector((state) => state.user.currentUser);
 
     const [posts, setPosts] = useState([]);
 
@@ -33,12 +36,16 @@ const CommunityAll = () => {
             try {
                 const response = await fetch("http://localhost:8000/community/getPost")
                 console.log(response)
-                // .then((res) => res.json())
+
+                const data = await response.json();
+                setPosts(data);
+                console.log(data)
+                
                 if(!response.ok) {
                     throw new Error('게시물 fetch 실패');
                 }
-                const data = await response.json();
-                setPosts(data);
+
+
             } catch (error) {
                 console.error('Error fetching: ', error);
             }
@@ -46,7 +53,9 @@ const CommunityAll = () => {
         fetchPost();
     },[])
 
-    console.log(posts); 
+    console.log(posts);
+
+    if (!posts) return <p>Loading...</p>;
     
     const likeData = [
         {
@@ -109,7 +118,7 @@ const CommunityAll = () => {
         <S.CommunityContainer>
             <S.mainWrapper className='피드감싸는곳'>
                 <div className='top'>
-                    <S.totalNum><p>전체 13,429</p></S.totalNum>
+                    <S.totalNum><p>전체 {posts.length}</p></S.totalNum>
                     <S.tagButton>
                         <button className={tagClick === "like" ? "click" : "unClick"} onClick={()=>setTagClick("like")}><p>좋아요순</p></button>
                         <button className={tagClick === "new" ? "click" : "unClick"} onClick={()=>setTagClick("new")}><p>최신순</p></button>
@@ -122,11 +131,11 @@ const CommunityAll = () => {
             <S.FeedBoxAll className='전체 박스'>
             {posts.map((post, index)=>
                 <S.Feed1 className='게시물' key={post._id}>
-                    <S.PostUser1 className='게시물1'>
-                    <S.text>
+                    <S.PostUser1 className='게시물1' >
+                    <S.text >
                         <S.PostUserImage1><img src={Userimages[`postuser${index + 1}`]} alt={Userimages[`postuser${index + 1}`]}/></S.PostUserImage1>
                         <S.TextInfo>
-                        <S.PostUserName>유저 이름</S.PostUserName>
+                        <S.PostUserName >{post.author}</S.PostUserName>
                         <div>·</div>
                         <S.FollowUser>
                             <Follow likeData={likeData}/>
@@ -134,13 +143,18 @@ const CommunityAll = () => {
                         <S.UserIntro>한 줄 소개</S.UserIntro>
                         </S.TextInfo>
                     </S.text>
-                    <S.PostImage onClick={toPostsOnClick} key={post._id}><img src={Userimages[`post${index + 1}`]} alt={`게시물 사진 ${index + 1}`}/><S.Views>조회수 {post.viewCount}</S.Views></S.PostImage>
-                    <S.PostTitleCenter onClick={toPostsOnClick} key={post._id}><div>{post.title}</div></S.PostTitleCenter>
-                    <S.FeedOption key={post._id}>
+                    <Link to={`/community/communityAllDt/${post._id}`}>
+                    <S.PostImage >
+                        <img src={Userimages[`post${index + 1}`]} alt={`게시물 사진 ${index + 1}`}/>
+                        <S.Views >조회수 {post.viewCount}</S.Views>
+                    </S.PostImage>
+                    </Link>
+                    <S.PostTitleCenter ><div>{post.title}</div></S.PostTitleCenter>
+                    <S.FeedOption >
                         <LikeBt likeData={likeData}/>
-                        <div>{post.likeCount}</div>
+                        <div >{post.likeCount}</div>
                         <ScrapBlack likeData={likeData} />
-                        <div>{post.scrapCount}</div>
+                        <div >{post.scrapCount}</div>
                         <img src={comment_one} alt='commentBt'></img>
                         <div>63</div>
                     </S.FeedOption>

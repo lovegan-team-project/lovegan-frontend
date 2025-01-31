@@ -11,6 +11,7 @@ import { ReactComponent as like} from './image/like.svg';
 import { ReactComponent as scrap} from './image/scrap.svg';
 import comment_one from './image/comment_one.svg';
 import Comment from './Comment';
+import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const CommunityAllDt = (props) => {
@@ -70,11 +71,35 @@ const CommunityAllDt = (props) => {
     useEffect(()=>{
         setNextClick()
     }, [setNextClick])
-    
+
+    const currentUser = useSelector((state) => state.user.currentUser);
+    const { id } = useParams();
+    const [post, setPost] = useState([]);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch(`http://localhost:8000/community/getPostById/${id}`);
+                console.log(response);
+
+                if (!response.ok) throw new Error("게시물 가져오기 실패");
+
+                const data = await response.json();
+                setPost(data);
+                
+            } catch (error) {
+                console.error('Error fetching: ', error);
+            }
+        }
+        
+        fetchPosts();
+    }, [id]);
+
     return (
         <S.PostWrapper>
             <S.HeadLine>
-                가을이 오면 생각나는 비건 음식들, 단호박 수프부터 비건 카페라테까지! 오늘 하루 일상 🌿🍂
+                {post.title}
+                {/* 가을이 오면 생각나는 비건 음식들, 단호박 수프부터 비건 카페라테까지! 오늘 하루 일상 🌿🍂 */}
             </S.HeadLine>
             <S.sideBar>
                 <S.sideC>
@@ -94,8 +119,8 @@ const CommunityAllDt = (props) => {
             <S.UserInfo>
                 <S.UserImage><img src={dtUser} alt='디테일 유저'/></S.UserImage>
                 <div>
-                    <S.UserNickPost>유저 닉네임</S.UserNickPost>
-                    <S.Introduce>유저 한 줄 소개</S.Introduce>
+                    <S.UserNickPost>{currentUser.nickname}</S.UserNickPost>
+                    <S.Introduce>{currentUser.intro}</S.Introduce>
                 </div>
                 <FollowButton
                     onClick={onChangeColor} color={colorChange} text={textColor}

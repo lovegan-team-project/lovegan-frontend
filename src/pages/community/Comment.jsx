@@ -19,6 +19,7 @@ const Comment = ({ onCommentCountChange }) => {
                     return;
                 }
 
+                setList(data)
                 setList(data.comments);
                 setCommentCount(data.commentCount);
 
@@ -35,35 +36,48 @@ const Comment = ({ onCommentCountChange }) => {
         fetchComment();
     }, [onCommentCountChange]); // 빈 배열을 두 번째 인자로 전달하면 컴포넌트가 처음 렌더링될 때 한 번만 실행
 
+    // const [commentList, setCommentList] = useState([]);
+
+    // const addList = (newComment) => {
+    //     setCommentList((prevList) => [...prevList, newComment]);
+    // };
+
     // console.log(list)
 
     // 리스트에 댓글을 추가하는 함수
-    const addList = async (obj) => {
-        try {
-            const response = await fetch("http://localhost:8000/community/addComment", {
-                method : "POST",
-                headers : { "Content-Type" : "application/json"},
-                body : JSON.stringify(obj), // 서버로 새 데이터 전달
-            });
+    // const addList = async (obj) => {
+    //     try {
+    //         // const response = await fetch("http://localhost:8000/community/addComment", {
+    //         //     method : "POST",
+    //         //     headers : { "Content-Type" : "application/json"},
+    //         //     body : JSON.stringify(obj), // 서버로 새 데이터 전달
+    //         // });
+    //         const response = await fetch(`http://localhost:8000/community/addComment`, {
+    //             method: 'POST',
+    //             // headers: {
+    //             //     'Content-Type': 'application/json',
+    //             // },
+    //             body: JSON.stringify(obj), // 이메일을 body에 포함
+    //         });
 
-            console.log(obj);
+    //         console.log(obj);
 
-            if(!response.ok){
-                throw new Error('댓글 저장 실패')
-            }
+    //         if(!response.ok){
+    //             throw new Error('댓글 저장 실패')
+    //         }
 
-            const saveComment = await response.json(); // 서버에 저장된 댓글 반환
-            setList((prevList) => [...prevList, saveComment]); // 상태에 추가
-            // setCommentCount((prevCount) => prevCount + 1); // 댓글 개수 갱신
+    //         const saveComment = await response.json(); // 서버에 저장된 댓글 반환
+    //         setList((prevList) => [...prevList, saveComment]); // 상태에 추가
+    //         // setCommentCount((prevCount) => prevCount + 1); // 댓글 개수 갱신
 
-            // if(onCommentCountChange) {
-            //     onCommentCountChange(commentCount + 1);
-            // }
+    //         // if(onCommentCountChange) {
+    //         //     onCommentCountChange(commentCount + 1);
+    //         // }
             
-        } catch (error) {
-            console.error('댓글 추가하는 중 오류 발생', error);
-        }
-      };
+    //     } catch (error) {
+    //         console.error('댓글 추가하는 중 오류 발생', error);
+    //     }
+    //   };
 
     // 대댓글 추가 함수
     // const addReply = async (parentId, reply) => {
@@ -97,7 +111,8 @@ const Comment = ({ onCommentCountChange }) => {
 
     return (
         <div>
-            <CommentForm addList={addList}/>
+            <CommentForm />
+            {/* addList={addList} */}
             <CommentList list={list} />
             {/* addReply={addReply} */}
             {/* updateList={updateList} */}
