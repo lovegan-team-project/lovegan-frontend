@@ -89,7 +89,10 @@ const ProductDetails = () => {
                                     </select>
                                 </S.ProductOptionDetail>
                                 <S.OptionResultBox>
-                                    <S.OptionProductName>{products.description}</S.OptionProductName>
+                                    <div className='optionResult'>
+                                        <S.OptionProductName>{products.description}</S.OptionProductName>
+                                        <S.AmountWrapper><button>-</button><span>1</span><button>+</button></S.AmountWrapper>
+                                    </div>
                                 </S.OptionResultBox>
                         </S.OrderDetailContainer>
                         <S.OrderPriceWrapper>
@@ -123,8 +126,6 @@ const ProductDetails = () => {
                     <div>옵션 선택</div> 
                     <select>
                         <option>{products.description}</option>
-                        {/* <option>{products.description}</option>
-                        <option>{products.description}</option> */}
                     </select>
                 </S.ProductOptionDetail2>
                 <S.MiniOption>
@@ -144,20 +145,9 @@ const ProductDetails = () => {
                         <S.LikeDiv><img src={like ? LikeClick : Like} onClick={toggleLike} className='like'></img></S.LikeDiv>                        
                         <S.ProductDetailCartButton2>장바구니</S.ProductDetailCartButton2>
                         <S.ProductDetailBuyButton2>바로구매</S.ProductDetailBuyButton2>
-
                     </S.MiniButtonWrapper>
-
-
-
-
                 </S.TotalPayWrapper>
                 </S.PayOptionBox>
-                
-                
-                
-
-                
-
             </S.ProductOptionCheckContainer>
         </>
     );
