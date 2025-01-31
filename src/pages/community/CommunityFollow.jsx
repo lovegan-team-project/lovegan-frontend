@@ -50,7 +50,7 @@ const CommunityFollow  = () => {
         <S.CommunityContainer>
             <S.mainWrapper>
                 <div className='top'>
-                    <S.totalNum><span>전체 13,429</span></S.totalNum>
+                    <S.totalNum><p>전체 {posts.length}</p></S.totalNum>
                     <S.tagButton>
                         <button className={tagClick === "like" ? "click" : "unClick"} onClick={()=>setTagClick("like")}><p>좋아요순</p></button>
                         <button className={tagClick === "new" ? "click" : "unClick"} onClick={()=>setTagClick("new")}><p>최신순</p></button>
@@ -77,7 +77,7 @@ const CommunityFollow  = () => {
                                         <img src={Userimages[`postuser${index + 1}`]} alt={Userimages[`postuser${index + 1}`]}/>
                                     </S.Profile>
 
-                                    <S.PostUserName2 className='profileUserName'>유저 이름</S.PostUserName2>
+                                    <S.PostUserName2 className='profileUserName' key={post.author}>{post.author}</S.PostUserName2>
                                 </S.TextInfo>
                             </S.text2>
                                 <S.FeedTags className='postTags' key={post._id}>

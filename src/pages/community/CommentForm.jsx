@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
 import S from './style';
 import UserImg2 from './image/UserImg2.png';
+import { useSelector } from 'react-redux';
 
 // parentId=null, onReply
 const CommentForm = ( {addList, author, addReply} ) => {
-    const [value, setValue] = useState('');
+    const [contetnvalue, setContentValue] = useState('');
     
     // const now = new Date();   
+    const currentUser = useSelector((state) => state.user.currentUser);
 
     const handleChange  = (e) => {
-        setValue(e.target.value);   
+        setContentValue(e.target.value);   
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(value.trim()) {
+        if(contetnvalue.trim()) {
             const newComment = {
-                // author: author,
-                content: value, // 입력한 댓글 내용
+                // author: currentUser.nickname,
+                content: contetnvalue, // 입력한 댓글 내용
                 // 대댓글 저장 배열
                 // replies: [],
                 // createAt: new Date().toISOString(),
@@ -30,11 +32,26 @@ const CommentForm = ( {addList, author, addReply} ) => {
             //     addList(newComment);
             // }
             
-            addList(newComment)
-            setValue('');
+            // addList(newComment)
+            setContentValue('');
+            await fetch("http://localhost:8000/community/addComment", {
+                method : "POST",
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+                body : JSON.stringify({newComment})
+            })
+                .then((res) => res.json())
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert("오류가 발생했습니다.");
+                });
 
-            console.log('Parent ID:', author);
-            console.log('addReply Function:', addReply);
+            // console.log('Parent ID:', author);
+            // console.log('addReply Function:', addReply);
             console.log('New Comment:', newComment);
         }
     }
@@ -42,21 +59,18 @@ const CommentForm = ( {addList, author, addReply} ) => {
     return (
         <S.typing>
             <img src={UserImg2} alt='유저프로필' />
-            <form onSubmit={handleSubmit}>
+            {/* onSubmit={handleSubmit} */}
+            <form>
                 <span className='box'>
                     <input 
-                        className='int'
+                        className='commentInput'
                         type="text"
-                        value={value}
+                        value={contetnvalue}
                         onChange={handleChange}
-                        placeholder={
-                            // parentId 
-                            // ? '대댓글 입력' 
-                            // : 
-                        '칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)'}
+                        placeholder={'칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)'}
                     />
                 </span>
-                <button type="submit" className='submitBt' disabled={!value.trim()}>
+                <button onClick={handleSubmit} type="submit" className='submitBt' disabled={!contetnvalue.trim()}>
                     입력
                 </button>
             </form>
