@@ -9,6 +9,9 @@ import close from './icons/close.svg'
 import left_button from './icons/left_button.svg'
 import right_button from './icons/right_button.svg'
 import greyclose from './icons/close-grey.svg';
+import noFood from './icons/circle.svg';
+import greycheck from './icons/greycheck.svg';
+import greencheck from './icons/greencheck.svg';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -42,6 +45,7 @@ const Diary = () => {
         저녁 : false,
         간식 : false
     })
+    const [foodChecked, setFoodChecked] = useState({});
     const [isClickPlus, setIsClickPlus] = useState(false);
     const [foodList, setFoodList] = useState([]);
     const { register, handleSubmit, getValues, formState: { isSubmitted, isSubmitting, errors}} = useForm({mode : "onchange"});
@@ -126,6 +130,17 @@ const Diary = () => {
 
     const closeInputModal = () => {
         setIsInputModalOpen(false);
+    }
+
+    const checkFood = (date, time) => {
+        const key = `${date.year}-${date.month}-${date.day}`;
+        setFoodChecked((prevState) => ({
+            ...prevState,
+            [key] : {
+                ...prevState[key],
+                [time] : !prevState[key]?.[time]
+            }
+        }))
     }
 
     const deleteFood = async (food) => {
@@ -232,6 +247,21 @@ const Diary = () => {
         }
     }, [selectedDate]);
 
+    useEffect(() => {
+        const key = `${selectedDate.year}-${selectedDate.month}-${selectedDate.day}`;
+        if (!foodChecked[key]) { 
+            setFoodChecked((prevState) => ({
+                ...prevState,
+                [key]: {
+                    아침: false,
+                    점심: false,
+                    저녁: false,
+                    간식: false,
+                },
+            }));
+        }
+    }, [selectedDate]); 
+
     return (
         <S.DiaryWrapper>
             <S.Calendar>
@@ -304,11 +334,20 @@ const Diary = () => {
                                 <S.FoodTitle>아침</S.FoodTitle>
                                 <S.FoodSubTitle>식사메뉴</S.FoodSubTitle>
                             </S.FoodText>
-                            <img src={plus} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('아침')} />
+                            {isFoodFilled["아침"] ? <img src={greencheck} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('아침')} /> :
+                            <img src={plus} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('아침')} />}
+                            
                         </S.FoodInfo>
                         <S.Line></S.Line>
                         <S.Kcal isFoodFilled = {isFoodFilled["아침"]}>
-                            {isFoodFilled["아침"] ? `${kcal["아침"]}Kcal` : "단식했어요"}
+                            {isFoodFilled["아침"] ? `${kcal["아침"]}Kcal` : 
+                                (<div>
+                                    {foodChecked[`${selectedDate.year}-${selectedDate.month}-${selectedDate.day}`]?.["아침"] ? 
+                                        (<img src={greycheck} width={"22px"} height={"22px"} onClick={() => {checkFood(selectedDate, "아침")}} />) :
+                                        (<img src={noFood} width={"22px"} height={"22px"} onClick={() => {checkFood(selectedDate, "아침")}} />)
+                                    }
+                                   <p>단식했어요</p> 
+                                </div>)}
                         </S.Kcal>
                     </S.FoodBox>
                     {/* 점심 */}
@@ -323,11 +362,19 @@ const Diary = () => {
                                 <S.FoodTitle>점심</S.FoodTitle>
                                 <S.FoodSubTitle>식사메뉴</S.FoodSubTitle>
                             </S.FoodText>
-                            <img src={plus} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('점심')} />
+                            {isFoodFilled["점심"] ? <img src={greencheck} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('점심')} /> :
+                            <img src={plus} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('점심')} />}
                         </S.FoodInfo>
                         <S.Line></S.Line>
                         <S.Kcal isFoodFilled = {isFoodFilled["점심"]}>
-                            {isFoodFilled["점심"] ? `${kcal["점심"]}Kcal` : "단식했어요"}
+                            {isFoodFilled["점심"] ? `${kcal["점심"]}Kcal` : 
+                                (<div>
+                                    {foodChecked[`${selectedDate.year}-${selectedDate.month}-${selectedDate.day}`]?.["점심"] ? 
+                                        (<img src={greycheck} width={"22px"} height={"22px"} onClick={() => {checkFood(selectedDate, "점심")}} />) :
+                                        (<img src={noFood} width={"22px"} height={"22px"} onClick={() => {checkFood(selectedDate, "점심")}} />)
+                                    }
+                                   <p>단식했어요</p> 
+                                </div>)}
                         </S.Kcal>
                     </S.FoodBox>
                     {/* 저녁 */}
@@ -342,11 +389,19 @@ const Diary = () => {
                                 <S.FoodTitle>저녁</S.FoodTitle>
                                 <S.FoodSubTitle>식사메뉴</S.FoodSubTitle>
                             </S.FoodText>
-                            <img src={plus} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('저녁')} />
+                            {isFoodFilled["저녁"] ? <img src={greencheck} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('저녁')} /> :
+                            <img src={plus} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('저녁')} />}
                         </S.FoodInfo>
                         <S.Line></S.Line>
                         <S.Kcal isFoodFilled = {isFoodFilled["저녁"]}>
-                            {isFoodFilled["저녁"] ? `${kcal["저녁"]}Kcal` : "단식했어요"}
+                            {isFoodFilled["저녁"] ? `${kcal["저녁"]}Kcal` : 
+                                (<div>
+                                    {foodChecked[`${selectedDate.year}-${selectedDate.month}-${selectedDate.day}`]?.["저녁"] ? 
+                                        (<img src={greycheck} width={"22px"} height={"22px"} onClick={() => {checkFood(selectedDate, "저녁")}} />) :
+                                        (<img src={noFood} width={"22px"} height={"22px"} onClick={() => {checkFood(selectedDate, "저녁")}} />)
+                                    }
+                                   <p>단식했어요</p> 
+                                </div>)}
                         </S.Kcal>
                     </S.FoodBox>
                     {/* 간식 */}
@@ -361,11 +416,19 @@ const Diary = () => {
                                 <S.FoodTitle>간식</S.FoodTitle>
                                 <S.FoodSubTitle>식사메뉴</S.FoodSubTitle>
                             </S.FoodText>
-                            <img src={plus} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('간식')} />
+                            {isFoodFilled["간식"] ? <img src={greencheck} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('간식')} /> :
+                            <img src={plus} width={"28px"} height={"28px"} alt="" onClick={()=>openModal('간식')} />}
                         </S.FoodInfo>
                         <S.Line></S.Line>
                         <S.Kcal isFoodFilled = {isFoodFilled["간식"]}>
-                            {isFoodFilled["간식"] ? `${kcal["간식"]}Kcal` : "단식했어요"}
+                            {isFoodFilled["간식"] ? `${kcal["간식"]}Kcal` : 
+                                (<div>
+                                    {foodChecked[`${selectedDate.year}-${selectedDate.month}-${selectedDate.day}`]?.["간식"] ? 
+                                        (<img src={greycheck} width={"22px"} height={"22px"} onClick={() => {checkFood(selectedDate, "간식")}} />) :
+                                        (<img src={noFood} width={"22px"} height={"22px"} onClick={() => {checkFood(selectedDate, "간식")}} />)
+                                    }
+                                   <p>단식했어요</p> 
+                                </div>)}
                         </S.Kcal>
                     </S.FoodBox>
                 </S.DiaryFoodBox>
