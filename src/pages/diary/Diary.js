@@ -228,10 +228,18 @@ const Diary = () => {
             };
         });
 
+        const filteredFood = foods.filter((food) => 
+            food.date.day === selectedDate.day &&
+            food.date.month === selectedDate.month + 1 &&
+            food.date.year === selectedDate.year
+        )
+        setFoodList(filteredFood)
+        console.log(filteredFood, "필터푸드")
+
         console.log("업데이트된 days:", updatedDays);
         setDays(updatedDays);
 
-        foods.forEach((food) => {
+        filteredFood.forEach((food) => {
             console.log("food : ", food)
             if(selectedDate.day == food.date.day){
                 if(kcal[food.time] !== undefined){
@@ -245,6 +253,7 @@ const Diary = () => {
         
 
         })
+        
         setKcal(kcal);
         setFoodCount(foodCount);
         setIsFoodFilled(isFoodFilled);
@@ -301,30 +310,35 @@ const Diary = () => {
                                 {day.day}
                             </S.DayCircle>
                             <S.FoodStickerWrapper>
-                                <S.Sticker
-                                    className="morning"
-                                    isFoodFilled={day.foodStatus?.morning}
-                                >
-                                    {day.foodStatus?.morning ? "아침" : ""}
-                                </S.Sticker>
-                                <S.Sticker
-                                    className="lunch"
-                                    isFoodFilled={day.foodStatus?.lunch}
-                                >
-                                    {day.foodStatus?.lunch ? "점심" : ""}
-                                </S.Sticker>
-                                <S.Sticker
-                                    className="dinner"
-                                    isFoodFilled={day.foodStatus?.dinner}
-                                >
-                                    {day.foodStatus?.dinner ? "저녁" : ""}
-                                </S.Sticker>
-                                <S.Sticker
-                                    className="dessert"
-                                    isFoodFilled={day.foodStatus?.dessert}
-                                >
-                                    {day.foodStatus?.dessert ? "간식" : ""}
-                                </S.Sticker>
+                                {day.isCurrentMonth && (
+                                    <>
+                                        <S.Sticker
+                                            className="morning"
+                                            isFoodFilled={day.foodStatus?.morning}
+                                        >
+                                            {day.foodStatus?.morning ? "아침" : ""}
+                                        </S.Sticker>
+                                        <S.Sticker
+                                            className="lunch"
+                                            isFoodFilled={day.foodStatus?.lunch}
+                                        >
+                                            {day.foodStatus?.lunch ? "점심" : ""}
+                                        </S.Sticker>
+                                        <S.Sticker
+                                            className="dinner"
+                                            isFoodFilled={day.foodStatus?.dinner}
+                                        >
+                                            {day.foodStatus?.dinner ? "저녁" : ""}
+                                        </S.Sticker>
+                                        <S.Sticker
+                                            className="dessert"
+                                            isFoodFilled={day.foodStatus?.dessert}
+                                        >
+                                            {day.foodStatus?.dessert ? "간식" : ""}
+                                        </S.Sticker>
+                                    </>
+                                )}
+                                
                             </S.FoodStickerWrapper>
                         </S.Day>
                         
@@ -470,7 +484,7 @@ const Diary = () => {
                         </S.BodyTitle>
                         <S.FoodList>
                             <ul>
-                                {foodList.filter((food) => food.time === foodTime && food.date.day == selectedDate.day).map((food, index)=>(
+                                {foodList.filter((food) => food.time === foodTime && food.date.day == selectedDate.day && food.date.month == selectedDate.month + 1 && food.date.year == selectedDate.year).map((food, index)=>(
                                     <S.ListWrapper>
                                         <S.ListTextWrapper>
                                             <S.FoodList key={index}>{food.foodName}</S.FoodList>
