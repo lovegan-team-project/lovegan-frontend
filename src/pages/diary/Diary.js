@@ -48,9 +48,10 @@ const Diary = () => {
     const [foodChecked, setFoodChecked] = useState({});
     const [isClickPlus, setIsClickPlus] = useState(false);
     const [foodList, setFoodList] = useState([]);
-    const { register, handleSubmit, getValues, formState: { isSubmitted, isSubmitting, errors}} = useForm({mode : "onchange"});
+    const { register, handleSubmit, reset, getValues, formState: { isSubmitted, isSubmitting, errors}} = useForm({mode : "onchange"});
     const dispatch = useDispatch();
     const currentUser = useSelector((state) => state.user.currentUser);
+    const isLogin = useSelector((state) => state.user.isLogin);
 
     const [dateStatus, setDateStatus] = useState({
         day : 0,
@@ -105,15 +106,26 @@ const Diary = () => {
     };
     
     const clickDate = (day) => {
-       
-        setSelectedDate({
-            day : day,
-            month : currentDate.getMonth(),
-            year : currentDate.getFullYear()
-        }); 
+        console.log(currentUser, "현재 유저")
+        if(!isLogin){
+            alert("로그인 해주세요.")
+            return;
+        }
+        else{
+            setSelectedDate({
+                day : day,
+                month : currentDate.getMonth(),
+                year : currentDate.getFullYear()
+            }); 
+        }
+        
     }
 
     const openModal = (time) => {
+        if(!isLogin){
+            alert("로그인 해주세요");
+            return;
+        }
         setFoodTime(time)
         setIsInfoModalOpen(true);
         // console.log("모달창오픈")
@@ -130,9 +142,14 @@ const Diary = () => {
 
     const closeInputModal = () => {
         setIsInputModalOpen(false);
+        reset();
     }
 
     const checkFood = (date, time) => {
+        if(!isLogin){
+            alert("로그인 해주세요")
+            return;
+        }
         const key = `${date.year}-${date.month}-${date.day}`;
         setFoodChecked((prevState) => ({
             ...prevState,
@@ -279,7 +296,7 @@ const Diary = () => {
                   
                   ))}
                     {days.map((day, index) => (
-                        <S.Day key={index} onClick={day.isCurrentMonth ? () => clickDate(day.day) : undefined} isCurrentMonth = {day.isCurrentMonth}>
+                        <S.Day key={index} onClick={day.isCurrentMonth && currentUser ? () => clickDate(day.day) : undefined} isCurrentMonth = {day.isCurrentMonth}>
                             <S.DayCircle isSelected={selectedDate.day === day.day && selectedDate.month === currentDate.getMonth() && selectedDate.year === currentDate.getFullYear()} isCurrentMonth={day.isCurrentMonth} isToday={day.isToday}>
                                 {day.day}
                             </S.DayCircle>
@@ -477,8 +494,9 @@ const Diary = () => {
                 <S.Form onSubmit = {handleSubmit(async(data) => {
                     console.log("data : ", data);
                     console.log(data.foodInput)
-                    if(!currentUser){
+                    if(!isLogin){
                         alert("로그인 해주세요")
+                        return;
                     }
                     try{
                         const response = await fetch("http://localhost:8000/diary/foodInput", {
@@ -510,6 +528,7 @@ const Diary = () => {
                             setIsInfoModalOpen(true);
                             setIsInputModalOpen(false);
                         }
+                        reset();
                     }
                     catch(error){
                         console.error(error)
