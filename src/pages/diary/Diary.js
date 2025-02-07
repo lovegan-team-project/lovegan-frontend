@@ -128,6 +128,27 @@ const Diary = () => {
         setIsInputModalOpen(false);
     }
 
+    const deleteFood = async (food) => {
+        try{
+            const response = await fetch(`http://localhost:8000/diary/deleteFood?id=${food}`, {
+                method : "DELETE",
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+                body: JSON.stringify({
+                    id: food,
+                    userId: currentUser._id
+                })
+            })
+            if(response.ok){
+                showFood();
+            }
+        }
+        catch(error){
+            console.error(error)
+        }
+    }
+
     const showFood = async() => {
         if(days.length === 0) return;
         const response = await fetch(`http://localhost:8000/diary/foodInfo?id=${currentUser._id}&year=${selectedDate.year}&month=${selectedDate.month}&day=${selectedDate.day}`, {
@@ -375,7 +396,7 @@ const Diary = () => {
                                             <S.FoodList key={index}>{food.foodName}</S.FoodList>
                                             <S.FoodKcal>{food.kcal}kcal</S.FoodKcal>
                                         </S.ListTextWrapper>
-                                        <img src={greyclose} alt='' onClick={closeInfoModal} />
+                                        <img src={greyclose} alt='' onClick={() => deleteFood(food._id)} />
                                     </S.ListWrapper>
                                 ))} 
                             </ul>
