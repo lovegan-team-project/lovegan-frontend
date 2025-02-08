@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import S from './style';
 import Userimages from './Userimages';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ScrapBt from './ScrapBt';
 
 const CommunityFollow  = () => {
     
     window.scrollTo(0,0);
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     // 태그버튼
     const [tagClick, setTagClick] = useState("like")
@@ -17,9 +17,9 @@ const CommunityFollow  = () => {
     }, [setTagClick])
 
     // 게시물 클릭시 디테일 페이지로 이동
-    const toPostsOnClick = () => {
-        navigate("/community/CommunityFollowDt")
-    }   
+    // const toPostsOnClick = () => {
+    //     navigate("/community/CommunityFollowDt")
+    // }   
     const bookmarkClick = (event) => {
         event.stopPropagation();
     }
@@ -31,12 +31,16 @@ const CommunityFollow  = () => {
             try {
                 const response = await fetch("http://localhost:8000/community/getPost")
                 console.log(response)
-                // .then((res) => res.json())
+
+                const data = await response.json();
+                setPosts(data);
+                console.log(data)
+                
                 if(!response.ok) {
                     throw new Error('게시물 fetch 실패');
                 }
-                const data = await response.json();
-                setPosts(data);
+
+
             } catch (error) {
                 console.error('Error fetching: ', error);
             }
@@ -44,7 +48,7 @@ const CommunityFollow  = () => {
         fetchPost();
     },[])
 
-    console.log(posts);
+    if (!posts) return <p>Loading...</p>;
     
     return (
         <S.CommunityContainer>
@@ -64,23 +68,25 @@ const CommunityFollow  = () => {
                     {posts.map((post, index)=>
                         <S.Feed2 className='게시물' key={post._id}>
                             <S.PostUser1 className='게시물1'>
-                            <S.PostImage onClick={toPostsOnClick}>
+                            <S.PostImage >
+                            <Link to={`/community/communityFollowDt/${post._id}`}>
                                 <img src={Userimages[`post${index + 4}`]} alt={`게시물 사진 ${index + 1}`}/>
+                            </Link>
                                 <S.type onClick={bookmarkClick}>
                                     <ScrapBt />
                                 </S.type>
                             </S.PostImage>
-                            <S.PostTitleLeft onClick={toPostsOnClick}>{post.title}</S.PostTitleLeft>
+                            <S.PostTitleLeft >{post.title}</S.PostTitleLeft>
                             <S.text2>
                                 <S.TextInfo>
                                     <S.Profile className='profileImage'>
                                         <img src={Userimages[`postuser${index + 1}`]} alt={Userimages[`postuser${index + 1}`]}/>
                                     </S.Profile>
 
-                                    <S.PostUserName2 className='profileUserName' key={post.author}>{post.author}</S.PostUserName2>
+                                    <S.PostUserName2 className='profileUserName'>{post.author}</S.PostUserName2>
                                 </S.TextInfo>
                             </S.text2>
-                                <S.FeedTags className='postTags' key={post._id}>
+                                <S.FeedTags className='postTags' >
                                     <S.FeedFilter>스크랩 {post.scrapCount}</S.FeedFilter>
                                     <S.FeedFilter>·</S.FeedFilter>
                                     <S.FeedFilter>좋아요 {post.likeCount}</S.FeedFilter>

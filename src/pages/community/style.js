@@ -109,10 +109,9 @@ export const ScrapButtonCmAll = styled(scrap)`
     stroke: ${(props) => props.stroke === '#fff' ? '#fff' : '#F27830'};
     
     &:hover path{
-    fill: ${(props) => props.color === '#fff' ? '#fff' : '#D8590E'};
-    fill-opacity: ${(props) => props.opacity === true ? 0.5 : 1};
-    /* fill-opacity: ${(props) => props.opacity === '#fff' || 0.5}; */
-    stroke: ${(props) => props.color === '#fff' ? '#fff' : '#D8590E'};
+        fill: ${(props) => props.color === '#fff' ? '#fff' : '#D8590E'};
+        fill-opacity: ${(props) => props.opacity === true ? 0.5 : 1};
+        stroke: ${(props) => props.color === '#fff' ? '#fff' : '#D8590E'};
     }
 `
 
