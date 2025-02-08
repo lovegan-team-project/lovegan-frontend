@@ -54,10 +54,10 @@ const MyPage = () => {
                     <S.FollowInfoWrapper>
                         <div className='wrapper'>
                             <span className='title'>팔로워</span>
-                            <span className='content'>0</span>
+                            <span className='content'>{currentUser.followerCount}</span>
                             <div className='divider' />
                             <span className='title'>팔로잉</span>
-                            <span className='content'>0</span>
+                            <span className='content'>{currentUser.followingCount}</span>
                         </div>
                         <S.SmallButton onClick={handleSettingsClick}>설정</S.SmallButton>
                     </S.FollowInfoWrapper>
