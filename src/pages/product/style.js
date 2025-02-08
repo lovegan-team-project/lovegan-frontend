@@ -885,6 +885,54 @@ S.SubImgWrapper = styled.div`
 
 
 `
+// /* Arrow style */
+S.A_Div = styled.div`
+    width: 300px;
+    height: 300px;
+    /* border: 1px solid #333; */
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px;
+
+`
+
+S.nextPage = styled.div`
+    margin-top: 40px;
+
+    & p {
+        font-size: ${({theme}) => theme.FONT_SIZE["paragraph"]};
+        width: 22px;
+        height: 22px;
+        line-height: 1.5;
+
+        &:hover {
+            color: #03A63C;
+        }
+    }
+        
+    & button {
+        margin: 0 8px 0 8px;
+    }
+
+    & button.click {
+        padding: 0px;
+        outline: none;
+        background-color: #03A63C;
+        width: 22px;
+        height: 22px;
+        text-align: center;
+        border-radius: 50%;
+        color: #fff;
+            width: 22px;
+            height: 22px;
+    }
+
+    & button.unClick {
+        padding: 0px;
+        background-color: white;
+        outline: none;   
+    }
+`
 
 
 

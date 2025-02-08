@@ -163,9 +163,9 @@ S.FoodBox = styled.div`
     border: solid 1px ${({theme})=>theme.PALLETTE.grey["0"]};
     border-radius: 10px;
     border-left: solid 10px ${({isFoodFilled, theme}) => (isFoodFilled ? theme.PALLETTE.brand["primary_light"] : theme.PALLETTE.grey["0"])};
-    
     flex-direction: column;
     margin: 0 0 10px 12px;
+    box-sizing: border-box;
 `
 S.FoodInfo = styled.div`
     width: 100%;
@@ -204,16 +204,28 @@ S.FoodSubTitle = styled.div`
 `
 S.Line = styled.div`
     width: 1px;
-    height: 90px;
+    height: 0px;
 `
 S.Kcal = styled.div`
     display: flex;
+    height: 40px;
     align-items: center;
     justify-content: end;
+    margin-right: 14px;
+    padding: 0;
     font-size: ${({theme})=>theme.FONT_SIZE["paragraph"]};
     font-weight: ${({isFoodFilled, theme}) => (isFoodFilled ? theme.FONT_WEIGHT["bold"] : theme.FONT_WEIGHT["regular"])};
-    margin: 11px 14px;
-    color: ${({isFoodFilled, theme}) => (isFoodFilled ? theme.PALLETTE.brand["primary"] : theme.PALLETTE.brand["primary_black"])}
+    color: ${({isFoodFilled, theme}) => (isFoodFilled ? theme.PALLETTE.brand["primary"] : theme.PALLETTE.brand["primary_black"])};
+    & div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: ${({theme})=>theme.FONT_SIZE["paragraph"]};
+        font-weight: ${({isFoodFilled, theme}) => (isFoodFilled ? theme.FONT_WEIGHT["bold"] : theme.FONT_WEIGHT["regular"])};
+        & img {
+            margin-right: 8px;
+        }
+    }
 `
 
 S.ModalBox = styled.div`

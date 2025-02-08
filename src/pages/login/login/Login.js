@@ -18,33 +18,40 @@ const Login = () => {
         navigate('/signUp')
     }
     const onSubmit = async (data) => {
-        await fetch("http://localhost:8000/auth/local", {
-            method : "POST",
-            headers : {
-                "Content-Type" : "application/json"
-            },
-            body : JSON.stringify({
-                email : data.id,
-                password : data.pw
+        console.log(data)
+        try{
+            const response = await fetch("http://localhost:8000/auth/local", {
+                method : "POST",
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+                body : JSON.stringify({
+                    email : data.id,
+                    password : data.pw
+                })
             })
-        })
-        .then((res) => res.json())
-        .then((res) => {
+            if(!response.ok){
+                alert("아이디 또는 비밀번호를 확인해주세요")
+            }
+            const res = await response.json();
+
+            
             if(res.loginSuccess){
-                // alert(res.message)
                 let {user, accessToken, loginSuccess, message} = res; 
                 dispatch(setUser(user))
                 dispatch(setUserStatus(true))
                 localStorage.setItem("token", accessToken)
-                console.log(res);
+                console.log(res.message, "성공 메세지");
             }
             else{
-                let {loginSuccess, message} = res;
-                console.log(res)
-                alert(message)
+                console.log(res, "로그인 실패")
+                console.log(res.message)
+                
             }
-        })
-        .catch(console.error)
+        }
+        catch(error){
+            console.error(error)
+        }
         
     }
     const clickToMain = () => {
