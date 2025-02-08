@@ -14,7 +14,7 @@ const CommunityAll = () => {
 
     window.scrollTo(0,0);
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     // 태그버튼
     const [tagClick, setTagClick] = useState("like")
@@ -53,7 +53,6 @@ const CommunityAll = () => {
         fetchPost();
     },[])
 
-    console.log(posts);
 
     if (!posts) return <p>Loading...</p>;
     
@@ -156,7 +155,7 @@ const CommunityAll = () => {
                         <ScrapBlack likeData={likeData} />
                         <div >{post.scrapCount}</div>
                         <img src={comment_one} alt='commentBt'></img>
-                        <div>63</div>
+                        <div>{post.contentCounts}</div>
                     </S.FeedOption>
                     </S.PostUser1>
                 </S.Feed1>

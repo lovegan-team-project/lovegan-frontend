@@ -378,7 +378,7 @@ const router = createBrowserRouter([
                 element : <CommunityAllDt />
             },
             {
-                path : "/community/CommunityFollowDt",
+                path : "/community/CommunityFollowDt/:id",
                 element : <CommunityFollowDt />
             },
             {

@@ -1,19 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import S from './style';
 import UserImg2 from './image/UserImg2.png';
 import LikeBtMin from './LikeBtMin';
 import { useSelector } from 'react-redux';
 
-const CommentList = ({ list,  addReply, newComment }) => {
+const CommentList = ({ list,  addReply, id }) => {
     // 댓글 id별로 대댓글 작성 폼 표시
     const [replyVisible, setReplyVisible] = useState([]);
+    const [comments, setComments] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     // const [replies, setReplies] = useState()
 
     const currentUser = useSelector((state) => state.user.currentUser);
 
+    // useEffect(() => {
+    //     const fetchComments = async () => {
+    //         try {
+    //             const response = await fetch(`http://localhost:8000/community/getComment?id=${id}`)
+    //             const data = await response.json();
+    //             setComments(data);
+    //         } catch (error) {
+    //             console.error("댓글 불러오기 실패 : ", error);
+    //         }
+    //     }
+    //     fetchComments();
+    // }, [id]);
+
     // 댓글을 5개까지만 보여주기
-    const limitedList = list.slice(0,10);
+    // const limitedList = list.slice(0,10);
 
     // 대댓글 폼 토글 함수
     const toggleReplyForm = (commentId) => {
@@ -49,14 +63,14 @@ const CommentList = ({ list,  addReply, newComment }) => {
 
     return (
         <S.CommentListStyle className="comment-list">
-                {limitedList.map((comment) => (
+                {comments && comments.map((comment) => (
                     <div key={comment._id} className="comment-row">
                         {comment.content.trim() && (
                         <div className='comment-inRow'>
                             <div className='comment-row-user'>
                                 <img src={UserImg2} alt='' className='comment-row-img'/>
                                 <div className='comment-row-user-between'>
-                                    <div className="comment-id">{comment.newComment.author}</div>
+                                    <div className="comment-id">{comment.id}</div>
                                     <div className="comment-content">{comment.content}</div>
                                 </div>
                             </div>
