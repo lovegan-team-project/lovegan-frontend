@@ -36,7 +36,7 @@ const CommentForm = ({ addList, id }) => {
             const result = await response.json();
             console.log('서버 응답 : ', result);
 
-            addList(result.newComment); // 댓글 리스트 갱신
+            addList((prevList) => [...prevList, result.newComment]); // 댓글 리스트 갱신
 
         } catch(error) {
             console.error("댓글 추가 중 오류:", error);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CommentForm from './CommentForm';
 import CommentList from './CommentList';
 
-const Comment = ({ onCommentCountChange, id }) => {
+const Comment = ({ onCommentCountChange, id, comments }) => {
 
     const [list, setList] = useState([]);
     const [commentCount, setCommentCount] = useState(0); 
@@ -21,10 +21,6 @@ const Comment = ({ onCommentCountChange, id }) => {
 
                 setList(data.comments);
                 setCommentCount(data.commentCount);
-
-                // if(onCommentCountChange) {
-                //     onCommentCountChange(data.commentCount);
-                // }
                 onCommentCountChange?.(data.commentCount);
 
                 // console.log(data)

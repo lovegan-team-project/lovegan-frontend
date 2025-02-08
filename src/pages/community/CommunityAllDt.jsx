@@ -75,8 +75,8 @@ const CommunityAllDt = () => {
     const currentUser = useSelector((state) => state.user.currentUser);
     const { id } = useParams();
     const [post, setPost] = useState();
-    // const [postDetail, setPostDetail] = useState();
-
+    const [comments, setComments] = useState([]);
+    
     useEffect(() => {
         const fetchPosts = async () => {
             try {
@@ -96,6 +96,10 @@ const CommunityAllDt = () => {
         
         fetchPosts();
     }, [id]);
+
+    const handleNewComment = (newComment) => {
+        setComments((prevComments) => [...prevComments, newComment]);  // 새 댓글 추가
+    };
 
     return (
         <S.PostWrapper>
@@ -161,12 +165,11 @@ const CommunityAllDt = () => {
                 <div>신고하기</div>
             </S.dtInfo>
             <S.commentNum >
-                댓글
-                <div>{commentCount}</div>
+                댓글<div>{commentCount}</div>
             </S.commentNum>           
             <S.Recomment>
             {/* 새로운 댓글 로직 컴포넌트트 */}
-            <Comment onCommentCountChange={handleCommentCountChange} id={id}/>
+            <Comment onCommentCountChange={handleCommentCountChange} id={id} comments={comments}/>
             </S.Recomment>
             
             <S.nextPage>
