@@ -188,6 +188,8 @@ const Product = () => {
                     
                 </S.ProductWrapper>
 
+                
+
                 {/* <S.ProductWrapper>
                     <S.ProductHeader>
                         <S.ProductNum>총 {products.length}건</S.ProductNum>
