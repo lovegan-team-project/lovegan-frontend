@@ -3,12 +3,17 @@ import S from './style.js';
 import Star from '../main/images/star.svg';
 import ItemContainer2 from './ItemContainer2.js';
 import { NavLink, useNavigate } from 'react-router-dom';
+import Arrow from './Arrow.js';
 
 const OtherMain = () => {
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
     const [clickSort, setClickSort] = useState("like");
     const [isUpdated, setIsUpdated] = useState(false)
+    // pagination
+    const [page,setPage] = useState(1); // 페이지
+    const limit = 9; // 한페이지에 보여질 목록
+    const offset = (page-1)*limit; //시작점과 끝점을 구하는 offset
     
         
         const getProduct = async () => {
@@ -22,6 +27,15 @@ const OtherMain = () => {
         useEffect(()=>{
             getProduct()
         },[isUpdated])
+
+        // 페이지 분류 함수
+    const postData = (products) => {
+        if(products){
+            // 페이지에 해당하는 개수 slice함
+            let result = products.slice(offset,offset+limit);
+            return result;
+        }
+    }
 
     return (
         <>
@@ -44,7 +58,7 @@ const OtherMain = () => {
         </S.ProductHeader> 
 
         <S.ProductMainContainer>   
-        {products.map((product) => (
+        {postData(products).map((product) => (
             <S.ItemContainerWrapper key={product._id}>
                 <React.Fragment >
                 <ItemContainer2 />
@@ -65,7 +79,15 @@ const OtherMain = () => {
                 </React.Fragment>
             </S.ItemContainerWrapper>
             ))}
+
+            
         </S.ProductMainContainer>
+
+        <S.A_Div>
+            {/* 페이지네이션에 매개변수 넘겨줌,limit:한페이지당 글수, page:현재 페이지, totalPosts: 전체 포스터개수, setPage:page상태변화 */}
+            <Arrow limit={limit} page={page} totalPosts={products.length} setPage={setPage} />
+        </S.A_Div>
+            
         </>
 
         // <S.ProductMainContainer>
