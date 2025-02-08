@@ -47,9 +47,14 @@ S.ProfileInfoWrapper = styled.div`
     flex-direction: row;
     align-items: center;
 
-    & img {
-        margin-right: 20px;
+    & div.profileImage{
+        border-radius: 50%;
+
+        & img {
+            margin-right: 20px;
+        }
     }
+    
 
     & h4 {
         font-size: ${({theme})=>theme.FONT_SIZE["h4"]};
