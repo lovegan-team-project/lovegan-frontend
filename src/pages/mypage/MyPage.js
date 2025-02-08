@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import S from './style.js'
 import { NavLink, Outlet, useNavigate, useSearchParams } from 'react-router-dom';
-import user_default from './images/user_default.svg';
+// import user_default from './images/user_default.svg';
 import scrap from './icons/menu-scrap.svg';
 import like from './icons/menu-like.svg';
 import cart from './icons/big_cart.svg';
@@ -24,21 +24,28 @@ const MyPage = () => {
     const isLogin = useSelector((state) => state.user.isLogin);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    
-    // console.log(currentUser);
-    // console.log(isLogin);
 
     const handleSettingsClick = () => {
         navigate('/mypage/settings/accountInfo');
     };
 
+    const [picturePath, setPicturePath] = useState('');
+
+    useEffect(() => {
+        if (currentUser && currentUser.picturePath && currentUser.pictureName) {
+            setPicturePath(`http://localhost:8000${currentUser.picturePath}/${currentUser.pictureName}`);
+        }
+    }, [currentUser]);
 
     return (
         <S.Background>
             <S.Container>
                 <S.Sidebar>
                     <S.ProfileInfoWrapper>
-                        <img src={user_default} alt=''/>
+                        <div className='profileImage'>
+                            {/* <img src={picturePath || 'default_image_path.jpg'} alt='프로필 사진'/> */}
+                            <img src={picturePath} alt='프로필 사진'/>
+                        </div>
                         <div>
                             <h4>{currentUser.nickname}</h4>
                             <p>{currentUser.intro}</p>
@@ -47,10 +54,10 @@ const MyPage = () => {
                     <S.FollowInfoWrapper>
                         <div className='wrapper'>
                             <span className='title'>팔로워</span>
-                            <span className='content'>0</span>
+                            <span className='content'>{currentUser.followerCount}</span>
                             <div className='divider' />
                             <span className='title'>팔로잉</span>
-                            <span className='content'>0</span>
+                            <span className='content'>{currentUser.followingCount}</span>
                         </div>
                         <S.SmallButton onClick={handleSettingsClick}>설정</S.SmallButton>
                     </S.FollowInfoWrapper>

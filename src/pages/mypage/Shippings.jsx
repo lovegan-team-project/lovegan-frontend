@@ -74,7 +74,7 @@ const Shippings = () => {
 
     const getShippingList = async (email) => {
         try {
-            console.log("getShippingList: " + email);
+            // console.log("getShippingList: " + email);
             const response = await fetch(`http://localhost:8000/shipping/list`, {
                 method: 'POST',
                 headers: {
@@ -101,7 +101,7 @@ const Shippings = () => {
 
     useEffect(() => {
         if (currentUser && currentUser.email) {
-            console.log(currentUser.email);
+            // console.log(currentUser.email);
             getShippingList(currentUser.email);
         } else {
             console.log('No current user data available');
