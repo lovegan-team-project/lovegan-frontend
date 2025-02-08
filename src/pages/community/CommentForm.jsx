@@ -3,74 +3,61 @@ import S from './style';
 import UserImg2 from './image/UserImg2.png';
 import { useSelector } from 'react-redux';
 
-// parentId=null, onReply
-const CommentForm = ( {addList, author, addReply} ) => {
-    const [contetnvalue, setContentValue] = useState('');
-    
-    // const now = new Date();   
+const CommentForm = ({ addList, id }) => {
+    const [contentvalue, setContentValue] = useState("");
     const currentUser = useSelector((state) => state.user.currentUser);
 
-    const handleChange  = (e) => {
+    const handleChange = (e) => {
         setContentValue(e.target.value);   
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setContentValue('');
+        if(!contentvalue.trim()) return;
 
-        if(contetnvalue.trim()) {
-            const newComment = {
-                // author: currentUser.nickname,
-                content: contetnvalue, // 입력한 댓글 내용
-                // 대댓글 저장 배열
-                // replies: [],
-                // createAt: new Date().toISOString(),
-            };
+        const newComment = {
+            content: contentvalue,
+            post : id // 게시글 id 추가
+        };
+        
+        console.log("보낼 데이터 :", newComment);
+        // setContentValue('');
 
-            // if(parentId) {
-            //     addReply(parentId, newComment);
-            // } else {
-            //     addList(newComment);
-            // }
-            
-            // addList(newComment)
-            setContentValue('');
-            await fetch("http://localhost:8000/community/addComment", {
+        try {
+            const response = await fetch("http://localhost:8000/community/addComment", {
                 method : "POST",
-                headers : {
-                    "Content-Type" : "application/json"
-                },
-                body : JSON.stringify({newComment})
+                headers : { "Content-Type" : "application/json" },
+                body : JSON.stringify(newComment),
             })
-                .then((res) => res.json())
-                .then((res) => {
-                    console.log(res);
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                    alert("오류가 발생했습니다.");
-                });
 
-            // console.log('Parent ID:', author);
-            // console.log('addReply Function:', addReply);
-            console.log('New Comment:', newComment);
+            if(!response.ok) throw new Error("댓글 저장 실패");
+
+            const result = await response.json();
+            console.log('서버 응답 : ', result);
+
+            addList(result.newComment); // 댓글 리스트 갱신
+
+        } catch(error) {
+            console.error("댓글 추가 중 오류:", error);
+            alert("댓글을 추가하는 중 오류가 발생했습니다.");
         }
     }
     
     return (
         <S.typing>
             <img src={UserImg2} alt='유저프로필' />
-            {/* onSubmit={handleSubmit} */}
-            <form>
+            <form onSubmit={handleSubmit}>
                 <span className='box'>
                     <input 
                         className='commentInput'
                         type="text"
-                        value={contetnvalue}
+                        value={contentvalue}
                         onChange={handleChange}
                         placeholder={'칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)'}
                     />
                 </span>
-                <button onClick={handleSubmit} type="submit" className='submitBt' disabled={!contetnvalue.trim()}>
+                <button type="submit" className='submitBt' disabled={!contentvalue.trim()}>
                     입력
                 </button>
             </form>
