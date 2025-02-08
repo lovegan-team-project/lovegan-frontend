@@ -11,8 +11,9 @@ import { ReactComponent as like} from './image/like.svg';
 import { ReactComponent as scrap} from './image/scrap.svg';
 import comment_one from './image/comment_one.svg';
 import Comment from './Comment';
+import { useParams } from 'react-router-dom';
 
-const CommunityFollowDt = (props) => {
+const CommunityFollowDt = () => {
 
     // 팔로우 버튼 클릭, 호버 색 변경
     const [colorChange, setColorChange] = useState('#fafafa');
@@ -29,6 +30,9 @@ const CommunityFollowDt = (props) => {
 
     // 댓글 수 초기값 설정
     const [commentCount, setCommentCount] = useState(0);
+    const handleCommentCountChange = (newCount) => {
+        setCommentCount(newCount); 
+    }
 
     // // 팔로우 버튼 색 변경 함수
     const onChangeColor = () => {
@@ -66,26 +70,51 @@ const CommunityFollowDt = (props) => {
     useEffect(()=>{
         setNextClick()
     }, [setNextClick])
+
+    const { id } = useParams();
+    const [post, setPost] = useState([]);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch(`http://localhost:8000/community/getPostById/${id}`);
+                console.log(response);
+
+                if (!response.ok) throw new Error("게시물 가져오기 실패");
+
+                const data = await response.json();
+                setPost(data);
+
+                // const response1 = await fetch(`http://localhost:8000/community/getPostById/${id}`)
+                
+            } catch (error) {
+                console.error('Error fetching: ', error);
+            }
+        }
+        
+        fetchPosts();
+    }, [id]);
     
     return (
         <S.PostWrapper>
             <S.HeadLine>
-                가을이 오면 생각나는 비건 음식들, 단호박 수프부터 비건 카페라테까지! 오늘 하루 일상 🌿🍂
+                {post.title}
+                {/* 가을이 오면 생각나는 비건 음식들, 단호박 수프부터 비건 카페라테까지! 오늘 하루 일상 🌿🍂 */}
             </S.HeadLine>
             <S.sideBar>
                 <S.sideC>
                     <LikeButton src={like} alt='좋아요' onClick={onChangeLike} color={likeColor} stroke={likeStroke}/>
                 </S.sideC>
-                <p>1,856</p>
+                <p>{post.likeCount}</p>
                 <S.sideC>
                     <ScrapButton src={scrap} alt='스크랩' onClick={onChangeScrap} color={scrapColor} stroke={scrapStroke}/>
                 </S.sideC>
-                <p>4,774</p>
+                <p>{post.scrapCount}</p>
                 <hr />
                 <S.sideC>
                     <img src={comment_one} alt='댓글' />
                 </S.sideC>
-                <p>59</p>
+                <p>{post.contentCounts}</p>
             </S.sideBar>
             <S.UserInfo>
                 <S.UserImage><img src={dtUser} alt='디테일 유저'/></S.UserImage>
@@ -126,13 +155,13 @@ const CommunityFollowDt = (props) => {
                 <p>조회수 713</p>
                 <div>신고하기</div>
             </S.dtInfo>
-            <S.commentNum>
+            <S.commentNum >
                 댓글
                 <div>{commentCount}</div>
             </S.commentNum>           
             <S.Recomment>
             {/* 새로운 댓글 로직 컴포넌트트 */}
-            <Comment onAddComment = {() => setCommentCount(prev => prev + 1)} />
+            <Comment onCommentCountChange = {handleCommentCountChange}/>
             </S.Recomment>
             
             <S.nextPage>

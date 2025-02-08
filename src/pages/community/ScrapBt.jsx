@@ -11,7 +11,7 @@ const ScrapBt = () => {
     const scrapChange = () => {
         setScrapColor(prevColor => (prevColor === '#fff' ? '#F27830' : '#fff'))
         setScrapStroke(prevStroe => (prevStroe === '#fff' ? '#F27830' : '#fff'))
-        setScrapOpacity(prevOpacity => (!prevOpacity ))
+        setScrapOpacity(prevOpacity => (!prevOpacity))
     }
 
     return (

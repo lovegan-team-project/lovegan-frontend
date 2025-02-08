@@ -1,18 +1,18 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import theme from "../../global/theme";
 import { ReactComponent as like } from './image/like.svg';
 import { ReactComponent as scrap } from './image/scrap.svg';
 import { ReactComponent as scrapBlack } from './image/scrapBlack.svg';
-import { flexCenter, flexCenterColumn, flexCenterRow } from "../../global/common";
+import { flexCenter } from "../../global/common";
 
 // 토글 슬라이드
-const slideln = keyframes`
-    from {
-        transform: translateX(0);
-    } to {
-        transform: translateX(170px);
-    }
-`
+// const slideln = keyframes`
+//     from {
+//         transform: translateX(0);
+//     } to {
+//         transform: translateX(170px);
+//     }
+// `
 
 // AllDt 팔로우 버튼 클릭, 호버 색 변경
 export const FollowButton = styled.button`
@@ -109,10 +109,9 @@ export const ScrapButtonCmAll = styled(scrap)`
     stroke: ${(props) => props.stroke === '#fff' ? '#fff' : '#F27830'};
     
     &:hover path{
-    fill: ${(props) => props.color === '#fff' ? '#fff' : '#D8590E'};
-    fill-opacity: ${(props) => props.opacity === true ? 0.5 : 1};
-    /* fill-opacity: ${(props) => props.opacity === '#fff' || 0.5}; */
-    stroke: ${(props) => props.color === '#fff' ? '#fff' : '#D8590E'};
+        fill: ${(props) => props.color === '#fff' ? '#fff' : '#D8590E'};
+        fill-opacity: ${(props) => props.opacity === true ? 0.5 : 1};
+        stroke: ${(props) => props.color === '#fff' ? '#fff' : '#D8590E'};
     }
 `
 
@@ -185,7 +184,6 @@ S.totalNum = styled.div`
     font-size: ${({theme}) => theme.FONT_SIZE["subtitle"]};
     width: 85px;
     height: 20px;
-    ${flexCenter}
 `
 
 S.tagButton = styled.div`
