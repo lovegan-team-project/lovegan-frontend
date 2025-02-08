@@ -18,7 +18,7 @@ const Community = () => {
         console.log('Clicked option:', option);
         setActiveComponent(option);
     };
-    
+
     return (
         <div>
             <S.CommunityTitle>COMMUNITY</S.CommunityTitle>
