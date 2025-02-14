@@ -7,10 +7,6 @@ const CommentForm = ({ addList, id }) => {
     const [contentvalue, setContentValue] = useState("");
     const currentUser = useSelector((state) => state.user.currentUser);
 
-    const handleChange = (e) => {
-        setContentValue(e.target.value);   
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setContentValue('');
@@ -18,7 +14,8 @@ const CommentForm = ({ addList, id }) => {
 
         const newComment = {
             content: contentvalue,
-            post : id // 게시글 id 추가
+            postId : id, // 게시글 id 추가
+            userId : currentUser.nickname
         };
         
         console.log("보낼 데이터 :", newComment);
@@ -53,7 +50,7 @@ const CommentForm = ({ addList, id }) => {
                         className='commentInput'
                         type="text"
                         value={contentvalue}
-                        onChange={handleChange}
+                        onChange={e => setContentValue(e.target.value)}
                         placeholder={'칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)'}
                     />
                 </span>

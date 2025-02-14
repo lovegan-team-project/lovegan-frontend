@@ -4,16 +4,16 @@ import UserImg2 from './image/UserImg2.png';
 import LikeBtMin from './LikeBtMin';
 import { useSelector } from 'react-redux';
 
-const CommentList = ({ list=[], addReply, id }) => {
+const CommentList = ({ list,  addReply }) => {
     // 댓글 id별로 대댓글 작성 폼 표시
     const [replyVisible, setReplyVisible] = useState([]);
-    // const [list, setList] = useState([]);
-    // const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     
     const currentUser = useSelector((state) => state.user.currentUser);
 
     // 댓글을 5개까지만 보여주기
-    const limitedList = list.slice();
+    const limitedList = list.slice(0,10);
+    // const filteredList = list.filter(comment => comment.post === id);
 
     // 대댓글 폼 토글 함수
     const toggleReplyForm = (commentId) => {
@@ -56,7 +56,7 @@ const CommentList = ({ list=[], addReply, id }) => {
                             <div className='comment-row-user'>
                                 <img src={UserImg2} alt='' className='comment-row-img'/>
                                 <div className='comment-row-user-between'>
-                                    <div className="comment-id">{comment._id}</div>
+                                    <div className="comment-id">{comment.user.nickname || "익명"}</div>
                                     <div className="comment-content">{comment.content}</div>
                                 </div>
                             </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CommentForm from './CommentForm';
 import CommentList from './CommentList';
 
-const Comment = ({ onCommentCountChange, id, comments }) => {
+const Comment = ({ onCommentCountChange, id }) => {
 
     const [list, setList] = useState([]);
     const [commentCount, setCommentCount] = useState(0); 
@@ -10,7 +10,12 @@ const Comment = ({ onCommentCountChange, id, comments }) => {
     useEffect(() => {
         const fetchComment = async () => {
             try {
-                const response = await fetch("http://localhost:8000/community/getComment")
+                if (!id) {
+                    console.error("게시물 ID가 없습니다.");
+                    return;
+                }
+                
+                const response = await fetch(`http://localhost:8000/community/getComment/${id}`)
                 // console.log(response)
                 const data = await response.json();
 
@@ -19,6 +24,7 @@ const Comment = ({ onCommentCountChange, id, comments }) => {
                     return;
                 }
 
+                // setList(data.comments);
                 setList(data.comments);
                 setCommentCount(data.commentCount);
                 onCommentCountChange?.(data.commentCount);
