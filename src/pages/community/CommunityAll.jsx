@@ -134,7 +134,7 @@ const CommunityAll = () => {
                     <S.text >
                         <S.PostUserImage1><img src={Userimages[`postuser${index + 1}`]} alt={Userimages[`postuser${index + 1}`]}/></S.PostUserImage1>
                         <S.TextInfo>
-                        <S.PostUserName >{post.author}</S.PostUserName>
+                        <S.PostUserName >{post.author.nickname}</S.PostUserName>
                         <div>·</div>
                         <S.FollowUser>
                             <Follow likeData={likeData}/>

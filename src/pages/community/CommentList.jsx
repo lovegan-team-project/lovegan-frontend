@@ -56,7 +56,7 @@ const CommentList = ({ list,  addReply }) => {
                             <div className='comment-row-user'>
                                 <img src={UserImg2} alt='' className='comment-row-img'/>
                                 <div className='comment-row-user-between'>
-                                    <div className="comment-id">{comment.user.nickname || "익명"}</div>
+                                    <div className="comment-id">{comment.post.author.nickname}</div>
                                     <div className="comment-content">{comment.content}</div>
                                 </div>
                             </div>

@@ -72,7 +72,6 @@ const CommunityAllDt = () => {
         setNextClick()
     }, [setNextClick])
 
-    const currentUser = useSelector((state) => state.user.currentUser);
     const { id } = useParams();
     const [post, setPost] = useState();
     const [comments, setComments] = useState([]);
@@ -100,7 +99,6 @@ const CommunityAllDt = () => {
 
     const handleNewComment = (newComment) => {
         setComments((prevComments) => [...prevComments, newComment]);  // 새 댓글 추가
-        // commentsRef.current.push(newComment); // 상태 변경 없이 바로 댓글에 추가
     };
 
     return (
@@ -127,8 +125,8 @@ const CommunityAllDt = () => {
             <S.UserInfo>
                 <S.UserImage><img src={dtUser} alt='디테일 유저'/></S.UserImage>
                 <div>
-                    <S.UserNickPost>{post && post.nickname || '유저 닉네임'}</S.UserNickPost>
-                    <S.Introduce>{currentUser.intro}</S.Introduce>
+                    <S.UserNickPost>{post && post.author.nickname || '유저 닉네임'}</S.UserNickPost>
+                    <S.Introduce>{post && post.author.intro}</S.Introduce>
                 </div>
                 <FollowButton
                     onClick={onChangeColor} color={colorChange} text={textColor}
@@ -160,7 +158,6 @@ const CommunityAllDt = () => {
             </S.commentNum>           
             <S.Recomment>
             {/* 새로운 댓글 로직 컴포넌트트 */}
-            
             <Comment onCommentCountChange={handleCommentCountChange} id={id} comments={comments} handleNewComment={handleNewComment}/>
             </S.Recomment>
             

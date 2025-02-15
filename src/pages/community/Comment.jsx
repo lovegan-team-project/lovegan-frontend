@@ -46,8 +46,6 @@ const Comment = ({ onCommentCountChange, id }) => {
         <div>
             <CommentForm addList={addList} id={id} />
             <CommentList list={list} id={id} />
-            
-            {/* updateList={updateList} */}
         </div>
     );
 };
