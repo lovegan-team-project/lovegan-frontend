@@ -34,7 +34,7 @@ const Login = () => {
                 alert("아이디 또는 비밀번호를 확인해주세요")
             }
             const res = await response.json();
-
+            console.log("서버 응답 : ", res)
             
             if(res.loginSuccess){
                 let {user, accessToken, loginSuccess, message} = res; 
@@ -42,6 +42,7 @@ const Login = () => {
                 dispatch(setUserStatus(true))
                 localStorage.setItem("token", accessToken)
                 console.log(res.message, "성공 메세지");
+                console.log("자동로그인 토큰 저장", accessToken)
             }
             else{
                 console.log(res, "로그인 실패")
@@ -127,12 +128,12 @@ const Login = () => {
                         </S.Kakao>
                         <S.Naver>
                             <div>
-                                <img src={naver} />네이버로 시작하기 
+                                <a href='http://localhost:8000/auth/naver'><img src={naver} />네이버로 시작하기 </a>
                             </div>
                         </S.Naver>
                         <S.Google>
                             <div>
-                                <img src={google} />구글로 시작하기
+                                <a href='http://localhost:8000/auth/google'><img src={google} />구글로 시작하기</a>
                             </div>
                         </S.Google>
                     </S.Button>

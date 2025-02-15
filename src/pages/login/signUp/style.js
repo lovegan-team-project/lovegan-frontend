@@ -231,6 +231,11 @@ S.CertifyCodeContainer = styled.div`
     display: inline-block;
     width: 332px;
     height: 42px;
+    & span {
+        font-size: ${({theme})=>theme.FONT_SIZE["paragraph"]};
+        font-weight: ${({theme})=>theme.FONT_WEIGHT["regular"]};
+    }
+    
 `
 S.CertifyCode = styled.input`
     width: 332px;
