@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Image from '../main/images/Rectangle.png';
 
 
-const ItemContainer2 = ({photoId}) => {
+const ItemContainer3 = ({photoId}) => {
     const [like, setLike] = useState(false);
     const navigate = useNavigate()
     const toggleLike = () => setLike(!like);
@@ -35,4 +35,4 @@ const ItemContainer2 = ({photoId}) => {
     </>
     );
 };
-export default ItemContainer2;
+export default ItemContainer3;

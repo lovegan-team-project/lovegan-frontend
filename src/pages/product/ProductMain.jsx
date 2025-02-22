@@ -58,10 +58,10 @@ const ProductMain = () => {
         </S.ProductHeader> 
 
         <S.ProductMainContainer>   
-        {postData(products).map((product) => (
+        {Array.isArray(products) && postData(products).map((product) => (
             <S.ItemContainerWrapper key={product._id}>
                 <React.Fragment >
-                <ItemContainer2 />
+                <ItemContainer2 photoId={product.photoId} />
                 <S.ItemClickDiv onClick={() => navigate(`/details?id=${product._id}`)}>
                 <S.ItemTitle>{product.title}</S.ItemTitle>
                 <S.ItemExplain>{product.description}</S.ItemExplain>

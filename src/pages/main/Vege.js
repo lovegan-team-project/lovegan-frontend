@@ -26,13 +26,14 @@ const Vege = () => {
             .slice(0, 4)  
             .map((product)=>(
                 <ItemContainer
+                photoId={product.photoId}
                 key={product._id}
                 title={product.title}
                 description={product.description}
                 price={`${product.price.toLocaleString()}원`}
                 star={product.star}
                 review={product.review}
-                image={Img} //이미지 스키마 추가 해야함
+                image={product.photoId} //이미지 스키마 추가 해야함
                 onNavigate={() => navigate(`/details?id=${product._id}`)}
             />
             ))}
