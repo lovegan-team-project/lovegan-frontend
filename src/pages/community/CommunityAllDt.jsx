@@ -15,25 +15,23 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const CommunityAllDt = () => {
-
+    
     // 팔로우 버튼 클릭, 호버 색 변경
     const [colorChange, setColorChange] = useState('#03A63C');
     const [textColor, setTextColor] = useState('#fff')    
     // // like, scrap 버튼 클릭 상태
     const [likeColor, setLikeColor] = useState('#fff')
     const [likeStroke, setLikeStroke] = useState('#8D8D8D')
-    
     const [scrapColor, setScrapColor] = useState('#fff')
     const [scrapStroke, setScrapStroke] = useState('#8D8D8D')
-
-    // // 각 댓글별 좋아요 버튼 클릭 상태 (배열로 관리)
-    // const [likeMinStates, setLikeMinStates] = useState('#fff');
-
-    // 댓글 수 초기값 설정
     const [commentCount, setCommentCount] = useState(0);
-    const handleCommentCountChange = (newCount) => {
-        setCommentCount(newCount); 
-    }
+    const [changeVal, setChangeVal] = useState("");
+    const [inputVal1, setInputVal1] = useState("");
+    const [visibleInput, setVisibleInput] = useState(false);
+    const { id } = useParams();
+    const [post, setPost] = useState();
+    const [comments, setComments] = useState([]);
+    // const commentsRef = useRef([]); // Ref로 댓글 리스트 관리
     
     // // 팔로우 버튼 색 변경 함수
     const onChangeColor = () => {
@@ -53,10 +51,12 @@ const CommunityAllDt = () => {
         setScrapStroke(prevStroke => (prevStroke === '#8D8D8D' ? '#F27830' : '#8D8D8D'))
     };
 
-    const [changeVal, setChangeVal] = useState("");
-    const [inputVal1, setInputVal1] = useState("");
+    // 댓글 수 초기값 설정
+    const handleCommentCountChange = (newCount) => {
+        setCommentCount(newCount); 
+    }
+
     // 댓글 달기 클릭 -> input 박스 보임 여부
-    const [visibleInput, setVisibleInput] = useState(false);
     const inputChange2 = (e) => {
         setInputVal1(e.target.value);
     };
@@ -72,10 +72,6 @@ const CommunityAllDt = () => {
         setNextClick()
     }, [setNextClick])
 
-    const { id } = useParams();
-    const [post, setPost] = useState();
-    const [comments, setComments] = useState([]);
-    // const commentsRef = useRef([]); // Ref로 댓글 리스트 관리
     
     useEffect(() => {
         const fetchPosts = async () => {
@@ -99,6 +95,7 @@ const CommunityAllDt = () => {
 
     const handleNewComment = (newComment) => {
         setComments((prevComments) => [...prevComments, newComment]);  // 새 댓글 추가
+        setCommentCount(prevCount => prevCount + 1)
     };
 
     return (
@@ -158,7 +155,7 @@ const CommunityAllDt = () => {
             </S.commentNum>           
             <S.Recomment>
             {/* 새로운 댓글 로직 컴포넌트트 */}
-            <Comment onCommentCountChange={handleCommentCountChange} id={id} comments={comments} handleNewComment={handleNewComment}/>
+            <Comment onCommentCountChange={handleCommentCountChange} id={id} comments={comments} handleNewComment={handleNewComment} />
             </S.Recomment>
             
             <S.nextPage>
