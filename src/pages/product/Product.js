@@ -38,8 +38,8 @@ const Product = () => {
 
     const handleFilterClick = (filter) => {
         const urlMap = {
-            채소: 'vege',
-            고기대용: 'meat',
+            '채소': 'vege',
+            '고기대용': 'meat',
             '채식반찬': 'vegeSide',
             '양념가루': 'spice',
             '간식': 'snacks',
