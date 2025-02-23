@@ -8,8 +8,15 @@ S.ProductContainer = styled.div`
 S.ProductPhotoWrapper = styled.div`
     position: relative;
     display: inline-block;
+    
+    & div{
+        width: 340px;
+        height: 240px;
+        background-color: gray;
+        border-radius: 10px;
+    }
 
-    img {
+    & img {
         display: block; /* 기본 이미지는 블록 형태로 표시 */
     }
 

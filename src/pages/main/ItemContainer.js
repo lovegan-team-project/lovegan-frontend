@@ -5,7 +5,7 @@ import LikeClick from './images/LikeClick.svg'
 import { useNavigate } from 'react-router-dom';
 import Star from './images/star.svg';
 
-const ItemContainer = ({ title, description, price,star, image,review, onNavigate }) => {
+const ItemContainer = ({ title, description, price,star,review, onNavigate, photoId }) => {
     const [like, setLike] = useState(false);
 
     const toggleLike = () => setLike(!like);
@@ -13,8 +13,14 @@ const ItemContainer = ({ title, description, price,star, image,review, onNavigat
     return (
         <S.ItemContainer>
             <div className="mainPhotoWrapper">
-                <img src={image} alt={title} />
-                <img onClick={toggleLike} 
+                <div>
+                    <img 
+                        src={photoId?.url}
+                        alt="상품이미지"
+                        style={{width:"340px",height: "240px",borderRadius: "10px"}}
+                    />
+                </div>
+                <img onClick={toggleLike}
                     className="like"
                     src={like ? LikeClick : Like}
                     alt="하트"
