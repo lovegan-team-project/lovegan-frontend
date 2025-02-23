@@ -1,28 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import S from './style';
 import UserImg2 from './image/UserImg2.png';
 import { useSelector } from 'react-redux';
 
 const CommentForm = ({ addList, id }) => {
     const [contentvalue, setContentValue] = useState("");
+    const [comment, setComments] = useState([]);
     const currentUser = useSelector((state) => state.user.currentUser);
 
-    const handleChange = (e) => {
-        setContentValue(e.target.value);   
-    };
+    useEffect(() => {
+        addList(comment);
+    }, [comment]); // comments가 변경될 때마다 부모 컴포넌트로 전달
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setContentValue('');
         if(!contentvalue.trim()) return;
 
+        if (!currentUser || !currentUser._id) { 
+            alert("로그인이 필요합니다.");
+            return;
+        }
+
         const newComment = {
             content: contentvalue,
-            post : id // 게시글 id 추가
-        };
+            postId : id, // 게시글 id 추가
+            userId : currentUser._id,
+        };  
         
         console.log("보낼 데이터 :", newComment);
-        // setContentValue('');
 
         try {
             const response = await fetch("http://localhost:8000/community/addComment", {
@@ -36,14 +42,19 @@ const CommentForm = ({ addList, id }) => {
             const result = await response.json();
             console.log('서버 응답 : ', result);
 
-            addList(result.newComment); // 댓글 리스트 갱신
+            setContentValue("");
+
+            addList((prevList) => [
+                ...prevList, 
+                { ...newComment, _id: result.newComment._id, createAt: new Date() }
+            ]);
 
         } catch(error) {
             console.error("댓글 추가 중 오류:", error);
             alert("댓글을 추가하는 중 오류가 발생했습니다.");
         }
     }
-    
+
     return (
         <S.typing>
             <img src={UserImg2} alt='유저프로필' />
@@ -53,7 +64,7 @@ const CommentForm = ({ addList, id }) => {
                         className='commentInput'
                         type="text"
                         value={contentvalue}
-                        onChange={handleChange}
+                        onChange={e => setContentValue(e.target.value)}
                         placeholder={'칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)'}
                     />
                 </span>
