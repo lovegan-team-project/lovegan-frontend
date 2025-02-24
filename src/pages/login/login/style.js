@@ -57,6 +57,7 @@ S.FoundId = styled.div`
     font-size: ${({theme})=>theme.FONT_SIZE["small"]};
     font-weight: ${({theme})=>theme.FONT_WEIGHT["regular"]};
     color: ${({theme})=> theme.PALLETTE.brand["primary_black"]};
+    cursor: pointer;
 `
 S.Line = styled.div`
     width: 1px;
@@ -67,6 +68,7 @@ S.FoundPW = styled.div`
     font-size: ${({theme})=>theme.FONT_SIZE["small"]};
     font-weight: ${({theme})=>theme.FONT_WEIGHT["regular"]};
     color: ${({theme})=> theme.PALLETTE.brand["primary_black"]};
+    cursor: pointer;
 `
 S.Button = styled.div`
     display: flex;
@@ -82,6 +84,7 @@ S.LoginButton = styled.button`
     border-radius: 10px;
     padding: 14px 80px;
     margin-top: 40px;
+    cursor: pointer;
 `
 S.SignUpButton = styled.button`
     width: 380px;
@@ -94,6 +97,7 @@ S.SignUpButton = styled.button`
     border-radius: 10px;
     padding: 14px 80px;
     margin-top: 8px;
+    cursor: pointer;
 `
 S.Divider = styled.div`
     width: 309px;

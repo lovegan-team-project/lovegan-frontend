@@ -42,7 +42,7 @@ S.Divider = styled.div`
 `
 S.ContentWrapper = styled.div`
     width: 440px;
-    height: 160px;
+    /* height: 160px; */
     box-sizing: border-box;
     position: relative;
     left: 50%;
@@ -72,7 +72,7 @@ S.SubmitInput = styled.input`
     border-radius: 5px;
     font-size: ${({theme})=>theme.FONT_SIZE["paragraph"]};
     font-weight: ${({theme})=>theme.FONT_WEIGHT["regular"]};
-    color: ${({theme})=>theme.PALLETTE.grey["8"]};
+    color: ${({theme})=>theme.PALLETTE.brand["primary_black"]};
     &:focus {
         border-color: ${({theme})=> theme.PALLETTE.brand["primary"]};
         outline: none;
@@ -89,6 +89,7 @@ S.SubmitBtn = styled.div`
     font-weight: ${({theme})=>theme.FONT_WEIGHT["regular"]};
     color: ${({theme})=> theme.PALLETTE.brand["primary"]};
     text-align: center;
+    cursor: pointer;
 `
 S.FindIdBtn = styled.div`
     width: 440px;
@@ -97,15 +98,53 @@ S.FindIdBtn = styled.div`
     line-height: 53px;
     font-size: ${({theme})=>theme.FONT_SIZE["title"]};
     font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
-    color: ${({theme})=>theme.PALLETTE.grey["4"]};
-    background-color: ${({theme})=>theme.PALLETTE.grey["0"]};
+    color: ${({isVerified, theme}) => (isVerified ? "white" : theme.PALLETTE.grey["4"])};
+    background-color: ${({isVerified, theme}) => (isVerified ? theme.PALLETTE.brand["primary"] : theme.PALLETTE.grey["0"])};
     text-align: center;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
     margin-top: 40px;
-    border: 1px solid ${({theme})=>theme.PALLETTE.grey["4"]};
+    border: 1px solid ${({isVerified, theme}) => (isVerified ? theme.PALLETTE.brand["primary"] : theme.PALLETTE.grey["4"])};
     border-radius: 10px;
+    cursor: pointer;
 `
-
+S.IdContainer = styled.div`
+    display: flex;
+    width: 440px;
+    height: 55px;
+    justify-content: center;
+    border-radius: 5px;
+    border: 1px solid ${({theme})=>theme.PALLETTE.grey["8"]};
+    text-align: center;
+    align-items: center;
+    font-size: ${({theme})=>theme.FONT_SIZE["subtitle"]};
+    font-weight: ${({theme})=>theme.FONT_WEIGHT["bold"]};
+    color: ${({theme})=>theme.PALLETTE.brand["primary_black"]};
+`
+S.ButtonContainer = styled.div`
+    margin-top: 20px;
+    width: 440px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+`
+S.Btn = styled.div`
+    display: flex;
+    width: 210px;
+    height: 53px;
+    box-sizing: border-box;
+    line-height: 53px;
+    font-size: ${({theme})=>theme.FONT_SIZE["title"]};
+    font-weight: ${({theme})=>theme.FONT_WEIGHT["medium"]};
+    color: white;
+    text-align: center;
+    justify-content: center;
+    background-color: ${({theme})=>theme.PALLETTE.brand["primary"]};
+    border: 1px solid ${({theme})=>theme.PALLETTE.brand["primary"]};
+    border-radius: 10px;
+    cursor: pointer;
+`
 export default S;
