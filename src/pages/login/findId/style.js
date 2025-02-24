@@ -18,7 +18,7 @@ S.FindId = styled.div`
     color: ${({theme})=> theme.PALLETTE.brand["primary_black"]};
 `
 S.PhoneAuthenticate = styled.div`
-    width: 78px;
+    width: 100%;
     height: 19px;
     line-height: 19px;
     text-align: center;
