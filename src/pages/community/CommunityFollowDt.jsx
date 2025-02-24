@@ -72,7 +72,8 @@ const CommunityFollowDt = () => {
     }, [setNextClick])
 
     const { id } = useParams();
-    const [post, setPost] = useState([]);
+    const [post, setPost] = useState();
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -85,8 +86,6 @@ const CommunityFollowDt = () => {
                 const data = await response.json();
                 setPost(data);
 
-                // const response1 = await fetch(`http://localhost:8000/community/getPostById/${id}`)
-                
             } catch (error) {
                 console.error('Error fetching: ', error);
             }
@@ -94,33 +93,37 @@ const CommunityFollowDt = () => {
         
         fetchPosts();
     }, [id]);
+
+    const handleNewComment = (newComment) => {
+        setComments((prevComments) => [...prevComments, newComment]);  // 새 댓글 추가
+    };
     
     return (
         <S.PostWrapper>
             <S.HeadLine>
-                {post.title}
-                {/* 가을이 오면 생각나는 비건 음식들, 단호박 수프부터 비건 카페라테까지! 오늘 하루 일상 🌿🍂 */}
+            {post && post.title}
+            {/* 가을이 오면 생각나는 비건 음식들, 단호박 수프부터 비건 카페라테까지! 오늘 하루 일상 🌿🍂 */}
             </S.HeadLine>
             <S.sideBar>
                 <S.sideC>
                     <LikeButton src={like} alt='좋아요' onClick={onChangeLike} color={likeColor} stroke={likeStroke}/>
                 </S.sideC>
-                <p>{post.likeCount}</p>
+                <p>{post && post.likeCount}</p>
                 <S.sideC>
                     <ScrapButton src={scrap} alt='스크랩' onClick={onChangeScrap} color={scrapColor} stroke={scrapStroke}/>
                 </S.sideC>
-                <p>{post.scrapCount}</p>
+                <p>{post && post.scrapCount}</p>
                 <hr />
                 <S.sideC>
                     <img src={comment_one} alt='댓글' />
                 </S.sideC>
-                <p>{post.contentCounts}</p>
+                <p>{post && post.contentCounts}</p>
             </S.sideBar>
             <S.UserInfo>
                 <S.UserImage><img src={dtUser} alt='디테일 유저'/></S.UserImage>
                 <div>
-                    <S.UserNickPost>유저 닉네임</S.UserNickPost>
-                    <S.Introduce>유저 한 줄 소개</S.Introduce>
+                    <S.UserNickPost>{post && post.author.nickname}</S.UserNickPost>
+                    <S.Introduce>{post && post.author.intro}</S.Introduce>
                 </div>
                 <FollowButton_1
                     onClick={onChangeColor} color={colorChange} text={textColor}>팔로우
@@ -128,7 +131,8 @@ const CommunityFollowDt = () => {
             </S.UserInfo>
             <hr/>
             <p className='write'>
-                안녕하세요, 0000입니다 😊<br/><br/>
+                {post && post.content}<br/><br/>
+                안녕하세요😊<br/><br/>
                 요즘 정말 날씨가 확 달라졌죠? 아침저녁으로 선선한 바람이 불고, 공원 산책할 때마다 가을 냄새가 나서 기분이 너무 좋아요. 여름이 갔다는 게 살짝 아쉽긴 하지만, 가을만의 분위기도 너무 좋아서 요즘은 그 감성에 빠져 지내고 있어요. 그래서 그런지 가을에 어울리는 따뜻한 비건 음식들이 자꾸 생각나네요. 여러분도 가을이 오면 꼭 해먹는 비건 메뉴들이 있으신가요?<br/><br/>
                 저는 가을마다 비건 단호박 수프를 자주 만들어요. 푹 익힌 단호박에 두유, 약간의 올리브유, 그리고 향신료를 넣고 끓이면 정말 부드럽고 따뜻한 수프가 완성돼요. 아침에 먹으면 속도 편하고, 저녁에도 가볍게 먹기 좋은 음식이에요. 이번에는 위에 구운 견과류랑 통밀빵을 곁들여봤는데, 너무 잘 어울리더라고요! 혹시 수프 좋아하시는 분 계시면 한번 도전해 보세요!혹시 가을이 되면 즐겨 먹는 비건 음식이 있으시면 추천도 부탁드려요. 비건 베이킹이나 가을 채소를 활용한 레시피도 정말 궁금해요.<br/><br/>
                 오늘 하루는 바쁜 와중에 잠깐 짬을 내서 동네 공원에 다녀왔어요. 바람이 살랑살랑 불어서 너무 기분 좋더라고요. 저는 텀블러에 비건 카페라테를 직접 만들어서 들고 갔어요. 요즘은 비건 우유 선택지도 많아서, 귀리우유나 아몬드우유를 넣어 집에서 만들어 먹는 게 아주 만족스럽더라고요.<br/><br/>
@@ -140,8 +144,8 @@ const CommunityFollowDt = () => {
             <hr />
             <S.dtImg>
                 <img src={unsplash1} alt='포스트 사진1'/>
-                <img src={unsplash2} alt='포스트 사진2'/>
-                <img src={unsplash3} alt='포스트 사진3'/>
+                {/* <img src={unsplash2} alt='포스트 사진2'/> */}
+                {/* <img src={unsplash3} alt='포스트 사진3'/> */}
                 <img src={unsplash4} alt='포스트 사진4'/>
             </S.dtImg>
             <hr />
@@ -161,7 +165,7 @@ const CommunityFollowDt = () => {
             </S.commentNum>           
             <S.Recomment>
             {/* 새로운 댓글 로직 컴포넌트트 */}
-            <Comment onCommentCountChange = {handleCommentCountChange}/>
+            <Comment onCommentCountChange = {handleCommentCountChange} id={id} comments={comments} handleNewComment={handleNewComment}/>
             </S.Recomment>
             
             <S.nextPage>

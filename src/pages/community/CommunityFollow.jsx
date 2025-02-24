@@ -83,7 +83,7 @@ const CommunityFollow  = () => {
                                         <img src={Userimages[`postuser${index + 1}`]} alt={Userimages[`postuser${index + 1}`]}/>
                                     </S.Profile>
 
-                                    <S.PostUserName2 className='profileUserName'>{post.author}</S.PostUserName2>
+                                    <S.PostUserName2 className='profileUserName'>{post.author.nickname}</S.PostUserName2>
                                 </S.TextInfo>
                             </S.text2>
                                 <S.FeedTags className='postTags' >

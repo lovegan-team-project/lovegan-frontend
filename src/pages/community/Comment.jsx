@@ -10,7 +10,12 @@ const Comment = ({ onCommentCountChange, id }) => {
     useEffect(() => {
         const fetchComment = async () => {
             try {
-                const response = await fetch("http://localhost:8000/community/getComment")
+                if (!id) {
+                    console.error("게시물 ID가 없습니다.");
+                    return;
+                }
+                
+                const response = await fetch(`http://localhost:8000/community/getComment/${id}`)
                 // console.log(response)
                 const data = await response.json();
 
@@ -19,12 +24,9 @@ const Comment = ({ onCommentCountChange, id }) => {
                     return;
                 }
 
+                // setList(data.comments);
                 setList(data.comments);
                 setCommentCount(data.commentCount);
-
-                // if(onCommentCountChange) {
-                //     onCommentCountChange(data.commentCount);
-                // }
                 onCommentCountChange?.(data.commentCount);
 
                 // console.log(data)
@@ -44,8 +46,6 @@ const Comment = ({ onCommentCountChange, id }) => {
         <div>
             <CommentForm addList={addList} id={id} />
             <CommentList list={list} id={id} />
-            
-            {/* updateList={updateList} */}
         </div>
     );
 };
