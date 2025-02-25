@@ -108,7 +108,7 @@ const FindId = () => {
             <S.FindId>아이디 찾기</S.FindId>
                 { !isFindId && (
                     <>
-                    <S.PhoneAuthenticate>휴대폰 인증</S.PhoneAuthenticate>
+                    <S.PhoneAuthenticate>전화번호 인증</S.PhoneAuthenticate>
                     <S.Divider></S.Divider>
                     <S.ContentWrapper>
                         <S.InputTitle>가입하신 전화번호</S.InputTitle>
