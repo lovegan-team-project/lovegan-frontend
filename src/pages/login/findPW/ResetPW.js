@@ -1,12 +1,12 @@
 import React from 'react';
 import S from './style';
 import { useForm } from 'react-hook-form';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ResetPW = () => {
     const location = useLocation();
     const { phoneNumber } = location.state || {};
-
+    const navigate = useNavigate();
     const { register, handleSubmit, watch, getValues, formState: {errors, isSubmitted}, trigger} = useForm({mode : "onchange"});
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
     const newPW = watch("newPassword", "");
@@ -24,11 +24,13 @@ const ResetPW = () => {
 
             })
             const res = await response.json();
-            console.log("데이터 확인 : ", res)
+            console.log("데이터 확인 : ", res);
+            alert(res.message);
         }
         catch(error){
-
+            console.error(error);
         }
+        navigate("/");
     }
     return (
         <S.Wrapper>
