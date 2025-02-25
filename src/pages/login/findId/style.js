@@ -47,7 +47,7 @@ S.ContentWrapper = styled.div`
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 40px;
+    margin-top: 30px;
 `
 S.InputTitle = styled.div`
     height: 18px;
@@ -123,7 +123,7 @@ S.IdContainer = styled.div`
     color: ${({theme})=>theme.PALLETTE.brand["primary_black"]};
 `
 S.ButtonContainer = styled.div`
-    margin-top: 20px;
+    margin-top: 30px;
     width: 440px;
     position: relative;
     left: 50%;
