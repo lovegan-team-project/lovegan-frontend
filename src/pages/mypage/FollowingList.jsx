@@ -40,7 +40,7 @@ const FollowingList = () => {
                 alert(response.status);
             }
         } catch (error) {
-            console.error("Error fetching shipping list:", error);
+            console.error("Error fetching following list:", error);
             alert(`내 팔로잉을 불러오는 데 오류가 발생했습니다. (${error.message})`);
         }
     }
@@ -74,7 +74,7 @@ const FollowingList = () => {
                             <img src={picturePath || '/default-profile.png'} alt={user.nickname} />
                         </div>
                         <div>{user.nickname}</div>
-                        <div>{user.introduction || '유저 한 줄 소개'}</div>
+                        <div>{user.intro}</div>
                         <div>{user.lastLogin || '2024년 10월 24일'}</div>
                         <div className='wrapper'>
                             <span>{user.lastUpload || '2024년 10월 20일'}</span>

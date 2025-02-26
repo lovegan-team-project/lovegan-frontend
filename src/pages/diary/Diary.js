@@ -181,6 +181,7 @@ const Diary = () => {
         }
     }
 
+
     const showFood = async() => {
         if(days.length === 0) return;
         const response = await fetch(`http://localhost:8000/diary/foodInfo?id=${currentUser._id}&year=${selectedDate.year}&month=${selectedDate.month}&day=${selectedDate.day}`, {
@@ -263,17 +264,26 @@ const Diary = () => {
     //     renderCalendar();
     //     showFood();
     // }, [])
-    useEffect(() => {
-        renderCalendar();
-    }, [currentDate]);
 
-    useEffect(()=>{
+    // const [allFoodList, setAllFoodList] = useState([]);
+    // const getFoodList = async () => {
+    //     // 유현이라는 사람의 모든 달력의 데이터를 가져오는 백엔드 경로
+    //     const response = await fetch(`http://localhost:8000/diary/foodInfo?id=${currentUser._id}`)
+    //     if(!response.ok) throw new Error('전체 푸드 리스트 리스폰스 오류');
+    //     const allFoods = await response.json();
+    //     setAllFoodList(allFoodList)
+    // }
+ 
+    useEffect(() => {
+        // 모든 데이터를 가져온다.
+        // getFoodList()
+
+        renderCalendar();
+        
         if(days.length > 0){
             showFood();
         }
-    }, [selectedDate]);
 
-    useEffect(() => {
         const key = `${selectedDate.year}-${selectedDate.month}-${selectedDate.day}`;
         if (!foodChecked[key]) { 
             setFoodChecked((prevState) => ({
@@ -286,7 +296,8 @@ const Diary = () => {
                 },
             }));
         }
-    }, [selectedDate]); 
+    }, [foodList, selectedDate, currentDate, selectedDate]); 
+
 
     return (
         <S.DiaryWrapper>

@@ -259,6 +259,13 @@ S.ItemContainer = styled.div`
         height: 240px;
         position: relative;
 
+        & div{
+            width: 340px;
+            height: 240px;
+            background-color: gray;
+            border-radius: 10px;
+        }
+
     }
 
     & img.like {

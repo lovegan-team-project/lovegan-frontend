@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import S from './style.js';
 import Star from '../main/images/star.svg';
-import ItemContainer2 from './ItemContainer2.js';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Arrow from './Arrow.js';
+import ItemContainer3 from './ItemContainer3.js';
 
 const OtherMain = () => {
     const [products, setProducts] = useState([]);
@@ -61,7 +61,7 @@ const OtherMain = () => {
         {postData(products).map((product) => (
             <S.ItemContainerWrapper key={product._id}>
                 <React.Fragment >
-                <ItemContainer2 />
+                <ItemContainer3 photoId={product.photoId} />
                 <S.ItemClickDiv onClick={() => navigate(`/otherDetails?id=${product._id}`)}>
                 <S.ItemTitle>{product.title}</S.ItemTitle>
                 <S.ItemExplain>{product.description}</S.ItemExplain>

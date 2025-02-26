@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './icons/lovegan_logo 1.svg';
 import kakao from './icons/kakao.svg';
 import naver from './icons/naver.svg';
@@ -16,7 +16,7 @@ import { useDispatch } from 'react-redux';
 const SignUp = () => {
 
     // react-hook-form
-    const { register, handleSubmit, getValues, formState: {errors, isSubmitted}, trigger} = useForm({mode : "onchange"});
+    const { register, handleSubmit, watch, getValues, formState: {errors, isSubmitted}, trigger} = useForm({mode : "onchange"});
 
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
@@ -36,6 +36,18 @@ const SignUp = () => {
         console.log("유효성 검사 실패");
         trigger();
     }
+
+    const phoneNumber = watch("phone", "");
+    const [code, setCode] = useState("");
+    const [isCodeSent, setIsCodeSent] = useState(false);
+    const [isVerified, setIsVerified] = useState(false);
+    const [timer, setTimer] = useState(180);
+
+    const formatTimer = () => {
+        const minutes = Math.floor(timer / 60);
+        const seconds = timer % 60;
+        return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+    };
 
     const [allChecked, setAllChecked] = useState(false);
     const [isChecked, setIsChecked] = useState({
@@ -60,6 +72,7 @@ const SignUp = () => {
         setIsChecked(updatedChecked); 
         setAllChecked(Object.values(updatedChecked).every((value) => value));
     };
+
     const onSubmit = async (data) => {
         if (!isChecked.age || !isChecked.terms || !isChecked.privacy) {
             console.log("필수 항목 동의")
@@ -95,6 +108,49 @@ const SignUp = () => {
             }
         })
         
+    }
+
+    const requestCode = async () => {
+        console.log("전화번호", phoneNumber)
+        try {
+            const response = await fetch("http://localhost:8000/user/send-verification", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ phoneNumber })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                alert("인증번호가 전송되었습니다.");
+                setIsCodeSent(true);
+            } else {
+                alert("인증번호 전송 실패: " + data.message);
+            }
+        } catch (error) {
+            console.error("인증번호 요청 오류:", error);
+            alert("서버 오류 발생");
+        }
+    }
+    const verifyCode = async () => {
+        console.log("전송할 데이터 : ", {phoneNumber, code})
+        try {
+            const response = await fetch("http://localhost:8000/user/signup-verify-code", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ phoneNumber, code: code.toString().trim() })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                alert("인증 성공!");
+                setIsVerified(true);
+            } else {
+                alert("인증 실패: " + data.message);
+            }
+        } catch (error) {
+            console.error("인증번호 검증 오류:", error);
+            alert("서버 오류 발생");
+        }
     }
     
     return (
@@ -168,7 +224,7 @@ const SignUp = () => {
                     </S.EmailCertifyBox>
                     <S.Email>전화번호</S.Email>
                     <S.EmailContainer>
-                        <S.PhoneInput placeholder='전화번호' id='phone'
+                        <S.PhoneInput placeholder='전화번호' id='phone' 
                             {...register("phone", {
                                 required : true,
                                 pattern : {
@@ -184,12 +240,13 @@ const SignUp = () => {
                     {isSubmitted&&errors?.phone?.type === 'pattern' && (
                         <S.ConfirmMessage>올바를 전화번호 형식을 입력해주세요.</S.ConfirmMessage>
                     )}
-                    <S.EmailButton>전화번호 인증하기</S.EmailButton>
+                    <S.EmailButton onClick={requestCode} disabled={isCodeSent}>전화번호 인증하기</S.EmailButton>
                     <S.EmailCertifyBox>
                         <div>문자로 받은 인증코드를 입력해주세요.</div>
                         <S.CertifyCodeContainer>
-                            <S.CertifyCode placeholder='인증코드 6자리'></S.CertifyCode>
-                            <S.EmailConfirm>확인</S.EmailConfirm>
+                            <S.CertifyCode placeholder='인증코드 6자리' value={code} onChange={(e) => setCode(e.target.value)}></S.CertifyCode>
+                            <span style={{ position: 'absolute', right: '56px', color: '#F25050', top: '21px'}}>{formatTimer()}</span>
+                            <S.EmailConfirm onClick={verifyCode}>확인</S.EmailConfirm>
                         </S.CertifyCodeContainer>
                         <S.ReCertifyCode>
                             <img src={attention}/>
