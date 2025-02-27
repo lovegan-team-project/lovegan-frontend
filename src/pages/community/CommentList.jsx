@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 const CommentList = ({ list, setList }) => {
     // 댓글 id별로 대댓글 작성 폼 표시
     const [replyVisible, setReplyVisible] = useState([]);
-    const [replyContent, setReplyContent] = useState([]); // 상태 정의
+    const [replyContent, setReplyContent] = useState(""); // 상태 정의
     const currentUser = useSelector((state) => state.user.currentUser);
     // const [isOpen, setIsOpen] = useState(false);
     // const [openReplies, setOpenReplies] = useState({}); // 답글 달기 버튼 활성화
@@ -60,9 +60,9 @@ const CommentList = ({ list, setList }) => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    commentId: commentId, // 부모 댓글 ID
+                    parentCommentId: commentId, // 부모 댓글 ID
                     userId: currentUser.nickname,
-                    content: replyContent
+                    content: replyContent[commentId],
                 })
             });
             
@@ -71,20 +71,20 @@ const CommentList = ({ list, setList }) => {
 
             if (result.success) {
                 const newReply = {
-                    _id: result._id,
+                    // _id: result._id,
                     user: currentUser.nickname,
                     content: replyContent[commentId],
                     createAt: new Date(),
                 };
                 
                 // 대댓글을 현재 UI에 즉시 추가
-                setList((prevList) =>
-                    prevList.map(comment =>
+                setList((prevList) => {
+                    return prevList.map(comment =>
                         comment._id === commentId
-                        ? { ...comment, replies: [...comment.replies, newReply] }
-                        : comment
-                    )
-                );
+                            ? { ...comment, replies: [...comment.replies, newReply] }
+                            : comment
+                    );
+                });
             }
             // 입력값 및 폼 닫기
             setReplyContent((prev) => ({ ...prev, [commentId]: "" }));
@@ -155,28 +155,28 @@ const CommentList = ({ list, setList }) => {
                         
                         {/* 대댓글 리스트 */}
                         {comment.replies && comment.replies.length > 0 && (
-                            <div className="replies">
-                                {comment.replies.map((reply) => (
-                                    <div key={reply._id} className="comment-row reply-row">
-                                        <div className="comment-row-user">
-                                            <img src={UserImg2} alt="" className="comment-row-img" />
-                                            <div className="comment-row-user-between">
-                                                <div className="comment-id">{reply.user.nickname || "익명"}</div>
-                                                <div className="comment-content">{reply.content}</div>
-                                            </div>
+                        <div className="replies">
+                            {comment.replies.map((reply) => (
+                                <div key={reply._id} className="comment-row reply-row">
+                                    <div className="comment-row-user">
+                                        <img src={UserImg2} alt="" className="comment-row-img" />
+                                        <div className="comment-row-user-between">
+                                            <div className="comment-id">{reply.user.nickname || "익명"}</div>
+                                            <div className="comment-content">{reply.content}</div>
                                         </div>
-                                        <S.dtInfo_1>
-                                            <div className="comment-date">{timeAgo(new Date(reply.createAt))}</div>
-                                            <span>·</span>
-                                            <LikeBtMin />
-                                            <p>좋아요</p>
-                                            <span>·</span>
-                                            <p>신고</p>
-                                        </S.dtInfo_1>
                                     </div>
-                                ))}
-                            </div>
-                        )}
+                                    <S.dtInfo_1>
+                                        <div className="comment-date">{timeAgo(new Date(reply.createAt))}</div>
+                                        <span>·</span>
+                                        <LikeBtMin />
+                                        <p>좋아요</p>
+                                        <span>·</span>
+                                        <p>신고</p>
+                                    </S.dtInfo_1>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                     </div>
                     )}
                 </div>  
