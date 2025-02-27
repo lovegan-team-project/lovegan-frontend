@@ -41,8 +41,6 @@ const CommentList = ({ list, setList }) => {
         }
     };
 
-    
-
     const addReply = async (commentId, content) => {
 
         if (!replyContent[commentId] || !replyContent[commentId].trim()) {
@@ -61,7 +59,7 @@ const CommentList = ({ list, setList }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     parentCommentId: commentId, // 부모 댓글 ID
-                    userId: currentUser.nickname,
+                    userId: currentUser.nickname || "익명",
                     content: replyContent[commentId],
                 })
             });
@@ -71,8 +69,7 @@ const CommentList = ({ list, setList }) => {
 
             if (result.success) {
                 const newReply = {
-                    // _id: result._id,
-                    user: currentUser.nickname,
+                    user: result.reply.user.nickname || "익명", // 익명이면 "익명" 유지
                     content: replyContent[commentId],
                     createAt: new Date(),
                 };
