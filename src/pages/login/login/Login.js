@@ -20,7 +20,7 @@ const Login = () => {
     const onSubmit = async (data) => {
         console.log(data)
         try{
-            const response = await fetch("http://localhost:8000/user/login", {
+            const response = await fetch("http://localhost:8000/auth/local", {
                 method : "POST",
                 headers : {
                     "Content-Type" : "application/json"
