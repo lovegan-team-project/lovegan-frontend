@@ -2,13 +2,13 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import main01 from './images/main02.svg';
-import main02 from './images/main01.svg';
-import main03 from './images/main03.svg';
-import main04 from './images/main04.svg';
-import main05 from './images/main05.svg';
-import main06 from './images/main06.svg';
-import main07 from './images/main07.svg';
+import main02 from './images/main01.png';
+import main01 from './images/main02.png';
+import main03 from './images/main03.png';
+import main04 from './images/main04.png';
+import main05 from './images/main05.png';
+import main06 from './images/main06.png';
+import main07 from './images/main07.png';
 import communityPic01 from './images/community01.png'
 import communityPic02 from './images/community02.png'
 import communityPic03 from './images/community03.png'
